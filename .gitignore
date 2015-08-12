@@ -1,0 +1,16 @@
+node_modules/
+.svn/
+public/node_modules
+/bootstrap/compiled.php
+/vendor/*
+/app/config/database.php
+/app/config/app.php
+/public/dist/
+composer.phar
+.env.*.php
+.env.php
+.DS_Store
+Thumbs.db
+/*.mwb.bak
+*.log
+/.idea/
