@@ -68,7 +68,7 @@
 		请求参数:	无
 
 
-		返回参数 :	View视图  resetPsd
+		返回参数 :	View视图  login/resetPsd
 
 	4.2忘记密码——获取验证码
 		请求方式:	POST
@@ -499,6 +499,20 @@
 				{
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
+				}
+	1.1 个人信息
+		请求方式:	GET
+		请求url:	/user/per_info
+
+		请求参数:
+
+		返回参数 : 视图 /setting/userInfo
+				user{
+					avatar:        头像
+					username:      昵称
+					gender         性别
+					birthday       生日
+					phone_number   手机号码
 				}
 
 	2.消息推送
