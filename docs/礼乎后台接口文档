@@ -7,7 +7,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图
+		返回参数 :	视图  login/login
 
 	1.2登录
 		请求方式:	POST
@@ -30,7 +30,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图
+		返回参数 :	视图 register/register
 
 
 	2.2注册——发送验证码
@@ -68,7 +68,7 @@
 		请求参数:	无
 
 
-		返回参数 :	View视图
+		返回参数 :	View视图  login/resetPsd
 
 	4.2忘记密码——获取验证码
 		请求方式:	POST
@@ -109,7 +109,7 @@
 		请求参数:	无
 
 		返回参数 :	
-				视图View
+				视图View index/home
 				posters:[
 					{
 					poster 			海报
@@ -133,7 +133,7 @@
 				gift_id 				礼品id
 		
 		返回参数 :
-				视图
+				视图 index/goodsDetails
 				gift:{
 					[ picture.... ],				一组礼品图片(数组)
 					title，					礼品名称
@@ -193,7 +193,7 @@
 
 		请求参数:	无
 
-		返回参数 :	静态页面
+		返回参数 :	静态页面 gifts/seachGifts
 
 	2.步骤一
 		请求方式:	POST
@@ -249,7 +249,7 @@
 				charactor_id			性格id
 				price_class			价格分类
 		返回参数 :
-				视图—瀑布流/列表形式
+				视图—瀑布流/列表形式 gifts/list   gifts/fall
 				[
 					gift:{
 						picture_url,	图片链接
@@ -268,7 +268,7 @@
 				charactor_id			性格id
 
 		返回参数 :
-				视图—瀑布流/列表形式
+				视图—瀑布流/列表形式  gifts/list   gifts/fall
 				[
 					gift:{
 						picture_url,	图片链接
@@ -287,7 +287,7 @@
 				charactor_id			性格id
 
 		返回参数 :
-				视图—瀑布流/列表形式
+				视图—瀑布流/列表形式  gifts/list   gifts/fall
 				[
 					gift:{
 						picture_url,	图片链接
@@ -306,7 +306,7 @@
 				charactor_id			性格id
 
 		返回参数 :
-				视图—瀑布流/列表形式
+				视图—瀑布流/列表形式  gifts/list   gifts/fall
 				[
 					gift:{
 						picture_url,	图片链接
@@ -322,7 +322,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图
+		返回参数 :	视图 topics/hotTopics
 				hot_topics:[
 					{
 					picture,		话题图片
@@ -337,7 +337,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图
+		返回参数 :	视图 topics/officialTopics
 				offical_topcis:[
 					{
 					picture,		话题图片
@@ -353,7 +353,7 @@
 		请求参数:	
 				topic_id			话题id
 
-		返回参数 :	视图
+		返回参数 :	视图 topics/topics
 				topic_content			话题内容
 				topic_scan_num		浏览人数
 				topic_focus_num		收藏人数
@@ -372,7 +372,7 @@
 				join_id 					参与话题id
 
 		返回参数 :	
-				视图
+				视图 topics/topicDetails
 				join_topics:{
 					join_topic_avatar,		参与话题者头像
 					join_topic_name,		参与话题者名字
@@ -500,6 +500,20 @@
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
+	1.1 个人信息
+		请求方式:	GET
+		请求url:	/user/per_info
+
+		请求参数:
+
+		返回参数 : 视图 /setting/userInfo
+				user{
+					avatar:        头像
+					username:      昵称
+					gender         性别
+					birthday       生日
+					phone_number   手机号码
+				}
 
 	2.消息推送
 		请求方式:	POST
@@ -524,7 +538,7 @@
 		请求参数:	无
 
 		返回参数 :	
-				视图
+				视图 setting/about
 				about:{
 					picture_url，		logo链接
 					version，		版本号
@@ -554,7 +568,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图
+		返回参数 :	视图 setting/news
 				topic_reply_num		话题回复条数
 				offical_reply_num		官方通知条数
 
@@ -564,7 +578,7 @@
 
 		请求参数:	无
 
-		返回参数 :	视图(话题)
+		返回参数 :	视图(话题) setting/news/topicReplies
 				replys:[
 					{
 					id 			话题或回复id
@@ -582,15 +596,15 @@
 				join_topic_id			参与话题id
 
 		返回参数 :
-				视图(参与话题详情页面)
+				视图(参与话题详情页面)  topics/topicDetails
 	
 	4. 官方通知
 		请求方式:	GET
-		请求url:	/notice/offical
+		请求url:	/notice/official
 
 		请求参数:	 无
 
-		返回参数 :	视图
+		返回参数 :	视图  setting/news/officialNews
 				[	
 					{
 					content， 				内容
@@ -605,7 +619,7 @@
 		请求参数:	 
 				offical_id					通知id
 
-		返回参数 :	视图
+		返回参数 :	视图  setting/news/officialNewsDetails
 				offical:{
 					content， 				内容
 					time， 					时间
