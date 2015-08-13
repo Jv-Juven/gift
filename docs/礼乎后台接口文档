@@ -1,25 +1,655 @@
 礼乎后台接口文档
 
 一、用户模块
-	1.注册——发送验证码
-		请求方式: 	POST
-		请求url:	user/register_code
+	1.1获取登录页面
+		请求方式:	GET
+		请求url:	/user/login
+
+		请求参数:	无
+
+		返回参数 :	视图
+
+	1.2登录
+		请求方式:	POST
+		请求url:	/user/login
 
 		请求参数:	
-				email			邮箱
+				email 				邮箱
+				password			密码 
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+
+	2.1注册——获取注册页面
+		请求方式:	GET
+		请求url:	/user/register
+
+		请求参数:	无
+
+		返回参数 :	视图
+
+
+	2.2注册——发送验证码
+		请求方式: 	POST
+		请求url:	/user/register_code
+
+		请求参数:	
+				email				邮箱
 
 		返回参数:
 				{
-					errCode:xxx,			错误码	0表示返回正常	 
-					message:xxx			提示信息
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
 				}
 
-	2.注册——密码
-		请求方式:
-		请求url:
+	2.3注册
+		请求方式:	POST
+		请求url:	/user/register
+
+		请求参数:	
+				username			用户名
+				password 			密码
+				re_password 			确认密码
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	4.1忘记密码——获取重置静态页面
+		请求方式:	GET
+		请求url:	/user/pwd
+
+		请求参数:	无
+
+
+		返回参数 :	View视图
+
+	4.2忘记密码——获取验证码
+		请求方式:	POST
+		请求url:	/user/checkcode
+
+		请求参数:	
+				email				邮箱
+
+
+		返回参数 :	
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	4.3忘记密码——重置密码
+		请求方式: 	POST
+		请求url:	/user/pwd
+
+		请求参数：	
+				email				邮箱
+				checkcode			验证码
+				password 			密码
+				re_password			确认密码
+
+		返回参数：
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+
+二、首页模块
+	1.礼品展示
+		请求方式:	GET
+		请求url:	/home
+
+		请求参数:	无
+
+		返回参数 :	
+				视图View
+				posters:[
+					{
+					poster 			海报
+					 }....		
+				]
+				
+				gifts:[
+					{
+					picture_url,		礼品图片
+					gift_info,		礼物说明文字
+					scan_num,		浏览人数
+					focus_num,		收藏人数
+					},...
+				]
+	
+	2.商品详情
+		请求方式:	GET
+		请求url:	/home/gift_detail
 
 		请求参数:
+				gift_id 				礼品id
+		
+		返回参数 :
+				视图
+				gift:{
+					[ picture.... ],				一组礼品图片(数组)
+					title，					礼品名称
+					price，					价格
+					gift_info,				礼物说明文字
+					comment_count			评论条数
+				}
+					[ picture_info...] 			图片介绍(数组)
+					[ similar_recommendation...]		相似推荐(数组)
+				]
+
+	3.收藏
+		请求方式:	POST
+		请求url:	/home/collection
+
+		请求参数:
+				gift_id 				礼品id
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	4.评论
+		请求方式:	POST
+		请求url:	/home/gift/comment
+
+		请求参数:	
+				gift_id 				礼品id
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	5.评论——回复
+		请求方式:	POST
+		请求url:	/home/gift/reply
+
+		请求参数:
+				gift_id 				礼品id
+				comment_id			评论id
+				reply_id			回复id（当为评论第一条回复时,此处为空）
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+三、选礼
+	1.选礼静态页
+		请求方式:	GET
+		请求url:	/election
+
+		请求参数:	无
+
+		返回参数 :	静态页面
+
+	2.步骤一
+		请求方式:	POST
+		请求url:	/election/one
+
+		请求参数:	
+				scene_id			场景id
+
+		返回参数 :	
+				步骤二视图
+				
+		备注：当返回视图时，请将scene_id隐藏在页面中，步骤三需要使用
+
+	3.步骤二
+		请求方式:	POST
+		请求url:	/election/two
+
+		请求参数:	
+				scene_id			场景id
+				object_id			对象id
+
+		返回参数 :
+				步骤三视图
+
+		备注：当返回视图时，请将scene_id，object_id隐藏在页面中，步骤三需要使用
+
+	4.步骤三
+		请求方式:	POST
+		请求url:	/election/three
+
+		请求参数:	
+				scene_id			场景id
+				object_id			对象id
+				charactor_id			性格id
+
+		返回参数 :	视图—瀑布流/列表形式
+				[
+					gift:{
+						picture_url,	图片链接
+						title,		礼物名称
+						price,		价格
+					},
+				]	
+		备注：当返回视图时，请将scene_id，object_id，charactor_id隐藏在页面中，重新分类时需要使用
+
+	5.选礼——按价格呈现
+		请求方式:	POST
+		请求url:	/election/price
+
+		请求参数:	
+				scene_id			场景id
+				object_id			对象id
+				charactor_id			性格id
+				price_class			价格分类
+		返回参数 :
+				视图—瀑布流/列表形式
+				[
+					gift:{
+						picture_url,	图片链接
+						title,		礼物名称
+						price,		价格
+					},
+				]	
+
+	6.选礼——对象
+		请求方式:	POST
+		请求url:	/election/object
+
+		请求参数:
+				scene_id			场景id
+				object_id			对象id
+				charactor_id			性格id
+
+		返回参数 :
+				视图—瀑布流/列表形式
+				[
+					gift:{
+						picture_url,	图片链接
+						title,		礼物名称
+						price,		价格
+					},
+				]
+
+	7.选礼——场景
+		请求方式:	POST
+		请求url:	/election/scene
+
+		请求参数:
+				scene_id			场景id
+				object_id			对象id
+				charactor_id			性格id
+
+		返回参数 :
+				视图—瀑布流/列表形式
+				[
+					gift:{
+						picture_url,	图片链接
+						title,		礼物名称
+						price,		价格
+					},
+				]
+
+	8.选礼——性格
+		请求方式:	POST
+		请求url:	/election/charactor
+
+		请求参数:
+				scene_id			场景id
+				object_id			对象id
+				charactor_id			性格id
+
+		返回参数 :
+				视图—瀑布流/列表形式
+				[
+					gift:{
+						picture_url,	图片链接
+						title,		礼物名称
+						price,		价格
+					},
+				]
+
+四、圈子
+	1.1 圈子静态页——热门话题
+		请求方式:	GET
+		请求url:	/topic/hot
+
+		请求参数:	无
+
+		返回参数 :	视图
+				hot_topics:[
+					{
+					picture,		话题图片
+					title,			题目
+					content		内容
+					}...
+				]
+
+	1.2 圈子静态页——官方话题
+		请求方式:	GET
+		请求url:	/topic/offical
+
+		请求参数:	无
+
+		返回参数 :	视图
+				offical_topcis:[
+					{
+					picture,		话题图片
+					title,			题目
+					content		内容
+					}...
+				]
+
+	1.3 话题内容展开
+		请求方式:	GET
+		请求url:	/topic/detail
+
+		请求参数:	
+				topic_id			话题id
+
+		返回参数 :	视图
+				topic_content			话题内容
+				topic_scan_num		浏览人数
+				topic_focus_num		收藏人数
+				join_topic_num		参与话题数
+				join_topics:{
+					join_topic_avatar,	参与话题者头像
+					tjoin_topic_name,	参与话题者名字
+					join_topic_content	参与话题发表的内容(截取开始一小段)
+				}
+
+	1.4 参与话题详情
+		请求方式:	GET
+		请求url:	/topic/join_detail
+
+		请求参数:
+				join_id 					参与话题id
+
+		返回参数 :	
+				视图
+				join_topics:{
+					join_topic_avatar,		参与话题者头像
+					join_topic_name,		参与话题者名字
+					join_topic_content,		参与话题发表的详细内容
+					join_topic_time,		发表时间,
+					join_topic_focus_num		收藏人数
+					join_topic_comments		评论人数
+				}
+				[
+					join_topic_comments:{
+						name,			评论者名字
+						content，		内容
+					}....
+				]
+
+	2.1 参与话题
+		请求方式:	POST
+		请求url:	/topic/join_topic
+
+		请求参数:	
+				topic_id				话题id
+				content 				话题内容
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+	2.2 编辑参与话题
+		请求方式:	POST
+		请求url:	/topic/join_topic/edit
+
+		请求参数:	
+				topic_id				话题id
+				content 				话题内容
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	2.3删除参与话题
+		请求方式:	POST
+		请求url:	/topic/join_topic/delete
+
+		请求参数:	
+				topic_id				话题id
 
 		返回参数 :
 
-	3.注册——个人信息
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	3.1评论参与话题
+		请求方式:	POST
+		请求url:	/topic/topic_comment
+
+		请求参数:
+				join_topic_id 			参与话题id
+				content 			评论内容
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	3.2 删除评论
+		请求方式:	POST
+		请求url:	/topic/topic_comment/delete
+
+		请求参数:
+				join_topic_id 			参与话题id
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	4.1 回复评论
+		请求方式:	POST
+		请求url:	/topic/reply
+
+		请求参数:	
+				comment_id			评论id
+				content 			回复内容
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	4.2 删除回复评论
+		请求方式:	POST
+		请求url:	/topic/reply/delete
+
+		请求参数:	
+				comment_id			评论id
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+五、设置
+	1.个人信息
+		请求方式:	POST
+		请求url:	/user/per_info
+
+		请求参数:
+		备注:		输入时任选其中一个字段
+				avatar				头像	
+				username			昵称
+				gender				性别
+				birthday			生日
+				phone_number		手机号码
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	2.消息推送
+		请求方式:	POST
+		请求url:	/set_up
+
+		请求参数:	
+				set_id				设置的选择
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	3.清楚缓存
+		前端控制
+
+	4.关于礼乎
+		请求方式:	GET
+		请求url:	/about
+
+		请求参数:	无
+
+		返回参数 :	
+				视图
+				about:{
+					picture_url，		logo链接
+					version，		版本号
+					right			版权
+				}
+
+	5.意见反馈
+		请求方式:	POST
+		请求url:	/feedback
+
+		请求参数:
+				content 			内容
+
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	6.点评知乎
+		链接到	Appstore
+
+六.通知
+	1.静态页面
+		请求方式:	GET
+		请求url:	/notice
+
+		请求参数:	无
+
+		返回参数 :	视图
+				topic_reply_num		话题回复条数
+				offical_reply_num		官方通知条数
+
+	2.话题回复
+		请求方式:	GET
+		请求url:	/notice/reply
+
+		请求参数:	无
+
+		返回参数 :	视图(话题)
+				replys:[
+					{
+					id 			话题或回复id
+					avatar,			头像
+					name,			名字
+					time，			时间
+					}...
+				]
+
+	3.回复详情页
+		请求方式:	GET
+		请求url:	/notice/reply/detail
+
+		请求参数:	
+				join_topic_id			参与话题id
+
+		返回参数 :
+				视图(参与话题详情页面)
+	
+	4. 官方通知
+		请求方式:	GET
+		请求url:	/notice/offical
+
+		请求参数:	 无
+
+		返回参数 :	视图
+				[	
+					{
+					content， 				内容
+					time， 					时间
+					}...
+				]
+
+	6.官方通知——详情页
+		请求方式:	GET
+		请求url:	/notice/offical/detail
+
+		请求参数:	 
+				offical_id					通知id
+
+		返回参数 :	视图
+				offical:{
+					content， 				内容
+					time， 					时间
+					}
+
+七、收纳盒
+	1.商品
+		请求方式:	GET
+		请求url:	/collection/goods		
+
+		请求参数:	无
+
+
+		返回参数 :
+				[
+					gift:{
+						picture_url,		礼品图片
+						title,			礼物名字
+						price,			价格
+					},...
+				]
+	2.话题
+		请求方式:	GET
+		请求url:	/collection/topics
+
+		请求参数:	无
+
+		返回参数 :
+				[
+					topic:{
+						picture_url,		图片链接url
+						title,			题目
+						content,		内容
+						scan_num,		浏览次数
+						join_count,		参与话题者人数		
+						focus_num,		收藏人数
+					}
+					join_topic:{
+						picture_url,		图片链接url
+						title,			题目
+						content,		内容
+						scan_num,		浏览次数
+						comment_count,	评论数
+						focus_num,		收藏人数
+					}
+				]
+
