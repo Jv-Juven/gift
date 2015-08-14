@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNoticsTable extends Migration {
+class CreateNoticesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -34,7 +34,7 @@ class CreateNoticsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('notics');
+		Schema::drop('notices');
 	}
 
 }

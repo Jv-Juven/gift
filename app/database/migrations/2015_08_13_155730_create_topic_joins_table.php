@@ -15,8 +15,8 @@ class CreateTopicJoinsTable extends Migration {
 		Schema::create('topic_joins', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->intger('topic_id')->unsigned()->index('topic_id');//话题id
-			$table->intger('user_id')->unsigned()->index('user_id');//参与者id
+			$table->integer('topic_id')->unsigned()->index('topic_id');//话题id
+			$table->integer('user_id')->unsigned()->index('user_id');//参与者id
 			$table->string('content');//内容
 			$table->integer('scan_num')->nullable();//浏览人数
 			$table->integer('focus_num')->nullable();//收藏人数

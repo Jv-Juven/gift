@@ -2,6 +2,15 @@
 
 class BaseController extends Controller {
 
+	// public function response(int $errCode, string $message)
+	// {
+	// 	return Response::json(array('errCode'=>$errCode, 'message'=>$message));
+	// }
+
+
+
+
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

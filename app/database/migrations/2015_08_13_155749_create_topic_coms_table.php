@@ -19,7 +19,7 @@ class CreateTopicComsTable extends Migration {
 			$table->integer('topic_id')->unsigned()->index('topic_id');//话题id
 			$table->integer('t_join_id')->unsigned()->index('t_join_id');//参与话题id
 			$table->string('content');//内容
-			$table->intger('reply_num')->nullable();//回复人数
+			$table->integer('reply_num')->nullable();//回复人数
 			$table->timestamps();
 
 			$table                          

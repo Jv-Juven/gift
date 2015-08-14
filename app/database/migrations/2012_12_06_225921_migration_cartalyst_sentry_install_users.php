@@ -35,11 +35,11 @@ class MigrationCartalystSentryInstallUsers extends Migration {
 			$table->string('email');//邮箱
 			$table->string('password');//密码
 			
-			$table->string('username');//用户名
+			$table->string('username')->unique();//用户名
 			$table->string('avatar')->nullable();//头像
 			$table->string('gender')->default(2);//性别，男=0，女=1,
 			$table->string('birthday')->nullable();//生日
-			$table->integer('phone')->nullable();//手机号
+			$table->string('phone')->unique();//手机号
 			
 			$table->text('permissions')->nullable();
 			$table->boolean('activated')->default(0);
