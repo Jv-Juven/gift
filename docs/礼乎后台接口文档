@@ -14,7 +14,7 @@
 		请求url:	/user/login
 
 		请求参数:	
-				phone 				手机号码
+				email 				邮箱
 				password			密码 
 
 		返回参数 :
@@ -57,7 +57,7 @@
 		请求url:	/user/register_code
 
 		请求参数:	
-				phone 				手机号码
+				email 				邮箱
 
 		返回参数:
 				{
@@ -74,7 +74,7 @@
 		请求url:	/user/check_code
 
 		请求参数:	
-				phone 				手机号码
+				email 				邮箱
 				check_code 			验证码
 
 		返回参数:
@@ -132,7 +132,7 @@
 		请求url:	/user/pwd_code
 
 		请求参数:	
-				phone				手机号码
+				email				邮箱
 
 
 		返回参数 :	
@@ -150,7 +150,7 @@
 		请求url:	/user/pwd
 
 		请求参数：	
-				phone				手机号码
+				email				邮箱
 				check_code			验证码
 				password 			密码
 				re_password			确认密码

@@ -2,27 +2,27 @@
 
 class UserController extends BaseController{
 	
-	protected static $telephone_reg = "/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$|17[0-9]{1}[0-9]{8}$/";
-	//发送验证码（创瑞短信平台cr6868.com）
-	protected function send_message( $user_telephone, $message )
-	{
+	// protected static $telephone_reg = "/^13[0-9]{1}[0-9]{8}$|15[0189]{1}[0-9]{8}$|189[0-9]{8}$|17[0-9]{1}[0-9]{8}$/";
+	// //发送验证码（创瑞短信平台cr6868.com）
+	// protected function send_message( $user_telephone, $message )
+	// {
         
-	        $argv = array(
-	            'name' => '13246860389',
-	            'pwd' => 'DDF540A7FC084C226AD472E36037',
-	            'sign' => '紫睿科技',
-	            'type' => 'pt',
-	            'mobile' => $user_telephone,
-	            'content' => $message //'您的验证码为：'.$code
-	        );
+	//         $argv = array(
+	//             'name' => '13246860389',
+	//             'pwd' => 'DDF540A7FC084C226AD472E36037',
+	//             'sign' => '紫睿科技',
+	//             'type' => 'pt',
+	//             'mobile' => $user_telephone,
+	//             'content' => $message //'您的验证码为：'.$code
+	//         );
 
-	        $url = 'http://web.cr6868.com/asmx/smsservice.aspx?'.http_build_query( $argv, '', '&' );
+	//         $url = 'http://web.cr6868.com/asmx/smsservice.aspx?'.http_build_query( $argv, '', '&' );
         
-	        $response = file_get_contents( $url );
-	        $return_code = substr( $response, 0, 1 );
+	//         $response = file_get_contents( $url );
+	//         $return_code = substr( $response, 0, 1 );
 
-	        return $return_code == '0';
-	}
+	//         return $return_code == '0';
+	// }
 
 	//随机数
 	protected function rand()
@@ -34,24 +34,42 @@ class UserController extends BaseController{
 	public function registerCode()
 	{
 		Session_start();
-		$user_telephone = Input::get('phone');
+		$email = Input::get('email');
 
-		if(!preg_match(self::$telephone_reg, $user_telephone) )
-			return Response::json(array('errCode'=>1, 'message'=>'手机号码不正确！'));
-		
-		$phone_is_register = User::where('phone', '=', $user_telephone)->get();
-		if(count($phone_is_register) != 0)
-			return 	Response::json(array('errCode'=>2, 'message'=>'手机已注册！'));
-
+		// if(!preg_match(self::$telephone_reg, $user_telephone) )
+		// 	return Response::json(array('errCode'=>1, 'message'=>'手机号码不正确！'));
+		$messages = array(
+			'required' 	=> 1,
+			'email'		=> 2,
+			'unique'	=> 3
+			);
+		$validation = Validator::make(
+			array('email' => $email),
+			array('email' => 'required|email|unique:users,email'),
+			$messages
+			);
+		if($validation->fails())
+		{
+			$msg = $validation->messages()->all();
+			if($msg[0] ==1 )
+				return Response::json(array('errCode'=>1, 'message'=>'请填写邮箱！'));
+			if($msg[0] ==2 )
+				return Response::json(array('errCode'=>2, 'message'=>'邮箱格式不正确！'));
+			if($msg[0] ==3 )
+				return Response::json(array('errCode'=>3, 'message'=>'此邮箱已注册！'));
+		}
+		//  // 发送验证码
+		// if ( !$this->send_message( $user_telephone, $message ) )
+		//             return Response::json(array( 'error_code' => 3, 'message' => '验证码发送失败' ));	
 		//验证码
 		$code = $this->rand();
-		$message = '您的验证码为：'.$code;
-		 // 发送验证码
-		if ( !$this->send_message( $user_telephone, $message ) )
-		            return Response::json(array( 'error_code' => 3, 'message' => '验证码发送失败' ));		
-
+		//发送邮件
+		Mail::send('emails/token',array('token' => $code),function($message) use ($email)
+		{
+			$message->to($email,'')->subject('礼拉欢迎您!');
+		});	
 		 //储存验证信息
-		Session::put('telephone', $user_telephone);
+		Session::put('email', $email);
 		Session::put('code', $code);
 
 		return Response::json(array('errCode'=>0, 'message'=>'发送成功！'));
@@ -61,11 +79,11 @@ class UserController extends BaseController{
 	public function  checkCode()
 	{
 		Session_start();
-		$telephone 	=  Input::get('phone');
+		$email 		= Input::get('email');
 		$code 		= Input::get('check_code');
 
-		if(Session::get('phone') != $telephone)
-			return Response::json(array('errCode'=>1, 'message'=>'手机号码不正确！'));
+		if(Session::get('email') != $email)
+			return Response::json(array('errCode'=>1, 'message'=>'邮箱不正确！'));
 
 		if(Session::get('code') != $code)
 			return Response::json(array('errCode'=>2, 'message'=>'验证码不正确！'));
@@ -119,40 +137,49 @@ class UserController extends BaseController{
 				return Response::json(array('errCode'=>5, 'message'=>'两次输入的密码不一致！'));
 		}
 
-		$user = New User;
-		$user->phone 		= Session::get('phone');
-		$user->password 	= Hash::make($password);
-		$user->username 	= $username;
+		$user = Sentry::createUser(array(
+			 'email'=>Session::get('email'),
+			'password'=>$password,
+			'activated'=>true,
+			));
 
-		if(!$user->save())
-			return Response::json(array('errCode'=>6, 'message'=>'注册失败！'));
-		
 		return Response::json(array('errCode'=>0, 'message'=>'注册成功！'));
+		
+		// $user = New User;
+		// $user->email 		= Session::get('email');
+		// $user->password 	= Hash::make($password);
+		// $user->username 	= $username;
+		// if(!$user->save())
+		// 	return Response::json(array('errCode'=>6, 'message'=>'注册失败！'));
+		// return Response::json(array('errCode'=>0, 'message'=>'注册成功！'));
 	}
 
 	//登录
 	public function login()
 	{
-		$phone 	= Input::get('phone');
+		$email 		= Input::get('email');
 		$password 	= Input::get('password');
 
-		if(!preg_match(self::$telephone_reg, $phone) )
-			return Response::json(array('errCode'=>1, 'message'=>'手机号码格式不正确！'));
+		$validation = Validator::make(
+			array('email' => $email),
+			array('email' => 'email')
+			);
+		if($validation->fails())
+			return Response::json(array('errCode'=>1, 'message'=>'邮箱格式不正确！'));
+		
 		try{
 			$cred = array(
-				'phone' 	=> $phone,
+				'email' 		=> $email,
 				'password'	=> $password
 			);
 			$user = Sentry::authenticate($cred, false);
 		}
 		catch( Cartalyst\Sentry\Users\PasswordRequiredException $e ){
-			return Response::json(array( 'error_code' => 2, 'message' => '请输入密码' ));
-		}catch( Cartalyst\Sentry\Users\UserNotFoundException $e ){
-			return Response::json(array( 'error_code' => 3, 'message' => '不存在该用户' ));
+			return Response::json(array( 'errorCode' => 2, 'message' => '请输入密码' ));
 		}catch( Cartalyst\Sentry\Users\WrongPasswordException $e ){
-			return Response::json(array( 'error_code' => 4, 'message' => '密码错误' ));
+			return Response::json(array( 'errorCode' => 3, 'message' => '密码错误' ));
 		}catch( Exception $e ){
-			return Response::json(array( 'error_code' => -1, 'message' => 'Unknown Error' ));
+			return Response::json(array( 'errorCoode' => 4, 'message' => '邮箱或密码错误' ));
 		 }
 
 		 Session::put('user_id', Sentry::getUser()->id);
@@ -171,24 +198,30 @@ class UserController extends BaseController{
 	public function pwdCode()
 	{
 		Session_start();
-		$user_telephone = Input::get('phone');
+		$email = Input::get('email');
 
-		if(!preg_match(self::$telephone_reg, $user_telephone) )
-			return Response::json(array('errCode'=>1, 'message'=>'手机号码不正确！'));
+		$validation = Validator::make(
+			array('email' => $email),
+			array('email' => 'email')
+			);
+		if($validation->fails())
+			return Response::json(array('errCode'=>1, 'message'=>'邮箱格式不正确！'));
 		
-		$phone_is_register = User::where('phone', '=', $user_telephone)->get();
-		if(count($phone_is_register) == 0)
-			return 	Response::json(array('errCode'=>2, 'message'=>'手机未注册！'));
+		$user_email = User::where('email', '=', $email)->get();
+		if(count($user_email) == 0)
+			return 	Response::json(array('errCode'=>2, 'message'=>'该邮箱未注册！'));
 
-		//验证码
-		$code = $this->rand();
-		$message = '您的验证码为：'.$code;
-		 // 发送验证码
-		if ( !$this->send_message( $user_telephone, $message ) )
-		            return Response::json(array( 'error_code' => 3, 'message' => '验证码发送失败' ));		
-
+		// 根据 email 查找用户
+		$user = Sentry::findUserByLogin($email);
+		//获取重置密码
+		$code = $user->getResetPasswordCode();
+		//发送邮件
+		Mail::send('emails/token',array('token' => $code),function($message) use ($email)
+		{
+			$message->to($email,'')->subject('礼拉欢迎您!');
+		});	
 		 //储存验证信息
-		Session::put('reset_telephone', $user_telephone);
+		Session::put('reset_email', $email);
 		Session::put('reset_code', $code);
 
 		return Response::json(array('errCode'=>0, 'message'=>'发送成功！'));
@@ -198,13 +231,13 @@ class UserController extends BaseController{
 	public function pwdReset()
 	{	
 		Session_start();
-		$phone 		= Input::get('phone');
+		$email 			= Input::get('email');
 		$check_code 		= Input::get('check_code');
 		$password 		= Input::get('password');
 		$re_password 		= Input::get('re_password');
 
-		if($phone != Session::get('reset_telephone'))
-			return Response::json(array('errCode'=>1,'message'=>'手机号码不正确！'));
+		if($email != Session::get('reset_email'))
+			return Response::json(array('errCode'=>1,'message'=>'邮箱不正确！'));
 		if($check_code != Session::get('reset_code'))
 			return Response::json(array('errCode'=>2, 'message' =>'验证码不正确！'));
 		if(strlen($password)<6 || strlen($password)>20)
@@ -212,12 +245,29 @@ class UserController extends BaseController{
 		if($password != $re_password)
 			return Response::json(array('errCode'=>4, 'messsage' =>'两次输入的密码不一致！'));
 
-		$user = User::where('phone', '=', $phone)->first();
-		$user->password = Hash::make($password);
-
-		if(!$user->save())
-			return Response::json(array('errCode'=>5, 'message'=>'密码修改失败！'));
-
-		return Response::json(array('errCode'=>0, 'message'=>'密码修改成功！'));
+		try{
+			$user = Sentry::findUserByLogin($email);
+			if($user->checkResetPasswordCode($check_code))
+			{
+				if($user->attemptResetPassword($check_code,$password))
+				{
+					return Response::json(array('errCode'=>0, 'message'=>'密码修改成功！'));
+				}else{
+					return Response::json(array('errCode'=>5, 'message'=>'密码修改失败！'));
+				}
+			}else{
+				return Response::json(array('errCode'=>6, 'message'=>'密码无效！'));
+			}
+		}catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+		{
+			return Response::json(array('errCode'=>7, 'message'=>'用户不存在！'));
+		}
+		// $user = User::where('email', '=', $email)->first();
+		// $user->password = Hash::make($password);
+		// if(!$user->save())
+		// 	return Response::json(array('errCode'=>5, 'message'=>'密码修改失败！'));
+		// return Response::json(array('errCode'=>0, 'message'=>'密码修改成功！'));
 	}
+
+	
 }
