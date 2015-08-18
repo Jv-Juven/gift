@@ -15,8 +15,8 @@ class CreateGiftPostersTable extends Migration {
 		Schema::create('gift_posters', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('gift_id')->unsigned()->index('gift_id');//礼物id
-			$table->string('url');//礼物图片url
+			$table->integer('gift_id')->unsigned()->index('gift_id');//礼物图片链接
+			$table->string('url')->nullable();//礼物详情链接
 			$table->timestamps();
 
 			$table                          
@@ -24,6 +24,7 @@ class CreateGiftPostersTable extends Migration {
 				->references('id')->on('gifts') 
 				->onDelete('cascade')
 				->onUpdate('cascade');
+
 		});
 	}
 

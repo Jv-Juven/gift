@@ -22,11 +22,11 @@
 					errCode:xxx,		0. 表示返回正常
 								1. 手机号码格式不正确！
 								2. 请输入密码
-								3. 不存在该用户
-								4. 密码错误
-								-1. Unknown Error	 
+								3. 密码错误
+								4. 密码或邮箱错误
 
 					message:xxx		提示信息
+					intendedUrl:xxx	登录之前页面所在的url(登录成功时有此参数)
 				}
 	1.3 登出
 		请求方式:	POST
@@ -179,10 +179,16 @@
 				视图View index/home
 				posters:[
 					{
-					poster 			海报
+					photo_url		海报图片
+					info_url			详情页链接
 					 }....		
 				]
-				
+				new_gifts:[
+					{
+					photo_url		海报图片
+					info_url			详情页链接
+					 }....		
+				]
 				gifts:[
 					{
 					picture_url,		礼品图片
@@ -191,6 +197,7 @@
 					focus_num,		收藏人数
 					},...
 				]
+		备注:请将每一个实例的id存在页面中,用于导向商品详情页
 	
 	2.商品详情
 		请求方式:	GET
@@ -206,13 +213,34 @@
 					title，					礼品名称
 					price，					价格
 					gift_info,				礼物说明文字
-					comment_count			评论条数
+					focus_num,				收藏条数
+					gift_photo_intro 			图文介绍
 				}
-					[ picture_info...] 			图片介绍(数组)
-					[ similar_recommendation...]		相似推荐(数组)
+
+	3.喜欢
+		请求方式:	GET
+		请求url:	/home/like
+
+		请求参数:
+				gift_id 				礼品id
+
+		返回参数:
+				视图 index/like
+				focus_users:[
+					{
+					avatar,			收藏人的头像
+					},...
+				]
+				gifts_like:[
+					{
+					gift_id,			礼物id
+					url 			图片url
+					}
 				]
 
-	3.收藏
+
+
+	4.收藏
 		请求方式:	POST
 		请求url:	/home/collection
 
@@ -225,7 +253,36 @@
 					message:xxx		提示信息
 				}
 
-	4.评论
+	5. 专题
+		请求方式:	GET
+		请求url:	/home/topic
+
+		请求参数:
+				topic_id 			专题id
+
+		返回参数:
+				视图 index/goodsDetails
+				topic:{
+					title,			话题标题
+					content,		话题内容
+					topic_url,		话题图片
+					scan_num,	 	浏览人数
+					focus_num 		关注人数
+				}
+				gifts:[
+					{
+					title,			礼品名称
+					price,			价格
+					content,		礼品描述
+					gift_photo_intro,	图文介绍
+					scan_num,		浏览人数
+					focus_num 		收藏人数
+					}
+				]
+
+
+	注意 : 评论和回复接口暂时不用，第一版不做！
+	5.评论
 		请求方式:	POST
 		请求url:	/home/gift/comment
 
@@ -238,7 +295,7 @@
 					message:xxx		提示信息
 				}
 
-	5.评论——回复
+	6.评论——回复
 		请求方式:	POST
 		请求url:	/home/gift/reply
 

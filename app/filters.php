@@ -54,6 +54,22 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+
+Route::filter('auth.user.isIn',function()
+{
+	Session_start();
+	if(!Sentry::check())
+	{
+		if (Request::ajax())
+		{
+			return Response::json(array('errCode' => 10,'message' => '请登陆！'));
+		}
+		else
+		{
+			return Redirect::guest('login/login');
+		}
+	}
+});
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

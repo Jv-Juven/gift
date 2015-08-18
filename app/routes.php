@@ -16,6 +16,24 @@ Route::get("/", function(){
 	// return Response::view("layouts.master");
 });
 
+
+//首页模块
+Route::group(array('prefix' => 'home'),function(){
+	//礼品展示
+	Route::get('/', 'HomePageController@showWelcome');
+	//礼品详情页
+	Route::get('gift_detail', 'HomePageController@giftDetail');
+	//喜欢详情页
+	Route::get('like', 'HomePageController@like');
+	//专题
+	Route::get('topic', 'HomePageController@topic');
+	//用户收藏
+	// Route::group(array('before'=>'auth.user.isIn'), function(){
+		//收藏
+		Route::post('collection','HomeController@collection');
+	// });
+});
+
 // Route::group(array('prefix' => 'user'),function()
 // {
 // 	//注册—获取注册页面
