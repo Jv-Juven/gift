@@ -1,0 +1,44 @@
+
+@import "./../common/common.less";
+
+
+.input-wrapper{
+	position: relative;
+	.input-container{
+		width: 100%;
+		margin-top: 16px;
+		.input{
+			width: 100%;
+			display: block;
+			padding-left: 50px;
+			height: 46px;
+			border: 1px solid rgb(240, 240, 240);
+			.box-sizing();
+			.font-style(1.35em, 400, #515051);
+			&:focus{
+				outline: none;
+			}
+		}
+		&:before{
+			@width: 30px;
+			content: " ";
+			position: absolute;
+			top: 8px;
+			left: 10px;
+			width: @width;
+			height: @width;
+			
+
+		}
+	}
+
+	.input-name:before{
+		background: url("/images/name_icon.png") no-repeat;
+		background-size: auto 100%;
+	}
+	.input-password:before{
+		background: url("/images/password_icon.png") no-repeat;
+		background-size: auto 100%;
+	}
+
+}
