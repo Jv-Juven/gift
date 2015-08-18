@@ -12,7 +12,8 @@ module.exports = (grunt)->
         copy:
             dev:
                 files: [
-                    {expand: true, flatten: true, src: ["lib/*"], dest: 'dist/lib/'}
+                    {expand: true, flatten: true, src: ["lib/js/*"], dest: 'dist/lib/js/'}
+                    {expand: true, flatten: true, src: ["lib/css/*"], dest: 'dist/lib/css/'}
                 ]
 
         clean:
