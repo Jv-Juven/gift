@@ -12,9 +12,7 @@ module.exports = (grunt)->
         copy:
             dev:
                 files: [
-                    {expand: true, flatten: true, src: ["lib/js/jquery/*"], dest: 'dist/js/lib/jquery/'}
-                    {expand: true, flatten: true, src: ["lib/js/plugins/*"], dest: 'dist/js/lib/plugins/'}
-                    {expand: true, flatten: true, src: ["src/pages/**/*.js"], dest: 'dist/js/pages/'}
+                    {expand: true, flatten: true, src: ["lib/*"], dest: 'dist/lib/'}
                 ]
 
         clean:
@@ -29,9 +27,8 @@ module.exports = (grunt)->
                 expand: true
                 flatten: true
                 files: {
-                    'dist/js/components.js': ['src/components/**/*.coffee'],
-                    'dist/js/mycomponents.js': ['src/components/**/*.js'],
-                    'dist/js/common.js': ['src/common/**/*.js'],
+                    #'dist/js/components.js': ['src/components/**/*.coffee']
+                    'dist/js/common.js': ['src/common/**/*.coffee']
                 }
 
             pages:
@@ -49,21 +46,23 @@ module.exports = (grunt)->
             compile:
                 options:
                     livereload: 1337
-                files: ['src/**/*.less', 'src/**/*.coffee','src/**/*.js','src/**/**/*.js']
+                files: ['src/**/*.less', 'src/**/*.coffee']
                 tasks: ['browserify', 'less']
 
         less:
             common:
                 files:
-                    'dist/css/common.css': ['src/common/common.less']
+                    'dist/css/common.css': ['src/common/*.less']
 
             components:
                 files:
                     'dist/css/components.css': ['src/components/**/*.less']
-                    'dist/css/layouts.css':['src/layouts/*.less']
             pages:
                 files:
-                    'dist/css/admin/home/scroll-poster.css': ['src/pages/admin/home/scroll-poster.less']
+                    'dist/css//pages/login.css': ['src/pages/login/login.less']
+                    'dist/css//pages/home.css': ['src/pages/index/home.less']
+                    'dist/css//pages/goodDetails.css': ['src/pages/index/goodDetails.less']
+                    'dist/css//pages/goodsList.css': ['src/pages/index/goodsList.less']
                     
 
         cssmin:
