@@ -12,7 +12,7 @@
 */
 
 Route::get("/", function(){
-	return View::make("index.home");
+	return View::make("index.goodDetails");
 	// return Response::view("layouts.master");
 });
 
