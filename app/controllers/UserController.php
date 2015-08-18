@@ -183,7 +183,7 @@ class UserController extends BaseController{
 		 }
 
 		 Session::put('user_id', Sentry::getUser()->id);
-		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！'));
+		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！','intendedUrl'=>Session::pull('url.intended', '/')));
 	}
 
 	public function logout()
