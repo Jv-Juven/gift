@@ -13,7 +13,8 @@ class   Gift extends Eloquent{
 		'focus_num',
 		'scene_id',
 		'object_id',
-		'char_id'
+		'char_id',
+		'taobao_url'
 	);
 
 	public function users()
