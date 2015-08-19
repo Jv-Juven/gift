@@ -12,8 +12,7 @@
 */
 
 Route::get("/", function(){
-	return View::make("index.goodsList");
-	// return Response::view("layouts.master");
+	return View::make("index.goodDetails");
 });
 
 

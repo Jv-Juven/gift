@@ -1,9 +1,9 @@
 $ ()->
 
 	###
-	#首页幻灯片
+	#商品详情页幻灯片
 	###
-	homeSwiper = new Swiper ".home-swipers",{
+	goodSwiper = new Swiper ".good-swipers",{
 		direction: "horizontal",
 		autoplay: 5000,
 		loop: "true",

@@ -1,0 +1,169 @@
+
+@import "./../../common/common.less";
+.page-content{
+	section{
+		position: relative;
+		width: 100%;
+		height: auto;
+	}
+	.good-pics{
+		.good-swipers{
+			width: 100%;
+			.swiper-wrapper{
+				.swiper-slide{
+					a{
+						display: block;
+						text-decoration: none;
+						width: 100%;
+						img{
+							width: 100%;
+						}
+					}
+				}
+			}
+
+			.swiper-pagination-bullet{
+				background: red;
+			}
+			.swiper-pagination-bullet-active{
+				background: red;
+			}
+		}
+	}
+	.good-intro{
+		.intro-wrapper{
+			width: 100%;
+			height: auto;
+			.box-sizing();
+			padding: 10px 15px;
+			.intro-name{
+				line-height: 2.2rem;
+				.font-style(1.5rem, 400,black);
+			}
+			.intro-price{
+				line-height: 2.4rem;
+				.font-style(1.6rem, 400, red);
+				.price{
+					display: inline-block;
+					padding: 0px;
+				}
+			}
+			.intro-details{
+				.font-style(1rem, 400);
+				letter-spacing: 1px;
+				line-height: 1.3rem;
+			}
+		}
+	}
+
+	.good-details{
+		@color: rgb(210, 210, 210);
+		.good-details-header{
+			@line-height: 2.8rem;
+			display: flex;
+			display: -webkit-flex;
+			width: 100%;
+			line-height: @line-height;
+			overflow: hidden;
+			.good-details-wrapper{
+				border-top: 1px solid @color;
+				border-bottom: 1px solid @color;
+				flex: 1;
+				-webkit-flex: 1;
+
+				.box-sizing();
+				padding: .3rem 0px;
+				.good-pannel-btn{
+					position: relative;
+					display: inline-block;
+					.font-style(1.2rem, 400, rgb(60, 60, 60));
+					line-height: @line-height;
+					text-align: center;
+					width: 100%;
+					&:nth-child(1){
+						border-right: 1px solid @color;
+					}
+				}
+			}
+			.active{
+				span{
+					color: red !important;
+				}
+				border-bottom: .2rem solid red;
+			}
+		}
+		.details-pannel{
+			width: 100%;
+		}
+		.intro-details-pannel{
+			.good-intro-wrapper{
+				list-style: none;
+				li{
+					width: 100%;
+					img{
+						width: 100%;
+					}
+				}
+			}
+		}
+		.comment-details-pannel{
+			div{
+				width: 100%;
+			}
+			.good-praise{
+				padding: 1rem 0px;
+				@width: 2.4rem;
+				span{
+					display: inline-block;
+					width: @width;
+					height: @width;
+					border-radius: @width;
+					margin: .5rem 0 .5rem 1rem;
+					float: left;
+				}
+				.avatar{
+					background: rgba(0, 0, 0, 0.5);
+				}
+				.add{
+					div{
+						width: 100%;
+						line-height: 2rem;
+						text-align: center;
+						.font-style(1.2rem, 600, white);
+					}
+					background: rgb(242, 171, 175);
+				}
+			}
+		}
+
+		.good-comment-title{
+			padding-left: 1rem;
+			border-top: 1px solid @color;
+			border-bottom: 1px solid @color;
+			line-height: 4rem;
+		}
+
+		.good-recommend{
+			display: flex;
+			display: -webkit-flex;
+			flex-flow: row wrap;
+			-webkit-flex-flow: row wrap;
+			justify-content: space-around;
+			-webkit-justify-content: space-around;
+			align-items: flex-start;
+			-webkit-align-items: flex-start;
+			align-content: flex-start;
+			-webkit-align-content: flex-start;
+			height: 200px;
+			.goods-recommend-item{
+				flex: 1;
+				-webkit-flex: 1;
+				width: 30%;
+				height: 40px;
+				background: rgb(100, 100, 100);
+			}
+		}
+
+
+	}
+}
