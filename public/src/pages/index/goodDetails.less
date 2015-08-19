@@ -60,6 +60,7 @@
 	.good-details{
 		@color: rgb(210, 210, 210);
 		@line-height: 2.8rem;
+		@padding-bottom: 3.6rem;
 		.good-details-header{
 			position: absolute;
 			top: 0px;
@@ -118,7 +119,6 @@
 			}
 		}
 		.comment-details-pannel{
-			@padding-bottom: 3.6rem;
 			@border-width: 1.5rem;
 			&>div{
 				width: 100%;
@@ -187,54 +187,54 @@
 					}
 				}
 			}
-			
-			.good-details-footer{
-				@width: 1.6rem;
-				position: fixed;
-				bottom: 0rem;
-				width: 100%;
-				line-height: @padding-bottom;
-				background: rgb(255, 255, 255);
-				text-align: center;
-				.good-btns{
-					display: inline-block;
-					border: solid thin red;
-					line-height: 2.7rem;
-					width: 9rem;
-					border-radius: .5rem;
-					
-					margin: 0rem .7rem;
-					span[class^="btns-pattern"]{
-						display: inline-block;
-						width: @width;
-						height: @width;
-						vertical-align: middle;
-					}
-				}
-				.good-like{
-					.font-style(1.2rem, 400, red);
-					.btns-pattern{
-						background: url("/images/good_details/good_unlike.png") no-repeat;
-						background-size: 100% auto;
-					}
-					.btns-pattern-like{
-						background: url("/images/good_details/good_like.png") no-repeat;
-						background-size: 100% auto;
-					}
-				}
-				.good-buy{
-					background: red;
-					.font-style(1.2rem, 400, white);
-					.btns-pattern{
-						background: url("/images/good_details/good_bug.png") no-repeat;
-						background-size: 100% auto;
-					}
-				}
-			}
 
 		}
 
-
+		
+		
+		.good-details-footer{
+			@width: 1.6rem;
+			position: fixed;
+			bottom: 0rem;
+			width: 100%;
+			line-height: @padding-bottom;
+			background: rgb(255, 255, 255);
+			text-align: center;
+			.good-btns{
+				display: inline-block;
+				border: solid thin red;
+				line-height: 2.7rem;
+				width: 9rem;
+				border-radius: .5rem;
+				
+				margin: 0rem .7rem;
+				span[class^="btns-pattern"]{
+					display: inline-block;
+					width: @width;
+					height: @width;
+					vertical-align: middle;
+				}
+			}
+			.good-like{
+				.font-style(1.2rem, 400, red);
+				.btns-pattern{
+					background: url("/images/good_details/good_unlike.png") no-repeat;
+					background-size: 100% auto;
+				}
+				.btns-pattern-like{
+					background: url("/images/good_details/good_like.png") no-repeat;
+					background-size: 100% auto;
+				}
+			}
+			.good-buy{
+				background: red;
+				.font-style(1.2rem, 400, white);
+				.btns-pattern{
+					background: url("/images/good_details/good_bug.png") no-repeat;
+					background-size: 100% auto;
+				}
+			}
+		}
 
 	}
 }

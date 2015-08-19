@@ -19,7 +19,7 @@
 					<div class="swiper-wrapper">
 
 						<div class="swiper-slide">
-							<a href="/">
+							<a href="/home/gift_detail">
 								<img src="/images/index/pic01.png">
 							</a>
 						</div>
@@ -48,8 +48,8 @@
 					专题一荐
 				</div>
 			</li>
-			<li class="home-topics home-topic-first">
-				<a href="/">
+			<li class="home-topics">
+				<a href="/home/topic">
 					<img src="/images/index/pic01.png">
 				</a>
 			</li>
