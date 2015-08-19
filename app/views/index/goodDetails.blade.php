@@ -194,17 +194,17 @@
 					<!-- <div class="recommend-pics-wrapper"></div> -->
 				</div>
 
-				<div class="good-details-footer">
-					<span class="good-btns good-like">
-						<!-- <span class="btns-pattern"></span> -->
-						<span class="btns-pattern-like"></span>
-						我喜欢
-					</span>
-					<span class="good-btns good-buy">
-						<span class="btns-pattern"></span>
-						去购买
-					</span>
-				</div>
+			</div>
+			<div class="good-details-footer">
+				<span class="good-btns good-like">
+					<!-- <span class="btns-pattern"></span> -->
+					<span class="btns-pattern-like"></span>
+					我喜欢
+				</span>
+				<span class="good-btns good-buy">
+					<span class="btns-pattern"></span>
+					去购买
+				</span>
 			</div>
 		</section>
 	</div>
