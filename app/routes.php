@@ -33,6 +33,7 @@ Route::group(array('prefix' => 'home'),function(){
 	// });
 });
 
+Route::controller('/login', 'AdminController');
 // Route::group(array('prefix' => 'user'),function()
 // {
 // 	//注册—获取注册页面
