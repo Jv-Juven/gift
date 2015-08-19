@@ -85,14 +85,53 @@
 
 			<div class="details-pannel comment-details-pannel">
 				<div class="good-praise">
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
-					<span class="avatar"></span>
+
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar01.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar02.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar03.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar03.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar01.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar02.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar03.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar02.png">
+						</a>
+					</span>
+					<span class="avatar">
+						<a href="/">
+							<img src="/images/good_details/avatar02.png">
+						</a>
+					</span>
+
 					<span class="add">
 						<div>
 							24
@@ -105,25 +144,66 @@
 					猜你喜欢的
 				</div>
 				<div class="good-recommend">
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
-					<div class="goods-recommend-item"></div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics01.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics03.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics01.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics02.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics01.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics03.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics03.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics01.png">
+						</a>
+					</div>
+					<div class="goods-recommend-item">
+						<a href="/">
+							<img src="/images/good_details/pics02.png">
+						</a>
+					</div>
+
+					<div style="clear: both;"></div>
 					<!-- <div class="recommend-pics-wrapper"></div> -->
+				</div>
+
+				<div class="good-details-footer">
+					<span class="good-btns good-like">
+						<!-- <span class="btns-pattern"></span> -->
+						<span class="btns-pattern-like"></span>
+						我喜欢
+					</span>
+					<span class="good-btns good-buy">
+						<span class="btns-pattern"></span>
+						去购买
+					</span>
 				</div>
 			</div>
 		</section>

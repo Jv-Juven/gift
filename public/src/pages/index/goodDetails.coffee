@@ -5,8 +5,33 @@ $ ()->
 	###
 	goodSwiper = new Swiper ".good-swipers",{
 		direction: "horizontal",
-		autoplay: 5000,
+		#autoplay: 5000,
 		loop: "true",
 		#如果需要分页器
 		pagination: '.swiper-pagination'
 	}
+
+	###
+	#点击介绍pannel按钮
+	###
+	$(".good-details-wrapper").tappable ()->
+		curEle = $(this);
+		index = curEle.index($(".good-details-wrapper"));
+		if curEle.hasClass "active" 
+			return;
+		else
+			curEle.addClass("active").siblings(".active").removeClass("active");
+			$(".details-pannel").hide().eq(index).show();
+
+	###
+	#点击“我喜欢”按钮
+	###
+	$(".good-like").tappable ()->
+		console.log "tap like!"
+
+$(window).load ()->
+
+	###
+	#固定选项标题
+	###
+	$(".good-details-header").fixBar();

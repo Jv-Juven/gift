@@ -19,5 +19,57 @@ $ ->
 		$(window).resize recalc ;
 		#win.addEventListener resizeEvt, recalc, false ;
 		#doc.addEventListener 'onload', recalc, false ;
-	)(document, window)
+	)(document, window);
+
+
+	###
+	#自定义jQuery函数
+	###
+	$.fn.extend {
+		###
+		#设置固定导航栏  例：$(".fix-bar").fixBar();
+		###
+		fixBar: ()->
+			_this = $(this);
+			offTop = _this.offset().top;
+			#console.log offTop ;
+			fix = ()->
+				scrollTop = $(document).scrollTop();
+				if scrollTop >= offTop
+					#console.log "滚动：" + scrollTop
+					_this.addClass "good-details-header-fix" ;
+				else 
+					if _this.hasClass "good-details-header-fix"
+						_this.removeClass "good-details-header-fix" ;
+
+			$(document).on "scroll load", fix
+
+		###
+		#自定义tap移动端点击函数
+		###
+		tap: (callbackfunc)->
+			_this = $(this);
+			x = y = 0;
+			tag = false;
+			_this.on "touchstart", (e)->
+				#console.log e.originalEvent.targetTouches[0].pageX ;
+				x = e.originalEvent.targetTouches[0].pageX;
+				y = e.originalEvent.targetTouches[0].pageY;
+			.on "touchmove", (e)->
+				console.log e.orientationchange.targetTouches;
+				if Math.abs (e.originalEvent.targetTouches[0].pageX - x) <= 5 and Math.abs (e.originalEvent.targetTouches[0].pageY - y) <= 5
+					tag = true;
+				else 
+					tag = false;
+			.on "touchend", (e)->
+				console.log tag ;
+				if tag is true
+					callbackfunc();
+				else 
+					return;
+
+
+	}
+
+	
 
