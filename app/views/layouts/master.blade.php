@@ -36,6 +36,7 @@
 
 @section("js")
 <script type="text/javascript" src="/dist/lib/js/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/dist/lib/js/jQuery.tappable.js"></script>
 <script type="text/javascript" src="/dist/lib/js/swiper3.1.0.jquery.min.js"></script>
 <script type="text/javascript" src="/dist/js/common.js"></script>
 @show

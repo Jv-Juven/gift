@@ -15,6 +15,7 @@
 						display: block;
 						text-decoration: none;
 						width: 100%;
+						line-height: 0px;
 						img{
 							width: 100%;
 						}
@@ -58,13 +59,17 @@
 
 	.good-details{
 		@color: rgb(210, 210, 210);
+		@line-height: 2.8rem;
 		.good-details-header{
-			@line-height: 2.8rem;
+			position: absolute;
+			top: 0px;
+			left: 0px;
 			display: flex;
 			display: -webkit-flex;
 			width: 100%;
-			line-height: @line-height;
+			// line-height: @line-height;
 			overflow: hidden;
+			background: rgb(255, 255, 255);
 			.good-details-wrapper{
 				border-top: 1px solid @color;
 				border-bottom: 1px solid @color;
@@ -92,7 +97,13 @@
 				border-bottom: .2rem solid red;
 			}
 		}
+		.good-details-header-fix{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+		}
 		.details-pannel{
+			padding-top: @line-height;
 			width: 100%;
 		}
 		.intro-details-pannel{
@@ -107,12 +118,14 @@
 			}
 		}
 		.comment-details-pannel{
-			div{
+			@padding-bottom: 3.6rem;
+			@border-width: 1.5rem;
+			&>div{
 				width: 100%;
 			}
 			.good-praise{
 				padding: 1rem 0px;
-				@width: 2.4rem;
+				@width: 2.6rem;
 				span{
 					display: inline-block;
 					width: @width;
@@ -122,47 +135,105 @@
 					float: left;
 				}
 				.avatar{
-					background: rgba(0, 0, 0, 0.5);
+					overflow: hidden;
+					&>a{
+						display: block;
+						width: 100%;
+						height: 100%;
+						&>img{
+							width: 100%;
+							height: 100%;
+						}
+					}
 				}
 				.add{
 					div{
 						width: 100%;
-						line-height: 2rem;
+						line-height: 2.7rem;
 						text-align: center;
 						.font-style(1.2rem, 600, white);
 					}
 					background: rgb(242, 171, 175);
 				}
 			}
-		}
 
-		.good-comment-title{
-			padding-left: 1rem;
-			border-top: 1px solid @color;
-			border-bottom: 1px solid @color;
-			line-height: 4rem;
-		}
 
-		.good-recommend{
-			display: flex;
-			display: -webkit-flex;
-			flex-flow: row wrap;
-			-webkit-flex-flow: row wrap;
-			justify-content: space-around;
-			-webkit-justify-content: space-around;
-			align-items: flex-start;
-			-webkit-align-items: flex-start;
-			align-content: flex-start;
-			-webkit-align-content: flex-start;
-			height: 200px;
-			.goods-recommend-item{
-				flex: 1;
-				-webkit-flex: 1;
-				width: 30%;
-				height: 40px;
-				background: rgb(100, 100, 100);
+			.good-comment-title{
+				padding-left: 1rem;
+				border-top: 1px solid @color;
+				border-bottom: 1px solid @color;
+				line-height: 3.8rem;
+				.font-style(1.1rem, 400, rgb(60, 60, 60));
 			}
+
+			.good-recommend{
+				@width: 5.7rem;
+				padding-bottom: @padding-bottom + @border-width;
+				.goods-recommend-item{
+					display: inline-block;
+					margin: @border-width 0rem 0rem @border-width;
+					width: @width;
+					height: @width;
+					background: rgb(100, 100, 100);
+					float: left;
+					&>a{
+						display: block;
+						width: 100%;
+						height: 100%;
+						&>img{
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
+			
+			.good-details-footer{
+				@width: 1.6rem;
+				position: fixed;
+				bottom: 0rem;
+				width: 100%;
+				line-height: @padding-bottom;
+				background: rgb(255, 255, 255);
+				text-align: center;
+				.good-btns{
+					display: inline-block;
+					border: solid thin red;
+					line-height: 2.7rem;
+					width: 9rem;
+					border-radius: .5rem;
+					
+					margin: 0rem .7rem;
+					span[class^="btns-pattern"]{
+						display: inline-block;
+						width: @width;
+						height: @width;
+						vertical-align: middle;
+					}
+				}
+				.good-like{
+					.font-style(1.2rem, 400, red);
+					.btns-pattern{
+						background: url("/images/good_details/good_unlike.png") no-repeat;
+						background-size: 100% auto;
+					}
+					.btns-pattern-like{
+						background: url("/images/good_details/good_like.png") no-repeat;
+						background-size: 100% auto;
+					}
+				}
+				.good-buy{
+					background: red;
+					.font-style(1.2rem, 400, white);
+					.btns-pattern{
+						background: url("/images/good_details/good_bug.png") no-repeat;
+						background-size: 100% auto;
+					}
+				}
+			}
+
 		}
+
 
 
 	}
