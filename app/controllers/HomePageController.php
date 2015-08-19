@@ -56,13 +56,21 @@ class HomePageController extends BaseController {
 	//专题页
 	public function topic()
 	{
-		$topic_id = Input::get('topic_id');
+		// $topic_id = Input::get('topic_id');
+		$topic_id = 1;
 		$topic = Topic::find($topic_id);
-		if(isset($topic))
+		if(!isset($topic))
 			return Response::view('errors.missing');
 		$gifts = Gift::where('topic_id', '=', $topic->id)->get();
-
-		return View::make('index/goodslist')->with(array(
+		if(isset($gifts))
+		{	$number = 1;
+			foreach($gifts as $gift)
+			{
+				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$gift->number = $number++;
+			}
+		}
+		return View::make('index/goodsList')->with(array(
 				'topic' 	=> $topic,
 				'gifts'	=> $gifts
 			));	
