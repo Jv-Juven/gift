@@ -19,7 +19,7 @@
 					<div class="swiper-wrapper">
 
 						<div class="swiper-slide">
-							<a href="gift.zerioi.com/home/gift_detail">
+							<a href="/home/gift_detail">
 								<img src="/images/index/pic01.png">
 							</a>
 						</div>
@@ -49,7 +49,7 @@
 				</div>
 			</li>
 			<li class="home-topics">
-				<a href="gift.zerioi.com/home/topic">
+				<a href="/home/topic">
 					<img src="/images/index/pic01.png">
 				</a>
 			</li>
