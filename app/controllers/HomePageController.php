@@ -23,7 +23,7 @@ class HomePageController extends BaseController {
 		$gift 		= Gift::find($gift_id)->first();
 		$gift_posters = GiftPoster::where('gift_id', '=',$gift_id)->get();
 		//收藏的人
-		$focus_users	= Gift::find($gift_id)->users();
+		$focus_users	= Gift::find($gift_id)->users()->get();
 		//相似推荐
 		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
 						     ->where('object_id', '=', $gift->object_id)
@@ -35,11 +35,14 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
+		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
+		// dd($gift->taobao_url); 
 		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
 				'gift_posters' 	=> $gift_posters,
 				'focus_users' 	=> $focus_users,
-				'gifts_like'	=> $gifts_like
+				'gifts_like'	=> $gifts_like,
+				'gift_photo_intros' => $gift_photo_intros
 			));
 	}
 

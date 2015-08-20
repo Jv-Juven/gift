@@ -1,9 +1,10 @@
 @import "./../../common/common.less";
-html{
-	font-size: 10px;
-}
 
 @font-color:#333;
+
+.page-content{
+	font-family: "heiti";
+}
 
 .topic-img{
 	width: 100%;
@@ -28,65 +29,62 @@ html{
 }
 
 .gift-title{
-	padding-top: 2%;
-	padding-left:  2%;
+	position: relative;
 	font-size: 1.3rem;
 	color: @font-color;
-	height:1.43rem;
+	line-height:1.5rem;
 	// font-weight: bold;
+
+	padding-left: 2.5rem;
 }
 
 .gift-title .ititle-title{
-	// height: 13px;
-	// line-height: 13px;
-	font-size: 1.3rem;
-	text-align: center;
-	vertical-align:2px;
+	font-size: 1.2rem;
+	// text-align: center;
+	// vertical-align:2px;
+	line-height: 2em;
 }
 
 .ititle-serial{
-	    width: 1.43rem;
-	    height: 1.43rem;
-	    // width: 20px;
-	    // height: 20px;
-	    background: #F73939;
-	    line-height: 1.43rem;
-	    // line-height: 20px;
-	    text-align: center;
-	    border-radius: 1rem;
-	    display: inline-block;
-	    font-weight: 700;
-	    color: white;
-	    // margin-right: 3px;
-	    // margin-top: 3px;
-	    overflow: hidden;
-	    // vertical-align:-2px;
-	    font-size: 1rem;
+	.box-sizing();
+	@width: 1.8rem;
+    width: @width;
+    height: @width;
+    background: #F73939;
+    // line-height: 2rem;
+    padding: .2rem 0rem;
+    text-align: center;
+    border-radius: 3rem;
+    display: inline-block;
+    font-weight: 700;
+    color: white;
+    overflow: hidden;
+    font-size: 1.25rem;
+    position: absolute;
+    top:50%;
+    left: 0.5rem;
+    margin: -1rem 0rem;
+    font-family: "heiti";
 }
 
 .gift-content{
-	width: 98%;
-	padding-left: 1%;
-	padding-right: 1%;
-	padding-top: 2%;
-	padding-bottom: 1.8%;
+	width: 100%;
+	padding: .2rem .5rem;
 	font-size: 1rem;
 	color: @font-color;
 	line-height: 1.8rem;
 	// line-height: 25px;
-	    -webkit-margin-start: 0px;
-	    -webkit-margin-end: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
 }
 
 .gift-img{
-	width: 98%;
-	padding-left: 1%;
-	padding-right: 1%;
+	width: 100%;
 	padding-bottom: 0.7rem;
 }
 
 .gift-info{
-	padding-bottom: 2.14rem;
+	padding-bottom: .8rem;
 }
 
 .gift-price{
@@ -97,14 +95,14 @@ html{
 	// font-size: 18px;
 	font-weight: 400;
 	vertical-align:-15px;
-	margin-left: 0.7rem;
+	margin-left: 0.5rem;
 	// margin-left: 10px;
 }
 
 .gift-info-link{
 	text-align: center;
 	float: right;
-	margin-right: 0.7rem;
+	margin-right: 0.5rem;
 	// margin-right: 10px;
 	.span{
 		display: table-cell;
@@ -124,5 +122,5 @@ html{
 
 
 .blank{
-	padding-bottom: 10%;
+	height: 3rem;
 }

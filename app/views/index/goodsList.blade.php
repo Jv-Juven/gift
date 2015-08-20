@@ -22,15 +22,15 @@
 	@if(isset($gifts))	
 		@foreach($gifts as $gift)
 		<div class="gift">
-			<h3 class="gift-title">
+			<div class="gift-title">
 				<span class="ititle-serial">{{$gift->number}}</span>
 				<span class="ititle-title">{{$gift->title}}</span>
-			</h3>
+			</div>
 			<p class="gift-content">{{$gift->content}}</p>
 			<div ><img class="gift-img" src="{{$gift->img}}"></div>
-			<div class="gift-info">
+			<div class="gift-info clearx">
 					<span class="gift-price" style="font-family: arial;">￥{{$gift->price}}</span> 
-				<a class="gift-info-link" href="{{$gift->taobao_url}}">
+				<a class="gift-info-link" href="/home/gift_detail?gift_id={{$gift->id}}">
 					<span class="span" >查看详情</span>
 				</a>
 			</div>
