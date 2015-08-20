@@ -10,22 +10,22 @@ return array(
 
 	'columns' => array(
 		'id' => array(
-			'title' => '话题ID'
+			'title' => '专题ID'
 		),
 		'title' => array(
-			'title' => '话题题目'
+			'title' => '专题题目'
 		),
 		'content' => array(
-			'title' => '话题内容'
+			'title' => '专题内容'
 		),
 		'topic_url' => array(
-			'title' => '话题图片链接'
+			'title' => '专题图片链接'
 		),
 		'scan_num' => array(
 			'title' => '浏览人数'
 		),
 		'join_num' => array(
-			'title' => '参与话题人数'
+			'title' => '参与专题人数'
 		),
 		'focus_num' => array(
 			'title' => '收藏人数'
@@ -34,20 +34,20 @@ return array(
 
 	'edit_fields' =>array(
 		'title' => array(
-			'title' => '话题题目'
+			'title' => '专题题目'
 		),
 		'content' => array(
-			'title' => '话题内容',
+			'title' => '专题内容',
 			'type' => 'textarea'
 		),
 		'topic_url' => array(
-			'title' => '话题图片链接'
+			'title' => '专题图片链接'
 		),
 		'scan_num' => array(
 			'title' => '浏览人数'
 		),
 		'join_num' => array(
-			'title' => '参与话题人数'
+			'title' => '参与专题人数'
 		),
 		'focus_num' => array(
 			'title' => '收藏人数'
