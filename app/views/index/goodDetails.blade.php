@@ -95,7 +95,7 @@
 				<div class="good-comment-title">
 					猜你喜欢的
 				</div>
-				<div class="good-recommend">
+				<div class="good-recommend clearx">
 						@if(isset($gifts_like))
 							@foreach($gifts_like as $gift)
 					<div class="goods-recommend-item">
