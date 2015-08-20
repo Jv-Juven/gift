@@ -10,11 +10,11 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//礼品展示
+Route::get('/', 'HomePageController@showWelcome');
 
 //首页模块
 Route::group(array('prefix' => 'home'),function(){
-	//礼品展示
-	Route::get('/', 'HomePageController@showWelcome');
 	//礼品详情页
 	Route::get('gift_detail', 'HomePageController@giftDetail');
 	//喜欢详情页
