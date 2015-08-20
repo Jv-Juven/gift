@@ -7,10 +7,10 @@ class HomePageController extends BaseController {
 	{
 		$posters 	= Poster::all();
 		$topics		= Topic::all();
-
+		// dd($topics[0]);
 		return View::make('index.home')->with(array(
 				'posters' 	=> $posters,
-				'topics	'	=> $topics,
+				'topics'	=> $topics,
 			));
 	}
 
@@ -35,7 +35,7 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
-		return View::make('index/goodsDetails')->with(array(
+		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
 				'gift_posters' 	=> $gift_posters,
 				'focus_users' 	=> $focus_users,
