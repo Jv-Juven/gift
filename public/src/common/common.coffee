@@ -35,8 +35,8 @@ $ ->
 			#console.log offTop ;
 			fix = ()->
 				scrollTop = $(document).scrollTop();
+				# $(".mask").html "滚动：" + scrollTop;
 				if scrollTop >= offTop
-					#console.log "滚动：" + scrollTop
 					_this.addClass "good-details-header-fix" ;
 				else 
 					if _this.hasClass "good-details-header-fix"
