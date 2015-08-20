@@ -17,24 +17,13 @@
 			<li class="home-recommond">
 				<div class="swiper-container home-swipers">
 					<div class="swiper-wrapper">
-
+					@foreach($posters as $poster)
 						<div class="swiper-slide">
-							<a href="/home/gift_detail">
-								<img src="/images/index/pic01.png">
+							<a href="{{ $poster->info_url }}">
+								<img src="{{ $poster->photo_url }}">
 							</a>
 						</div>
-
-						<div class="swiper-slide">
-							<a href="/">
-								<img src="/images/index/pic02.png">
-							</a>
-						</div>
-
-						<div class="swiper-slide">
-							<a href="/">
-								<img src="/images/index/pic03.png">
-							</a>
-						</div>
+					@endforeach
 
 					</div>
 
@@ -48,36 +37,14 @@
 					专题一荐
 				</div>
 			</li>
+			@foreach($topics as $topic)
 			<li class="home-topics">
-				<a href="/home/topic">
-					<img src="/images/index/pic01.png">
+				<a href="/home/topic?topic_id={{ $topic->id }}">
+					<img src="{{ $topic->topic_url }}">
 				</a>
 			</li>
-			<li class="home-topics">
-				<a href="/">
-					<img src="/images/index/pic03.png">
-				</a>
-			</li>
-			<li class="home-topics">
-				<a href="/">
-					<img src="/images/index/pic01.png">
-				</a>
-			</li>
-			<li class="home-topics">
-				<a href="/">
-					<img src="/images/index/pic03.png">
-				</a>
-			</li>
-			<li class="home-topics">
-				<a href="/">
-					<img src="/images/index/pic01.png">
-				</a>
-			</li>
-			<li class="home-topics">
-				<a href="/">
-					<img src="/images/index/pic03.png">
-				</a>
-			</li>
+			@endforeach
+
 		</ul>
 	</div>
 @stop
