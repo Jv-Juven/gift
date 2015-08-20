@@ -36,7 +36,7 @@ class HomePageController extends BaseController {
 			array_push($gifts_like, $gift_poster);
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
-		// dd(count($gift_photo_intros)); 
+		// dd($gift->taobao_url); 
 		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
 				'gift_posters' 	=> $gift_posters,

@@ -19,7 +19,7 @@
 					<div class="swiper-wrapper">
 					@foreach($posters as $poster)
 						<div class="swiper-slide">
-							<a href="/home/gift_detail?gift_id=1">
+							<a href="/home/gift_detail?gift_id={{$poster->info_url}}">
 								<img src="{{ $poster->photo_url }}">
 							</a>
 						</div>

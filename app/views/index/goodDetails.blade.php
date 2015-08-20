@@ -56,6 +56,8 @@
 					</span>
 				</div>
 			</div>
+		@endif
+
 			<div class="details-pannel intro-details-pannel" style="display: none;">
 				
 				<ul class="good-intro-wrapper">
@@ -68,7 +70,6 @@
 				@endif
 				</ul>
 			</div>
-		@endif
 			<div class="details-pannel comment-details-pannel">
 				<div class="good-praise">
 				@if(isset($focus_users))
@@ -97,10 +98,10 @@
 				</div>
 				<div class="good-recommend clearx">
 						@if(isset($gifts_like))
-							@foreach($gifts_like as $gift)
+							@foreach($gifts_like as $gifts)
 					<div class="goods-recommend-item">
 						<a href="/">
-							<img src="{{$gift->url}}">
+							<img src="{{$gifts->url}}">
 						</a>
 					</div>
 							@endforeach
@@ -112,13 +113,17 @@
 			</div>
 			<div class="good-details-footer">
 				<span class="good-btns good-like">
-					<!-- <span class="btns-pattern"></span> -->
-					<span class="btns-pattern-like"></span>
-					我喜欢
+					<a href="http://www.baidu.com">
+						<!-- <span class="btns-pattern"></span> -->
+						<span class="btns-pattern-like"></span>
+						我喜欢
+					</a>
 				</span>
 				<span class="good-btns good-buy">
-					<span class="btns-pattern"></span>
-					去购买
+					<a href="{{$gift->taobao_url}}">
+						<span class="btns-pattern"></span>
+						去购买
+					</a>
 				</span>
 			</div>
 		</section>

@@ -53,7 +53,9 @@ return array(
 	 */
 	'menu' => array('gifts',
 			'topics',
-			'gift_posters'
+			'gift_posters',
+			'gift_photo_intros',
+			'posters'
 		),
 
 	/**
