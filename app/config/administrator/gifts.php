@@ -13,7 +13,7 @@ return array(
 			'title'=> '礼品ID'
 		),
 		'topic_id' =>array(
-			'title' => '话题ID'
+			'title' => '专题ID'
 		),
 		'title' => array(
 			'title' => '礼物名称'
@@ -49,7 +49,7 @@ return array(
 
 	'edit_fields' => array(
 		'topic_id' =>array(
-			'title' => '话题id'
+			'title' => '专题id'
 		),
 		'title' => array(
 			'title' => '礼物名称'
