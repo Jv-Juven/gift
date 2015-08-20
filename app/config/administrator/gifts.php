@@ -9,6 +9,9 @@ return array(
 	'model' => 'Gift',
 
 	'columns' => array(
+		'id' => array(
+			'title'=> '礼品ID'
+		),
 		'topic_id' =>array(
 			'title' => '话题ID'
 		),

@@ -1,7 +1,7 @@
 <?php 
 
 return array(
-	'title' => '新品推荐'
+	'title' => '新品推荐',
 
 	'single' => '新品推荐',
 
@@ -9,11 +9,19 @@ return array(
 
 	'columns' => array(
 		'photo_url' =>array(
-			'title'=>'与礼品对应的ID'
-		) ,
-		'info_url' => array(
-			
+			'title'=>'图片链接'
 		),
+		'info_url' => array(
+			'title'=> '对应礼品ID'
+		),
+	),
 
-		)
+	'edit_fields'=>array(
+		'photo_url' =>array(
+			'title'=>'图片链接'
+		),
+		'info_url' => array(
+			'title'=> '对应礼品ID'
+		),
+	)
 );
