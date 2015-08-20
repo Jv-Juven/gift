@@ -9,7 +9,7 @@ return array(
 
 	'columns' => array(
 		'gift_id' => array(
-			'title' => '礼品ID'
+			'title' => '礼品id'
 		),
 		'url' => array(
 			'title' => '海报链接'

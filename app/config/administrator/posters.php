@@ -12,7 +12,7 @@ return array(
 			'title'=>'图片链接'
 		),
 		'info_url' => array(
-			'title'=> '对应礼品ID'
+			'title'=> '对应礼品id'
 		),
 	),
 
@@ -21,7 +21,7 @@ return array(
 			'title'=>'图片链接'
 		),
 		'info_url' => array(
-			'title'=> '对应礼品ID'
+			'title'=> '对应礼品id'
 		),
 	)
 );
