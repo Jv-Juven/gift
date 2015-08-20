@@ -11,14 +11,6 @@
 |
 */
 
-Route::get("/", function(){
-	return View::make("index.home");
-});
-Route::get("/home/good", function(){
-	return View::make("index.goodDetails");
-});
-
-
 //首页模块
 Route::group(array('prefix' => 'home'),function(){
 	//礼品展示
