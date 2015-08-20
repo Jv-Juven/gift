@@ -18,14 +18,28 @@ class HomePageController extends BaseController {
 	public function giftDetail()
 	{
 		$gift_id 	= Input::get('gift_id');
-		$gift 		= Gift::find($gift_id)->first();
-		if(!isset($gift))
+		if(!isset($gift_id))
 			return Response::view('errors.missing');
+		$gift 		= Gift::find($gift_id)->first();
 		$gift_posters = GiftPoster::where('gift_id', '=',$gift_id)->get();
-
+		//收藏的人
+		$focus_users	= Gift::find($gift_id)->users();
+		//相似推荐
+		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
+						     ->where('object_id', '=', $gift->object_id)
+						     ->where('char_id','=', $gift->char_id)
+						     ->get();
+		$gifts_like = array();
+		foreach($gifts as $gift)
+		{	
+			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
+			array_push($gifts_like, $gift_poster);
+		}
 		return View::make('index/goodsDetails')->with(array(
 				'gift' 		=> $gift,
-				'gift_posters' 	=> $gift_posters
+				'gift_posters' 	=> $gift_posters,
+				'focus_users' 	=> $focus_users,
+				'gifts_like'	=> $gifts_like
 			));
 	}
 

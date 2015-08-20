@@ -17,25 +17,15 @@
 		<section class="good-pics">
 			<div class="swiper-container good-swipers">
 				<div class="swiper-wrapper">
-
+				@if(isset($gift_posters))
+					@foreach($gift_posters as $poster)
 					<div class="swiper-slide">
-						<a href="/">
-							<img src="/images/index/pic03.png">
+						<a href="info_url">
+							<img src="$poster->photo_url">
 						</a>
 					</div>
-
-					<div class="swiper-slide">
-						<a href="/">
-							<img src="/images/index/pic03.png">
-						</a>
-					</div>
-
-					<div class="swiper-slide">
-						<a href="/">
-							<img src="/images/index/pic03.png">
-						</a>
-					</div>
-
+					@endforeach
+				@endif
 				</div>
 
 				<!-- 如果需要分页器 -->
@@ -43,12 +33,12 @@
 
 			</div>
 		</section>
-
+		@if(isset($gift))
 		<section class="good-intro">
 			<div class="intro-wrapper">
-				<div class="intro-name">990纯银项链</div>
-				<div class="intro-price">￥<span class="price">99.00</span></div>
-				<div class="intro-details">#中国情人节快到了，送什么礼物给女朋友好呢？990纯银项链代表纯洁的爱，七夕节日，这是你送给她得爱！#</div>
+				<div class="intro-name">{{$gift->title}}</div>
+				<div class="intro-price">￥<span class="price">{{$gift->price}}</span></div>
+				<div class="intro-details">{{$gift->content}}</div>
 			</div>
 		</section>
 
@@ -62,12 +52,13 @@
 
 				<div class="good-details-wrapper active">
 					<span class="good-pannel-btn">
-						喜欢（<span>23</span>）
+						喜欢（<span>{{$gift->focus_num}}</span>）
 					</span>
 				</div>
 			</div>
 			<div class="details-pannel intro-details-pannel" style="display: none;">
-				<ul class="good-intro-wrapper">
+				
+				<!-- <ul class="good-intro-wrapper">
 					<li>
 						<img src="/images/index/pic04.png">
 					</li>
@@ -80,9 +71,9 @@
 					<li>
 						<img src="/images/index/pic07.png">
 					</li>
-				</ul>
+				</ul> -->
 			</div>
-
+		@endif
 			<div class="details-pannel comment-details-pannel">
 				<div class="good-praise">
 

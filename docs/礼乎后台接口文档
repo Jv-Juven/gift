@@ -183,19 +183,10 @@
 					info_url			详情页链接
 					 }....		
 				]
-				new_gifts:[
+				topics:[
 					{
-					photo_url		海报图片
-					info_url			详情页链接
-					 }....		
-				]
-				gifts:[
-					{
-					picture_url,		礼品图片
-					gift_info,		礼物说明文字
-					scan_num,		浏览人数
-					focus_num,		收藏人数
-					},...
+					topic_url		专题图片
+					}
 				]
 		备注:请将每一个实例的id存在页面中,用于导向商品详情页
 	
@@ -208,14 +199,28 @@
 		
 		返回参数 :
 				视图 index/goodsDetails
+				gift_posters:[
+					{
+					url 					图片链接
+					}...
+				]
 				gift:{
-					[ picture.... ],				一组礼品图片(数组)
 					title，					礼品名称
 					price，					价格
 					gift_info,				礼物说明文字
 					focus_num,				收藏条数
 					gift_photo_intro 			图文介绍
 				}
+				focus_users:[
+					{
+					avatar 					头像
+					}...
+				]
+				gift_like:[
+					{
+					url 					相似推荐图片
+					}...
+				] 					
 
 	3.喜欢
 		请求方式:	GET
