@@ -22,9 +22,9 @@ class CreateGiftsTable extends Migration {
 			$table->string('gift_photo_intro');//图文介绍
 			$table->integer('scan_num')->nullable();//浏览人数
 			$table->integer('focus_num')->nullable();//收藏人数
-			$table->integer('scene_id')->nullable();//场景编号
-			$table->integer('object_id')->nullable();//对象编号
-			$table->integer('char_id')->nullable();//性格编号
+			$table->integer('scene_id')->default(0);//场景编号
+			$table->integer('object_id')->default(0);//对象编号
+			$table->integer('char_id')->default(0);//性格编号
 			$table->string('taobao_url');//淘宝链接
 			$table->timestamps();
 

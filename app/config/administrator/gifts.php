@@ -21,6 +21,9 @@ return array(
 		'content' => array(
 			'title' => '礼品描述'
 		),
+		'gift_photo_intro' => array(
+ 			'title' => '图文描述',
+ 		),
 		'scan_num' =>array(
 			'title'=> '浏览人数'
 		),
@@ -54,6 +57,10 @@ return array(
 		'content' => array(
 			'title' => '礼品描述',
 			'type' => 'textarea'
+ 		),
+ 		'gift_photo_intro' => array(
+ 			'title' => '图文描述',
+ 			'type'=>'wysiwyg'
  		),
 		'scan_num' =>array(
 			'title'=> '浏览人数'

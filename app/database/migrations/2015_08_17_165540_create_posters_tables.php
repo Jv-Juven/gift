@@ -11,7 +11,7 @@ class CreatePostersTables extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//首页海报—滚动页
+	{			//首页海报—滚动页，每天的新推荐
 		Schema::create('posters', function(Blueprint $table)
 		{
 			$table->increments('id');

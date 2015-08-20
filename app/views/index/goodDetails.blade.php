@@ -20,8 +20,8 @@
 				@if(isset($gift_posters))
 					@foreach($gift_posters as $poster)
 					<div class="swiper-slide">
-						<a href="info_url">
-							<img src="$poster->photo_url">
+						<a href="#">
+							<img src="{{$poster->url}}">
 						</a>
 					</div>
 					@endforeach
@@ -43,7 +43,7 @@
 		</section>
 
 		<section class="good-details">
-			<div class="good-details-header">
+			<div class="good-details-header clearx">
 				<div class="good-details-wrapper">
 					<span class="good-pannel-btn">
 						图文介绍
@@ -58,75 +58,36 @@
 			</div>
 			<div class="details-pannel intro-details-pannel" style="display: none;">
 				
-				<!-- <ul class="good-intro-wrapper">
+				<ul class="good-intro-wrapper">
+				@if(isset($gift_photo_intros))
+					@foreach($gift_photo_intros as $gift_photo_intro)
 					<li>
-						<img src="/images/index/pic04.png">
+						<img src="{{$gift_photo_intro->url}}">
 					</li>
-					<li>
-						<img src="/images/index/pic05.png">
-					</li>
-					<li>
-						<img src="/images/index/pic06.png">
-					</li>
-					<li>
-						<img src="/images/index/pic07.png">
-					</li>
-				</ul> -->
+					@endforeach
+				@endif
+				</ul>
 			</div>
 		@endif
 			<div class="details-pannel comment-details-pannel">
 				<div class="good-praise">
-
+				@if(isset($focus_users))
+					@foreach($focus_users as $user)
 					<span class="avatar">
 						<a href="/">
-							<img src="/images/good_details/avatar01.png">
+							<img src="{{$user->avatar}}">
 						</a>
 					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar02.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar03.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar03.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar01.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar02.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar03.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar02.png">
-						</a>
-					</span>
-					<span class="avatar">
-						<a href="/">
-							<img src="/images/good_details/avatar02.png">
-						</a>
-					</span>
+					@endforeach
+				@endif 
+					
 
 					<span class="add">
+					@if(isset($focus_users))	
 						<div>
-							24
+							{{count($focus_users)}}
 						</div>
+					@endif
 					</span>
 
 					<div style="clear: both;"></div>
@@ -135,53 +96,16 @@
 					猜你喜欢的
 				</div>
 				<div class="good-recommend">
+						@if(isset($gifts_like))
+							@foreach($gifts_like as $gift)
 					<div class="goods-recommend-item">
 						<a href="/">
-							<img src="/images/good_details/pics01.png">
+							<img src="{{$gift->url}}">
 						</a>
 					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics03.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics01.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics02.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics01.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics03.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics03.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics01.png">
-						</a>
-					</div>
-					<div class="goods-recommend-item">
-						<a href="/">
-							<img src="/images/good_details/pics02.png">
-						</a>
-					</div>
-
-					<div style="clear: both;"></div>
+							@endforeach
+						@endif
+					
 					<!-- <div class="recommend-pics-wrapper"></div> -->
 				</div>
 
