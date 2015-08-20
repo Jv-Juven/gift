@@ -70,8 +70,7 @@ class HomePageController extends BaseController {
 	//专题页
 	public function topic()
 	{
-		// $topic_id = Input::get('topic_id');
-		$topic_id = 1;
+		$topic_id = Input::get('topic_id');
 		$topic = Topic::find($topic_id);
 		if(!isset($topic))
 			return Response::view('errors.missing');
