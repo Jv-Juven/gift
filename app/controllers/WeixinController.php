@@ -7,7 +7,7 @@ class WeixinController extends BaseController{
 	private function checkSignature()
 	{
 		// you must define TOKEN by yourself
-		if (!defined($token)) {
+		if (!defined($TOKEN)) {
 			throw new Exception('TOKEN is not defined!');
 		}
 		$signature = $_GET["signature"];
@@ -65,10 +65,10 @@ class WeixinController extends BaseController{
 		exit;
 		}
 	}
-	
+
 	public function valid()
 	{
-		$echoStr = $_GET["echostr"];
+		$echoStr = Input::get('echostr');
 
 		//valid signature , option
 		if($this->checkSignature()){
