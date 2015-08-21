@@ -29,6 +29,7 @@ Route::group(array('prefix' => 'home'),function(){
 });
 
 Route::controller('/login', 'AdminController');
+Route::get('weixin', 'WeixinController@response_message');
 // Route::group(array('prefix' => 'user'),function()
 // {
 // 	//注册—获取注册页面
