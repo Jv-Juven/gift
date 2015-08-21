@@ -1,6 +1,7 @@
 <?php
 
 class WeixinController extends BaseController{
+	
 	protected $token = 'ziruikeji';
 
 	protected function check_signature()
