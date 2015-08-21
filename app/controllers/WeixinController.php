@@ -10,7 +10,6 @@ class WeixinController extends BaseController{
 		if (!defined($token)) {
 			throw new Exception('TOKEN is not defined!');
 		}
-		dd('man');
 		$signature = $_GET["signature"];
 		$timestamp = $_GET["timestamp"];
 		$nonce = $_GET["nonce"];
