@@ -2,20 +2,16 @@
 
 class WeixinController extends BaseController{
 	
-	protected $token = 'ziruikeji';
+	protected static $token = 'ziruikeji';
 
 	private function checkSignature()
 	{
-		// you must define TOKEN by yourself
-		if (isset(self::$token)) {
-			throw new Exception('TOKEN is not defined!');
-		}
+
 		$signature = $_GET["signature"];
 		$timestamp = $_GET["timestamp"];
 		$nonce = $_GET["nonce"];
 				
-		$token = self::$token;
-		$tmpArr = array($token, $timestamp, $nonce);
+		$tmpArr = array(self::$token, $timestamp, $nonce);
 		// use SORT_STRING rule
 		sort($tmpArr, SORT_STRING);
 		$tmpStr = implode( $tmpArr );
