@@ -17,6 +17,7 @@
 			<li class="home-recommond">
 				<div class="swiper-container home-swipers">
 					<div class="swiper-wrapper">
+				@if(isset($posters))	
 					@foreach($posters as $poster)
 						<div class="swiper-slide">
 							<a href="/home/gift_detail?gift_id={{$poster->info_url}}">
@@ -24,7 +25,7 @@
 							</a>
 						</div>
 					@endforeach
-
+				@endif
 					</div>
 
 					<!-- 如果需要分页器 -->
@@ -37,6 +38,7 @@
 					专题一荐
 				</div>
 			</li>
+		@if(isset($topics))
 			@foreach($topics as $topic)
 			<li class="home-topics">
 				<a href="/home/topic?topic_id={{ $topic->id }}">
@@ -44,7 +46,7 @@
 				</a>
 			</li>
 			@endforeach
-
+		@endif
 		</ul>
 	</div>
 @stop

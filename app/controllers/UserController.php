@@ -195,6 +195,7 @@ class UserController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'退出成功！'));
 	}
 
+	//忘记密码——获取重置验证码
 	public function pwdCode()
 	{
 		Session_start();

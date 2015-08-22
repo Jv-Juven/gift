@@ -29,8 +29,14 @@ Route::group(array('prefix' => 'home'),function(){
 });
 
 Route::controller('/login', 'AdminController');
-Route::get('weixin', 'WeixinController@valid');
-Route::get('weixin/test', 'WeixinController@responseMsg');
+
+Route::group(array('prefix' =>'weixin'), function(){
+	
+	Route::get('/', 'WeixinController@valid');
+	Route::get('test', 'WeixinController@responseMsg');
+	Route::get('code', 'WeixinAuthController@code');
+
+});
 
 // Route::group(array('prefix' => 'user'),function()
 // {
