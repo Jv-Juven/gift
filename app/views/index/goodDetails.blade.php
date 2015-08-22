@@ -97,6 +97,7 @@
 					猜你喜欢的
 				</div>
 				<div class="good-recommend clearx">
+					@if(isset($gifts_like))
 						@if(isset($gifts_like))
 							@foreach($gifts_like as $gifts)
 					<div class="goods-recommend-item">
@@ -106,6 +107,7 @@
 					</div>
 							@endforeach
 						@endif
+					@endif
 					
 					<!-- <div class="recommend-pics-wrapper"></div> -->
 				</div>
