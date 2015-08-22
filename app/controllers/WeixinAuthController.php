@@ -13,14 +13,15 @@ class WeixinAuthController extends BaseController{
 
 	public function accessToken()
 	{
-		
+		Session_start();
 		if(Session::has('code'))
 		{
 			Session::forget('code');
 			$access_token = Session::get('access_token');
-			$refresh_token = Session::get('refresh_token';
+			$refresh_token = Session::get('refresh_token');
 			$open_id = Session::get('openid');
 			$scope_userinfo = Session::get('scope_userinfo');
+		
 		}else{
 			$code = Input::get('code');
 			$code = Session::put('code', $code);
