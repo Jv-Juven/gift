@@ -20,7 +20,7 @@
 		返回参数 :
 				{
 					errCode:xxx,		0. 表示返回正常
-								1. 手机号码格式不正确！
+								1. 邮箱格式不正确！
 								2. 请输入密码
 								3. 密码错误
 								4. 密码或邮箱错误
@@ -62,9 +62,9 @@
 		返回参数:
 				{
 					errCode:xxx,		0.表示返回正常
-								1.手机号码不正确！
-								2.手机已注册！
-								3.验证码发送失败
+								1.请填写邮箱！
+								2.邮箱格式不正确！
+								3.此邮箱已注册！
 
 					message:xxx		提示信息
 				}
@@ -80,7 +80,7 @@
 		返回参数:
 				{
 					errCode:xxx,		0.表示返回正常
-								1.手机号码不正确！
+								1.邮箱不正确！
 								2.验证码不正确！
 
 					message:xxx		提示信息
@@ -113,7 +113,6 @@
 								3. 密码只能包含字母和数字！
 								4. 密码长度必须在6到20之间！
 								5. 两次输入的密码不一致！
-								6. 注册失败！
 
 					message:xxx		提示信息
 				}
@@ -138,9 +137,8 @@
 		返回参数 :	
 				{
 					errCode:xxx,		0. 表示返回正常
-								1. 手机号码不正确！
-								2. 手机未注册！
-								3. 验证码发送失败
+								1. 邮箱格式不正确！
+								2. 该邮箱未注册！
 
 					message:xxx		提示信息
 				}
@@ -158,11 +156,13 @@
 		返回参数：
 				{
 					errCode:xxx,		0. 表示返回正常
-								1. 手机号码不正确！
+								1. 邮箱不正确！
 								2. 验证码不正确！
 								3. 密码长度为6到20之间！
 								4. 两次输入的密码不一致！
 								5. 密码修改失败！
+								6.密码无效！
+								7.用户不存在！
 
 					message:xxx		提示信息
 				}
@@ -179,12 +179,13 @@
 				视图View index/home
 				posters:[
 					{
-					photo_url		海报图片
-					info_url			详情页链接
+					photo_url		海报图片（新品推荐）
+					info_url			详情页链接id
 					 }....		
 				]
 				topics:[
 					{
+					id 			专题id
 					topic_url		专题图片
 					}
 				]
@@ -201,7 +202,7 @@
 				视图 index/goodsDetails
 				gift_posters:[
 					{
-					url 					图片链接
+					url 					图片链接(轮播图)
 					}...
 				]
 				gift:{
@@ -209,43 +210,26 @@
 					price，					价格
 					gift_info,				礼物说明文字
 					focus_num,				收藏条数
-					gift_photo_intro 			图文介绍
+					
 				}
+				gift_photo_intros:[
+					{
+					url 					图文介绍图片
+					}...
+				] 			
 				focus_users:[
 					{
-					avatar 					头像
+					avatar 					头像(喜欢用户)
 					}...
 				]
-				gift_like:[
+				gifts_like:[
 					{
 					url 					相似推荐图片
 					}...
 				] 					
 
-	3.喜欢
-		请求方式:	GET
-		请求url:	/home/like
 
-		请求参数:
-				gift_id 				礼品id
-
-		返回参数:
-				视图 index/like
-				focus_users:[
-					{
-					avatar,			收藏人的头像
-					},...
-				]
-				gifts_like:[
-					{
-					gift_id,			礼物id
-					url 			图片url
-					}
-				]
-
-
-
-	4.收藏
+	3.收藏
 		请求方式:	POST
 		请求url:	/home/collection
 
@@ -258,7 +242,7 @@
 					message:xxx		提示信息
 				}
 
-	5. 专题
+	4. 专题
 		请求方式:	GET
 		请求url:	/home/topic
 
@@ -268,18 +252,19 @@
 		返回参数:
 				视图 index/goodsDetails
 				topic:{
-					title,			话题标题
-					content,		话题内容
-					topic_url,		话题图片
+					title,			专题标题
+					content,		专题内容
+					topic_url,		专题图片
 					scan_num,	 	浏览人数
 					focus_num 		关注人数
 				}
 				gifts:[
 					{
+					id 			礼品id
 					title,			礼品名称
 					price,			价格
 					content,		礼品描述
-					gift_photo_intro,	图文介绍
+					gift_photo_info,	图片
 					scan_num,		浏览人数
 					focus_num 		收藏人数
 					}
