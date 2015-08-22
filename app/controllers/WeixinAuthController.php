@@ -13,6 +13,7 @@ class WeixinAuthController extends BaseController{
 
 	public function accessToken()
 	{
+		Log::info(Session::all());
 		if(!Session::get('code'))
 		{
 			Session::put('code', Input::get('code'));
@@ -20,6 +21,7 @@ class WeixinAuthController extends BaseController{
 		}
 		$code = Input::get('code');
 		$weixin_data = WeChatClient::getAccessTokenByCode($code);
+		Log::info(Session::all());
 		$access_token = $weixin_data['access_token'];
 		$refresh_token = $weixin_data['refresh_token'];
 		$open_id 	= $weixin_data['openid'];
