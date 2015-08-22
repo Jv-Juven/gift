@@ -35,7 +35,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 	Route::get('/', 'WeixinController@valid');
 	Route::get('test', 'WeixinController@responseMsg');
 	Route::get('code', 'WeixinAuthController@code');
-	Route::get('access_token', 'WeixinAuthController@accessToken');
+	Route::get('access', 'WeixinAuthController@accessToken');
 });
 
 // Route::group(array('prefix' => 'user'),function()
