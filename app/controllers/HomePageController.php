@@ -20,7 +20,7 @@ class HomePageController extends BaseController {
 		$gift_id 	= Input::get('gift_id');
 		if(!isset($gift_id))
 			return Response::view('errors.missing');
-		$gift 		= Gift::find($gift_id)->first();
+		$gift 		= Gift::find($gift_id);
 		$gift_posters = GiftPoster::where('gift_id', '=',$gift_id)->get();
 		//收藏的人
 		$focus_users	= Gift::find($gift_id)->users()->get();
