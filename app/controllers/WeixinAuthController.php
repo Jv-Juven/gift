@@ -16,14 +16,14 @@ class WeixinAuthController extends BaseController{
 		$code = Input::get('code');
 
 		$weixin_data = WeChatClient::getAccessTokenByCode($code);
-
+        
 		$access_token = $weixin_data['access_token'];
 		$refresh_token = $weixin_data['refresh_token'];
 		$open_id 	= $weixin_data['openid'];
 		$scope_userinfo = $weixin_data['scope_userinfo'];
 
 		$user = WeChatClient::getUserInfoByAuth($access_token, $open_id);
-
+        
 		return $user;
 	}
 }
