@@ -16,7 +16,7 @@ class WeixinAuthController extends BaseController{
 		if(!Session::get('code'))
 		{
 			Session::put('code', Input::get('code'));
-			return;
+			return Session::get('code');
 		}
 		$code = Input::get('code');
 		$weixin_data = WeChatClient::getAccessTokenByCode($code);
