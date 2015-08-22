@@ -16,8 +16,6 @@ class WeixinAuthController extends BaseController{
 		$code = Input::get('code');
 
 		$weixin_data = WeChatClient::getAccessTokenByCode($code);
-		
-		$weixin_data = json_decode($weixin_data,true);
 
 		$access_token = $weixin_data['access_token'];
 		$refresh_token = $weixin_data['refresh_token'];
