@@ -5,7 +5,7 @@ class WeixinAuthController extends BaseController{
 	//获取code
 	public function code()
 	{
-		$redirect_uri = "http://gift.zerioi.com/weixin/access_token";
+		$redirect_uri = "http://gift.zerioi.com/weixin/access_token = ";
 		$scope = "snsapi_userinfo";
 		$redirect_url = WeChatClient::getOAuthConnectUri($redirect_uri,'', $scope);
 		return Redirect::to($redirect_url);
@@ -15,6 +15,17 @@ class WeixinAuthController extends BaseController{
 	{
 		$code = Input::get('code');
 
-		return WeChatClient::getAccessTokenByCode($code);
+		$weixin_data = WeChatClient::getAccessTokenByCode($code);
+		
+		$weixin_data = json_decode($weixin_data,true);
+
+		$access_token = $weixin_data['access_token'];
+		$refresh_token = $weixin_data['refresh_token'];
+		$open_id 	= $weixin_data['openid'];
+		$scope_userinfo = $weixin_data['scope_userinfo'];
+
+		$user = WeChatClient::getUserInfoByAuth($access_token, $open_id);
+
+		return $user;
 	}
 }
