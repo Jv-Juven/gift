@@ -11,11 +11,12 @@
 }
 
 .topic-title{
-	padding-top: 1%;
-	padding-left:  1%;
+	padding-top: 1rem;
+	padding-left:  .5rem;
 	font-size: 1.3rem;
 	color: @font-color;
 	font-weight: bolder;
+	line-height: 2rem;
 }
 
 .topic-content{
@@ -25,7 +26,12 @@
 	font-size: 1rem;
 	color: @font-color;
 	line-height: 1.8rem;
+	font-family: "Heiti SC" !important;
 	// line-height: 20px;
+}
+
+.gift{
+	padding-top: 1rem;
 }
 
 .gift-title{
@@ -43,6 +49,7 @@
 	// text-align: center;
 	// vertical-align:2px;
 	line-height: 2em;
+	font-family: "Heiti SC" !important;
 }
 
 .ititle-serial{
@@ -50,9 +57,8 @@
 	@width: 1.8rem;
     width: @width;
     height: @width;
-    background: #F73939;
     // line-height: 2rem;
-    padding: .2rem 0rem;
+    padding: .23rem 0rem;
     text-align: center;
     border-radius: 3rem;
     display: inline-block;
@@ -63,8 +69,17 @@
     position: absolute;
     top:50%;
     left: 0.5rem;
-    margin: -1rem 0rem;
-    font-family: "heiti";
+    margin: -@width/2 0rem;
+    font-family: "Heiti SC" !important;
+}
+.gift:nth-child(3n+1) .ititle-serial{
+	background: #F73939;
+}
+.gift:nth-child(3n+2) .ititle-serial{
+	background: rgb(245, 189, 63);
+}
+.gift:nth-child(3n) .ititle-serial{
+	background: rgb(74, 144, 226);
 }
 
 .gift-content{
@@ -76,6 +91,7 @@
 	// line-height: 25px;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
+    .box-sizing();
 }
 
 .gift-img{
