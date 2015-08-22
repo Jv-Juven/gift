@@ -12,8 +12,8 @@ class WeixinAuthController extends BaseController{
 	}
 
 	public function accessToken()
-	{
-		
+	{    		
+
 		if(Session::get('code'))
 		{
 			$access_token = $session_access_token;
