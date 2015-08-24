@@ -13,6 +13,7 @@ class WeixinAuthController extends BaseController{
 
 	public function accessToken()
 	{
+<<<<<<< HEAD
 		if(Session::get('code') == Input::get('code'))
 		{
 			Session::put('code', Input::get('code'));
@@ -33,5 +34,8 @@ class WeixinAuthController extends BaseController{
 //		$client_user->username = $user['nickname'];
 //	    $client_user->save();
 		return Redirect::to('/');
+=======
+		
+>>>>>>> origin/master
 	}
 }
