@@ -6,7 +6,7 @@ class HomePageController extends BaseController {
 	public function showWelcome()
 	{
 		$posters 	= Poster::all();
-		$topics		= Topic::where('topic_url', '!=','')->get();
+		$topics		= Topic::where('topic_url', '!=','')->orderBy('created_at','desc')->get();
 		// dd($topics[0]);
 		return View::make('index.home')->with(array(
 				'posters' 	=> $posters,
