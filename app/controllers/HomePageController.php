@@ -6,7 +6,7 @@ class HomePageController extends BaseController {
 	public function showWelcome()
 	{
 		$posters 	= Poster::all();
-		$topics		= Topic::all();
+		$topics		= Topic::where('topic_url', '!=','')->get();
 		// dd($topics[0]);
 		return View::make('index.home')->with(array(
 				'posters' 	=> $posters,
@@ -41,7 +41,7 @@ class HomePageController extends BaseController {
 			$gifts_like = array_slice($gifts_like,0,9);
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
-		// dd($gift->taobao_url); 变量名不要一样,后面的会覆盖前面的
+		// dd($gift->taobao_url); 变量名不要一样的,后面的会覆盖前面的
 		$gift 		= Gift::find($gift_id);
 		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
