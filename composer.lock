@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bc32dc137ba5ce10ce282b73146d9842",
+    "hash": "c0ad0db14ff399be245c0dd1be381d20",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -2015,6 +2015,50 @@
             "description": "Symfony Translation Component",
             "homepage": "http://symfony.com",
             "time": "2015-01-03 15:23:51"
+        },
+        {
+            "name": "tom-lingham/searchy",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomLingham/Laravel-Searchy.git",
+                "reference": "606aafda6c875fae473d4754b8ce8d79ffb1d0cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "http://packagist.phpcomposer.com/files/TomLingham/Laravel-Searchy/606aafda6c875fae473d4754b8ce8d79ffb1d0cc.zip",
+                "reference": "606aafda6c875fae473d4754b8ce8d79ffb1d0cc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "TomLingham\\Searchy": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Lingham",
+                    "email": "tjlingham@gmail.com"
+                }
+            ],
+            "description": "Laravel 4 Searchy makes user driven searching easy with fuzzy search, basic string matching and more to come!",
+            "keywords": [
+                "laravel",
+                "search"
+            ],
+            "time": "2015-06-14 06:52:12"
         }
     ],
     "packages-dev": [

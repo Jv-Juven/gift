@@ -11,7 +11,7 @@ class CreateTopicsTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//官方话题
+	{			//专题活动
 		Schema::create('topics', function(Blueprint $table)
 		{
 			$table->increments('id');
