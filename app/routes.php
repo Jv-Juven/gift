@@ -128,7 +128,7 @@ Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 });
 
 //通知
-Route::group(array('prefix'=>'notice',,'before'=>'auth.user.isIn'),function(){
+Route::group(array('prefix'=>'notice','before'=>'auth.user.isIn'),function(){
 	//获取通知条数
 	Route::get('/', 'NoticeController@notice');
 });
