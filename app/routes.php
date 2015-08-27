@@ -22,10 +22,10 @@ Route::group(array('prefix' => 'home'),function(){
 	//专题
 	Route::get('topic', 'HomePageController@topic');
 	//用户收藏
-	// Route::group(array('before'=>'auth.user.isIn'), function(){
+	Route::group(array('before'=>'auth.user.isIn'), function(){
 		//收藏
 		Route::post('collection','HomeController@collection');
-	// });
+	});
 });
 
 Route::controller('/login', 'AdminController');
@@ -101,6 +101,12 @@ Route::group(array('prefix'=>'article'),function(){
 		Route::post('dcomment', 'ArticleController@dcomment');
 		//删除回复
 		Route::post('dreply', 'ArticleController@dreply');
+		//发表参与话题
+		Route::post('issue','ArticleController@issue');
+		//编辑话题
+		Route::post('edit', 'ArticleController@edit');
+		//删除话题
+		Route::post('darticle', 'ArticleController@dArticle')
 	});
 
 });

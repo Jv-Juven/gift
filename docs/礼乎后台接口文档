@@ -581,7 +581,49 @@
 					message:xxx		提示信息
 				}
 
-	7.编辑话题
+	7.发表参与话题
+		请求方式:	POST
+		请求url:	/article/issue
+
+				<----------内容已用户发表的顺序传给后台------------------>
+				<----------图片的type为url，文字的type为text-------------->
+		请求参数:	
+				article_id			话题的id
+				content:[			参与话题的内容
+					{
+					type=>content
+					}....
+				] 				
+				
+				
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+	8. 编译参与话题
+		请求方式:	POST
+		请求url:	/article/edit
+
+				<----------内容已用户发表的顺序传给后台------------------>
+				<----------图片的type为url，文字的type为text-------------->
+		请求参数:	
+				join_id				参与话题的id
+				content:[			参与话题的内容
+					{
+					type=>content
+					}....
+				] 				
+				
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	9.删除参与话题话题
 
 
 五、设置模块

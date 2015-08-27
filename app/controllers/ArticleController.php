@@ -95,6 +95,37 @@ class ArticleController extends BaseController{
 	}
 	
 	//参与话题
-	public function 
+	public function issue()
+	{
+		if(! Sentry::check())
+			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		$user = Sentry::getUser();
+		$article_id = Input::get('article_id');	
+		$article = Article::find($article_id);
+		if(!isset($article))
+			return Response::json(array('errCode'=>2,'message'=>'你想参与的话题不存在！'));
+		
+		$content = Input::get('content');
+		if(empty($content))
+			return Response::json(array('errCode'=>3,'message'=>'内容不能为空！'));
+		
+		$article_join = New ArticleJoin;
+		$article_join->article_id = $article_id;
+		$article_join->user_id = $user->id;
+		if(!$article_join->save())
+			return Response::json(array('errCode'=>4, 'message'=>'参与话题创建失败！'));
+		foreach($content as $key=>$value)
+		{
+			$article_join_part = New ArticleJoinPart;
+			$article_join_part->join_id = $article_join->id;
+			$article_join_part->type = $key;
+			$article_join_part->content = $value;
+			if(!$article_join_part->save())
+				return Response::json(array('errCode'=>5,'message'=>'参与话题保存不完整，请重新编辑！'));
+		}
+		
+		return Response::json(array('errCode'=>0, 'message'=>'保存成功！'));
+	}
 
+	
 }
