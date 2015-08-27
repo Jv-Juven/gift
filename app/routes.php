@@ -106,7 +106,7 @@ Route::group(array('prefix'=>'article'),function(){
 		//编辑话题
 		Route::post('edit', 'ArticleController@edit');
 		//删除话题
-		Route::post('darticle', 'ArticleController@dArticle')
+		Route::post('darticle', 'ArticleController@dArticle');
 	});
 
 });

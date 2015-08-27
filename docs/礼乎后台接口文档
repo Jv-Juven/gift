@@ -602,7 +602,7 @@
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
-	8. 编译参与话题
+	8. 编辑参与话题
 		请求方式:	POST
 		请求url:	/article/edit
 
