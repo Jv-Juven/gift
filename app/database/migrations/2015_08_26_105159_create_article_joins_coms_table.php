@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTJoinFocusTable extends Migration {
+class CreateArticleJoinsComsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,13 @@ class CreateTJoinFocusTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//参与话题收藏
-		Schema::create('t_join_focus', function(Blueprint $table)
+	{			//话题评论
+		Schema::create('article_join_coms', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned()->index('user_id');//用户id
-			$table->integer('t_join_id')->unsigned()->index('t_join_id');//参与话题id
+			$table->integer('user_id')->unsigned()->index('user_id');
+			$table->integer('join_id')->unsigned()->index('join_id');
+			$table->string('content');
 			$table->timestamps();
 
 			$table                          
@@ -26,8 +27,8 @@ class CreateTJoinFocusTable extends Migration {
 				->onUpdate('cascade');
 
 			$table                          
-				->foreign('t_join_id')
-				->references('id')->on('topic_joins') 
+				->foreign('join_id')
+				->references('id')->on('article_joins') 
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});
@@ -40,7 +41,7 @@ class CreateTJoinFocusTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('t_join_focus');
+		Schema::drop('article_join_coms');
 	}
 
 }

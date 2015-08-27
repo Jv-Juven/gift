@@ -183,6 +183,7 @@ class GiftsTableSeeder extends Seeder {
 			'taobao_url' =>'https://detail.tmall.com/item.htm?spm=a217e.7765654.1998660470.7.a4lzKx&id=521089667043'
 		]);
 
+		
 	}
 
 }

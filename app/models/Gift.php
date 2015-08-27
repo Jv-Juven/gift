@@ -22,6 +22,4 @@ class   Gift extends Eloquent{
 		return $this->belongsToMany('User','gift_focus','gift_id', 'user_id');
 	}
 
-
-
 }

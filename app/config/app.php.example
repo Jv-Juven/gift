@@ -123,10 +123,13 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Cartalyst\Sentry\SentryServiceProvider',
-
-		'Way\Generators\GeneratorsServiceProvider',
-		'Frozennode\Administrator\AdministratorServiceProvider'
 		
+		'Way\Generators\GeneratorsServiceProvider',
+
+		'Frozennode\Administrator\AdministratorServiceProvider',
+
+		'Cooper\Wechat\WechatServiceProvider',
+
 	),
 
 	/*
@@ -195,7 +198,10 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 
 		'Sentry'            => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-		
+
+		'WeChatServer'    => 'Cooper\Wechat\Facades\WeChatServer',
+		'WeChatClient'    => 'Cooper\Wechat\Facades\WeChatClient',
+
 	),
 
 );

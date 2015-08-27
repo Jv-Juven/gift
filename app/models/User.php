@@ -23,7 +23,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			'gender',
 			'birthday',
 			'phone',	
-			'role_id'		
+			'role_id',
+			'postion'		
 	);
 
 	public function topic_joins()
@@ -63,7 +64,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function focus()
 	{
-		return $this->belongToMany('Gift', 'gift_focus', 'user_id', 'gift_id');
+		return $this->belongsToMany('Gift', 'gift_focus', 'user_id', 'gift_id');
 	}
 	/**
 	 * The attributes excluded from the model's JSON form.
