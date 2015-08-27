@@ -624,40 +624,104 @@
 				}
 
 	9.删除参与话题话题
+		请求方式:	POST
+		请求url:	/article/darticle
 
+		请求参数:	
+				join_id				参与话题的id
+				
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+六.我的
+	1.我参与的话题
+		请求方式:	GET
+		请求url:	/mime/join_article
+
+		请求参数:	无
+				<---------------前端需要去判断是否有articles----------------->
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+					article:[		话题数组
+						{
+						title,		话题标题
+						url,		话题图片链接
+						content， 	话题第一端内容
+						}...
+					]
+					user:{
+						username,	用户名
+						avatar,	头像
+					}
+				}
+
+	2.我喜欢的礼品
+		请求方式:	GET
+		请求url:	/mime/like_gift
+
+		请求参数:	无
+				
+		返回参数 :
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+					gifts:[
+						{
+						title,		礼品名
+						price,		礼品价格
+						url,		礼品图片链接
+						}......
+					]
+					user:{
+						username,	用户名
+						avatar,	头像
+					}
+				}
+		
 
 五、设置模块
-	1.个人信息
+	1.1个人信息
 		请求方式:	POST
-		请求url:	/user/per_info
+		请求url:	/site/per_info
 
 		请求参数:
-		备注:		输入时任选其中一个字段
-				avatar				头像	
-				username			昵称
-				gender				性别
-				birthday			生日
-				phone_number		手机号码
-
+		备注:		输入时任选其中一个字段,以键值对的形式，例如array('avatar'=>'阿登')
+				info:{
+					avatar				头像	
+					username			昵称
+					gender			性别
+					birthday			生日
+					postion			职业
+				}
 		返回参数 :
 				{
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
-	1.1 个人信息
+	1.2 个人信息
 		请求方式:	GET
-		请求url:	/user/per_info
+		请求url:	/site/per_info
 
 		请求参数:
 
 		返回参数 : 视图 /setting/userInfo
-				user{
-					avatar:        头像
-					username:      昵称
-					gender         性别
-					birthday       生日
-					phone_number   手机号码
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+					user:{
+					avatar:        		头像
+					username:     	昵称
+					gender         		性别
+					birthday       		生日
+					postion		职业
+					}
 				}
+
 
 	2.消息推送
 		请求方式:	POST
@@ -672,22 +736,6 @@
 					message:xxx		提示信息
 				}
 
-	3.清楚缓存
-		前端控制
-
-	4.关于礼乎
-		请求方式:	GET
-		请求url:	/about
-
-		请求参数:	无
-
-		返回参数 :	
-				视图 setting/about
-				about:{
-					picture_url，		logo链接
-					version，		版本号
-					right			版权
-				}
 
 	5.意见反馈
 		请求方式:	POST
@@ -769,45 +817,4 @@
 					time， 					时间
 					}
 
-七、收纳盒模块
-	1.商品
-		请求方式:	GET
-		请求url:	/collection/goods		
-
-		请求参数:	无
-
-
-		返回参数 :
-				[
-					gift:{
-						picture_url,		礼品图片
-						title,			礼物名字
-						price,			价格
-					},...
-				]
-	2.话题
-		请求方式:	GET
-		请求url:	/collection/topics
-
-		请求参数:	无
-
-		返回参数 :
-				[
-					topic:{
-						picture_url,		图片链接url
-						title,			题目
-						content,		内容
-						scan_num,		浏览次数
-						join_count,		参与话题者人数		
-						focus_num,		收藏人数
-					}
-					join_topic:{
-						picture_url,		图片链接url
-						title,			题目
-						content,		内容
-						scan_num,		浏览次数
-						comment_count,	评论数
-						focus_num,		收藏人数
-					}
-				]
 

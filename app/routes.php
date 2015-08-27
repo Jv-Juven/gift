@@ -108,5 +108,27 @@ Route::group(array('prefix'=>'article'),function(){
 		//删除话题
 		Route::post('darticle', 'ArticleController@dArticle');
 	});
+});
 
+//我的
+Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
+	//我参与的话题
+	Route::get('join_article', 'MimePageController@joinArticle');
+	//我喜欢的礼品
+	Route::get('like_gift', 'MimePageController@likeGift');
+});
+
+//设置
+Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
+	//获取个人资料
+	Route::get('per_info','SitePageController@perInfo');
+	//更新个人资料
+	Route::post('per_info','SiteController@perInfo');
+	//消息推送
+});
+
+//通知
+Route::group(array('prefix'=>'notice',,'before'=>'auth.user.isIn'),function(){
+	//获取通知条数
+	Route::get('/', 'NoticeController@notice');
 });
