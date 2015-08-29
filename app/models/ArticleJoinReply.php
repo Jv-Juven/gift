@@ -7,6 +7,8 @@ class ArticleJoinReply extends Eloquent{
 		'com_id',
 		'sender_id',
 		'receiver_id',
-		'content'
+		'content',
+		'status',
+		'is_delete'
 	);
 }

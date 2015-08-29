@@ -557,7 +557,6 @@
 		请求url:	/article/reply
 
 		请求参数:	
-				receiver_id，			被回复者id
 				com_id， 			评论的id
 				content， 			内容
 		返回参数 :
