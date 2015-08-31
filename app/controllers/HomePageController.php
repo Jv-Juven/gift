@@ -15,10 +15,14 @@ class HomePageController extends BaseController {
 			$recommend->scan_num = $gift->scan_num;
 			$recommend->focus_num = $gift->focus_num;	
 		}	
-		// if( Request::ajax() )
-		// {
-			
-		// }
+		if( Request::ajax() )
+		{
+			return Response::json(array('errCode'=>0, 'message'=>'返回首页首页数据',
+								'posters' 			=> $posters,
+								'topics'			=> $topics,
+								'recommendations'	=> $daily
+							));	
+		}
 		return View::make('index.home')->with(array(
 				'posters' 			=> $posters,
 				'topics'			=> $topics,
