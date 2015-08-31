@@ -128,19 +128,23 @@ Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 });
 
 //通知
-Route::group(array('prefix'=>'notice','before'=>'auth.user.isIn'),function(){
+Route::group(array('prefix'=>'notice'),function(){
 	//获取通知条数
-	Route::get('/', 'NoticeController@notice');
+	Route::get('/', 'NoticePageController@notice');
 	//通知的简讯(用户类)
-	Route::get('bref-user', 'NoticeController@brefUser');
+	Route::get('bref-user', 'NoticePageController@brefUser');
+	//删除全部回复
+	Route::post('d-user', 'NoticeController@dUserNotice');
+	//删除回复中的一条评论
+	Route::post('d-user-com', 'NoticeController@dUserCom');
+	//删除回复中的一条回复
+	Route::post('d-user-reply', 'NoticeController@dUserReply');
 	//通知的简讯(官方类)
-	Route::get('bref-offical', 'NoticeController@brefOffical');
-	//删除通知简讯(用户类)
-	Route::get('d-user', 'NoticeController@dOffical');
-	//删除通知简讯(官方类)
-	Route::get('d-offical', 'NoticeController@dOffical');
-	//回复详细信息(参与评论)
-	Route::get('join_com','NoticeController@joinCom');
-	//官方详细信息
-	Route::get('offical','NoticeController@Offical');
+	Route::get('bref-offical', 'NoticePageController@brefOffical');
+	//官方通知详细信息
+	Route::post('offical','NoticeController@offical');
+	// 删除一条官方通知
+	Route::post('d-offical', 'NoticeController@dOffical');
+	//删除全部通知
+	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
 });

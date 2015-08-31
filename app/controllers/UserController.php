@@ -72,7 +72,7 @@ class UserController extends BaseController{
 		Session::put('email', $email);
 		Session::put('code', $code);
 
-		return Response::json(array('errCode'=>0, 'message'=>'发送成功！'));
+		return Response::json(array('errCode'=>0, 'message'=>'发送成功','code'=>$code));
 	}
 
 	//验证码—验证注册验证码

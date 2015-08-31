@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDailyRecommendsTables extends Migration {
+class CreateOfficalNoticesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,10 @@ class CreateDailyRecommendsTables extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('daily_recommends', function(Blueprint $table)
+		Schema::create('offical_notices', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->
+			$table->string('title');
 			$table->timestamps();
 		});
 	}
@@ -27,7 +27,7 @@ class CreateDailyRecommendsTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('daily_recommends');
+		Schema::drop('offical_notices');
 	}
 
 }

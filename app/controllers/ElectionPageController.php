@@ -2,6 +2,15 @@
 
 class ElectionPageController extends BaseController{
 
+	public static function label()
+	{
+		$charactor = Charactor::all();
+		$scene = Scene::all();
+		$object = Object::all();
+		$price = Price::all();
+		return array('char'=>$charactor,'scene'=>$scene,'object'=>$object,'price'=>$price);
+	}
+
 	//选礼首页
 	public function election()
 	{

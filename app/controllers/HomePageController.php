@@ -34,10 +34,27 @@ class HomePageController extends BaseController {
 	public function giftDetail()
 	{
 		$gift_id 	= Input::get('gift_id');
-		if(!isset($gift_id))
-			return Response::view('errors.missing');
+		
+		if(Request::ajax())
+		{
+			if(!isset($gift_id))
+				return Response::json(array('errCode'=>1,'message'=>'你查看的商品没有！'));
+		}else{
+			if(!isset($gift_id))
+				return Response::view('errors.missing');
+		}
+		
 		$gift 		= Gift::find($gift_id);
 		$gift_posters = GiftPoster::where('gift_id', '=',$gift_id)->get();
+		//做成数组传给移动端
+		if( count($gift_posters) !=0 )
+		{	$gift_poster_array = array();
+			foreach($gift_posters as $poster)
+			{
+				array_push($gift_poster_array, $poster->url);
+			}
+		}
+
 		//收藏的人
 		$focus_users	= Gift::find($gift_id)->users()->get();
 		//相似推荐
@@ -58,7 +75,27 @@ class HomePageController extends BaseController {
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
 		// dd($gift->taobao_url); 变量名不要一样的,后面的会覆盖前面的
+		//做成数组传给移动端
+		if( count($gift_photo_intros) !=0 )
+		{
+			$gift_intro_array = array();
+			foreach($gift_photo_intros as $intro)
+			{
+					array_push($gift_intro_array, $intro->url);
+			}
+		}
+
 		$gift 		= Gift::find($gift_id);
+		if(Request::ajax())
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回数据',
+							'gift' 				=> $gift,
+							'gift_posters' 		=> $gift_poster_array,
+							'focus_users' 		=> $focus_users,
+							'gifts_like'		=> $gifts_like,
+							'gift_photo_intros' => $gift_intro_array
+					));
+		}
 		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
 				'gift_posters' 	=> $gift_posters,

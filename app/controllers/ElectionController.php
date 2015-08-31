@@ -17,7 +17,10 @@ class ElectionController extends BaseController{
 				$gifts = Gift::orderBy('created_at', 'desc')->get();
 				return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 'gifts'=>$gifts));
 			}
-			return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 'gifts'=>$gifts));
+			return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 
+									'gifts'=>$gifts,
+									'label'=>ElectionPageController::label();
+										));
 		// }
 	}
 
@@ -91,70 +94,4 @@ class ElectionController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'返回按对象分类礼品','gifts'=>$gifts));
 	}
 
-	// public function filter()
-	// {
-	// 	//分类数组
-	// 	$filter = Input::get('filter');
-	// 	//数据格式
-	// 	// $filter = array('scene_id'=>444, 'object_id'=>2,'char_id'=>2);
-	// 	//----------------------根据键值的键和值查询数据库--------------------------
-	// 	if(!isset($filter))
-	// 		return Response::json(array('errCode'=>1, 'message'=>'请选择分类！'));
-	// 	if(count($filter) == 1)
-	// 	{	
-	// 		foreach($filter as $key=> $value)
-	// 		{
-	// 			$key = $key;
-	// 			$value = $value;
-	// 		}
-	// 		$gifts = Gift::where($key, '=', $value)->get();
-	// 		return Response::json(array('errCode'=>0, 'message'=>'返回分类数据', 'gifts'=>$gifts));
-	// 	}
-
-	// 	if(count($filter) == 2)
-	// 	{	
-	// 		$i = 1;
-	// 		foreach($filter as $key=> $value)
-	// 		{
-	// 			$keys[$i++] = $key;
-	// 			$values[$i-1] = $value;
-	// 		}
-	// 		$gifts = Gift::where($keys[1], '=', $values[1])
-	// 				->where($keys[2], '=', $values[2])
-	// 				->get();
-	// 		return Response::json(array('errCode'=>0, 'message'=>'返回分类数据', 'gifts'=>$gifts)); 
-	// 	}
-
-	// 	if(count($filter) == 3)
-	// 	{
-	// 		$i = 1;
-	// 		foreach($filter as $key=> $value)
-	// 		{
-	// 			$keys[$i++] = $key;
-	// 			$values[$i-1] = $value;
-	// 		}
-	// 		$gifts = Gift::where($keys[1], '=', $values[1])
-	// 				->where($keys[2], '=', $values[2])
-	// 				->where($keys[3], '=', $values[3])
-	// 				->get();
-	// 		return Response::json(array('errCode'=>0, 'message'=>'返回分类数据', 'gifts'=>$gifts)); 
-	// 	}
-
-	// 	if(count($filter) == 4)
-	// 	{
-	// 		$i = 1;
-	// 		foreach($filter as $key=> $value)
-	// 		{
-	// 			$keys[$i++] = $key;
-	// 			$values[$i-1] = $value;
-	// 		}
-	// 		$gifts = Gift::where($keys[1], '=', $values[1])
-	// 				->where($keys[2], '=', $values[2])
-	// 				->where($keys[3], '=', $values[3])
-	// 				->where($keys[4], '=', $values[4])
-	// 				->get();
-	// 		return Response::json(array('errCode'=>0, 'message'=>'返回分类数据', 'gifts'=>$gifts)); 
-	// 	}
-
-	// }
 }
