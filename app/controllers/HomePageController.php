@@ -15,10 +15,10 @@ class HomePageController extends BaseController {
 			$recommend->scan_num = $gift->scan_num;
 			$recommend->focus_num = $gift->focus_num;	
 		}	
-		if( Request::ajax() )
-		{
+		// if( Request::ajax() )
+		// {
 			
-		}
+		// }
 		return View::make('index.home')->with(array(
 				'posters' 			=> $posters,
 				'topics'			=> $topics,
