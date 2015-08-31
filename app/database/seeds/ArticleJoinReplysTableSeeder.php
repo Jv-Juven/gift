@@ -9,9 +9,27 @@ class ArticleJoinReplysTableSeeder extends Seeder {
 	{
 		ArticleJoinReply::create([
 			'com_id' =>1,
-			'sender_id' => 1,
+			'sender_id' => 2,
 			'receiver_id'=> 1,
-			'content' => '我要评论我自己'
+			'content' => '阿登这是你评论的'
+		]);
+		ArticleJoinReply::create([
+			'com_id' =>2,
+			'sender_id' => 3,
+			'receiver_id'=> 2,
+			'content' => '阿登这是你评论的'
+		]);
+		ArticleJoinReply::create([
+			'com_id' =>3,
+			'sender_id' => 4,
+			'receiver_id'=> 3,
+			'content' => '阿登这是你评论的'
+		]);
+		ArticleJoinReply::create([
+			'com_id' =>4,
+			'sender_id' => 1,
+			'receiver_id'=> 4,
+			'content' => '阿登这是你评论的'
 		]);
 	}
 

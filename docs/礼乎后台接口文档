@@ -171,7 +171,7 @@
 二、首页模块
 	1.礼品展示
 		请求方式:	GET
-		请求url:	/home
+		请求url:	/
 
 		请求参数:	无
 
@@ -185,10 +185,20 @@
 				]
 				topics:[
 					{
-					id 			专题id
+					id 				专题id
 					topic_url		专题图片
 					}
 				]
+				"recommendations":[
+					{
+					photo_url,		每日一荐图片
+					info_url，		详情页id
+					content， 		内容
+					scan_num，		浏览人数
+					focus_num，		收藏人数					
+					}
+				]
+				
 		备注:请将每一个实例的id存在页面中,用于导向商品详情页
 	
 	2.商品详情

@@ -5,12 +5,24 @@ class HomePageController extends BaseController {
 	//首页呈现
 	public function showWelcome()
 	{
-		$posters 	= Poster::all();
+		$posters 	= Poster::where('daily_id','=',0)->get();
 		$topics		= Topic::where('topic_url', '!=','')->orderBy('created_at','desc')->get();
-		// dd($topics[0]);
+		$daily 		= poster::where('daily_id','=', 1)->get();
+		foreach( $daily as $recommend )
+		{
+			$gift = Gift::find($recommend->info_url);
+			$recommend->content = $gift->content;
+			$recommend->scan_num = $gift->scan_num;
+			$recommend->focus_num = $gift->focus_num;	
+		}	
+		if( Request::ajax() )
+		{
+			
+		}
 		return View::make('index.home')->with(array(
-				'posters' 	=> $posters,
-				'topics'	=> $topics,
+				'posters' 			=> $posters,
+				'topics'			=> $topics,
+				'recommendations'	=> $daily
 			));
 	}
 
