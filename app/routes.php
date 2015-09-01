@@ -68,6 +68,8 @@ Route::group(array('prefix' => 'user'),function()
 Route::group(array('prefix'=>'election'),function(){
 	//选礼首页—根据用户输入来筛选
 	Route::get('/','ElectionPageController@election');
+	//分类标签
+	Route::get('label','ElectionPageController@label');
 	//根据用户搜索关键字绚丽
 	Route::post('selection', 'ElectionController@select');
 	//根据价格/场合/个性/对象

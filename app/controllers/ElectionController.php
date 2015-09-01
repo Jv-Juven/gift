@@ -19,7 +19,6 @@ class ElectionController extends BaseController{
 			}
 			return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 
 									'gifts'=>$gifts,
-									'label'=>ElectionPageController::label();
 										));
 		// }
 	}

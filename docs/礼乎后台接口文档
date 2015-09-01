@@ -28,6 +28,16 @@
 
 					message:xxx		提示信息
 					intendedUrl:xxx	登录之前页面所在的url(登录成功时有此参数)
+					"user":{
+							"id"				  : "用户id"	
+							"email"           	  : "邮箱",
+            				"username"            : "用户名",
+				            "avatar"              : "头像(喜欢用户)",
+				            "gender"              : "性别",
+				            "phone"               : "电话",
+				            "birthday"            : "生日",
+				            "postion"             : "职业" 
+					}
 				}
 	1.3 登出
 		请求方式:	POST
@@ -105,7 +115,6 @@
 		请求参数:	
 				username			用户名
 				password 			密码
-				re_password 			确认密码
 
 		返回参数 :
 				{
@@ -153,7 +162,6 @@
 				email				邮箱
 				check_code			验证码
 				password 			密码
-				re_password			确认密码
 
 		返回参数：
 				{
@@ -325,9 +333,9 @@
 
 		返回参数 :	静态页面 gifts/seachGifts
 
-##	2.根据用户输入的关键字检索显示
+##	2.1 根据用户输入的关键字检索显示
 		请求方式:	POST
-		请求url:	/selection
+		请求url:	/election/selection
 
 		请求参数:	
 				word 				用户输入关键字
@@ -343,23 +351,35 @@
 						price,			价	格
 						}...
 					]
-					label：｛
+					
+				}
+	2.2 返回礼物类别分类
+		请求方式： GET
+		请求url： ／election／class
+
+		请求参数： 无
+
+		返回参数：
+				label：｛
 						char:{
+							char_id, 	排顺序用字段
 							class		类别
 						},
 						scene:{
+							scene_id,	排顺序用字段
 							class		类别
 						},
 						object:{
+							object_id, 	排顺序用字段
 							class		类别
 						}
 						price:{
+							price_id,	排顺序用字段
 							low_price,	价格范围的低价
 							high_price	价格范围的高价
 						}
 						]
 					｝
-				}
 
 ##	3.选礼——按价格呈现
 		请求方式:	POST
