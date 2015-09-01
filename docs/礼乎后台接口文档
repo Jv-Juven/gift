@@ -227,7 +227,14 @@
 				] 			
 				focus_users:[
 					{
+					id， 					用户id
+					email 					邮箱
+					username 				用户名
 					avatar 					头像(喜欢用户)
+					gender					性别
+					phone					电话
+					birthday				生日
+					postion 				职业
 					}...
 				]
 				gifts_like:[

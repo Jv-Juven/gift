@@ -148,3 +148,21 @@ Route::group(array('prefix'=>'notice'),function(){
 	//删除全部通知
 	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
 });
+
+Route::get('test',function(){
+		return phpversion();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
