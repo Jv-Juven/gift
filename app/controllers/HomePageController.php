@@ -129,7 +129,7 @@ class HomePageController extends BaseController {
 				'focus_users' 	=> $focus_users,
 				'gifts_like'	=> $gifts_like 		
 			));
-		｝
+		}
 		return View::make('index/like')->with(array(
 				'focus_users' 	=> $focus_users,
 				'gifts_like'	=> $gifts_like 		
