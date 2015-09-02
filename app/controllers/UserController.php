@@ -107,7 +107,7 @@ class UserController extends BaseController{
 
 		$rules = array(
 			'username' 	=> 'required|unique:users,username',
-			'password'	=>'required|alpha_num|between:6,20',
+			'password'	=>'required|between:6,20',
 			// 're_password'	=>'required|same:password'
 		);
 
@@ -132,7 +132,7 @@ class UserController extends BaseController{
 			// if($message[0] == 3)
 				// return Response::json(array('errCode'=>3, 'message'=>'密码只能包含字母和数字！'));
 			if($message[0] == 3)
-				return Response::json(array('errCode'=>4, 'message'=>'密码长度必须在6到20之间！'));
+				return Response::json(array('errCode'=>3, 'message'=>'密码长度必须在6到20之间！'));
 			// if($message[0] == 5)
 				// return Response::json(array('errCode'=>5, 'message'=>'两次输入的密码不一致！'));
 		}
@@ -165,7 +165,7 @@ class UserController extends BaseController{
 			array('email' => 'email')
 			);
 		if($validation->fails())
-			return Response::json(array('errCode'=>1, 'message'=>'邮箱格式不正确！'));
+			return Response::json(array('errCode'=>1, 'message'=>$password ));
 		
 		try{
 			$cred = array(
@@ -175,17 +175,17 @@ class UserController extends BaseController{
 			$user = Sentry::authenticate($cred, false);
 		}
 		catch( Cartalyst\Sentry\Users\PasswordRequiredException $e ){
-			return Response::json(array( 'errorCode' => 2, 'message' => '请输入密码' ));
+			return Response::json(array( 'errorCode' => 2, 'message' =>$password ));
 		}catch( Cartalyst\Sentry\Users\WrongPasswordException $e ){
-			return Response::json(array( 'errorCode' => 3, 'message' => '密码错误' ));
+			return Response::json(array( 'errorCode' => 3, 'message' =>$password ));
 		}catch( Exception $e ){
-			return Response::json(array( 'errorCoode' => 4, 'message' => '邮箱或密码错误' ));
+			return Response::json(array( 'errorCoode' => 4, 'message' =>$password ));
 		 }
 
 		 Session::put('user_id', Sentry::getUser()->id);
 		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！',
 		 								'intendedUrl'=>Session::pull('url.intended', '/'),
-		 								'user'=>$user));
+		 								'user'=>$user,'password'=>$password));
 	}
 
 	public function logout()
