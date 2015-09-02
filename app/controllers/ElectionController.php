@@ -47,7 +47,7 @@ class ElectionController extends BaseController{
 			'object_id' => Input::get('object'),
 			'price_id' 	=> Input::get('price')
 		);
-		array_filter( $inputs );
+		$inputs = array_filter( $inputs );
 		$query = null;
 		foreach( $inputs as $key => $value ){
 			if ( $query ){

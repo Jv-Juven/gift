@@ -126,10 +126,11 @@ Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
 Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 	//获取个人资料
 	Route::get('per_info','SitePageController@perInfo');
-	//更新个人资料
-	Route::post('per_info','SiteController@perInfo');
 	//消息推送
 });
+	
+//更新个人资料
+Route::post('site/per_info','SiteController@perInfo');
 
 //通知
 Route::group(array('prefix'=>'notice'),function(){

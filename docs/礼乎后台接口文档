@@ -693,7 +693,9 @@
 		请求url:	/site/per_info
 
 		请求参数:
-		备注:		输入时任选其中一个字段,以键值对的形式，例如array('avatar'=>'阿登')
+		备注:		
+				type: 				0=没有登录，1=登录
+				user_id				用户id
 				info:{
 					avatar				头像	
 					username			昵称
