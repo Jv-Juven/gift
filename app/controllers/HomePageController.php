@@ -155,7 +155,7 @@ class HomePageController extends BaseController {
 
 		if( Request::wantsJson() )
 		{
-			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据'
+			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据',
 				'topic' 	=> $topic,
 				'gifts'	=> $gifts		
 			));
