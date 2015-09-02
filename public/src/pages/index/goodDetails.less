@@ -43,6 +43,7 @@
 				.font-style(1.5rem, 400,black);
 			}
 			.intro-price{
+				margin-left: -0.3rem;
 				line-height: 2.4rem;
 				.font-style(1.6rem, 400, red);
 				.price{
@@ -87,7 +88,7 @@
 				.good-pannel-btn{
 					position: relative;
 					display: inline-block;
-					.font-style(1.2rem, 400, rgb(60, 60, 60));
+					.font-style(1rem, 400, rgb(60, 60, 60));
 					line-height: @line-height - 2 * 0.3;
 					text-align: center;
 					width: 100%;
@@ -117,10 +118,12 @@
 		.intro-details-pannel{
 			.good-intro-wrapper{
 				list-style: none;
+				margin-top: .8rem;
 				li{
 					width: 100%;
 					img{
 						width: 100%;
+						display: block;
 					}
 				}
 			}
@@ -199,7 +202,7 @@
 
 		
 		.good-details-footer{
-			@width: 1.6rem;
+			@width: 1.5rem;
 			position: fixed;
 			bottom: 0rem;
 			width: 100%;
@@ -210,12 +213,13 @@
 				display: inline-block;
 				border: solid thin red;
 				line-height: 2.7rem;
-				width: 9rem;
+				width: 19rem;
 				border-radius: .5rem;
-				
+				letter-spacing: .1rem;
 				margin: 0rem .7rem;
 				span[class^="btns-pattern"]{
 					display: inline-block;
+					margin-right: 0.4rem;
 					width: @width;
 					height: @width;
 					vertical-align: middle;
