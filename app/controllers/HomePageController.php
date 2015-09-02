@@ -159,7 +159,7 @@ class HomePageController extends BaseController {
 				'topic' 	=> $topic,
 				'gifts'	=> $gifts		
 			));
-		｝
+		}
 		return View::make('index/goodsList')->with(array(
 				'topic' 	=> $topic,
 				'gifts'	=> $gifts
