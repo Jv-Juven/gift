@@ -228,6 +228,7 @@
 					price，					价格
 					gift_info,				礼物说明文字
 					focus_num,				收藏条数
+					taobao_url，				淘宝url
 					
 				}
 				gift_photo_intros:[
@@ -346,7 +347,8 @@
 					message，			提示信息
 					gifts:[
 						{
-						picture_url,		图片链接
+						id 					礼物id
+						img,			图片链接
 						title,			礼物名称
 						price,			价	格
 						}...
@@ -380,97 +382,39 @@
 						}
 						]
 					｝
+	3.选礼
+		请求方式：POST
+		请求url：/election/selection_by_label
 
-##	3.选礼——按价格呈现
-		请求方式:	POST
-		请求url:	/election/price
+		请求参数：
+				'char'			:'char'
+				'scene'			:'scene'
+				'object'		:'object'
+				'price'			:'price'
 
-		请求参数:	
-				price_id 			价格类的id号
-		返回参数 :
-				视图—瀑布流/列表形式 gifts/list   gifts/fall
+		返回参数：
 				{
 					errCode, 			错误代码（0表示返回正常）
 					message，			提示信息
 					gifts:[
 						{
-							id,				礼品id
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
-					]	
-				}
-##	6.选礼——对象
-		请求方式:	POST
-		请求url:	/election/object
-
-		请求参数:
-				object_id			对象id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-				{
-					errCode, 			错误代码（0表示返回正常）
-					message，			提示信息
-					gifts:[
-						{
-							id,				礼品id
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
+						id 					礼物id
+						img,			图片链接
+						title,			礼物名称
+						price,			价	格
+						}...
 					]
+					
 				}
 
-##	7.选礼——场景
-		请求方式:	POST
-		请求url:	/election/scene
-
-		请求参数:
-				scene_id			场景id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-				{
-					errCode, 			错误代码（0表示返回正常）
-					message，			提示信息
-					gifts:[
-						{
-							id,				礼品id
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
-					]
-				}
-##	8.选礼——性格
-		请求方式:	POST
-		请求url:	/election/charactor
-
-		请求参数:
-				charactor_id			性格id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-			{
-				errCode, 			错误代码（0表示返回正常）
-				message，			提示信息
-				gifts:[
-					{
-						id,				礼品id
-						picture_url,	图片链接
-						title,		礼物名称
-						price,		价格
-					},
-				]
-			}
 四、圈子模块
 	1 圈子静态页——热门话题
 		请求方式:	GET
 		请求url:	/article
 
-		请求参数:	无
+		请求参数:	
+				per_page			每页数
+				page    			第几页
 
 		返回参数 :	视图 topics/hotTopics
 				{
@@ -510,11 +454,15 @@
 
 		请求参数:	
 				article_id			话题id
+				per_page			每页数
+				page    			第几页
 
 		返回参数 :	视图 topics/topics
 				{
 					errCode, 			错误代码（0表示返回正常）
 					message，			提示信息
+					total               总页数
+
 					article:{
 						title,			话题标题
 						scan_num,		浏览人数
@@ -899,7 +847,7 @@
 		请求参数:	 无
 
 		返回参数 :	视图  setting/news/officialNews
-				[	
+				officals:[	
 					{
 					id
 					title， 					通知的题目
@@ -944,7 +892,7 @@
 
 	10.删除官方通知
 		请求方式:	post
-		请求url:	/notice/d-offical-all
+		请求url:	/notice/d-offical
 
 		请求参数:	 
 				offical_id 			官方通知id

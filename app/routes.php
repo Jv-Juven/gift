@@ -71,7 +71,9 @@ Route::group(array('prefix'=>'election'),function(){
 	//分类标签
 	Route::get('label','ElectionPageController@label');
 	//根据用户搜索关键字绚丽
-	Route::post('selection', 'ElectionController@select');
+	Route::post('selection', 'ElectionController@selectByWord');
+	//通过标签搜索
+	Route::post('selection-by-label','ElectionController@selectByLabel');
 	//根据价格/场合/个性/对象
 	Route::post('price','ElectionController@price');
 	//根据场合
@@ -151,9 +153,7 @@ Route::group(array('prefix'=>'notice'),function(){
 	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
 });
 
-Route::get('test',function(){
-		return phpversion();
-});
+Route::get('test','ArticlePageController@hotArticle');
 
 
 

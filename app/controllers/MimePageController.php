@@ -9,7 +9,15 @@ class MimePageController extends BaseController{
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(1);
-		$article_joins = ArticleJoin::where('user_id', '=', $user->id)->get();
+		
+		//分页
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$article_joins = DB::table('article_joins')->orderBy('created_at', 'desc');
+		//总页数
+		$total = ceil(count($article_joins)/$per_page);
+		//参与话题
+		$article_joins = StaitcController::page($per_page, $page, $article_joins);
 		if(count($article_joins) == 0)
 			return Response::json(array('errCode'=>0,'message'=>'该用户没有参与话题！'));
 		//根据用户参与的话题取到官方话题
@@ -45,7 +53,7 @@ class MimePageController extends BaseController{
 
 		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题的内容！',
 						 'articles'=>$articles,
-						 'user' => $user
+						 'total'=>$total
 						 ));
 	}
 
@@ -57,7 +65,15 @@ class MimePageController extends BaseController{
 		$user = Sentry::getUser();
 		// $user = User::find(1);
 		//获取我喜欢的礼品——动态属性
-		$focus = $user->focus;
+		//分页
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$gift_focus = DB::table('gift_focus')->orderBy('created_at', 'desc');
+		//总页数
+		$total = ceil(count($gift_focus)/$per_page);
+		//文章
+		$focus = StaitcController::page($per_page, $page, $gift_focus);
+
 		if(count($focus) != 0)
 		{
 			foreach($focus as $gift)
@@ -68,7 +84,7 @@ class MimePageController extends BaseController{
 
 		return Response::json(array('errCode'=>0, 'message'=>'返回用户喜欢的礼品',
 						'gifts'=>$focus,
-						 'user' => $user
+						'total'=>$total
 						));
 	}
 } 
