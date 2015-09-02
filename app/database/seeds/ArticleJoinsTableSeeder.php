@@ -24,7 +24,14 @@ class ArticleJoinsTableSeeder extends Seeder {
 		]);
 
 		ArticleJoin::create([
-			'article_id' => 1,
+			'article_id' => 2,
+			'user_id' => 3,
+			'scan_num' => 2332,
+			'join_num' => 2323,
+			'focus_num' => 33
+		]);
+		ArticleJoin::create([
+			'article_id' => 2,
 			'user_id' => 3,
 			'scan_num' => 2332,
 			'join_num' => 2323,

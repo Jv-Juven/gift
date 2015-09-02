@@ -72,7 +72,7 @@ class UserController extends BaseController{
 		Session::put('email', $email);
 		Session::put('code', $code);
 
-		return Response::json(array('errCode'=>0, 'message'=>'发送成功！'));
+		return Response::json(array('errCode'=>0, 'message'=>'发送成功','code'=>$code));
 	}
 
 	//验证码—验证注册验证码
@@ -97,28 +97,28 @@ class UserController extends BaseController{
 		Session_start();
 		$username 	= Input::get('username');
 		$password 	= Input::get('password');
-		$re_password = Input::get('re_password');
+		// $re_password = Input::get('re_password');
 
 		$data = array(
 			'username' 	=> $username,
 			'password' 	=> $password,
-			're_password'  => $re_password
+			// 're_password'  => $re_password
 		);
 
 		$rules = array(
 			'username' 	=> 'required|unique:users,username',
 			'password'	=>'required|alpha_num|between:6,20',
-			're_password'	=>'required|same:password'
+			// 're_password'	=>'required|same:password'
 		);
 
 		$messages = array(
 			'username.required'     	=> 1,
 			'password.required' 	   	=> 1,
-			're_password.required' 	=> 1,
+			// 're_password.required' 		=> 1,
 			'username.unique'        	=> 2,
-			'password.alpha_num'  	=> 3,
-			'password.between'     	=> 4,
-			're_password.same'     	=> 5
+			// 'password.alpha_num'  		=> 3,
+			'password.between'    	 	=> 3,
+			// 're_password.same'     		=> 5
 		);
 
 		$validation = Validator::make($data, $rules, $messages);
@@ -129,12 +129,12 @@ class UserController extends BaseController{
 				return Response::json(array('errCode'=>1, 'message'=>'请填写完整的信息！'));
 			if($message[0] == 2)
 				return Response::json(array('errCode'=>2, 'message'=>'此用户名已注册！'));
+			// if($message[0] == 3)
+				// return Response::json(array('errCode'=>3, 'message'=>'密码只能包含字母和数字！'));
 			if($message[0] == 3)
-				return Response::json(array('errCode'=>3, 'message'=>'密码只能包含字母和数字！'));
-			if($message[0] == 4)
 				return Response::json(array('errCode'=>4, 'message'=>'密码长度必须在6到20之间！'));
-			if($message[0] == 5)
-				return Response::json(array('errCode'=>5, 'message'=>'两次输入的密码不一致！'));
+			// if($message[0] == 5)
+				// return Response::json(array('errCode'=>5, 'message'=>'两次输入的密码不一致！'));
 		}
 
 		$user = Sentry::createUser(array(
@@ -143,7 +143,7 @@ class UserController extends BaseController{
 			'activated'=>true,
 			));
 
-		return Response::json(array('errCode'=>0, 'message'=>'注册成功！'));
+		return Response::json(array('errCode'=>0, 'message'=>'注册成功','id'=>$user->id));
 		
 		// $user = New User;
 		// $user->email 		= Session::get('email');
@@ -183,7 +183,9 @@ class UserController extends BaseController{
 		 }
 
 		 Session::put('user_id', Sentry::getUser()->id);
-		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！','intendedUrl'=>Session::pull('url.intended', '/')));
+		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！',
+		 								'intendedUrl'=>Session::pull('url.intended', '/'),
+		 								'user'=>$user));
 	}
 
 	public function logout()
@@ -235,7 +237,7 @@ class UserController extends BaseController{
 		$email 			= Input::get('email');
 		$check_code 		= Input::get('check_code');
 		$password 		= Input::get('password');
-		$re_password 		= Input::get('re_password');
+		// $re_password 		= Input::get('re_password');
 
 		if($email != Session::get('reset_email'))
 			return Response::json(array('errCode'=>1,'message'=>'邮箱不正确！'));
@@ -243,8 +245,8 @@ class UserController extends BaseController{
 			return Response::json(array('errCode'=>2, 'message' =>'验证码不正确！'));
 		if(strlen($password)<6 || strlen($password)>20)
 			return Response::json(array('errCode'=>3, 'message'=>'密码长度为6到20之间！'));
-		if($password != $re_password)
-			return Response::json(array('errCode'=>4, 'messsage' =>'两次输入的密码不一致！'));
+		// if($password != $re_password)
+			// return Response::json(array('errCode'=>4, 'messsage' =>'两次输入的密码不一致！'));
 
 		try{
 			$user = Sentry::findUserByLogin($email);

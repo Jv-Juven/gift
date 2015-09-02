@@ -19,7 +19,8 @@
 
 		返回参数 :
 				{
-					errCode:xxx,		0. 表示返回正常
+					errCode:xxx,		
+								0. 表示返回正常
 								1. 邮箱格式不正确！
 								2. 请输入密码
 								3. 密码错误
@@ -27,6 +28,16 @@
 
 					message:xxx		提示信息
 					intendedUrl:xxx	登录之前页面所在的url(登录成功时有此参数)
+					"user":{
+							"id"				  : "用户id"	
+							"email"           	  : "邮箱",
+            				"username"            : "用户名",
+				            "avatar"              : "头像(喜欢用户)",
+				            "gender"              : "性别",
+				            "phone"               : "电话",
+				            "birthday"            : "生日",
+				            "postion"             : "职业" 
+					}
 				}
 	1.3 登出
 		请求方式:	POST
@@ -36,7 +47,8 @@
 
 		返回参数 :
 				{
-					errCode:xxx,		0. 表示返回正常
+					errCode:xxx,		
+								0. 表示返回正常
 								1. 用户未登录！
 
 					message:xxx		提示信息
@@ -103,7 +115,6 @@
 		请求参数:	
 				username			用户名
 				password 			密码
-				re_password 			确认密码
 
 		返回参数 :
 				{
@@ -151,7 +162,6 @@
 				email				邮箱
 				check_code			验证码
 				password 			密码
-				re_password			确认密码
 
 		返回参数：
 				{
@@ -171,7 +181,7 @@
 二、首页模块
 	1.礼品展示
 		请求方式:	GET
-		请求url:	/home
+		请求url:	/
 
 		请求参数:	无
 
@@ -185,13 +195,23 @@
 				]
 				topics:[
 					{
-					id 			专题id
+					id 				专题id
 					topic_url		专题图片
 					}
 				]
+				"recommendations":[
+					{
+					photo_url,		每日一荐图片
+					info_url，		详情页id
+					content， 		内容
+					scan_num，		浏览人数
+					focus_num，		收藏人数					
+					}
+				]
+				
 		备注:请将每一个实例的id存在页面中,用于导向商品详情页
 	
-	2.商品详情
+##	2.商品详情
 		请求方式:	GET
 		请求url:	/home/gift_detail
 
@@ -201,29 +221,34 @@
 		返回参数 :
 				视图 index/goodsDetails
 				gift_posters:[
-					{
-					url 					图片链接(轮播图)
-					}...
-				]
+										图片链接(轮播图)
+					]
 				gift:{
 					title，					礼品名称
 					price，					价格
 					gift_info,				礼物说明文字
 					focus_num,				收藏条数
+					taobao_url，				淘宝url
 					
 				}
 				gift_photo_intros:[
-					{
-					url 					图文介绍图片
-					}...
+						 					图文介绍图片
 				] 			
 				focus_users:[
 					{
+					id， 					用户id
+					email 					邮箱
+					username 				用户名
 					avatar 					头像(喜欢用户)
+					gender					性别
+					phone					电话
+					birthday				生日
+					postion 				职业
 					}...
 				]
 				gifts_like:[
 					{
+					id 						礼品id
 					url 					相似推荐图片
 					}...
 				] 					
@@ -309,9 +334,9 @@
 
 		返回参数 :	静态页面 gifts/seachGifts
 
-	2.根据用户输入的关键字检索显示
+##	2.1 根据用户输入的关键字检索显示
 		请求方式:	POST
-		请求url:	/selection
+		请求url:	/election/selection
 
 		请求参数:	
 				word 				用户输入关键字
@@ -322,99 +347,74 @@
 					message，			提示信息
 					gifts:[
 						{
-						picture_url,		图片链接
+						id 					礼物id
+						img,			图片链接
 						title,			礼物名称
 						price,			价	格
 						}...
 					]
+					
 				}
+	2.2 返回礼物类别分类
+		请求方式： GET
+		请求url： ／election／class
 
-	3.选礼——按价格呈现
-		请求方式:	POST
-		请求url:	/election/price
+		请求参数： 无
 
-		请求参数:	
-				price_id 			价格类的id号
-		返回参数 :
-				视图—瀑布流/列表形式 gifts/list   gifts/fall
+		返回参数：
+				label：｛
+						char:{
+							char_id, 	排顺序用字段
+							class		类别
+						},
+						scene:{
+							scene_id,	排顺序用字段
+							class		类别
+						},
+						object:{
+							object_id, 	排顺序用字段
+							class		类别
+						}
+						price:{
+							price_id,	排顺序用字段
+							low_price,	价格范围的低价
+							high_price	价格范围的高价
+						}
+						]
+					｝
+	3.选礼
+		请求方式：POST
+		请求url：/election/selection_by_label
+
+		请求参数：
+				'char'			:'char'
+				'scene'			:'scene'
+				'object'		:'object'
+				'price'			:'price'
+
+		返回参数：
 				{
 					errCode, 			错误代码（0表示返回正常）
 					message，			提示信息
 					gifts:[
 						{
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
-					]	
-				}
-	6.选礼——对象
-		请求方式:	POST
-		请求url:	/election/object
-
-		请求参数:
-				object_id			对象id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-				{
-					errCode, 			错误代码（0表示返回正常）
-					message，			提示信息
-					gifts:[
-						{
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
+						id 					礼物id
+						img,			图片链接
+						title,			礼物名称
+						price,			价	格
+						}...
 					]
+					
 				}
 
-	7.选礼——场景
-		请求方式:	POST
-		请求url:	/election/scene
-
-		请求参数:
-				scene_id			场景id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-				{
-					errCode, 			错误代码（0表示返回正常）
-					message，			提示信息
-					gifts:[
-						{
-							picture_url,	图片链接
-							title,		礼物名称
-							price,		价格
-						},
-					]
-				}
-	8.选礼——性格
-		请求方式:	POST
-		请求url:	/election/charactor
-
-		请求参数:
-				charactor_id			性格id
-
-		返回参数 :
-				视图—瀑布流/列表形式  gifts/list   gifts/fall
-			{
-				errCode, 			错误代码（0表示返回正常）
-				message，			提示信息
-				gifts:[
-					{
-						picture_url,	图片链接
-						title,		礼物名称
-						price,		价格
-					},
-				]
-			}
 四、圈子模块
 	1 圈子静态页——热门话题
 		请求方式:	GET
 		请求url:	/article
 
-		请求参数:	无
+		请求参数:	
+				per_page			每页数
+				page    			第几页
 
 		返回参数 :	视图 topics/hotTopics
 				{
@@ -454,11 +454,15 @@
 
 		请求参数:	
 				article_id			话题id
+				per_page			每页数
+				page    			第几页
 
 		返回参数 :	视图 topics/topics
 				{
 					errCode, 			错误代码（0表示返回正常）
 					message，			提示信息
+					total               总页数
+
 					article:{
 						title,			话题标题
 						scan_num,		浏览人数
@@ -495,8 +499,8 @@
 		返回参数 :	
 				视图 topics/topicDetails
 				{
-					errCode:xxx,		错误码	0表示返回正常	 
-					message:xxx		提示信息
+					errCode:xxx,			错误码	0表示返回正常	 
+					message:xxx				提示信息
 					article_join:{
 						scan_num,			浏览人数
 						com_num,			评论条数
@@ -557,7 +561,6 @@
 		请求url:	/article/reply
 
 		请求参数:	
-				receiver_id，			被回复者id
 				com_id， 			评论的id
 				content， 			内容
 		返回参数 :
@@ -746,11 +749,11 @@
 
 		返回参数 :
 				{
-					errCode:xxx,		错误码	0表示返回正常	 
+					errCode:xxx,	错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
 
-	6.点评知乎
+	6.点评礼乎
 		链接到	Appstore
 
 六.通知模块
@@ -761,60 +764,142 @@
 		请求参数:	无
 
 		返回参数 :	视图 setting/news
-				topic_reply_num		话题回复条数
-				offical_reply_num		官方通知条数
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+					user_count,		回复条数
+					offical_count	官方通知条数
 
-	2.话题回复
+				｝
+
+	2.通知的简讯(用户类)
 		请求方式:	GET
-		请求url:	/notice/reply
+		请求url:	/notice/bref-user
 
 		请求参数:	无
 
 		返回参数 :	视图(话题) setting/news/topicReplies
-				replys:[
+			{
+				errCode:xxx,			错误码	0表示返回正常	 
+				message:xxx				提示信息
+				"replys":[
 					{
-					id 			话题或回复id
-					avatar,			头像
-					name,			名字
-					time，			时间
+					id 					回复id
+					avatar,				头像
+					username,			名字
+					created_at，			时间
 					}...
 				]
+				"comments":[
+					｛
+					id 					评论id
+					avatar,				头像
+					username,			名字
+					created_at，			时间
+					}...
+				]
+			}
 
 	3.回复详情页
-		请求方式:	GET
-		请求url:	/notice/reply/detail
+		与“4 圈子静态页—参与话题详情”一样，见文档498行处
 
-		请求参数:	
-				join_topic_id			参与话题id
+	4.删除全部回复通知
+		请求方式：post
+		请求url：/notice/d-user
 
-		返回参数 :
-				视图(参与话题详情页面)  topics/topicDetails
+		请求参数： 无
+
+		返回参数：
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝
+
+	5.删除通知中的一条评论
+		请求方式：post
+		请求url：/notice/d-user-com
+
+		请求参数：  com_id 			评论id
+
+		返回参数：
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝
+
+	6.删除通知中的一条回复
+		请求方式：post
+		请求url：/notice/d-user-reply
+
+		请求参数：			
+					reply_id 		回复id
+
+		返回参数：
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝
 	
-	4. 官方通知
+	7. 官方通知
 		请求方式:	GET
-		请求url:	/notice/official
+		请求url:	/notice/bref-offical
 
 		请求参数:	 无
 
 		返回参数 :	视图  setting/news/officialNews
-				[	
+				officals:[	
 					{
-					content， 				内容
-					time， 					时间
+					id
+					title， 					通知的题目
+					created_at， 			时间
 					}...
 				]
 
-	6.官方通知——详情页
+	8.官方通知——详情页
 		请求方式:	GET
-		请求url:	/notice/offical/detail
+		请求url:	/notice/offical
 
 		请求参数:	 
 				offical_id					通知id
 
 		返回参数 :	视图  setting/news/officialNewsDetails
+				
+				errCode:xxx,				错误码	0表示返回正常	 
+				message:xxx					提示信息
 				offical:{
-					content， 				内容
-					time， 					时间
+					title,					题目
+					created_at 				创建时间
 					}
+				offical_parts:[
+					{
+						type,				类型（text为文本，url为图片链接）
+						content，   			内容
+					}....
+				]
 
+	9.删除全部官方通知
+		请求方式:	post
+		请求url:	/notice/d-offical-all
 
+		请求参数:	 
+
+		返回参数 :	视图  setting/news/officialNewsDetails
+				
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝
+
+	10.删除官方通知
+		请求方式:	post
+		请求url:	/notice/d-offical
+
+		请求参数:	 
+				offical_id 			官方通知id
+
+		返回参数 :	视图  setting/news/officialNewsDetails
+				
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝

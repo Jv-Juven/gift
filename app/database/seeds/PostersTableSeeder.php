@@ -9,20 +9,24 @@ class PostersTableSeeder extends Seeder {
 	{
 
 		Poster::create([
-			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/Bitmap33@3x.png',
-			'info_url'=> '1'
+			'photo_url' =>  'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg',
+			'info_url'=> '1',
+			'daily_id'=> '0'
 		]);
 		Poster::create([
-			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/Bitmap33@3x.png',
-			'info_url'=> '1'
+			'photo_url' =>  'http://7xl6gj.com1.z0.glb.clouddn.com/19.3.jpg',
+			'info_url'=> '2',
+			'daily_id'=> '0'
 		]);
 		Poster::create([
-			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/Bitmap33@3x.png',
-			'info_url'=> '1'
+			'photo_url' =>  'http://7xl6gj.com1.z0.glb.clouddn.com/19.4.jpg',
+			'info_url'=> '3',
+			'daily_id'=> '0'
 		]);
 		Poster::create([
-			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/Bitmap33@3x.png',
-			'info_url'=> '1'
+			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
+			'info_url'=> '4',
+			'daily_id'=> '1'		
 		]);
 
 	}

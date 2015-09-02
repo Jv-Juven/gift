@@ -5,12 +5,28 @@ class HomePageController extends BaseController {
 	//首页呈现
 	public function showWelcome()
 	{
-		$posters 	= Poster::all();
+		$posters 	= Poster::where('daily_id','=',0)->get();
 		$topics		= Topic::where('topic_url', '!=','')->orderBy('created_at','desc')->get();
-		// dd($topics[0]);
+		$daily 		= poster::where('daily_id','=', 1)->get();
+		foreach( $daily as $recommend )
+		{
+			$gift = Gift::find($recommend->info_url);
+			$recommend->content = $gift->content;
+			$recommend->scan_num = $gift->scan_num;
+			$recommend->focus_num = $gift->focus_num;	
+		}	
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0, 'message'=>'返回首页首页数据',
+								'posters' 			=> $posters,
+								'topics'			=> $topics,
+								'recommendations'	=> $daily
+							));	
+		}
 		return View::make('index.home')->with(array(
-				'posters' 	=> $posters,
-				'topics'	=> $topics,
+				'posters' 			=> $posters,
+				'topics'			=> $topics,
+				'recommendations'	=> $daily
 			));
 	}
 
@@ -18,10 +34,27 @@ class HomePageController extends BaseController {
 	public function giftDetail()
 	{
 		$gift_id 	= Input::get('gift_id');
-		if(!isset($gift_id))
-			return Response::view('errors.missing');
+		
+		if(Request::ajax())
+		{
+			if(!isset($gift_id))
+				return Response::json(array('errCode'=>1,'message'=>'你查看的商品没有！'));
+		}else{
+			if(!isset($gift_id))
+				return Response::view('errors.missing');
+		}
+		
 		$gift 		= Gift::find($gift_id);
 		$gift_posters = GiftPoster::where('gift_id', '=',$gift_id)->get();
+		//做成数组传给移动端
+		if( count($gift_posters) !=0 )
+		{	$gift_poster_array = array();
+			foreach($gift_posters as $poster)
+			{
+				array_push($gift_poster_array, $poster->url);
+			}
+		}
+
 		//收藏的人
 		$focus_users	= Gift::find($gift_id)->users()->get();
 		//相似推荐
@@ -42,7 +75,27 @@ class HomePageController extends BaseController {
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
 		// dd($gift->taobao_url); 变量名不要一样的,后面的会覆盖前面的
+		//做成数组传给移动端
+		if( count($gift_photo_intros) !=0 )
+		{
+			$gift_intro_array = array();
+			foreach($gift_photo_intros as $intro)
+			{
+					array_push($gift_intro_array, $intro->url);
+			}
+		}
+
 		$gift 		= Gift::find($gift_id);
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回数据',
+							'gift' 				=> $gift,
+							'gift_posters' 		=> $gift_poster_array,
+							'focus_users' 		=> $focus_users,
+							'gifts_like'		=> $gifts_like,
+							'gift_photo_intros' => $gift_intro_array
+					));
+		}
 		return View::make('index/goodDetails')->with(array(
 				'gift' 		=> $gift,
 				'gift_posters' 	=> $gift_posters,
@@ -70,6 +123,13 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回收藏详情页数据'
+				'focus_users' 	=> $focus_users,
+				'gifts_like'	=> $gifts_like 		
+			));
+		｝
 		return View::make('index/like')->with(array(
 				'focus_users' 	=> $focus_users,
 				'gifts_like'	=> $gifts_like 		
@@ -92,6 +152,14 @@ class HomePageController extends BaseController {
 				$gift->number = $number++;
 			}
 		}
+
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据'
+				'topic' 	=> $topic,
+				'gifts'	=> $gifts		
+			));
+		｝
 		return View::make('index/goodsList')->with(array(
 				'topic' 	=> $topic,
 				'gifts'	=> $gifts

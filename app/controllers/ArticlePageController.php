@@ -1,10 +1,16 @@
 <?php
 
-class ArticleController extends BaseController{
+class ArticlePageController extends BaseController{
 	//热门话题
 	public function hotArticle()
 	{
-		$articles = Article::orderBy('focus_num', 'desc')->get();
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$articles = DB::table('articles')->orderBy('focus_num', 'desc');
+		//总页数
+		$total = ceil(count($articles)/$per_page);
+		//文章
+		$articles = StaitcController::page($per_page, $page, $articles);
 		foreach( $articles as $article)
 		{
 			$article_url = ArticlePart::where('article_id', '=', $article->id)
@@ -16,17 +22,24 @@ class ArticleController extends BaseController{
 
 			$article_text = ArticlePart::where('article_id', '=', $article->id)
 						->where('type','=', 'text')->first();
-			if(isset($article_text))
+			if(isset($article_text))	
 			{
 				$article->text = $article_text->content;
 			}				
 		}
-		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles));
+		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
 
+	//官方话题
 	public function officalArticle()
-	{
-		$articles = Article::orderBy('updated_at', 'desc')->get();
+	{	
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$articles = DB::table('articles')->orderBy('updated_at', 'desc');
+		//总页数
+		$total = ceil(count($articles)/$per_page);
+		//文章
+		$articles = StaitcController::page($per_page, $page, $articles);
 		foreach( $articles as $article)
 		{
 			$article_url = ArticlePart::where('article_id', '=', $article->id)
@@ -43,18 +56,29 @@ class ArticleController extends BaseController{
 				$article->text = $article_text->content;
 			}				
 		}
-		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles));
+		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
 
 	//话题详情
 	public function detail()
 	{
+		//话题部分
 		$article_id = Input::get('article_id');
 		$article = Article::find($article_id);
 		if(!isset($article))
 			return Response::json(array('errCode'=>1, 'message'=>'没有该话题！'));
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		$article_joins = ArticleJoin::where('article_id', '=', $article_id)->get();//参与话题的内容
+		
+
+		//参与话题部分
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$article_joins = DB::table('article_joins')->where('article_id', '=', $article_id);
+		//总页数
+		$total = ceil(count($article_joins)/$per_page);
+		//评论
+		$article_joins = StaitcController::page($per_page,$page,$article_joins);
+
 		if(count($article_joins) != 0)
 		{
 			foreach($article_joins as $article_join)
@@ -69,24 +93,35 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
-						'article_joins' 	=>$article_joins
+						'article_joins' 	=>$article_joins,
+						'total'=>$total
 					));
 		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
+						'total'=>$total
 					));
 	}
 
 	//参与话题详情
 	public function involve()
 	{
+		//参与话题内容
 		$join_id = Input::get('join_id');
 		$article_join = ArticleJoin::find($join_id);
 		if(!isset($article_join))
 			return Response::json(array('errCode'=>1, 'message'=>'没有该参与话题内容！'));
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
-		$join_coms = ArticleJoinCom::where('join_id', '=', $join_id)->get();
+		
+		//评论内容
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id);
+		//总页数
+		$total = ceil(count($join_coms)/$per_page);
+		//文章
+		$join_coms = StaitcController::page($per_page,$page,$join_coms);
 		if(count($join_coms)!=0)
 		{
 			foreach($join_coms as $join_com)
@@ -98,17 +133,39 @@ class ArticleController extends BaseController{
 				{
 					foreach($join_com['replys'] as $reply)
 					{
-						$reply->reply_name = User::find($reply->username);
+						$reply->reply_name = User::find($reply->sender_id)->username;
 					}
 				}
 			}
 		}
-		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
+		if($page == 1)
+		{
+			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
 							'article_join' => $article_join,
 							'article_join_parts' => $article_join_parts,
-							'join_coms' => $join_coms
+							'join_coms' => $join_coms,
+							'total'=>$total
 						));
+		}else{
+			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
+							'join_coms' => $join_coms,
+							'total'=>$total
+						));
+		}
+		
 	}
+
+	// //参与话题详情的评论
+	// public function involveComments()
+	// {
+	// 	$per_page = Input::get('per_page');
+	// 	$page = Input::get('page');
+	// 	$articles = DB::table('')->orderBy('updated_at', 'desc');
+	// 	//总页数
+	// 	$total = ceil(count($articles)/$per_page);
+	// 	//文章
+	// 	$articles = StaitcController::page($per_page, $page, $articles);
+	// }
 
 }
 

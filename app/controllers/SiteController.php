@@ -2,8 +2,10 @@
 
 class SiteController extends BaseController{
 
+	//个人设置
 	public function perInfo()
 	{
+		$user_id = Input::get('user_id');
 		if(! Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();

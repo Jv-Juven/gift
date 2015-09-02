@@ -17,7 +17,8 @@ class ArticleController extends BaseController{
 			return Response::json(array('errCode'=>3, 'message'=>'[join_id对应的文章不存在]你评论的话题不存在！'));
 		//新增评论
 		$comment = New ArticleJoinCom;
-		$comment->user_id = $user->id;
+		$comment->sender_id = $user->id;
+		$comment->receiver_id = $article_join->user_id; 
 		$comment->join_id = $join_id;
 		$comment->content = $content;
 		if(!$comment->save())
@@ -32,7 +33,7 @@ class ArticleController extends BaseController{
 		if(! Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
-		$receiver_id = Input::get('receiver_id');
+		// $receiver_id = Input::get('receiver_id');
 		$com_id = Input::get('com_id');
 		$content = Input::get('content');
 		$receiver = User::find($receiver_id);
@@ -48,7 +49,7 @@ class ArticleController extends BaseController{
 			return Response::json(array('errCode'=>4, 'message'=>'[com_id对应的评论不存在]你回复的评论不存在！'));
 		//新增回复
 		$reply = New ArticleJoinReply;
-		$reply->receiver_id 	= $receiver_id;
+		$reply->receiver_id 	= $join_com->user_id;
 		$reply->sender_id 	= $user->id;
 		$reply->com_id 	= $com_id;
 		$reply->content 	= $content;

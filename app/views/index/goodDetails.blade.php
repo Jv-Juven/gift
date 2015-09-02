@@ -29,7 +29,7 @@
 				</div>
 
 				<!-- 如果需要分页器 -->
-				<div class="swiper-pagination"></div>
+				<!-- <div class="swiper-pagination"></div> -->
 
 			</div>
 		</section>
@@ -44,13 +44,13 @@
 
 		<section class="good-details">
 			<div class="good-details-header clearx">
-				<div class="good-details-wrapper">
+				<div class="good-details-wrapper active">
 					<span class="good-pannel-btn">
 						图文介绍
 					</span>
 				</div>
 
-				<div class="good-details-wrapper active">
+				<div class="good-details-wrapper">
 					<span class="good-pannel-btn">
 						喜欢（<span>{{$gift->focus_num}}</span>）
 					</span>
@@ -58,7 +58,7 @@
 			</div>
 		@endif
 
-			<div class="details-pannel intro-details-pannel" style="display: none;">
+			<div class="details-pannel intro-details-pannel">
 				
 				<ul class="good-intro-wrapper">
 				@if(isset($gift_photo_intros))
@@ -70,7 +70,7 @@
 				@endif
 				</ul>
 			</div>
-			<div class="details-pannel comment-details-pannel">
+			<div class="details-pannel comment-details-pannel" style="display: none;">
 				<div class="good-praise">
 				@if(isset($focus_users))
 					@foreach($focus_users as $user)
@@ -114,13 +114,13 @@
 
 			</div>
 			<div class="good-details-footer">
-				<span class="good-btns good-like">
+				<!-- <span class="good-btns good-like">
 					<a href="http://www.baidu.com">
-						<!-- <span class="btns-pattern"></span> -->
+						<span class="btns-pattern"></span>
 						<span class="btns-pattern-like"></span>
 						我喜欢
 					</a>
-				</span>
+				</span> -->
 				<span class="good-btns good-buy">
 					<a href="{{$gift->taobao_url}}">
 						<span class="btns-pattern"></span>

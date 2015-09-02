@@ -10,25 +10,46 @@ class ArticlePartsTableSeeder extends Seeder {
 
 		ArticlePart::create([
 			'article_id' => 1,
-			'content' => '如何搞定',
+			'content' => '我是第一段',
 			'type' => 'text'
 		]);
 
 		ArticlePart::create([
 			'article_id' => 1,
-			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg',
+			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
 			'type' => 'url'
+		]);
+		ArticlePart::create([
+			'article_id' => 1,
+			'content' => '我是第二段',
+			'type' => 'text'
 		]);
 
 		ArticlePart::create([
+			'article_id' => 1,
+			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
+			'type' => 'url'
+		]);
+		ArticlePart::create([
 			'article_id' => 2,
-			'content' => '如何征服处女座',
+			'content' => '我是第一段',
 			'type' => 'text'
 		]);
 
 		ArticlePart::create([
 			'article_id' => 2,
-			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/2.jpg',
+			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
+			'type' => 'url'
+		]);
+		ArticlePart::create([
+			'article_id' => 2,
+			'content' => '我是第二段',
+			'type' => 'text'
+		]);
+
+		ArticlePart::create([
+			'article_id' => 2,
+			'content' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
 			'type' => 'url'
 		]);
 

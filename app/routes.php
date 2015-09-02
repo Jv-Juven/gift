@@ -68,8 +68,12 @@ Route::group(array('prefix' => 'user'),function()
 Route::group(array('prefix'=>'election'),function(){
 	//选礼首页—根据用户输入来筛选
 	Route::get('/','ElectionPageController@election');
+	//分类标签
+	Route::get('label','ElectionPageController@label');
 	//根据用户搜索关键字绚丽
-	Route::post('selection', 'ElectionController@select');
+	Route::post('selection', 'ElectionController@selectByWord');
+	//通过标签搜索
+	Route::post('selection-by-label','ElectionController@selectByLabel');
 	//根据价格/场合/个性/对象
 	Route::post('price','ElectionController@price');
 	//根据场合
@@ -128,7 +132,39 @@ Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 });
 
 //通知
-Route::group(array('prefix'=>'notice','before'=>'auth.user.isIn'),function(){
+Route::group(array('prefix'=>'notice'),function(){
 	//获取通知条数
-	Route::get('/', 'NoticeController@notice');
+	Route::get('/', 'NoticePageController@notice');
+	//通知的简讯(用户类)
+	Route::get('bref-user', 'NoticePageController@brefUser');
+	//删除全部回复
+	Route::post('d-user', 'NoticeController@dUserNotice');
+	//删除回复中的一条评论
+	Route::post('d-user-com', 'NoticeController@dUserCom');
+	//删除回复中的一条回复
+	Route::post('d-user-reply', 'NoticeController@dUserReply');
+	//通知的简讯(官方类)
+	Route::get('bref-offical', 'NoticePageController@brefOffical');
+	//官方通知详细信息
+	Route::post('offical','NoticeController@offical');
+	// 删除一条官方通知
+	Route::post('d-offical', 'NoticeController@dOffical');
+	//删除全部通知
+	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
 });
+
+Route::get('test','ArticlePageController@hotArticle');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

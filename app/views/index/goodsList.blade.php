@@ -27,9 +27,13 @@
 				<span class="ititle-title">{{$gift->title}}</span>
 			</div>
 			<p class="gift-content">{{$gift->content}}</p>
-			<div ><img class="gift-img" src="{{$gift->img}}"></div>
+			<div >
+				<a href="/home/gift_detail?gift_id={{$gift->id}}">
+					<img class="gift-img" src="{{$gift->img}}">
+				</a>
+			</div>
 			<div class="gift-info clearx">
-					<span class="gift-price" style="font-family: arial;">￥{{$gift->price}}</span> 
+				<span class="gift-price" style="font-family: arial;">￥{{$gift->price}}</span> 
 				<a class="gift-info-link" href="/home/gift_detail?gift_id={{$gift->id}}">
 					<span class="span" >查看详情</span>
 				</a>
