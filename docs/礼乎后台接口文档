@@ -696,16 +696,15 @@
 		备注:		
 				type: 				0=没有登录，1=登录
 				user_id				用户id
-				info:{
-					avatar				头像	
-					username			昵称
-					gender			性别
-					birthday			生日
-					postion			职业
+				avatar				头像	
+				username			昵称
+				gender				性别
+				birthday			生日
+				postion				职业
 				}
 		返回参数 :
 				{
-					errCode:xxx,		错误码	0表示返回正常	 
+					errCode:xxx,	错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
 	1.2 个人信息
@@ -776,7 +775,7 @@
 
 	2.通知的简讯(用户类)
 		请求方式:	GET
-		请求url:	/notice/bref-user
+		请求url:	/notice/bref_user
 
 		请求参数:	无
 
@@ -807,7 +806,7 @@
 
 	4.删除全部回复通知
 		请求方式：post
-		请求url：/notice/d-user
+		请求url：/notice/d_user
 
 		请求参数： 无
 
@@ -819,7 +818,7 @@
 
 	5.删除通知中的一条评论
 		请求方式：post
-		请求url：/notice/d-user-com
+		请求url：/notice/d_user_com
 
 		请求参数：  com_id 			评论id
 
@@ -831,7 +830,7 @@
 
 	6.删除通知中的一条回复
 		请求方式：post
-		请求url：/notice/d-user-reply
+		请求url：/notice/d_user_reply
 
 		请求参数：			
 					reply_id 		回复id
@@ -844,7 +843,7 @@
 	
 	7. 官方通知
 		请求方式:	GET
-		请求url:	/notice/bref-offical
+		请求url:	/notice/bref_offical
 
 		请求参数:	 无
 
@@ -881,7 +880,7 @@
 
 	9.删除全部官方通知
 		请求方式:	post
-		请求url:	/notice/d-offical-all
+		请求url:	/notice/d_offical_all
 
 		请求参数:	 
 
@@ -894,7 +893,7 @@
 
 	10.删除官方通知
 		请求方式:	post
-		请求url:	/notice/d-offical
+		请求url:	/notice/d_offical
 
 		请求参数:	 
 				offical_id 			官方通知id

@@ -137,21 +137,21 @@ Route::group(array('prefix'=>'notice'),function(){
 	//获取通知条数
 	Route::get('/', 'NoticePageController@notice');
 	//通知的简讯(用户类)
-	Route::get('bref-user', 'NoticePageController@brefUser');
+	Route::get('bref_user', 'NoticePageController@brefUser');
 	//删除全部回复
-	Route::post('d-user', 'NoticeController@dUserNotice');
+	Route::post('d_user', 'NoticeController@dUserNotice');
 	//删除回复中的一条评论
-	Route::post('d-user-com', 'NoticeController@dUserCom');
+	Route::post('d_user_com', 'NoticeController@dUserCom');
 	//删除回复中的一条回复
-	Route::post('d-user-reply', 'NoticeController@dUserReply');
+	Route::post('d_user_reply', 'NoticeController@dUserReply');
 	//通知的简讯(官方类)
-	Route::get('bref-offical', 'NoticePageController@brefOffical');
+	Route::get('bref_offical', 'NoticePageController@brefOffical');
 	//官方通知详细信息
 	Route::post('offical','NoticeController@offical');
 	// 删除一条官方通知
-	Route::post('d-offical', 'NoticeController@dOffical');
+	Route::post('d_offical', 'NoticeController@dOffical');
 	//删除全部通知
-	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
+	Route::post('d_offical_all', 'NoticeController@dOfficalAll');
 });
 
 Route::get('test','ArticlePageController@hotArticle');

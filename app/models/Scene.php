@@ -5,7 +5,7 @@ class  Scene extends Eloquent{
 
 	protected $fillable = array(
 		'scene_id',
-		'class'
+		'_class'
 	);
 
 }

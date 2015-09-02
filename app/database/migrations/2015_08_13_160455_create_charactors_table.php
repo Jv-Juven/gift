@@ -16,7 +16,7 @@ class CreateCharactorsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('char_id');//性格编号
-			$table->string('class');//类名
+			$table->string('_class');//类名
 			$table->timestamps();
 		});
 	}

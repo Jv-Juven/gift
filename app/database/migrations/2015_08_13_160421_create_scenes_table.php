@@ -16,7 +16,7 @@ class CreateScenesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('scene_id');//场景编号
-			$table->string('class');//名字
+			$table->string('_class');//名字
 			$table->timestamps();
 		});
 	}

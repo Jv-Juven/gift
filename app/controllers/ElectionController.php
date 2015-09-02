@@ -42,7 +42,7 @@ class ElectionController extends BaseController{
 	public function selectByLabel()
 	{
 		$inputs = array(
-			'char_id'	=> Input::get('char'),
+			'char_id'	=> Input::get('_char'),
 			'scene_id'	=> Input::get('scene'),
 			'object_id' => Input::get('object'),
 			'price_id' 	=> Input::get('price')
