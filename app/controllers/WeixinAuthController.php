@@ -2,20 +2,20 @@
 
 class WeixinAuthController extends BaseController{
 
-	private $appId = 'wx53d41c309823961e';
-	private $appkey = '1be5ea03d99ab476e52d238886e8966a';
+	private $appid = 'wx53d41c309823961e';
+	private $appsecret = '1be5ea03d99ab476e52d238886e8966a';
 	//1、用户同意授权，获取code。
 	public function getOAuthConnectUri($redirect_uri, $state = '', $scope = 'snsapi_base')
     {
         $redirect_uri = urlencode($redirect_uri);
-        $url          = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$this->_appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}#wechat_redirect";
+        $url          = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$this->appid}&redirect_uri={$redirect_uri}&response_type=code&scope={$scope}&state={$state}#wechat_redirect";
 
         return $url;
     }
     //2、通过code换取网页授权access_token
      public function getAccessTokenByCode($code)
     {
-        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this->_appid}&secret={$this->_appsecret}&code=$code&grant_type=authorization_code";
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$this->appid}&secret={$this->appsecret}&code=$code&grant_type=authorization_code";
         $res = json_decode(self::get($url), TRUE);
 
         return $res;
@@ -23,7 +23,7 @@ class WeixinAuthController extends BaseController{
     //3.刷新access_token（如果需要）
     public function refreshAccessToken($refresh_token)
     {
-        $url = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={$this->_appid}&grant_type=refresh_token&refresh_token=$refresh_token";
+        $url = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={$this->appid}&grant_type=refresh_token&refresh_token=$refresh_token";
         $res = json_decode(self::get($url), TRUE);
 
         return $res;

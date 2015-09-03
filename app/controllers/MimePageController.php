@@ -13,11 +13,11 @@ class MimePageController extends BaseController{
 		//分页
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$article_joins = DB::table('article_joins')->orderBy('created_at', 'desc');
+		$article_joins = DB::table('article_joins')->orderBy('created_at', 'desc')->get();
 		//总页数
 		$total = ceil(count($article_joins)/$per_page);
 		//参与话题
-		$article_joins = StaitcController::page($per_page, $page, $article_joins);
+		$article_joins = StaticController::page($per_page, $page, $article_joins);
 		if(count($article_joins) == 0)
 			return Response::json(array('errCode'=>0,'message'=>'该用户没有参与话题！'));
 		//根据用户参与的话题取到官方话题
@@ -51,16 +51,16 @@ class MimePageController extends BaseController{
 			}				
 		}
 
-		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题的内容！',
-						 'articles'=>$articles,
-						 'total'=>$total
-						 ));
+			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题的内容！',
+							 'articles'=>$articles,
+							 'total'=>$total
+							 ));
 	}
 
 	//我喜欢的礼品
 	public function likeGift()
 	{
-		if(! Sentry::check())
+		if(!Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(1);
@@ -68,23 +68,38 @@ class MimePageController extends BaseController{
 		//分页
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$gift_focus = DB::table('gift_focus')->orderBy('created_at', 'desc');
+		$gift_focus = DB::table('gift_focus')->orderBy('created_at', 'desc')->get();
 		//总页数
-		$total = ceil(count($gift_focus)/$per_page);
+		$total = $per_page == 0 ? 1:ceil(count($gift_focus)/$per_page);
 		//文章
-		$focus = StaitcController::page($per_page, $page, $gift_focus);
+		$focus = StaticController::page($per_page, $page, $gift_focus);
 
+		$gifts = array();
 		if(count($focus) != 0)
 		{
 			foreach($focus as $gift)
 			{	
-				$gift->url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				array_push($gifts, Gift::find($gift->gift_id));
+			}
+
+			foreach($gifts as $candy)
+			{
+				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$candy->url = StaticController::imageWH($url);
 			}
 		}
+		if(Request::wantsJson())
+		{
+			return Response::json(array('errCode'=>0, 'message'=>'返回用户喜欢的礼品',
+							'gifts'=>$focus,
+							'total'=>$total,
+							));
+		}
 
-		return Response::json(array('errCode'=>0, 'message'=>'返回用户喜欢的礼品',
-						'gifts'=>$focus,
-						'total'=>$total
-						));
+		return View::make('index.userCenter')->with(array(
+							'gifts'=>$gifts,
+							'total'=>$total,
+							'user' =>$user
+							));
 	}
 } 

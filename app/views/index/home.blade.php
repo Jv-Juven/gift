@@ -21,7 +21,7 @@
 					@foreach($posters as $poster)
 						<div class="swiper-slide">
 							<a href="/home/gift_detail?gift_id={{$poster->info_url}}">
-								<img src="{{ $poster->photo_url }}">
+								<img src="{{ $poster->photo_url['url'] }}">
 							</a>
 						</div>
 					@endforeach
@@ -42,7 +42,7 @@
 			@foreach($topics as $topic)
 			<li class="home-topics">
 				<a href="/home/topic?topic_id={{ $topic->id }}">
-					<img src="{{ $topic->topic_url }}">
+					<img src="{{ $topic->topic_url['url'] }}">
 				</a>
 			</li>
 			@endforeach

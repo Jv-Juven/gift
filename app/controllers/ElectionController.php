@@ -17,7 +17,7 @@ class ElectionController extends BaseController{
 		//筛选没有结果返回全部礼品
 		if(count($gifts) == 0)
 		{	
-			$gifts = DB::table('gifts')->orderBy('created_at', 'desc');
+			$gifts = DB::table('gifts')->orderBy('created_at', 'desc')->get();
 			$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
 			$gifts = StaitcController::page($per_page, $page, $gifts);
 			foreach($gifts as $gift)
@@ -35,7 +35,7 @@ class ElectionController extends BaseController{
 		}
 
 		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
-		$gifts = StaitcController::noticePage($per_page,$page,$gifts);
+		$gifts = StaitcController::page($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 
 									'gifts'=>$gifts,
 										));
@@ -78,11 +78,12 @@ class ElectionController extends BaseController{
 		//有的情况
 		foreach($gifts as $gift)
 		{
-			$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			$gift->img = StaitcController::iamgeWH($url);
 		}
 
 		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
-		$gifts = StaitcController::noticePage($per_page,$page,$gifts);
+		$gifts = StaitcController::page($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
 									'gifts'=>$gifts,
 									'total'=>$total

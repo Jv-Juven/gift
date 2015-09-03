@@ -6,7 +6,7 @@ class ArticlePageController extends BaseController{
 	{
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->orderBy('focus_num', 'desc');
+		$articles = DB::table('articles')->orderBy('focus_num', 'desc')->get();
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
@@ -35,7 +35,7 @@ class ArticlePageController extends BaseController{
 	{	
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->orderBy('updated_at', 'desc');
+		$articles = DB::table('articles')->orderBy('updated_at', 'desc')->get();
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
@@ -78,7 +78,7 @@ class ArticlePageController extends BaseController{
 		//参与话题部分
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$article_joins = DB::table('article_joins')->where('article_id', '=', $article_id);
+		$article_joins = DB::table('article_joins')->where('article_id', '=', $article_id)->get();
 		//总页数
 		$total = ceil(count($article_joins)/$per_page);
 		//评论
@@ -128,7 +128,7 @@ class ArticlePageController extends BaseController{
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id);
+		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->get();
 		//总页数
 		$total = ceil(count($join_coms)/$per_page);
 		//文章

@@ -28,9 +28,9 @@
 			</div>
 			<div class="center-gifts-container clearx">
 			<!-- 礼品区 START-->
-				@foreach($gift as $gift)
+				@foreach($gifts as $gift)
 				<a class="center-gift" href="/home/gift_detail?gift_id={{$gift->id}}">
-					<img class="center-gift-img" src="{{ $gift->url }}">
+					<img class="center-gift-img" src="{{ $gift->url['url'] }}">
 					<div class="center-gift-title">{{ $gift->title }}</div>
 					<div class="center-gift-details">
 						<span class="center-gift-price">￥{{ $gift->price }}</span>

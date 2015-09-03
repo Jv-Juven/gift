@@ -100,8 +100,11 @@ class HomePageController extends BaseController {
 
 		$gift 		= Gift::find($gift_id);
 
-		$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
+		if(Sentry::check())
+		{
+			$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
 							->where('gift_id', '=', $gift_id)->first();
+		}
 		//判断是否收藏
 		if(isset($gift_focus))
 		{
@@ -109,6 +112,7 @@ class HomePageController extends BaseController {
 		}else{
 			$type = 0;
 		}
+
 		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0,'message'=>'返回数据',

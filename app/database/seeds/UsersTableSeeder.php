@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder {
 			'email'=> '826308409@qq.com',
 			'username' => 'admin',
 			'phone' => 132478888882,
-			'avatar' => 'http://7xl6gj.com1.z0.glb.clouddn.com/0000.png',
+			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>Hash::make(666666),
 			'role_id' => 3
 		]);
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder {
 			'email'=> '82630849@qq.com',
 			'username' => 'tiger1',
 			'phone' => 13247888888,
-			'avatar' => 'http://7xl6gj.com1.z0.glb.clouddn.com/0000.png',
+			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>Hash::make(666666),
 			'role_id' => 2
 		]);
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder {
 			'email'=> '82608409@qq.com',
 			'username' => 'tiger2',
 			'phone' => 13247888887,
-			'avatar' => 'http://7xl6gj.com1.z0.glb.clouddn.com/0000.png',
+			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>Hash::make(666666),
 			'role_id' => 2
 		]);
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder {
 			'email'=> '828409@qq.com',
 			'username' => 'tiger3',
 			'phone' => 13247888884,
-			'avatar' => 'http://7xl6gj.com1.z0.glb.clouddn.com/0000.png',
+			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>Hash::make(666666),
 			'role_id' => 2
 		]);

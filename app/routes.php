@@ -121,9 +121,9 @@ Route::group(array('prefix'=>'article'),function(){
 Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
 	//我参与的话题
 	Route::get('join_article', 'MimePageController@joinArticle');
+});
 	//我喜欢的礼品
 	Route::get('like_gift', 'MimePageController@likeGift');
-});
 
 //设置
 Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
