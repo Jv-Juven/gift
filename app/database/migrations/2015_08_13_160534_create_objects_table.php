@@ -16,7 +16,7 @@ class CreateObjectsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('object_id');//对象编号
-			$table->string('class');//类名
+			$table->string('_class');//类名
 			$table->timestamps();
 		});
 	}

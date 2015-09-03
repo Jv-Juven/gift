@@ -15,7 +15,7 @@ class HomePageController extends BaseController {
 			$recommend->scan_num = $gift->scan_num;
 			$recommend->focus_num = $gift->focus_num;	
 		}	
-		if( Request::ajax() )
+		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0, 'message'=>'返回首页首页数据',
 								'posters' 			=> $posters,
@@ -86,7 +86,7 @@ class HomePageController extends BaseController {
 		}
 
 		$gift 		= Gift::find($gift_id);
-		if(Request::ajax())
+		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0,'message'=>'返回数据',
 							'gift' 				=> $gift,
@@ -123,6 +123,13 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回收藏详情页数据',
+				'focus_users' 	=> $focus_users,
+				'gifts_like'	=> $gifts_like 		
+			));
+		}
 		return View::make('index/like')->with(array(
 				'focus_users' 	=> $focus_users,
 				'gifts_like'	=> $gifts_like 		
@@ -144,6 +151,14 @@ class HomePageController extends BaseController {
 				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
 				$gift->number = $number++;
 			}
+		}
+
+		if( Request::wantsJson() )
+		{
+			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据',
+				'topic' 	=> $topic,
+				'gifts'	=> $gifts		
+			));
 		}
 		return View::make('index/goodsList')->with(array(
 				'topic' 	=> $topic,

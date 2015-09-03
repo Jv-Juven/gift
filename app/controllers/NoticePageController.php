@@ -82,6 +82,6 @@ class NoticePageController extends BaseController{
 		$officals = OfficalUser::where('user_id','=', $user->id)
 								->where('is_delete','=', 0)
 								->get();
-		return Response::json(array('errCode'=>0, 'message'=>'返回官方简讯'));
+		return Response::json(array('errCode'=>0, 'message'=>'返回官方简讯','officals'=>$officals));
 	}
 }

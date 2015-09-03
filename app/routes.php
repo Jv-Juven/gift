@@ -74,7 +74,9 @@ Route::group(array('prefix'=>'election'),function(){
 	//分类标签
 	Route::get('label','ElectionPageController@label');
 	//根据用户搜索关键字绚丽
-	Route::post('selection', 'ElectionController@select');
+	Route::post('selection', 'ElectionController@selectByWord');
+	//通过标签搜索
+	Route::post('selection-by-label','ElectionController@selectByLabel');
 	//根据价格/场合/个性/对象
 	Route::post('price','ElectionController@price');
 	//根据场合
@@ -127,36 +129,35 @@ Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
 Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 	//获取个人资料
 	Route::get('per_info','SitePageController@perInfo');
-	//更新个人资料
-	Route::post('per_info','SiteController@perInfo');
 	//消息推送
 });
+	
+//更新个人资料
+Route::post('site/per_info','SiteController@perInfo');
 
 //通知
 Route::group(array('prefix'=>'notice'),function(){
 	//获取通知条数
 	Route::get('/', 'NoticePageController@notice');
 	//通知的简讯(用户类)
-	Route::get('bref-user', 'NoticePageController@brefUser');
+	Route::get('bref_user', 'NoticePageController@brefUser');
 	//删除全部回复
-	Route::post('d-user', 'NoticeController@dUserNotice');
+	Route::post('d_user', 'NoticeController@dUserNotice');
 	//删除回复中的一条评论
-	Route::post('d-user-com', 'NoticeController@dUserCom');
+	Route::post('d_user_com', 'NoticeController@dUserCom');
 	//删除回复中的一条回复
-	Route::post('d-user-reply', 'NoticeController@dUserReply');
+	Route::post('d_user_reply', 'NoticeController@dUserReply');
 	//通知的简讯(官方类)
-	Route::get('bref-offical', 'NoticePageController@brefOffical');
+	Route::get('bref_offical', 'NoticePageController@brefOffical');
 	//官方通知详细信息
 	Route::post('offical','NoticeController@offical');
 	// 删除一条官方通知
-	Route::post('d-offical', 'NoticeController@dOffical');
+	Route::post('d_offical', 'NoticeController@dOffical');
 	//删除全部通知
-	Route::post('d-offical-all', 'NoticeController@dOfficalAll');
+	Route::post('d_offical_all', 'NoticeController@dOfficalAll');
 });
 
-Route::get('test',function(){
-		return phpversion();
-});
+Route::get('test','ArticlePageController@hotArticle');
 
 
 

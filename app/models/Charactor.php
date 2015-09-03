@@ -5,7 +5,7 @@ class  Charactor extends Eloquent{
 
 	protected $fillable = array(
 		'char_id',
-		'class'
+		'_class'
 	);
 
 }

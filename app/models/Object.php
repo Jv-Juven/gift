@@ -5,7 +5,7 @@ class  Object extends Eloquent{
 
 	protected $fillable = array(
 		'object_id',
-		'class'
+		'_class'
 	);
 
 }
