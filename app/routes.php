@@ -12,6 +12,9 @@
 */
 //礼品展示
 Route::get('/', 'HomePageController@showWelcome');
+// Route::get("/", function (){
+// 	return Response::view("index.userCenter");
+// });
 
 //首页模块
 Route::group(array('prefix' => 'home'),function(){

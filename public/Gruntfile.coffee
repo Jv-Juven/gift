@@ -64,6 +64,7 @@ module.exports = (grunt)->
                     'dist/css//pages/home.css': ['src/pages/index/home.less']
                     'dist/css//pages/goodDetails.css': ['src/pages/index/goodDetails.less']
                     'dist/css//pages/goodsList.css': ['src/pages/index/goodsList.less']
+                    'dist/css//pages/userCenter.css': ['src/pages/index/userCenter.less']
                     
 
         cssmin:

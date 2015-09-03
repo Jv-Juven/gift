@@ -27,7 +27,14 @@ $ ()->
 	#点击“我喜欢”按钮
 	###
 	$(".good-like").tappable ()->
-		console.log "tap like!"
+		id = $("#good_intro").attr "data-id"
+		$.post "/home/collection", {
+			gift_id: id
+		}, (data)->
+			if data["errCode"] is 0
+				$(".good-like a>span").toggle()
+			else
+				alert data["message"]
 
 	# $(".page-content").append '<div class="mask" style="position:fixed;width:100%;height:100%;z-index:999;background: rgb(255,255,255)"></div>'
 

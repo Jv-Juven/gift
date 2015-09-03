@@ -1,0 +1,104 @@
+
+@import "./../../common/common.less";
+
+.page-content{
+	&>section{
+		position: relative;
+		width: 100%;
+		float: left;
+	}
+	.center-header{
+		position: relative;
+		width: 100%;
+		height: auto;
+		.center-header-content{
+			@avatar-width: 5rem;
+			position: absolute;
+			top: @avatar-width/2;
+			left: 50%;
+			width: @avatar-width;
+			margin-left: -@avatar-width/2;
+			// background: rgba(255, 255, 255, 0.5);
+			.center-avatar-name{
+				display: block;
+				width: 100%;
+				line-height: 3rem;
+				.font-style(1.1rem, 400, white);
+				text-align: center;
+			}
+		}
+	}
+
+	.center-body{
+		@red: rgb(250, 53, 56);
+		.box-sizing();
+		padding: 0.4rem;
+		.center-title{
+			// height: 3rem;
+			text-align: center;
+			border-bottom: .2rem solid @red;
+			.center-title-icon{
+				@icon-width: 1.2rem;
+				width: @icon-width;
+				height: @icon-width;
+				vertical-align: middle;
+				margin-top: -0.1rem;
+			}
+			.center-title-text{
+				display: inline-block;
+				.font-style(1rem, 400, @red);
+				line-height: 1rem;
+				padding-top: 0rem;
+				margin: .8rem 0rem;
+			}
+		}
+		.center-gifts-container{
+			width: 100%;
+			.center-gift{
+				float: left;
+				display: inline-block;
+				border-radius: .8rem;
+				overflow: hidden;
+				width: 10.6rem;
+				margin-top: .5rem;
+				text-decoration: none;
+				border: 1px solid rgb(230, 230, 230);
+				.box-sizing();
+				&:nth-child(even){
+					// margin-left: .3rem;
+				}
+				.center-gift-img{
+					position: relative;
+					top: 0rem;
+					left: 0rem;
+					width: 100%;
+				}
+				.center-gift-title{
+					.box-sizing();
+					padding: .4rem .3rem .2rem .3rem;
+					.font-style(.8rem, 400, rgb(150, 150, 150));
+				}
+				.center-gift-details{
+					.box-sizing();
+					padding: .2rem .3rem .5rem;
+					.center-gift-price{
+						.font-style(.9rem, 500, @red);
+					}
+					.center-gift-like{
+						display: inline-block;
+						float: right;
+						.font-style(.8rem, 400, rgb(200, 200, 200));
+						&>img{
+							width: .8rem;
+						}
+					}
+				}
+			}
+			.center-gift-wrapper{
+				height: 100%;
+				float: left;
+				display: inline-block;
+			}
+		}
+	}
+}
