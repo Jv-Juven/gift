@@ -4,6 +4,32 @@ class WeixinAuthController extends BaseController{
 
 	private $appid = 'wx53d41c309823961e';
 	private $appsecret = '1be5ea03d99ab476e52d238886e8966a';
+	
+	private static function get($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        # curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+
+        if (!curl_exec($ch))
+        {
+            error_log(curl_error($ch));
+            $data = '';
+        }
+        else
+        {
+            $data = curl_multi_getcontent($ch);
+        }
+        curl_close($ch);
+
+        return $data;
+    }
+
+
 	//1、用户同意授权，获取code。
 	public function getOAuthConnectUri($redirect_uri, $state = '', $scope = 'snsapi_base')
     {
