@@ -47,7 +47,7 @@ class MimePageController extends BaseController{
 						->first();
 			if(isset($article_text))
 			{
-				$article->text = $article_text->content;
+				$article->content = $article_text->content;
 			}				
 		}
 

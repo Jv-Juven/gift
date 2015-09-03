@@ -201,7 +201,7 @@
 				]
 				"recommendations":[
 					{
-					photo_url,		每日一荐图片
+					photo_url:		每日一荐图片
 					info_url，		详情页id
 					content， 		内容
 					scan_num，		浏览人数
@@ -650,7 +650,7 @@
 				{
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
-					article:[		话题数组
+					articles:[		话题数组
 						{
 						title,		话题标题
 						url,		话题图片链接
@@ -675,6 +675,7 @@
 					message:xxx		提示信息
 					gifts:[
 						{
+						gift_id 	礼品id
 						title,		礼品名
 						price,		礼品价格
 						url,		礼品图片链接
@@ -783,20 +784,13 @@
 			{
 				errCode:xxx,			错误码	0表示返回正常	 
 				message:xxx				提示信息
-				"replys":[
+				"notices":[
 					{
 					id 					回复id
 					avatar,				头像
 					username,			名字
 					created_at，			时间
-					}...
-				]
-				"comments":[
-					｛
-					id 					评论id
-					avatar,				头像
-					username,			名字
-					created_at，			时间
+					type				消息类型(comment=评论；reply＝回复)
 					}...
 				]
 			}

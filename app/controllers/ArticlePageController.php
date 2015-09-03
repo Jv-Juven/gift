@@ -17,7 +17,7 @@ class ArticlePageController extends BaseController{
 						->where('type','=', 'url')->first();
 			if(isset($article_url))
 			{
-				$article->url = $article_url->content;
+				$article->url = StaitcController::imageWH($article_url->content);
 			}
 
 			$article_text = ArticlePart::where('article_id', '=', $article->id)
@@ -46,7 +46,7 @@ class ArticlePageController extends BaseController{
 						->where('type','=', 'url')->first();
 			if(isset($article_url))
 			{
-				$article->url = $article_url->content;
+				$article->url = StaitcController::imageWH($article_url->content);;
 			}
 
 			$article_text = ArticlePart::where('article_id', '=', $article->id)
@@ -68,8 +68,13 @@ class ArticlePageController extends BaseController{
 		if(!isset($article))
 			return Response::json(array('errCode'=>1, 'message'=>'没有该话题！'));
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		
-
+		foreach($article_parts as $part)
+		{
+			if($part->type == 'url')
+			{
+				$part->content = StaitcController::imageWH($part->content);
+			}
+		}
 		//参与话题部分
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
@@ -113,7 +118,13 @@ class ArticlePageController extends BaseController{
 		if(!isset($article_join))
 			return Response::json(array('errCode'=>1, 'message'=>'没有该参与话题内容！'));
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
-		
+		foreach($article_join_parts as $part)
+		{
+			if($part->type == 'url')
+			{
+				$part->content = StaitcController::imageWH($part->content);
+			}
+		}		
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');

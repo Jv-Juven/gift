@@ -2,6 +2,7 @@
 
 class HomeController extends BaseController {
 
+	//收藏
 	public function collection()
 	{
 		if(!Sentry::check())

@@ -9,29 +9,33 @@ class ElectionController extends BaseController{
 		if(!isset($word))
 			return Response::json(array('errCode'=>1, 'message'=>'请输入关键字以搜索商品！'));
 		//TomLingham/Laravel-Searchy插件——模糊搜索
-		$gifts = Gift::where('title', 'like', '%'.$word.'%')->orderBy('created_at', 'asc')->get();
+		$gifts = Gift::where('title', 'like', '%'.$word.'%')->orderBy('created_at', 'desc')->get();
 		
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		//总页数
 
-
+		//筛选没有结果返回全部礼品
 		if(count($gifts) == 0)
 		{	
 			$gifts = DB::table('gifts')->orderBy('created_at', 'desc');
-			$total = ceil(count($gifts)/$per_page);
+			$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
 			$gifts = StaitcController::page($per_page, $page, $gifts);
 			foreach($gifts as $gift)
 			{
-				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$gift->img = StaitcController::imageWH($url);
 			}
 			return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 'gifts'=>$gifts));
 		}
-
+		
 		foreach($gifts as $gift)
 		{
-			$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			$gift->img = StaitcController::imageWH($url);
 		}
+
+		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+		$gifts = StaitcController::noticePage($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 
 									'gifts'=>$gifts,
 										));
@@ -47,6 +51,9 @@ class ElectionController extends BaseController{
 			'object_id' => Input::get('object'),
 			'price_id' 	=> Input::get('price')
 		);
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+
 		$inputs = array_filter( $inputs );
 		$query = null;
 		foreach( $inputs as $key => $value ){
@@ -57,15 +64,29 @@ class ElectionController extends BaseController{
 			}
 		}
 		$gifts = $query->get();
-		if(count($gifts) != 0 )
+
+		//标签没有的情况
+		if(count($gifts) == 0 )
+		{	
+			$gifts = StaitcController::gifts();
+			$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+			return Response::json(array('errCode'=>1, 'message'=>'没有礼品',
+										'gifts'=>$gifts,
+										'total'=>$total
+										));
+		}
+		//有的情况
+		foreach($gifts as $gift)
 		{
-			foreach($gifts as $gift)
-			{
-				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
-			}
+			$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
 		}
 
-		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据','gifts'=>$gifts));
+		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+		$gifts = StaitcController::noticePage($per_page,$page,$gifts);
+		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
+									'gifts'=>$gifts,
+									'total'=>$total
+									));
 	}
 
 	// //价格

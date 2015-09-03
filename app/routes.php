@@ -154,9 +154,10 @@ Route::group(array('prefix'=>'notice'),function(){
 	Route::post('d_offical_all', 'NoticeController@dOfficalAll');
 });
 
-Route::get('test','ArticlePageController@hotArticle');
+//七牛
+Route::get('qiniu', 'UploadController@getUpToken');
 
-
+Route::get('test','StaticController@imageWH');
 
 
 

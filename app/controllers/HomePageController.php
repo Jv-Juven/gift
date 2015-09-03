@@ -14,7 +14,20 @@ class HomePageController extends BaseController {
 			$recommend->content = $gift->content;
 			$recommend->scan_num = $gift->scan_num;
 			$recommend->focus_num = $gift->focus_num;	
-		}	
+		}
+		foreach($posters as $poster)
+		{
+			$poster->photo_url = StaticController::imageWH($poster->photo_url);
+		}
+		foreach($topics as $topic)
+		{
+			$topic->topic_url = StaticController::imageWH($topic->topic_url);
+		}
+		foreach($daily as $day)
+		{
+			$day->photo_url = StaticController::imageWH($day->photo_url);
+ 		}
+
 		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0, 'message'=>'返回首页首页数据',
@@ -86,6 +99,16 @@ class HomePageController extends BaseController {
 		}
 
 		$gift 		= Gift::find($gift_id);
+
+		$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('gift_id', '=', $gift_id)->first();
+		//判断是否收藏
+		if(isset($gift_focus))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
 		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0,'message'=>'返回数据',
@@ -93,15 +116,18 @@ class HomePageController extends BaseController {
 							'gift_posters' 		=> $gift_poster_array,
 							'focus_users' 		=> $focus_users,
 							'gifts_like'		=> $gifts_like,
-							'gift_photo_intros' => $gift_intro_array
+							'gift_photo_intros' => $gift_intro_array,
+							'type'				=> $type
 					));
 		}
 		return View::make('index/goodDetails')->with(array(
-				'gift' 		=> $gift,
-				'gift_posters' 	=> $gift_posters,
-				'focus_users' 	=> $focus_users,
-				'gifts_like'	=> $gifts_like,
-				'gift_photo_intros' => $gift_photo_intros
+				'gift' 				=> $gift,
+				'gift_posters' 		=> $gift_posters,
+				'focus_users' 		=> $focus_users,
+				'gifts_like'		=> $gifts_like,
+				'gift_photo_intros' => $gift_photo_intros,
+				'type'				=> $type
+
 			));
 	}
 

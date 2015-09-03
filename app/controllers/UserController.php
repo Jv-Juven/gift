@@ -165,7 +165,7 @@ class UserController extends BaseController{
 			array('email' => 'email')
 			);
 		if($validation->fails())
-			return Response::json(array('errCode'=>1, 'message'=>$password ));
+			return Response::json(array('errCode'=>1, 'message'=>'邮箱格式不正确！'));
 		
 		try{
 			$cred = array(
@@ -175,17 +175,17 @@ class UserController extends BaseController{
 			$user = Sentry::authenticate($cred, false);
 		}
 		catch( Cartalyst\Sentry\Users\PasswordRequiredException $e ){
-			return Response::json(array( 'errorCode' => 2, 'message' =>$password ));
+			return Response::json(array( 'errorCode' => 2, 'message' =>'没有填写密码'));
 		}catch( Cartalyst\Sentry\Users\WrongPasswordException $e ){
-			return Response::json(array( 'errorCode' => 3, 'message' =>$password ));
+			return Response::json(array( 'errorCode' => 3, 'message' =>'密码不正确'));
 		}catch( Exception $e ){
-			return Response::json(array( 'errorCoode' => 4, 'message' =>$password ));
+			return Response::json(array( 'errorCoode' => 4, 'message' =>'密码或邮箱不正确'));
 		 }
 
 		 Session::put('user_id', Sentry::getUser()->id);
 		 return Response::json(array('errCode'=>0, 'message'=>'登录成功！',
 		 								'intendedUrl'=>Session::pull('url.intended', '/'),
-		 								'user'=>$user,'password'=>$password));
+		 								'user'=>$user));
 	}
 
 	public function logout()
@@ -272,5 +272,6 @@ class UserController extends BaseController{
 		// return Response::json(array('errCode'=>0, 'message'=>'密码修改成功！'));
 	}
 
+	public
 	
 }

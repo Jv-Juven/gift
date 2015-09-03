@@ -34,11 +34,16 @@ class NoticePageController extends BaseController{
 	//话题回复的简讯页—显示头像和昵称
 	public function brefUser()
 	{
-		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
+		// if(!Sentry::check())
+		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		// $user = Sentry::getUser();
+		$user = User::find(1);
+		// Auth::login();
+		// dd($user);
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
 
-		$join_coms = ArticleJoinCom::where('receiver','=',$user->id)
+		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
 						->where('status','=',0)
 						->where('is_delete','=',0)
 						->orderBy('created_at','desc')
@@ -49,10 +54,11 @@ class NoticePageController extends BaseController{
 			{
 				$com_sender = User::find($com->sender_id);
 				$com->avatar = $com_sender->avatar;
-				$com->username = $com_sender->username;				
+				$com->username = $com_sender->username;
+				$com->type = "comment";				
 			}
 		}
-		$replys = ArticleJoinReply::where('receiver','=',$user->id)
+		$replys = ArticleJoinReply::where('receiver_id','=',$user->id)
 						->where('status','=',0)
 						->where('is_delete','=',0)
 						->orderBy('created_at','desc')
@@ -64,11 +70,20 @@ class NoticePageController extends BaseController{
 				$reply_sender = User::find($reply->sender_id);
 				$reply->avatar = $reply_sender->avatar;
 				$reply->username = $reply_sender->username;
+				$reply->type = "reply";
 			}
 		}
+		$notices = array_merge($join_coms->toArray(),$replys->toArray());
+		
+		//总页数
+		$total = $per_page == 0 ? 1:ceil(count($notices)/$per_page);
+		//排序
+		$notices = StaticController::arraySortByCreatedAt($notices);
+		//分页
+		$notices = StaticController::noticePage($per_page,$page,$notices);
 		return Response::json(array('errCode'=>0, 'message'=>'返回回复者头像和名字',
-								'comments'=>$join_coms,
-								'replys' => $replys
+								'notices'=>$notices,
+								'total'=> $total
 							));	
 	}
 
@@ -79,9 +94,23 @@ class NoticePageController extends BaseController{
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
+		$per_page = Input::get('per_page');
+		$page = Input::get('page');
+
 		$officals = OfficalUser::where('user_id','=', $user->id)
 								->where('is_delete','=', 0)
 								->get();
-		return Response::json(array('errCode'=>0, 'message'=>'返回官方简讯','officals'=>$officals));
+		
+		//总页数
+		$total = $per_page < 0 ? 1:ceil(count($officals)/$per_page);
+		//排序
+		$officals = StaticController::arraySortByCreatedAt($officals->toArray());
+		//分页
+		$officals = StaticController::noticePage($per_page,$page,$officals);
+		//总页数
+		return Response::json(array('errCode'=>0, 'message'=>'返回官方简讯',
+									'officals'=>$officals,
+									'total'=> $total
+									));
 	}
 }
