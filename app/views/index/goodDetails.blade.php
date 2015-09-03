@@ -34,7 +34,7 @@
 			</div>
 		</section>
 		@if(isset($gift))
-		<section class="good-intro">
+		<section class="good-intro" id="good_intro" data-id="{{ $gift->id }}">
 			<div class="intro-wrapper">
 				<div class="intro-name">{{$gift->title}}</div>
 				<div class="intro-price">￥<span class="price">{{$gift->price}}</span></div>
@@ -114,13 +114,13 @@
 
 			</div>
 			<div class="good-details-footer">
-				<!-- <span class="good-btns good-like">
-					<a href="http://www.baidu.com">
-						<span class="btns-pattern"></span>
-						<span class="btns-pattern-like"></span>
+				<span class="good-btns good-like">
+					<a href="javascript:">
+						<span class="btns-pattern" style="display: {{{ $type == 0 ? 'block' : 'none' }}}"></span>
+						<span class="btns-pattern-like" style="display: {{{ $type == 0 ? 'none' : 'block' }}}"></span>
 						我喜欢
 					</a>
-				</span> -->
+				</span>
 				<span class="good-btns good-buy">
 					<a href="{{$gift->taobao_url}}">
 						<span class="btns-pattern"></span>
