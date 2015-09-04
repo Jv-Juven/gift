@@ -116,8 +116,8 @@
 			<div class="good-details-footer">
 				<span class="good-btns good-like">
 					<a href="javascript:">
-						<span class="btns-pattern" style="display: {{{ $type == 0 ? 'block' : 'none' }}}"></span>
-						<span class="btns-pattern-like" style="display: {{{ $type == 0 ? 'none' : 'block' }}}"></span>
+						<span class="btns-pattern" style="display: {{{ $type == 0 ? 'inline-block' : 'none' }}}"></span>
+						<span class="btns-pattern-like" style="display: {{{ $type == 0 ? 'none' : 'inline-block' }}}"></span>
 						我喜欢
 					</a>
 				</span>
