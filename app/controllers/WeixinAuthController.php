@@ -78,7 +78,7 @@ class WeixinAuthController extends BaseController{
 		if(Session::get('code') == Input::get('code'))
 		{
 			Session::put('code', Input::get('code'));
-		$code = Input::get('code');
+	:	$code = Input::get('code');
 		$weixin_data = $this->getAccessTokenByCode($code);
 		var_dump($weixin_data);
 		$access_token = $weixin_data['access_token'];
@@ -87,7 +87,7 @@ class WeixinAuthController extends BaseController{
 		$user = $this->getUserInfoByAuth($access_token, $open_id);
 //		$client_user = New User;
 //		$client_user->username = $user['nickname'];
-//		$client_user->save();
+//		$client_user->save();	
 		return Redirect::to('/');
 		}
 		Session::put('code',Input::get('code'));
