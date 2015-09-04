@@ -60,20 +60,22 @@ class MimePageController extends BaseController{
 	//我喜欢的礼品
 	public function likeGift()
 	{
-		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
+		// if(!Sentry::check())
+		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		// $user = Sentry::getUser();
 		// $user = User::find(1);
 		//获取我喜欢的礼品——动态属性
 		//分页
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$gift_focus = DB::table('gift_focus')->orderBy('created_at', 'desc')->get();
+		$gift_focus = DB::table('gift_focus')->where('user_id','=', $user->id)
+											->orderBy('created_at', 'desc')
+											->get();
 		//总页数
 		$total = $per_page == 0 ? 1:ceil(count($gift_focus)/$per_page);
-		//文章
+		//喜欢的礼品
 		$focus = StaticController::page($per_page, $page, $gift_focus);
-
+		// dd($focus);
 		$gifts = array();
 		if(count($focus) != 0)
 		{
@@ -84,7 +86,7 @@ class MimePageController extends BaseController{
 
 			foreach($gifts as $candy)
 			{
-				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$url = GiftPoster::where('gift_id','=',$candy->id)->first()->url;
 				$candy->url = StaticController::imageWH($url);
 			}
 		}
