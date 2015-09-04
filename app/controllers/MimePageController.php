@@ -5,9 +5,9 @@ class MimePageController extends BaseController{
 	//我参与的话题
 	public function joinArticle()
 	{
-		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
+		//if(! Sentry::check())
+		//	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		//$user = Sentry::getUser();
 		// $user = User::find(1);
 		
 		//分页
@@ -60,10 +60,10 @@ class MimePageController extends BaseController{
 	//我喜欢的礼品
 	public function likeGift()
 	{
-		// if(!Sentry::check())
-		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		// $user = Sentry::getUser();
-		$user = User::find(1);
+	//	if(!Sentry::check())
+	//		return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+	//	$user = Sentry::getUser();
+		 $user = User::find(1);
 		//获取我喜欢的礼品——动态属性
 		//分页
 		$per_page = Input::get('per_page');
@@ -90,10 +90,11 @@ class MimePageController extends BaseController{
 				$candy->url = StaticController::imageWH($url);
 			}
 		}
+	
 		if(Request::wantsJson())
 		{
 			return Response::json(array('errCode'=>0, 'message'=>'返回用户喜欢的礼品',
-							'gifts'=>$focus,
+							'gifts'=>$gifts,
 							'total'=>$total,
 							));
 		}

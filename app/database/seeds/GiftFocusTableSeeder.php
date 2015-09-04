@@ -24,5 +24,4 @@ class GiftFocusTableSeeder extends Seeder {
 			'user_id' =>4
 		]);
 	}
-
 }
