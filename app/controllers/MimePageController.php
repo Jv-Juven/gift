@@ -63,7 +63,7 @@ class MimePageController extends BaseController{
 		// if(!Sentry::check())
 		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		// $user = Sentry::getUser();
-		// $user = User::find(1);
+		$user = User::find(1);
 		//获取我喜欢的礼品——动态属性
 		//分页
 		$per_page = Input::get('per_page');
