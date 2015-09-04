@@ -8,13 +8,15 @@ class NoticePageController extends BaseController{
 		if(!Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
+		// Auth::login(User::find(5));
+		// $user = User::find(5);
 		//没有查看的评论条数和回复条数
-		$join_coms = ArticleJoinCom::where('receiver','=',$user->id)
+		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
 						->where('status','=',0)
 						->where('is_delete','=',0)
 						->get();
 		$com_count = count($join_coms);
-		$replys = ArticleJoinReply::where('receiver','=',$user->id)
+		$replys = ArticleJoinReply::where('receiver_id','=',$user->id)
 						->where('status','=',0)
 						->where('is_delete','=',0)
 						->get();
