@@ -48,7 +48,7 @@ class HomePageController extends BaseController {
 	{
 		$gift_id 	= Input::get('gift_id');
 		
-		if(Request::ajax())
+		if(Request::wantsJson())
 		{
 			if(!isset($gift_id))
 				return Response::json(array('errCode'=>1,'message'=>'你查看的商品没有！'));

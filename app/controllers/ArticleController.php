@@ -24,7 +24,7 @@ class ArticleController extends BaseController{
 		if(!$comment->save())
 			return Response::json(array('errCode'=>4, 'message'=>'[数据库问题]评论失败！'));
 		
-		return Response::Json(array('errCode'=>5, 'message'=>'评论成功！'));
+		return Response::Json(array('errCode'=>0, 'message'=>'评论成功！'));
 	}
 
 	//参与话题回复
@@ -186,4 +186,55 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'[数据库错误]参与话题删除成功！'));
 	}
 
+	//收藏参与话题
+	public function articleCollection()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+		// Sentry::login(Sentry::findUserById(5), false);
+		$article_id 	= Input::get('article_id');
+		$article_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('article_id', '=', $article_id)->get();
+		if(count($article_focus) == 1)
+		{
+			$article_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('article_id', '=', $article_id);
+			if(!$article_focus->delete())
+				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
+			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
+		}else{
+			$article_focus = New ArticleFocus;
+			$article_focus->user_id = Sentry::getUser()->id;
+			$article_focus->article_id = $article_id;
+			if(!$article_focus->save())
+				return Response::json(array('errCode'=>3, 'message'=>'收藏失败！'));
+			return Response::json(array('errCode'=>0, 'message'=>'收藏成功！'));
+		}
+	}
+
+	//收藏参与话题
+	public function joinCollection()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+		// Sentry::login(Sentry::findUserById(5), false);
+		$join_id 	= Input::get('join_id');
+		$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('join_id', '=', $join_id)->get();
+		if(count($join_focus) == 1)
+		{
+			$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('join_id', '=', $gift_id);
+			if(!$join_focus->delete())
+				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
+			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
+		}else{
+			$join_focus = New JoinFocus;
+			$join_focus->user_id = Sentry::getUser()->id;
+			$join_focus->join_id = $join_id;
+			if(!$join_focus->save())
+				return Response::json(array('errCode'=>3, 'message'=>'收藏失败！'));
+			return Response::json(array('errCode'=>0, 'message'=>'收藏成功！'));
+		}
+	}
 }

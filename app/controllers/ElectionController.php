@@ -18,14 +18,17 @@ class ElectionController extends BaseController{
 		if(count($gifts) == 0)
 		{	
 			$gifts = DB::table('gifts')->orderBy('created_at', 'desc')->get();
-			$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
-			$gifts = StaitcController::page($per_page, $page, $gifts);
+			if(count($gifts))
+				return Response::json(array('errCode'=>2, 'message'=>'数据库没有数据'));
+
+			$total = $per_page == ceil(count($gifts)/$per_page);
 			foreach($gifts as $gift)
 			{
 				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
 				$gift->img = StaitcController::imageWH($url);
 			}
-			return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 'gifts'=>$gifts));
+			$gifts = StaitcController::page($per_page, $page, $gifts);
+				return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 'gifts'=>$gifts));
 		}
 		
 		foreach($gifts as $gift)
@@ -34,7 +37,7 @@ class ElectionController extends BaseController{
 			$gift->img = StaitcController::imageWH($url);
 		}
 
-		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+		$total = ceil(count($gifts)/$per_page);
 		$gifts = StaitcController::page($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回根据关键字筛选的商品', 
 									'gifts'=>$gifts,
@@ -69,7 +72,7 @@ class ElectionController extends BaseController{
 		if(count($gifts) == 0 )
 		{	
 			$gifts = StaitcController::gifts();
-			$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+			$total = $per_page == ceil(count($gifts)/$per_page);
 			return Response::json(array('errCode'=>1, 'message'=>'没有礼品',
 										'gifts'=>$gifts,
 										'total'=>$total
@@ -82,7 +85,7 @@ class ElectionController extends BaseController{
 			$gift->img = StaitcController::iamgeWH($url);
 		}
 
-		$total = $per_page == 0 ? 1:ceil(count($gifts)/$per_page);
+		$total = $per_page == ceil(count($gifts)/$per_page);
 		$gifts = StaitcController::page($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
 									'gifts'=>$gifts,

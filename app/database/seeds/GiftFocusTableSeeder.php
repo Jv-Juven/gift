@@ -23,5 +23,21 @@ class GiftFocusTableSeeder extends Seeder {
 			'gift_id'=>2,
 			'user_id' =>4
 		]);
+		GiftFocus::create([
+			'gift_id'=>2,
+			'user_id' =>1
+		]);
+		GiftFocus::create([
+			'gift_id'=>3,
+			'user_id' =>1
+		]);
+		GiftFocus::create([
+			'gift_id'=>4,
+			'user_id' =>1
+		]);
+		GiftFocus::create([
+			'gift_id'=>5,
+			'user_id' =>1
+		]);
 	}
 }

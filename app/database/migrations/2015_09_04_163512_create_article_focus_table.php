@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopicFocusTable extends Migration {
+class CreateArticleFocusTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,23 +11,23 @@ class CreateTopicFocusTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//官方话题收藏
-		Schema::create('topic_focus', function(Blueprint $table)
+	{
+		Schema::create('article_focus', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id')->unsigned()->index('user_id');//用户id
-			$table->integer('topic_id')->unsigned()->index('topic_id');//官方话题id
+			$table->integer('article_id')->unsigned()->index('article_id');
+			$table->integer('user_id')->unsigned()->index('user_id');
 			$table->timestamps();
 
 			$table                          
-				->foreign('user_id')
-				->references('id')->on('users') 
+				->foreign('article_id')
+				->references('id')->on('articles') 
 				->onDelete('cascade')
 				->onUpdate('cascade');
 
 			$table                          
-				->foreign('topic_id')
-				->references('id')->on('topics') 
+				->foreign('user_id')
+				->references('id')->on('users') 
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});
@@ -40,7 +40,7 @@ class CreateTopicFocusTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('topic_focus');
+		Schema::drop('article_focus');
 	}
 
 }

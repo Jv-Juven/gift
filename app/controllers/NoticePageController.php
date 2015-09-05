@@ -5,11 +5,11 @@ class NoticePageController extends BaseController{
 	//回复条数
 	public function notice()
 	{
-		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
+		// if(!Sentry::check())
+		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		// $user = Sentry::getUser();
 		// Auth::login(User::find(5));
-		// $user = User::find(5);
+		$user = User::find(5);
 		//没有查看的评论条数和回复条数
 		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
 						->where('status','=',0)
@@ -39,7 +39,7 @@ class NoticePageController extends BaseController{
 		// if(!Sentry::check())
 		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		// $user = Sentry::getUser();
-		$user = User::find(1);
+		$user = User::find(5);
 		// Auth::login();
 		// dd($user);
 		$per_page = Input::get('per_page');
@@ -65,7 +65,7 @@ class NoticePageController extends BaseController{
 						->where('is_delete','=',0)
 						->orderBy('created_at','desc')
 						->get();
-		if(count($replys) !=0 )
+		if( count($replys) !=0 )
 		{
 			foreach( $replys as $reply)
 			{
@@ -76,13 +76,13 @@ class NoticePageController extends BaseController{
 			}
 		}
 		$notices = array_merge($join_coms->toArray(),$replys->toArray());
-		
 		//总页数
-		$total = $per_page == 0 ? 1:ceil(count($notices)/$per_page);
-		//排序
+		$total = $per_page == ceil(count($notices)/$per_page);
+			//排序
 		$notices = StaticController::arraySortByCreatedAt($notices);
 		//分页
-		$notices = StaticController::noticePage($per_page,$page,$notices);
+		$notices = StaticController::page($per_page,$page,$notices);
+		// dd(count($notices));
 		return Response::json(array('errCode'=>0, 'message'=>'返回回复者头像和名字',
 								'notices'=>$notices,
 								'total'=> $total
@@ -92,9 +92,10 @@ class NoticePageController extends BaseController{
 	//通知的简讯（官方类）
 	public function  brefOffical()
 	{
-		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
+		// if(!Sentry::check())
+		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		// $user = Sentry::getUser();
+		$user = User::find(5);
 
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
@@ -104,11 +105,11 @@ class NoticePageController extends BaseController{
 								->get();
 		
 		//总页数
-		$total = $per_page < 0 ? 1:ceil(count($officals)/$per_page);
+		$total = ceil(count($officals)/$per_page);
 		//排序
 		$officals = StaticController::arraySortByCreatedAt($officals->toArray());
 		//分页
-		$officals = StaticController::noticePage($per_page,$page,$officals);
+		$officals = StaticController::page($per_page,$page,$officals);
 		//总页数
 		return Response::json(array('errCode'=>0, 'message'=>'返回官方简讯',
 									'officals'=>$officals,

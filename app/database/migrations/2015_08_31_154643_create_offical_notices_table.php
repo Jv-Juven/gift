@@ -11,7 +11,7 @@ class CreateOfficalNoticesTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{
+	{					//官方通知
 		Schema::create('offical_notices', function(Blueprint $table)
 		{
 			$table->increments('id');

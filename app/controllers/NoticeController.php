@@ -26,7 +26,7 @@ class NoticeController extends BaseController{
 						->get();
 		if(count($replys) !=0 )
 		{
-			if( $replys as $reply)
+			foreach( $replys as $reply)
 			{
 				$reply->is_delete = 1;
 				if( !$reply->save())

@@ -18,8 +18,8 @@ class MimePageController extends BaseController{
 		$total = ceil(count($article_joins)/$per_page);
 		//参与话题
 		$article_joins = StaticController::page($per_page, $page, $article_joins);
-		if(count($article_joins) == 0)
-			return Response::json(array('errCode'=>0,'message'=>'该用户没有参与话题！'));
+		if($article_joins == false )
+			return Response::json(array('errCode'=>0,'message'=>'该用户已没有参与话题！'));
 		//根据用户参与的话题取到官方话题
 		$articles = array();
 		foreach($article_joins as $article_join)
@@ -72,12 +72,13 @@ class MimePageController extends BaseController{
 											->orderBy('created_at', 'desc')
 											->get();
 		//总页数
-		$total = $per_page == 0 ? 1:ceil(count($gift_focus)/$per_page);
+		$total = ceil(count($gift_focus)/$per_page);
+		// dd($total);
 		//喜欢的礼品
 		$focus = StaticController::page($per_page, $page, $gift_focus);
-		// dd($focus);
+		// dd(count($focus));
 		$gifts = array();
-		if(count($focus) != 0)
+		if( $focus )
 		{
 			foreach($focus as $gift)
 			{	
