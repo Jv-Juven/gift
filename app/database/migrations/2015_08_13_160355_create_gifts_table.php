@@ -25,6 +25,7 @@ class CreateGiftsTable extends Migration {
 			$table->integer('scene_id')->nullable();//场景编号
 			$table->integer('object_id')->nullable();//对象编号
 			$table->integer('char_id')->nullable();//性格编号
+			$table->integer('price_id')->nullable(); //价格区间
 			$table->string('taobao_url');//淘宝链接
 			$table->timestamps();
 

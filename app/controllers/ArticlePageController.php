@@ -92,7 +92,7 @@ class ArticlePageController extends BaseController{
 		$total = ceil(count($article_joins)/$per_page);
 		//评论
 		$article_joins = StaticController::page($per_page,$page,$article_joins);
-
+		// dd(count($article_joins));
 		if( $article_joins )
 		{
 			foreach($article_joins as $article_join)
@@ -102,6 +102,8 @@ class ArticlePageController extends BaseController{
 				$article_join->username = $user->username;//参与话题人昵称
 				$article_join->avatar = 	$user->avatar;//头像
 				$article_part = ArticleJoinPart::where('join_id', '=', $article_join->id)->where('type','=','text')->first();
+				// Log::info($article_part);
+				// echo $article_part->content;
 				$article_join->content = $article_part->content;//第一段内容
 			}
 		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',

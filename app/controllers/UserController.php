@@ -270,4 +270,14 @@ class UserController extends BaseController{
 		// 	return Response::json(array('errCode'=>5, 'message'=>'密码修改失败！'));
 		// return Response::json(array('errCode'=>0, 'message'=>'密码修改成功！'));
 	}
+
+	//更新个人信息
+	public function update()
+	{
+		
+	}
+
+
+
+
 }

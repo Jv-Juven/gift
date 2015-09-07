@@ -76,7 +76,7 @@ Route::group(array('prefix'=>'election'),function(){
 	//根据用户搜索关键字绚丽
 	Route::post('selection', 'ElectionController@selectByWord');
 	//通过标签搜索
-	Route::post('selection-by-label','ElectionController@selectByLabel');
+	Route::post('selection_by_label','ElectionController@selectByLabel');
 	//根据价格/场合/个性/对象
 	Route::post('price','ElectionController@price');
 	//根据场合
@@ -113,10 +113,10 @@ Route::group(array('prefix'=>'article'),function(){
 		Route::post('dcomment', 'ArticleController@dcomment');
 		//删除回复
 		Route::post('dreply', 'ArticleController@dreply');
-		//发表参与话题
-		Route::post('issue','ArticleController@issue');
 		//编辑话题
 		Route::post('edit', 'ArticleController@edit');
+		//发表参与话题
+		Route::post('issue','ArticleController@issue');
 		//删除话题
 		Route::post('darticle', 'ArticleController@dArticle');
 	});
@@ -171,7 +171,7 @@ Route::get('qiniu', 'UploadController@getUpToken');
 Route::get('test','StaticController@imageWH');
 
 
-
+Route::get('mysql','MysqlController@mysql');
 
 
 

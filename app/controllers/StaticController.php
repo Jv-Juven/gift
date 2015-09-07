@@ -4,7 +4,7 @@ class StaticController extends BaseController{
 
 	public static function imageWH($url)
 	{
-		if(ends_with($url,'jpg') || nds_with($url,'jpg'))
+		if(ends_with($url,'jpg') || ends_with($url,'jpg'))
 		{
 			$image = imagecreatefromjpeg($url);
 			$imageW = imagesy($image); 
@@ -89,12 +89,12 @@ class StaticController extends BaseController{
 			return $array_data;
 		}
 		//第一条数据的索引
-		$first =  $page*$per_page;
+		$first =  ($page-1)*$per_page;
 		//最后一条的数据,需要判断是否超过了最大值
-		$last = ($first + $per_page)>$total_count ? $total_count:($first+$per_page);
+		$last = ($first+$per_page-1)>($total_count-1) ? ($total_count-1):($first+$per_page-1);
 
 		$data_need = array();
-		for($i= $first; $i<$last; $i++)
+		for($i= $first; $i<($last+1); $i++)
 		{
 			array_push($data_need, $array_data[$i]);
 		}
@@ -133,7 +133,7 @@ class StaticController extends BaseController{
 		$gifts = Gift::orderBy('created_at','desc')->get();
 		foreach($gifts as $gift)
 		{
-			$url = GiftPhotoIntro::where('gift_id','=',$gift->id)->first();
+			$url = GiftPhotoIntro::where('gift_id','=',$gift->id)->first()->url;
 			$gift->img = StaticController::imageWH($url);
 		}
 		return $gifts;

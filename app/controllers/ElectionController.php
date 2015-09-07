@@ -54,26 +54,38 @@ class ElectionController extends BaseController{
 			'object_id' => Input::get('object'),
 			'price_id' 	=> Input::get('price')
 		);
+		// dd($inputs['object_id']);
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
 
 		$inputs = array_filter( $inputs );
+		// dd(count($inputs));
 		$query = null;
+		// dd($inputs['price_id']);
 		foreach( $inputs as $key => $value ){
-			if ( $query ){
+			if ( $query != null ){
 				$query = $query->where( $key, $value );
 			}else{
-				$query = Poster::where( $key, $value );
+				$query = Gift::where( $key, $value );
 			}
 		}
-		$gifts = $query->get();
-
+		if( $query == null)
+		{// dd(count($gifts));
 		//标签没有的情况
-		if(count($gifts) == 0 )
-		{	
-			$gifts = StaitcController::gifts();
+			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
-			return Response::json(array('errCode'=>1, 'message'=>'没有礼品',
+			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
+										'gifts'=>$gifts,
+										'total'=>$total
+										));
+		}
+		
+		$gifts = $query->get();
+		if( count($gifts) == 0 )
+		{
+			$gifts = StaticController::gifts();
+			$total = $per_page == ceil(count($gifts)/$per_page);
+			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
 										));
@@ -82,11 +94,11 @@ class ElectionController extends BaseController{
 		foreach($gifts as $gift)
 		{
 			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
-			$gift->img = StaitcController::iamgeWH($url);
+			$gift->img = StaticController::imageWH($url);
 		}
 
 		$total = $per_page == ceil(count($gifts)/$per_page);
-		$gifts = StaitcController::page($per_page,$page,$gifts);
+		$gifts = StaticController::page($per_page,$page,$gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
 									'gifts'=>$gifts,
 									'total'=>$total
