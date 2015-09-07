@@ -16,10 +16,16 @@ class CreatePostersTables extends Migration {
 		{
 			$table->increments('id');
 			$table->string('photo_url')->nullable();//礼物图片链接
-			$table->string('info_url')->nullable();//礼物详情ID
+			$table->integer('info_url')->unsigned()->index('info_url');//礼物ID
 			$table->integer('daily_id')->default(0);//0=新品推荐；1=每日一荐
 			$table->timestamps();
 		});
+
+		// $table                          
+		// 		->foreign('info_url')
+		// 		->references('id')->on('gifts') 
+		// 		->onDelete('cascade')
+		// 		->onUpdate('cascade');
 	}
 
 	/**

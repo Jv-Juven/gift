@@ -78,11 +78,11 @@ class StaticController extends BaseController{
 		$total_page = ceil($total_count/$per_page);
 		//除数检查
 		if($per_page <= 0)
-			return false;
+			return array();
 
 		//截取需要的数据
 		if($page>$total_page)
-			return false;
+			return array();
 
 		if($page*$per_page > $total_count)
 		{

@@ -5,11 +5,11 @@ class NoticePageController extends BaseController{
 	//回复条数
 	public function notice()
 	{
-		// if(!Sentry::check())
-		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		// $user = Sentry::getUser();
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		$user = Sentry::getUser();
 		// Auth::login(User::find(5));
-		$user = User::find(5);
+		// $user = User::find(5);
 		//没有查看的评论条数和回复条数
 		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
 						->where('status','=',0)
@@ -36,10 +36,10 @@ class NoticePageController extends BaseController{
 	//话题回复的简讯页—显示头像和昵称
 	public function brefUser()
 	{
-		// if(!Sentry::check())
-		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		// $user = Sentry::getUser();
-		$user = User::find(5);
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		$user = Sentry::getUser();
+		// $user = User::find(5);
 		// Auth::login();
 		// dd($user);
 		$per_page = Input::get('per_page');
@@ -92,10 +92,10 @@ class NoticePageController extends BaseController{
 	//通知的简讯（官方类）
 	public function  brefOffical()
 	{
-		// if(!Sentry::check())
-		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		// $user = Sentry::getUser();
-		$user = User::find(5);
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		$user = Sentry::getUser();
+		// $user = User::find(5);
 
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');

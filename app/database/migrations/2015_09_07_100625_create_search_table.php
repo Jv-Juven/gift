@@ -11,12 +11,12 @@ class CreateSearchTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//搜索关键字表
+	{				//搜索关键字
 		Schema::create('search', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('label');
-			$table->integer('count');
+			$table->integer('count')->unsigned();
 			$table->timestamps();
 		});
 	}

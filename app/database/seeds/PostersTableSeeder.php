@@ -10,7 +10,7 @@ class PostersTableSeeder extends Seeder {
 
 		Poster::create([
 			'photo_url' =>  'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg',
-			'info_url'=> '1',
+			'info_url'=> '1',//id 号
 			'daily_id'=> '0'
 		]);
 		Poster::create([
@@ -26,6 +26,11 @@ class PostersTableSeeder extends Seeder {
 		Poster::create([
 			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
 			'info_url'=> '4',
+			'daily_id'=> '1'		
+		]);
+		Poster::create([
+			'photo_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.5.jpg',
+			'info_url'=> '5',
 			'daily_id'=> '1'		
 		]);
 

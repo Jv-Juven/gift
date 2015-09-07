@@ -20,6 +20,34 @@ class ArticlesTableSeeder extends Seeder {
 			'join_num' => 3333,
 			'focus_num' => 1234
 		]);
+
+		Article::create([
+			'title' => '圈子话题3',
+			'scan_num' => 912,
+			'join_num' => 212,
+			'focus_num' => 1334
+		]);
+
+		Article::create([
+			'title' => '圈子话题4',
+			'scan_num' => 33,
+			'join_num' => 3333,
+			'focus_num' => 1234
+		]);
+
+		Article::create([
+			'title' => '圈子话题5',
+			'scan_num' => 912,
+			'join_num' => 212,
+			'focus_num' => 1334
+		]);
+
+		Article::create([
+			'title' => '圈子话题6',
+			'scan_num' => 33,
+			'join_num' => 3333,
+			'focus_num' => 1234
+		]);
 	}
 
 }

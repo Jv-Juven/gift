@@ -11,7 +11,7 @@ class CreateArticleJoinsTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//参与话题内容
+	{
 		Schema::create('article_joins', function(Blueprint $table)
 		{
 			$table->increments('id');

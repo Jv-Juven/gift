@@ -357,7 +357,7 @@
 				}
 	2.2 返回礼物类别分类
 		请求方式： GET
-		请求url： ／election／class
+		请求url： ／election／label
 
 		请求参数： 无
 
@@ -947,6 +947,46 @@
 				｝
 
 
+<--------H5接口--------->
+1.我喜欢的礼品
+		请求方式:	GET
+		请求url:	/like_gift_h
+
+		请求参数:	 无
+
+		返回参数 :	
+				视图：index.userCenter
+				user:{
+					id,
+					username,
+					avatar
+				}
+
+2.我喜欢的礼品数据
+		请求方式:	post
+		请求url:	/like_ajax
+
+		请求参数:	 
+				per_page 			每页多少个数据
+				page  				第几页
+
+		返回参数 :	
+				
+				gifts:[
+						{
+						gift_id 	礼品id
+						title,		礼品名
+						price,		礼品价格
+						url:{	
+							url,	链接
+							width,	图片宽度
+							height,	图片高度
+						}
+						}......
+					]
+
+				total 				总页数
+				
 
 
 

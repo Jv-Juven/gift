@@ -16,11 +16,11 @@ class GiftFocusTableSeeder extends Seeder {
 			'user_id' =>2
 		]);
 		GiftFocus::create([
-			'gift_id'=>2,
+			'gift_id'=>1,
 			'user_id' =>3
 		]);
 		GiftFocus::create([
-			'gift_id'=>2,
+			'gift_id'=>1,
 			'user_id' =>4
 		]);
 		GiftFocus::create([
@@ -28,16 +28,16 @@ class GiftFocusTableSeeder extends Seeder {
 			'user_id' =>1
 		]);
 		GiftFocus::create([
-			'gift_id'=>3,
-			'user_id' =>1
+			'gift_id'=>2,
+			'user_id' =>2
 		]);
 		GiftFocus::create([
-			'gift_id'=>4,
-			'user_id' =>1
+			'gift_id'=>2,
+			'user_id' =>3
 		]);
 		GiftFocus::create([
-			'gift_id'=>5,
-			'user_id' =>1
+			'gift_id'=>2,
+			'user_id' =>4
 		]);
 	}
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleJoinsComsTable extends Migration {
+class CreateArticleJoinComsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,7 +11,7 @@ class CreateArticleJoinsComsTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//话题评论
+	{
 		Schema::create('article_join_coms', function(Blueprint $table)
 		{
 			$table->increments('id');
