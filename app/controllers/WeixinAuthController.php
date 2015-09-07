@@ -1,5 +1,9 @@
 <?php 
 class WeixinAuthController extends BaseController{
+
+
+
+
 	//获取code
 	public function code()
 	{
@@ -23,7 +27,10 @@ class WeixinAuthController extends BaseController{
 //		$client_user = New User;
 //		$client_user->username = $user['nickname'];
 //		$client_user->save();
+
+
 		dd($user);
+
 		return Redirect::to('/');
 		}
 		Session::put('code',Input::get('code'));
