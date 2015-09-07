@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleJoinsPartTable extends Migration {
+class CreateArticlePartsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,18 +11,18 @@ class CreateArticleJoinsPartTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{				//参与话题的各个部分
-		Schema::create('article_join_parts', function(Blueprint $table)
+	{
+		Schema::create('article_parts', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('join_id')->unsigned()->index('join_id');
+			$table->integer('article_id')->unsigned()->index('article_id');
 			$table->string('content');
 			$table->string('type');
 			$table->timestamps();
 
 			$table                          
-				->foreign('join_id')
-				->references('id')->on('article_joins') 
+				->foreign('article_id')
+				->references('id')->on('articles') 
 				->onDelete('cascade')
 				->onUpdate('cascade');
 		});
@@ -35,7 +35,7 @@ class CreateArticleJoinsPartTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('article_join_parts');
+		Schema::drop('article_parts');
 	}
 
 }

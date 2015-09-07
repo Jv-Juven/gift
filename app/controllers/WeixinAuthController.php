@@ -1,6 +1,8 @@
 <?php 
-
 class WeixinAuthController extends BaseController{
+
+
+
 
 	//获取code
 	public function code()
@@ -10,7 +12,6 @@ class WeixinAuthController extends BaseController{
 		$redirect_url = WeChatClient::getOAuthConnectUri($redirect_uri,'', $scope);
 		return Redirect::to($redirect_url);
 	}
-
 	public function accessToken()
 	{
 		if(Session::get('code') == Input::get('code'))
@@ -26,12 +27,17 @@ class WeixinAuthController extends BaseController{
 //		$client_user = New User;
 //		$client_user->username = $user['nickname'];
 //		$client_user->save();
+
+
+		dd($user);
+
 		return Redirect::to('/');
 		}
 		Session::put('code',Input::get('code'));
 //      $client_user = New User;
 //		$client_user->username = $user['nickname'];
 //	    $client_user->save();
+		dd($user);
 		return Redirect::to('/');
 	}
 }

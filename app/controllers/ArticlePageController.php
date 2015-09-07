@@ -10,22 +10,26 @@ class ArticlePageController extends BaseController{
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
-		$articles = StaitcController::page($per_page, $page, $articles);
-		foreach( $articles as $article)
-		{
-			$article_url = ArticlePart::where('article_id', '=', $article->id)
-						->where('type','=', 'url')->first();
-			if(isset($article_url))
+		$articles = StaticController::page($per_page, $page, $articles);
+		
+		if( $articles )
+		{	foreach( $articles as $article)
 			{
-				$article->url = StaitcController::imageWH($article_url->content);
-			}
+				$article_url = ArticlePart::where('article_id', '=', $article->id)
+							->where('type','=', 'url')->first();
+				if(isset($article_url))
+				{
+					$article->url = StaticController::imageWH($article_url->content);
+				}
 
-			$article_text = ArticlePart::where('article_id', '=', $article->id)
-						->where('type','=', 'text')->first();
-			if(isset($article_text))	
-			{
-				$article->text = $article_text->content;
-			}				
+				$article_text = ArticlePart::where('article_id', '=', $article->id)
+							->where('type','=', 'text')->first();
+				if(isset($article_text))	
+				{
+					$article->text = $article_text->content;
+				}				
+			}
+			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
@@ -39,23 +43,28 @@ class ArticlePageController extends BaseController{
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
-		$articles = StaitcController::page($per_page, $page, $articles);
-		foreach( $articles as $article)
-		{
-			$article_url = ArticlePart::where('article_id', '=', $article->id)
-						->where('type','=', 'url')->first();
-			if(isset($article_url))
+		$articles = StaticController::page($per_page, $page, $articles);
+		
+		if( $articles )
+		{	foreach( $articles as $article)
 			{
-				$article->url = StaitcController::imageWH($article_url->content);;
-			}
+				$article_url = ArticlePart::where('article_id', '=', $article->id)
+							->where('type','=', 'url')->first();
+				if(isset($article_url))
+				{
+					$article->url = StaticController::imageWH($article_url->content);;
+				}
 
-			$article_text = ArticlePart::where('article_id', '=', $article->id)
-						->where('type','=', 'text')->first();
-			if(isset($article_text))
-			{
-				$article->text = $article_text->content;
-			}				
+				$article_text = ArticlePart::where('article_id', '=', $article->id)
+							->where('type','=', 'text')->first();
+				if(isset($article_text))
+				{
+					$article->text = $article_text->content;
+				}				
+			}
+			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 		}
+
 		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
 
@@ -72,7 +81,7 @@ class ArticlePageController extends BaseController{
 		{
 			if($part->type == 'url')
 			{
-				$part->content = StaitcController::imageWH($part->content);
+				$part->content = StaticController::imageWH($part->content);
 			}
 		}
 		//参与话题部分
@@ -82,9 +91,9 @@ class ArticlePageController extends BaseController{
 		//总页数
 		$total = ceil(count($article_joins)/$per_page);
 		//评论
-		$article_joins = StaitcController::page($per_page,$page,$article_joins);
+		$article_joins = StaticController::page($per_page,$page,$article_joins);
 
-		if(count($article_joins) != 0)
+		if( $article_joins )
 		{
 			foreach($article_joins as $article_join)
 			{
@@ -122,7 +131,7 @@ class ArticlePageController extends BaseController{
 		{
 			if($part->type == 'url')
 			{
-				$part->content = StaitcController::imageWH($part->content);
+				$part->content = StaticController::imageWH($part->content);
 			}
 		}		
 		//评论内容
@@ -132,17 +141,17 @@ class ArticlePageController extends BaseController{
 		//总页数
 		$total = ceil(count($join_coms)/$per_page);
 		//文章
-		$join_coms = StaitcController::page($per_page,$page,$join_coms);
-		if(count($join_coms)!=0)
+		$join_coms = StaticController::page($per_page,$page,$join_coms);
+		if( $join_coms )
 		{
 			foreach($join_coms as $join_com)
 			{	
-				$join_com->username = User::find($join_com->user_id)->username;
-				$join_com->avatar = User::find($join_com->user_id)->avatar;
-				$join_com['replys'] = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
-				if(count($join_com['replys'])!=0)
+				$join_com->username = User::find($join_com->sender_id)->username;
+				$join_com->avatar = User::find($join_com->sender_id)->avatar;
+				$join_com->replys = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
+				if(count($join_com->replys)!=0)
 				{
-					foreach($join_com['replys'] as $reply)
+					foreach($join_com->replys as $reply)
 					{
 						$reply->reply_name = User::find($reply->sender_id)->username;
 					}

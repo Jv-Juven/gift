@@ -14,7 +14,7 @@
 Route::get('/', 'HomePageController@showWelcome');
 // Route::get("/", function (){
 // 	return Response::view("index.userCenter");
-// });
+// });	
 
 //首页模块
 Route::group(array('prefix' => 'home'),function(){
@@ -99,7 +99,12 @@ Route::group(array('prefix'=>'article'),function(){
 	Route::get('join_detail', 'ArticlePageController@involve');
 	// 测试用：Route::post('comment','ArticleController@comment');
 	// 测试用：Route::post('reply','ArticleController@reply');
+	//收藏话题
+	Route::post('article_collection','ArticleController@articleCollection');
+
 	Route::group(array('before'=>'auth.user.isIn'),function(){
+		//收藏参与话题
+		Route::post('join_collection','ArticleController@joinCollection');
 		//参与话题评论
 		Route::post('comment','ArticleController@comment');
 		//参与话题回复
@@ -121,19 +126,22 @@ Route::group(array('prefix'=>'article'),function(){
 Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
 	//我参与的话题
 	Route::get('join_article', 'MimePageController@joinArticle');
-});
 	//我喜欢的礼品
 	Route::get('like_gift', 'MimePageController@likeGift');
+});
+	Route::get('like_gift_h', 'MimePageController@likeGiftH');
+	Route::post('like_ajax', 'MimePageController@giftAjax');
 
 //设置
 Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 	//获取个人资料
 	Route::get('per_info','SitePageController@perInfo');
 	//消息推送
+	Route::post('push_message','SiteController@pushMessage');
+	//更新个人资料
+	Route::post('site/per_info','SiteController@perInfo');
 });
 	
-//更新个人资料
-Route::post('site/per_info','SiteController@perInfo');
 
 //通知
 Route::group(array('prefix'=>'notice'),function(){

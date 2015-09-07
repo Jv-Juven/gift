@@ -26,7 +26,7 @@ class NoticeController extends BaseController{
 						->get();
 		if(count($replys) !=0 )
 		{
-			if( $replys as $reply)
+			foreach( $replys as $reply)
 			{
 				$reply->is_delete = 1;
 				if( !$reply->save())
@@ -86,17 +86,17 @@ class NoticeController extends BaseController{
 
 		$offical_id = Input::get('offical_id');
 
-		if(!isset($offical_id)
+		if(!isset($offical_id))
 			return Response::json(array('errCode'=>2, 'message'=>'请选择需要查看官方详情'));
 		$offical = OfficalNotice::find($offical_id);
 		if(!isset($offical))
 			return Response::json(array('errCode'=>3, 'message'=>'该官方消息不存在'));
 		$offical_parts = OfficalNoticePart::where('offical_id','=', $offical->id)
 										->orderBy('created_at','asc')
-										->get()
+										->get();
 		if(count($offical_parts)==0)
 			return Response::json(array('errCode'=>4,'message'=>'[数据库没插数据]官方消息没内容'));	
-		return Response::json(array('errCode'=>0, 'message'=>'返回官方通知后详细信息'
+		return Response::json(array('errCode'=>0, 'message'=>'返回官方通知后详细信息',
 									'offical'=> $offical,
 									'offical_parts' => $offical_parts
 			));
@@ -132,7 +132,7 @@ class NoticeController extends BaseController{
 
 		$offical_id = Input::get('offical_id');
 
-		if(!isset($offical_id)
+		if(!isset($offical_id))
 			return Response::json(array('errCode'=>2, 'message'=>'请选择需要删除的官方详情'));
 		$offical = OfficalNotice::find($offical_id);
 		if(!isset($offical))

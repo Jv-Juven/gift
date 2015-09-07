@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSearchTable extends Migration {
+class CreateOfficalNoticesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,11 @@ class CreateSearchTable extends Migration {
 	 * @return void
 	 */
 	public function up()
-	{			//搜索关键字表
-		Schema::create('search', function(Blueprint $table)
+	{					//官方通知
+		Schema::create('offical_notices', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('label');
-			$table->integer('count');
+			$table->string('title');
 			$table->timestamps();
 		});
 	}
@@ -28,7 +27,7 @@ class CreateSearchTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('search');
+		Schema::drop('offical_notices');
 	}
 
 }
