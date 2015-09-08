@@ -37,7 +37,7 @@ class WeixinAuthController extends BaseController{
 //      $client_user = New User;
 //		$client_user->username = $user['nickname'];
 //	    $client_user->save();
-		dd($user);
+	//	dd($user);
 		return Redirect::to('/');
 	}
 }
