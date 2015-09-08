@@ -31,3 +31,20 @@
 	-ms-transform: translate3d(@value);
 	-o-transform: translate3d(@value);
 }
+.full-screen(@bg: rgba(255, 255, 255, .7)){
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: @bg;
+	z-index: 999;
+}
+.center-screen(@width: auto, @height: auto){
+	width: @width;
+	height: @height;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -@height/2 -@width/2;
+}

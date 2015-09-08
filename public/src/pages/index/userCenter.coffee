@@ -17,6 +17,21 @@ $ ()->
 	item = $(".center-gift")
 	page = 1
 	lock = 0#请求锁，0为可请求 1为禁止请求
+	itemsWrapper01 = ""
+	itemsWrapper02 = ""
+
+	#铺满视口
+	$.fn.extend {
+		fullScreen: ()->
+			_this = $(this)
+			winWidth = $(window).outerWidth()
+			winHeight = $(window).outerHeight()
+			_this.css {
+				"width": winWidth,
+				"height": winHeight
+			}
+	}
+
 	#建立瀑布流列容器
 	buildCol = ()->
 		items = $(".center-gifts-container .center-gift")#获取需要“瀑布流”的项
@@ -26,14 +41,16 @@ $ ()->
 
 	#为容器添加项，判断容器的高度，为高度最小的容器添加元素
 	addItems = (items)->
+		
 		if items.length is 1
-			appendeCol = if $(".center-gift-wrapper").eq(0).outerHeight(true) > $(".center-gift-wrapper").eq(1).outerHeight(true) then  $(".center-gift-wrapper").eq(1) else $(".center-gift-wrapper").eq(0)
+			appendeCol = if itemsWrapper01.outerHeight(true) > itemsWrapper02.outerHeight(true) then  itemsWrapper02 else itemsWrapper01
 			appendeCol.append items
+			console.log appendeCol.index()+":"+$(items).attr("data-id")+"\nheight:"+itemsWrapper01.outerHeight(true)+"\t"+itemsWrapper02.outerHeight(true)
 		else
 			$.each items,(index, ele)->
-				appendeCol = if $(".center-gift-wrapper").eq(0).outerHeight(true) > $(".center-gift-wrapper").eq(1).outerHeight(true) then  $(".center-gift-wrapper").eq(1) else $(".center-gift-wrapper").eq(0)
+				appendeCol = if itemsWrapper01.outerHeight(true) > itemsWrapper02.outerHeight(true) then  itemsWrapper02 else itemsWrapper01
 				appendeCol.append ele
-
+				console.log appendeCol.index()+":"+$(ele).attr("data-id")+"\nheight:"+itemsWrapper01.outerHeight(true)+"\t"+itemsWrapper02.outerHeight(true)
 
 
 	#将获取到得数据渲染成HTML项
@@ -47,28 +64,23 @@ $ ()->
 			"like": data["focus_num"],
 			"id": data["id"]
 		})
-		# child.find(".center-gift-link").attr "href", data["taobao_url"]
-		# child.find(".center-gift-img").attr "src", data["url"]["url"]
-		# child.find(".center-gift-title").text data["title"]
-		# child.find(".center-gift-price").text $(this).text() + data["price"]
-		# child.find(".center-gift-like span").text data["focues_num"]
 		if page is 1 
 			addItems child
 		return child
 
 	#异步获取数据
 	loadData = (callback)->
-		console.log "start"
 		if lock is 1
 			return
 		lock = 1
+		$(".full-screen").fadeIn(300)
 		$.post "/like_ajax", {
-			per_page: 6,
+			per_page: 8,
 			page: page
 		}, (d)->
 			items = []
 			msg = d["gifts"]
-			console.log msg
+			$(".full-screen").fadeOut(300)
 			if msg.length is 0
 				return 
 			for data in msg	
@@ -77,7 +89,6 @@ $ ()->
 
 			page = page + 1
 			lock = 0
-
 			if callback
 				callback items
 
@@ -85,10 +96,11 @@ $ ()->
 
 		if ($(window).scrollTop() + $(window).height()) is $(document).height()
 			items = loadData (items)->
-				$.each items, (index, ele)->
-					addItems ele
-					console.log "end"
+				addItems items
+				# $.each items, (index, ele)->
+				# 	addItems ele
 
+	$(".full-screen").fullScreen()
 	buildCol()
 	loadData()
 

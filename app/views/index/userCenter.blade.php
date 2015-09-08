@@ -57,10 +57,13 @@
 				<!-- 礼品区 END-->
 			</div>
 		</section>
+		<div class="full-screen">
+			<img class="requesting" src="/images/index/loading.gif">
+		</div>
 		<script type="text/template" id="gift_template">
 			<div class="center-gift" data-id="<%- id %>">
 				<a class="center-gift-link" href="<%- url %>">
-					<img class="center-gift-img" src="<%- img_url %>">
+					<img class="center-gift-img" src="<%- img_url %>?imageView2/2/w/200/h">
 					<div class="center-gift-title"><%- title %></div>
 					<div class="center-gift-details">
 						<span class="center-gift-price">￥<%- price %></span>
