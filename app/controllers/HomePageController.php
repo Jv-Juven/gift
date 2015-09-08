@@ -178,7 +178,8 @@ class HomePageController extends BaseController {
 		{	$number = 1;
 			foreach($gifts as $gift)
 			{
-				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$gift->img = StaticController::imageWH($url);
 				$gift->number = $number++;
 			}
 		}
