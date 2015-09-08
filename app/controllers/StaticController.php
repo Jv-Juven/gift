@@ -74,6 +74,7 @@ class StaticController extends BaseController{
 	{
 		//根据数据库的数据算出总的条数
 		$total_count = count($array_data);
+		// dd($total_count);
 		//总的页数
 		$total_page = ceil($total_count/$per_page);
 		//除数检查
@@ -84,10 +85,10 @@ class StaticController extends BaseController{
 		if($page>$total_page)
 			return array();
 
-		if($page*$per_page > $total_count)
-		{
-			return $array_data;
-		}
+		// if($page*$per_page > $total_count)
+		// {
+		// 	return $array_data;
+		// }
 		//第一条数据的索引
 		$first =  ($page-1)*$per_page;
 		//最后一条的数据,需要判断是否超过了最大值
