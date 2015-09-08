@@ -138,6 +138,7 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'保存成功！'));
 	}
 
+	 //编辑掺产于话题
 	public function edit()
 	{
 		if(! Sentry::check())
@@ -180,6 +181,7 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'编辑成功！'));
 	}
 
+	//删除话题
 	public function dArticle()
 	{
 		if(! Sentry::check())

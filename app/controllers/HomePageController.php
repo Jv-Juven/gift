@@ -64,7 +64,7 @@ class HomePageController extends BaseController {
 		{	$gift_poster_array = array();
 			foreach($gift_posters as $poster)
 			{
-				array_push($gift_poster_array, $poster->url);
+				array_push($gift_poster_array, StaticController::imageWH($poster->url));
 			}
 		}
 
