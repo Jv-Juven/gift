@@ -82,9 +82,9 @@ class HomePageController extends BaseController {
 			array_push($gifts_like, $gift_poster);
 		}
 		// dd(count($gifts_like) > 9);
-		if(count($gifts_like) > 9)
+		if(count($gifts_like) > 18)
 		{
-			$gifts_like = array_slice($gifts_like,0,9);
+			$gifts_like = array_slice($gifts_like,0,17);
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
 		// dd($gift->taobao_url); 变量名不要一样的,后面的会覆盖前面的

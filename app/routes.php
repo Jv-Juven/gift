@@ -171,7 +171,8 @@ Route::get('qiniu', 'UploadController@getUpToken');
 Route::get('test','StaticController@imageWH');
 
 
-Route::get('mysql','MysqlController@mysql');
+Route::get('extract','MysqlController@extractData');
+Route::get('insert', 'MysqlController@insertData');
 
 
 
