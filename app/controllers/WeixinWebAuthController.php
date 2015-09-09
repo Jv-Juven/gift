@@ -97,7 +97,7 @@ class WeixinWebAuthController extends BaseController{
                     'password'  => $user['unionid'],
                     'openid'    => $user['openid'],
                     'unionid'   => $user['unionid'],
-                    'activated' => 'true'
+                    'activated' => '1'
                 ));
             // }
             // catch(Cartalyst\Sentry\Users\PasswordRequiredException $e)
