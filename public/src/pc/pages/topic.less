@@ -1,0 +1,75 @@
+@import "product.less";
+
+.page-content{
+    border-top: solid #f73939 1px;
+}
+
+.container{
+    width: 980px;   
+    margin: 20px auto;
+
+    .topic-wrap{
+        width: 600px;
+        margin-left: 32px;
+        float: left;
+    }
+
+    .gift-ad-wrap{
+        width: 310px;
+        overflow: hidden;
+        float: right;
+        img{
+            margin-bottom: 10px;
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .icon{
+        display: inline-block;
+    }
+    .num{
+       
+    }
+}
+
+.topic{
+    .pic{
+        width: 100%;
+    }
+
+    .title{
+        font-size: 16px;
+        font-weight: 900;
+        margin-top: 23px;
+        font-family: "SimHei";
+    }
+
+    .info{
+        @info-item-left: 18px;
+        color: @color-num;
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 20px;
+        margin-left: -@info-item-left;
+
+        .icon{
+            vertical-align: -1px;
+        }
+
+        .num{
+            line-height: 14px;
+        }
+
+        &>span{
+            margin-left: @info-item-left;
+        }
+    }
+
+    .desc{
+        color: #333333;
+        font-size: 14px;
+        line-height: 26px;
+        margin-top: 16px;
+    }
+}
