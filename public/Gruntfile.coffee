@@ -54,10 +54,12 @@ module.exports = (grunt)->
             common:
                 files:
                     'dist/css/common.css': ['src/common/*.less']
+                    'dist/pc/css/common.css': ['src/pc/common/*.less']
 
             components:
                 files:
                     'dist/css/components.css': ['src/components/**/*.less']
+                    'dist/pc/css/components.css': ['src/pc/components/**/*.less']
             pages:
                 files:
                     'dist/css//pages/login.css': ['src/pages/login/login.less']
@@ -65,6 +67,9 @@ module.exports = (grunt)->
                     'dist/css//pages/goodDetails.css': ['src/pages/index/goodDetails.less']
                     'dist/css//pages/goodsList.css': ['src/pages/index/goodsList.less']
                     'dist/css//pages/userCenter.css': ['src/pages/index/userCenter.less']
+                    #PC端样式
+                    'dist/pc/css/pages/login.css': ['src/pc/pages/login.less']
+                    'dist/pc/css/pages/home.css': ['src/pc/pages/home.less']
                     
 
         cssmin:
