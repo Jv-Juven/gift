@@ -19,7 +19,7 @@ class ArticlePageController extends BaseController{
 							->where('type','=', 'url')->first();
 				if(isset($article_url))
 				{
-					$article->url = StaticController::imageWH($article_url->content);
+					$article->img = StaticController::imageWH($article_url->content);
 				}
 
 				$article_text = ArticlePart::where('article_id', '=', $article->id)
@@ -52,7 +52,7 @@ class ArticlePageController extends BaseController{
 							->where('type','=', 'url')->first();
 				if(isset($article_url))
 				{
-					$article->url = StaticController::imageWH($article_url->content);;
+					$article->img = StaticController::imageWH($article_url->content);;
 				}
 
 				$article_text = ArticlePart::where('article_id', '=', $article->id)
