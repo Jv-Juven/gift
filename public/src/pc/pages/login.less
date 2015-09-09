@@ -24,13 +24,14 @@ html,body{
 			left: 50%;
 			margin: -@wrapper-height/2 -@wrapper-width/2;
 		}
-		.login-components-bg{
-			border: 1px solid rgb(100, 100, 100);
-			background: url("/images/pc/login/login_board_bg.png");
-		}
+		// .login-components-bg{
+		// 	border: 1px solid rgb(100, 100, 100);
+		// 	background: url("/images/pc/login/login_board_bg.png");
+		// }
 		.login-components-board{
 			background: transparent;
 			.login-board-menu{
+				background: url("/images/pc/login/login_board_bg.png");
 				width: 100%;
 				height: 60px;
 				li{
@@ -39,7 +40,7 @@ html,body{
 					height: 100%;
 					a{
 						display: inline-block;
-						padding-top: 22px;
+						padding: 22px 0px;
 						width: 100%;
 						text-align: center;
 
@@ -50,7 +51,7 @@ html,body{
 					}
 				}
 				.active{
-					border: 1px solid rgb(255, 255, 255);
+					// border: 1px solid rgb(255, 255, 255);
 					border-bottom: 0px;
 					background: rgb(255, 255, 255);
 					a, a:link, a:visited{
@@ -59,9 +60,68 @@ html,body{
 				}
 			}
 			.login-board{
-				width: @wrapper-width + 2;
-				height: @wrapper-height - 60 + 2;
+				float: left;
+				margin-top: 10px;
+				width: @wrapper-width;
+				height: @wrapper-height - 60;
 				background: rgb(255, 255, 255);
+
+				.login-btn{
+					position: relative;
+					@btn-width: 246px;
+					width: @btn-width;
+					height: 42px;
+					border-radius: 5px;
+					cursor: pointer;
+					margin: auto;
+					overflow: hidden;
+					&>a>span{
+						display: inline-block;
+						height: 100%;
+						text-align: center;
+						float: left;
+						color: rgb(255, 255, 255);
+						font-size: 16px;
+					}
+					.login-btn-icon{
+						width: 60px;
+					}
+					.login-btn-text{
+						width: @btn-width - 60 - 1;
+						span{
+							display: inline-block;
+							margin-top: 13px;
+						}
+					}
+				}
+				.QQ{
+					margin-top: 32px;
+					background-color: rgb(27, 144, 181);
+					.login-btn-icon{
+						border-right: 1px solid rgb(23, 126, 157);
+						img{
+							width: 20px;
+							margin-top: 10px;
+						}
+					}
+					&:hover{
+						background-color: rgb(20, 138, 167);
+					}
+				}
+				.WeChat{
+					margin-top: 16px;
+					background-color: rgb(126, 164, 31);
+					.login-btn-icon{
+						border-right: 1px solid rgb(112, 145, 27);
+						img{
+							width: 22px;
+							margin-top: 12px;
+						}
+					}
+					&:hover{
+						background-color: rgb(118, 160, 26);
+					}
+				}
 			}
 		}
 	}
