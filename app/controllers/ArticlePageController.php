@@ -81,7 +81,7 @@ class ArticlePageController extends BaseController{
 		{
 			if($part->type == 'url')
 			{
-				$part->content = StaticController::imageWH($part->content);
+				$part->img = StaticController::imageWH($part->content);
 			}
 		}
 		//参与话题部分
