@@ -99,12 +99,12 @@ class WeixinWebAuthController extends BaseController{
             $client_user->save();
             $user = Sentry::findUserById($client_user->id);
             Sentry::login($user,false);
-            return Redirect::to('/')->with(array('user'->$user));
+            return Redirect::to('/')->with(array('user'=>$user));
         }
 
         $user = Sentry::findUserById($user->id);
         Sentry::login($user,false);
         
-        return Redirect::to('/')->with(array('user'->$user));
+        return Redirect::to('/')->with(array('user'=>$user));
     }
 }
