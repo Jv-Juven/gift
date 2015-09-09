@@ -51,6 +51,9 @@ html,body{
 						color: rgb(250, 250, 250);
 					}
 				}
+				.menu-item-last{
+					width: 34% !important;
+				}
 				.active{
 					// border: 1px solid rgb(255, 255, 255);
 					border-bottom: 0px;
@@ -126,9 +129,10 @@ html,body{
 			}
 			#download{
 				.download-list{
+					float: left;
 					position: relative;
-					top: 10px;
-					left: 50px;
+					top: 20px;
+					left: 40px;
 					li{
 						clear: both;
 						vertical-align: top;
@@ -139,18 +143,26 @@ html,body{
 							display: inline-block;
 							padding: 10px;
 							color: rgb(150, 150, 150);
+							font-size: 14px;
 						}
 						a{
 							float: left;
 							display: inline-block;
-							width: 100px;
-							height: 30px;
+							width: 120px;
+							height: 35px;
 						}
 						a>img{
 							width: 100%;
 							height: 100%;
 						}
 					}
+				}
+				.code-img{
+					@img-width: 122px;
+					width: @img-width;
+					height: @img-width;
+					float: right;
+					margin: 30px 30px 0px 0px;
 				}
 			}
 		}
