@@ -72,30 +72,7 @@
 				</div>
 			</div>
 			<div id="download" class="login-board">
-				<div class="login-btn QQ">
-					<a class="a-block" href="/">
-						<span class="login-btn-icon">
-							<img src="/images/pc/login/QQ.png">
-						</span>
-						<span class="login-btn-text">
-							<span>
-								使用腾讯QQ登录
-							</span>
-						</span>
-					</a>
-				</div>
-				<div class="login-btn WeChat">
-					<a class="a-block" href="/">
-						<span class="login-btn-icon">
-							<img src="/images/pc/login/wechat.png">
-						</span>
-						<span class="login-btn-text">
-							<span>
-								使用微信登录
-							</span>
-						</span>
-					</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>
