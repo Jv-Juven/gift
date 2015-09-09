@@ -28,4 +28,10 @@ return array(
 		'secret' => '',
 	),
 
+	'qq' => array(
+		'client_id'=>'101250808',
+		 'client_secret' => '8fa68d1e497d7e2759afa38fbd24a545',
+		 'redirect' => 'http://gift.zerioi.com/home'
+	),
+
 );

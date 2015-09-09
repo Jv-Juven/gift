@@ -9,7 +9,8 @@
 		"cartalyst/sentry": "2.1.*",
 		 "qiniu/php-sdk": "7.*",
 		 "frozennode/administrator": "4.*",
-		 "cooper/wechat": "dev-master"
+		 "cooper/wechat": "dev-master",
+		"weann/socialite": "^1.0"
 	},
 	"require-dev":{
 		"way/generators": "~2.0"
