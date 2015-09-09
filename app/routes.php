@@ -179,7 +179,10 @@ Route::get('test','StaticController@imageWH');
 Route::get('extract','MysqlController@extractData');
 Route::get('insert', 'MysqlController@insertData');
 
-
+//pc端路由
+Route::get('home', function(){
+	return View::make('pc.home');
+});
 
 
 
