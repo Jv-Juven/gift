@@ -15,9 +15,9 @@
 		<!-- <div class="login-components-wrapper login-components-bg"></div> -->
 		<div class="login-components-wrapper login-components-board">
 			<ul class="login-board-menu">
-				<li class="active"><a href="javascript:">注册</a></li>
+				<li><a href="javascript:">注册</a></li>
 				<li><a href="javascript:">登录</a></li>
-				<li><a href="javascript:">下载APP</a></li>
+				<li class="active menu-item-last"><a href="javascript:">下载APP</a></li>
 			</ul>
 			<div id="register" class="login-board" style="display: none;">
 				<div class="login-btn QQ">
@@ -90,6 +90,7 @@
 						</a>
 					</li>
 				</ul>
+				<img class="code-img" src="/images/pc/login/code.png">
 			</div>
 		</div>
 	</div>
