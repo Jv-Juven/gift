@@ -67,7 +67,7 @@ class WeiXinWebAuthController extends BaseController{
 	//获取code
 	public function code()
 	{
-		$redirect_uri = "http://gift.zerioi.com/weixin/access";
+		$redirect_uri = "http://gift.zerioi.com/weixin/web_access";
 		$scope = "snsapi_login";
 		$redirect_url = $this->getOAuthConnectUri($redirect_uri,'', $scope);
 		return Redirect::to($redirect_url);
