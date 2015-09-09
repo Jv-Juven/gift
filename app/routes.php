@@ -184,13 +184,10 @@ Route::get('home', function(){
 	return View::make('pc.home');
 });
 
-Route::get('/qq', function () {
-    return Socialite::driver('qq')->redirect();
-});
-
-Route::get('callback', function () {
-    $user = Socialite::driver('qq')->user();
-    dd($user);
+//QQ授权登录
+Route::group(array('prefix'=>'qq'), function(){
+	Route::get('web_code', 'QqAuthController@code');
+	Route::get('web_access', 'QqAuthController@accessToken');
 });
 
 
