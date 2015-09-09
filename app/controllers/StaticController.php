@@ -134,7 +134,7 @@ class StaticController extends BaseController{
 		$gifts = Gift::orderBy('created_at','desc')->get();
 		foreach($gifts as $gift)
 		{
-			$url = GiftPhotoIntro::where('gift_id','=',$gift->id)->first()->url;
+			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
 			$gift->img = StaticController::imageWH($url);
 		}
 		return $gifts;
