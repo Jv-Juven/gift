@@ -179,11 +179,19 @@ Route::get('test','StaticController@imageWH');
 Route::get('extract','MysqlController@extractData');
 Route::get('insert', 'MysqlController@insertData');
 
-//pc端路由
+//<-----------------------PC端路由--------------------->
 Route::get('home', function(){
 	return View::make('pc.home');
 });
 
+Route::get('/qq', function () {
+    return Socialite::driver('qq')->redirect();
+});
+
+Route::get('callback', function () {
+    $user = Socialite::driver('qq')->user()
+    dd($user);
+});
 
 
 
