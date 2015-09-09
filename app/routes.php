@@ -31,16 +31,6 @@ Route::group(array('prefix' => 'home'),function(){
 	});
 });
 
-Route::controller('/login', 'AdminController');
-
-Route::group(array('prefix' =>'weixin'), function(){
-	
-	Route::get('/', 'WeixinController@valid');
-	Route::get('test', 'WeixinController@responseMsg');
-	Route::get('code', 'WeixinAuthController@code');
-	Route::get('access', 'WeixinAuthController@accessToken');
-});
-
 Route::group(array('prefix' => 'user'),function()
 {
 	//注册—获取注册页面
@@ -76,7 +66,7 @@ Route::group(array('prefix'=>'election'),function(){
 	//根据用户搜索关键字绚丽
 	Route::post('selection', 'ElectionController@selectByWord');
 	//通过标签搜索
-	Route::post('selection-by-label','ElectionController@selectByLabel');
+	Route::post('selection_by_label','ElectionController@selectByLabel');
 	//根据价格/场合/个性/对象
 	Route::post('price','ElectionController@price');
 	//根据场合
@@ -113,10 +103,10 @@ Route::group(array('prefix'=>'article'),function(){
 		Route::post('dcomment', 'ArticleController@dcomment');
 		//删除回复
 		Route::post('dreply', 'ArticleController@dreply');
-		//发表参与话题
-		Route::post('issue','ArticleController@issue');
 		//编辑话题
 		Route::post('edit', 'ArticleController@edit');
+		//发表参与话题
+		Route::post('issue','ArticleController@issue');
 		//删除话题
 		Route::post('darticle', 'ArticleController@dArticle');
 	});
@@ -167,11 +157,27 @@ Route::group(array('prefix'=>'notice'),function(){
 
 //七牛
 Route::get('qiniu', 'UploadController@getUpToken');
+//后台管理
+Route::controller('/login', 'AdminController');
+//微信认证登录
+Route::group(array('prefix' =>'weixin'), function(){
+	//app端	
+	Route::get('/', 'WeixinController@valid');
+	Route::get('test', 'WeixinController@responseMsg');
+	Route::get('code', 'WeixinAppAuthController@code');
+	Route::get('access', 'WeixinAppAuthController@accessToken');
+
+	//web端
+	Route::get('web_code', 'WeixinWebAuthController@code');
+	Route::get('web_access', 'WeixinWebAuthController@accessToken');
+});
+
 
 Route::get('test','StaticController@imageWH');
 
 
-
+Route::get('extract','MysqlController@extractData');
+Route::get('insert', 'MysqlController@insertData');
 
 
 

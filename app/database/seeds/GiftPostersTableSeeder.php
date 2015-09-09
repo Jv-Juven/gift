@@ -13,7 +13,7 @@ class GiftPostersTableSeeder extends Seeder {
 		]);
 		GiftPoster::create([
 			'gift_id' => 2,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/35-7.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 3,
@@ -24,15 +24,15 @@ class GiftPostersTableSeeder extends Seeder {
 			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
 		]);GiftPoster::create([
 			'gift_id' => 5,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/35-7.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 6,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/36-3.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 7,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/44-10.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 8,
@@ -40,7 +40,7 @@ class GiftPostersTableSeeder extends Seeder {
 		]);
 		GiftPoster::create([
 			'gift_id' => 9,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/36-3.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 10,
@@ -48,7 +48,7 @@ class GiftPostersTableSeeder extends Seeder {
 		]);
 		GiftPoster::create([
 			'gift_id' => 11,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/36-3.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 12,
@@ -56,7 +56,7 @@ class GiftPostersTableSeeder extends Seeder {
 		]);
 		GiftPoster::create([
 			'gift_id' => 13,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/36-3.jpg'
 		]);
 		GiftPoster::create([
 			'gift_id' => 14,
@@ -68,7 +68,7 @@ class GiftPostersTableSeeder extends Seeder {
 		]);
 		GiftPoster::create([
 			'gift_id' => 16,
-			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
+			'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/44-10.jpg'
 		]);
 	}
 

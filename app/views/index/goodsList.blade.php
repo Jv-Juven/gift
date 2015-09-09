@@ -29,7 +29,7 @@
 			<p class="gift-content">{{$gift->content}}</p>
 			<div >
 				<a href="/home/gift_detail?gift_id={{$gift->id}}">
-					<img class="gift-img" src="{{$gift->img}}">
+					<img class="gift-img" src="{{$gift->img['url']}}">
 				</a>
 			</div>
 			<div class="gift-info clearx">

@@ -64,7 +64,7 @@ class HomePageController extends BaseController {
 		{	$gift_poster_array = array();
 			foreach($gift_posters as $poster)
 			{
-				array_push($gift_poster_array, $poster->url);
+				array_push($gift_poster_array, StaticController::imageWH($poster->url));
 			}
 		}
 
@@ -82,9 +82,9 @@ class HomePageController extends BaseController {
 			array_push($gifts_like, $gift_poster);
 		}
 		// dd(count($gifts_like) > 9);
-		if(count($gifts_like) > 9)
+		if(count($gifts_like) > 30)
 		{
-			$gifts_like = array_slice($gifts_like,0,9);
+			$gifts_like = array_slice($gifts_like,0,30);
 		}
 		$gift_photo_intros = GiftPhotoIntro::where('gift_id','=', $gift_id)->get();
 		// dd($gift->taobao_url); 变量名不要一样的,后面的会覆盖前面的
@@ -178,7 +178,8 @@ class HomePageController extends BaseController {
 		{	$number = 1;
 			foreach($gifts as $gift)
 			{
-				$gift->img = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+				$gift->img = StaticController::imageWH($url);
 				$gift->number = $number++;
 			}
 		}

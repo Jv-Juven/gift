@@ -1,5 +1,6 @@
 <?php
 
+//公众号token验证
 class WeixinController extends BaseController{
 	
 	protected static $token = 'ziruikeji';

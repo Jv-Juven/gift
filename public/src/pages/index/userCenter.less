@@ -60,12 +60,12 @@
 				border-radius: .8rem;
 				overflow: hidden;
 				width: 10.6rem;
-				margin-top: .5rem;
+				margin: .5rem 0rem 0rem 0rem;
 				text-decoration: none;
 				border: 1px solid rgb(230, 230, 230);
 				.box-sizing();
-				&:nth-child(even){
-					// margin-left: .3rem;
+				&:nth-child(odd){
+					// margin-left: .6rem;
 				}
 				.center-gift-img{
 					position: relative;
@@ -99,6 +99,14 @@
 				float: left;
 				display: inline-block;
 			}
+		}
+	}
+
+	.full-screen{
+		.full-screen();
+		display: none;
+		.requesting{
+			.center-screen(5rem, 5rem);
 		}
 	}
 }

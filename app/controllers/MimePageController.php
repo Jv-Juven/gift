@@ -112,10 +112,10 @@ class MimePageController extends BaseController{
 	//H5 ajax
 	public function giftAjax()
 	{
-		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
-		$user = Sentry::getUser();
-		// $user = User::find(1);
+		// if(!Sentry::check())
+		// 	return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+		// $user = Sentry::getUser();
+		$user = User::find(1);
 
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');

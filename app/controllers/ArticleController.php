@@ -101,13 +101,16 @@ class ArticleController extends BaseController{
 		if(! Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
-		$article_id = Input::get('article_id');	
+
+		$data = json_decode(Input::get('data'));
+		// Log::info(Input::get('data'));
+		$article_id = $data->article_id;	
+		// Log::info($article_id);
 		$article = Article::find($article_id);
 		if(!isset($article))
 			return Response::json(array('errCode'=>2,'message'=>'你想参与的话题不存在！'));
-		// $content=array('text'=>'测试数据');
-		$content = Input::get('content');
-		if(empty($content))
+		$contents = $data->content;
+		if(!is_array($contents) || !count($contents))
 			return Response::json(array('errCode'=>3,'message'=>'内容不能为空！'));
 		
 		$article_join = New ArticleJoin;
@@ -116,12 +119,18 @@ class ArticleController extends BaseController{
 		$article_join->user_id = $user->id;
 		if(!$article_join->save())
 			return Response::json(array('errCode'=>4, 'message'=>'参与话题创建失败！'));
-		foreach($content as $key=>$value)
+		foreach($contents as $content)
 		{
 			$article_join_part = New ArticleJoinPart;
 			$article_join_part->join_id = $article_join->id;
+			if(isset($content->text))
+				$key = "text";
+			else
+				$key = "url";
 			$article_join_part->type = $key;
-			$article_join_part->content = $value;
+			// Log::info($article_join_part->type);
+			$article_join_part->content = $content->$key;
+			// Log::info($article_join_part->content);
 			if(!$article_join_part->save())
 				return Response::json(array('errCode'=>5,'message'=>'参与话题保存不完整，请重新编辑！'));
 		}
@@ -129,18 +138,23 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'保存成功！'));
 	}
 
+	 //编辑掺产于话题
 	public function edit()
 	{
 		if(! Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
 		$user = Sentry::getUser();
-		$join_id = Input::get('join_id');	
+		// $join_id = Input::get('join_id');	
+		$data = json_decode(Input::get('data'));
+		$join_id = $data->join_id;
 		$article_join = ArticleJoin::find($join_id);
+
 		if(!isset($article_join))
 			return Response::json(array('errCode'=>2,'message'=>'你想参与的话题不存在！'));
-		$content=array('text'=>'测试数据');
+		// $content=array('text'=>'测试数据');
 		// $content = Input::get('content');
-		if(empty($content))
+		$contents = $data->content;
+		if(!is_array($contents) || !count($contents))
 			return Response::json(array('errCode'=>3,'message'=>'内容不能为空！'));
 		
 		if($user->id != $article_join->user_id)
@@ -150,19 +164,24 @@ class ArticleController extends BaseController{
 		if($article_join_parts == 0)
 			return Response::json(array('errCode'=>5, 'message'=>'[数据库错误]参与话题编辑失败！'));
 
-		foreach($content as $key=>$value)
+		foreach($contents as $content)
 		{
 			$article_join_part = New ArticleJoinPart;
 			$article_join_part->join_id = $article_join->id;
+			if(isset($content->text))
+				$key = "text";
+			else
+				$key = "url";
 			$article_join_part->type = $key;
-			$article_join_part->content = $value;
+			$article_join_part->content = $content->$key;
 			if(!$article_join_part->save())
-				return Response::json(array('errCode'=>6,'message'=>'参与话题保存不完整，请重新编辑！'));
+				return Response::json(array('errCode'=>6,'message'=>'编辑话题保存不完整，请重新编辑！'));
 		}
 		
 		return Response::json(array('errCode'=>0, 'message'=>'编辑成功！'));
 	}
 
+	//删除话题
 	public function dArticle()
 	{
 		if(! Sentry::check())
