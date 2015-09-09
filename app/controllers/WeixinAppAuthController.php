@@ -1,9 +1,5 @@
 <?php 
-class WeixinAuthController extends BaseController{
-
-
-
-
+class WeixinAppAuthController extends BaseController{
 	//获取code
 	public function code()
 	{
