@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html,charset=UTF-8">
-	<meta property="qc:admins" content="0623273706462521716375" />
+	<meta property="qc:admins" content="062327370646252171637570755" />
 	<title>
 		@yield("title", "礼拉")
 	</title>
