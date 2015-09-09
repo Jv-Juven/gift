@@ -70,6 +70,7 @@ module.exports = (grunt)->
                     #PC端样式
                     'dist/pc/css/pages/login.css': ['src/pc/pages/login.less']
                     'dist/pc/css/pages/home.css': ['src/pc/pages/home.less']
+                    'dist/pc/css/pages/search.css': ['src/pc/pages/search.less']
                     
 
         cssmin:

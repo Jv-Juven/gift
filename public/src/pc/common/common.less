@@ -1,6 +1,13 @@
+
+@red-color: rgb(234, 78, 77);
+
 .a-text(@color: rgb(58, 58, 58)){
 	color: @color;
 	&:link, &:visited, &:active{
 		color: @color;
 	}
+}
+.container-width(@min: 800px, @max: 980px){
+	min-width: @min;
+	max-width: @max;
 }
