@@ -189,7 +189,7 @@ Route::get('/qq', function () {
 });
 
 Route::get('callback', function () {
-    $user = Socialite::driver('qq')->user()
+    $user = Socialite::driver('qq')->user();
     dd($user);
 });
 
