@@ -75,7 +75,7 @@ class WeixinWebAuthController extends BaseController{
 
     public function accessToken()
     {
-        Session::put('code', Input::get('code'));
+        // Session::put('code', Input::get('code'));
         $code = Input::get('code');
         $weixin_data = $this->getAccessTokenByCode($code);
         // var_dump($weixin_data);
@@ -85,24 +85,50 @@ class WeixinWebAuthController extends BaseController{
         $unionid    = $weixin_data['unionid'];
         $user = $this->getUserInfoByAuth($access_token, $open_id);
         
-        $user = User::where('unionid', '=', $unionid)->first();
-        if(!isset($user))
+        $unionid_user = User::where('unionid', '=', $unionid)->first();
+        if(!isset($unionid_user))
         {
-            $client_user = New User;
-            $client_user->username = $user['nickname'];
-            $client_user->avatar = $user['headimgurl'];
-            $client_user->gender = $user['sex'];
-            $client_user->email = $user['unionid'];
-            $client_user->openid = $user['openid'];
-            $client_user->unionid = $user['unionid'];
-            // dd($client_user);
-            $client_user->save();
-            $user = Sentry::findUserById($client_user->id);
-            Sentry::login($user,false);
+            // try{
+                $client_user = Sentry::createUser(array(
+                    'username'  => $user['nickname'],
+                    'avatar'    => $user['headimgurl'],
+                    'gender'    => $user['sex'],
+                    'email'     => $user['unionid'],
+                    'password'  => $user['unionid'],
+                    'openid'    => $user['openid'],
+                    'unionid'   => $user['unionid'],
+                    'activated' => '1'
+                ));
+            // }
+            // catch(Cartalyst\Sentry\Users\PasswordRequiredException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserExistsException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            
+            // try{
+                $user = Sentry::findUserById($client_user->id);
+                Sentry::login($user,false);
+            // }
+            // catch(Cartalyst\Sentry\Users\LoginRequiredException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserNotActivatedException $e)
+            // {
+            //     return View::make('errors.missing')
+            // }
             return Redirect::to('/')->with(array('user'=>$user));
         }
 
-        $user = Sentry::findUserById($user->id);
+        $user = Sentry::findUserById($unionid_user->id);
         Sentry::login($user,false);
         
         return Redirect::to('/')->with(array('user'=>$user));
