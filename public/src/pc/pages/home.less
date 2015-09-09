@@ -146,6 +146,57 @@
 					overflow: hidden;
 					float: left;
 					margin: 10px 0px 0px 10px;
+					span{
+						display: inline-block;
+					}
+					.home-hot-cover{
+						position: absolute;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						height: 100%;
+						display: inline-block;
+						.home-hot-board{
+							position: absolute;
+							bottom: 0px;
+							left: 0px;
+							width: 100%;
+							height: 100%;
+							.home-hot-title{
+								color: rgb(255, 255, 255);
+								font-size: 18px;
+								font-weight: bold;
+								margin: 155px 10px 0px 10px;
+								line-height: 24px;
+							}
+							.home-hot-info{
+								margin: 0px 10px;
+								&>span{
+									float: left;
+									width: 90px;
+								}
+								.home-scan{
+									padding-top: 10px;
+									float: left;
+									.home-hot-scan{
+										float: left;
+										width: 19px;
+										height: 12px;
+									}
+									.scan-count{
+										float: left;
+										color: rgb(255, 255, 255);
+										padding: 2px 6px;
+									}
+									.home-hot-comments{
+										float: left;
+										width: 16px;
+										height: 14px;
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}

@@ -173,8 +173,54 @@
 					</li>
 				</ul>
 			</div>
-			<div class="hom-wrappers home-hot-wrapper">
+			<div class="home-wrappers home-hot-wrapper">
 				<ul class="home-hot-content clearx">
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+							<span class="home-hot-cover">
+								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
+								<span class="home-hot-board">
+									<span class="home-hot-title">处女座女生的生日快到了，送什么好呢？求推荐有创意的小物品</span>
+									<span class="home-hot-info">
+										<span class="home-scan">
+											<img class="home-hot-scan" src="/images/pc/home/scaned.png">
+											<span class="scan-count">119</span>
+										</span>
+										<span class="home-scan">
+											<img class="home-hot-comments" src="/images/pc/home/comments.png">
+											<span class="scan-count">119</span>
+										</span>
+									</span>
+								</span>
+							</span>
+						</a>
+					</li>
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+						</a>
+					</li>
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+						</a>
+					</li>
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+						</a>
+					</li>
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+						</a>
+					</li>
+					<li class="home-hot-box">
+						<a href="/">
+							<img src="/images/pc/home/pic01.png">
+						</a>
+					</li>
 					<li class="home-hot-box">
 						<a href="/">
 							<img src="/images/pc/home/pic01.png">
