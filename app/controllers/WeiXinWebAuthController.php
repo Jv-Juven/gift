@@ -75,9 +75,7 @@ class WeixinWebAuthController extends BaseController{
 
 	public function accessToken()
 	{
-		// if(Session::get('code') == Input::get('code'))
-		// {
-		// 	Session::put('code', Input::get('code'));
+		Session::put('code', Input::get('code'));
 		$code = Input::get('code');
 		$weixin_data = $this->getAccessTokenByCode($code);
 		// var_dump($weixin_data);
@@ -87,20 +85,26 @@ class WeixinWebAuthController extends BaseController{
         $unionid    = $weixin_data['unionid'];
 		$user = $this->getUserInfoByAuth($access_token, $open_id);
 		
-        $client_user = New User;
-		$client_user->username = $user['nickname'];
-		$client_user->avatar = $user['headimgurl'];
-        $client_user->gender = $user['sex'];
-        $client_user->openid = $user['openid'];
-        $client_user->unionid = $user['unionid'];
-        // dd($client_user);
-        $client_user->save();	
-		return json_encode($client_user);
-		// }
-// 		Session::put('code',Input::get('code'));
-// //      $client_user = New User;
-// //		$client_user->username = $user['nickname'];
-// //	    $client_user->save();
-// 		return Redirect::to('/');
+        $user = User::where('unionid', '=', $unionid)->first();
+        if(!isset($user))
+        {
+            $client_user = New User;
+    		$client_user->username = $user['nickname'];
+    		$client_user->avatar = $user['headimgurl'];
+            $client_user->gender = $user['sex'];
+            $client_user->email = $user['unionid'];
+            $client_user->openid = $user['openid'];
+            $client_user->unionid = $user['unionid'];
+            // dd($client_user);
+            $client_user->save();
+            $user = Sentry::findUserById($client_user->id);
+            Sentry::login($user,false);
+    		return Redirect::to('/')->with(array('user'->$user));
+        }
+
+        $user = Sentry::findUserById($user->id);
+        Sentry::login($user,false);
+        
+        return Redirect::to('/')->with(array('user'->$user));
 	}
 }
