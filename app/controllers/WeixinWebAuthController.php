@@ -94,6 +94,7 @@ class WeixinWebAuthController extends BaseController{
                     'avatar'    => $user['headimgurl'],
                     'gender'    => $user['sex'],
                     'email'     => $user['unionid'],
+                    'password'  => $user['unionid'],
                     'openid'    => $user['openid'],
                     'unionid'   => $user['unionid'],
                     'activated' => 'true'
