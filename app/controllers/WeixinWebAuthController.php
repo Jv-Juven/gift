@@ -90,12 +90,12 @@ class WeixinWebAuthController extends BaseController{
         {
             // try{
                 $client_user = Sentry::createUser(array(
-                    'username'  => $user['nickname'];
-                    'avatar'    => $user['headimgurl'];
-                    'gender'    => $user['sex'];
-                    'email'     => $user['unionid'];
-                    'openid'    => $user['openid'];
-                    'unionid'   => $user['unionid'];
+                    'username'  => $user['nickname'],
+                    'avatar'    => $user['headimgurl'],
+                    'gender'    => $user['sex'],
+                    'email'     => $user['unionid'],
+                    'openid'    => $user['openid'],
+                    'unionid'   => $user['unionid'],
                     'activated' => 'true'
                 ));
             // }
