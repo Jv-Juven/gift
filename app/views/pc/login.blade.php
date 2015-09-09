@@ -15,9 +15,9 @@
 		<!-- <div class="login-components-wrapper login-components-bg"></div> -->
 		<div class="login-components-wrapper login-components-board">
 			<ul class="login-board-menu">
-				<li class="active"><a href="javascript:">注册</a></li>
+				<li><a href="javascript:">注册</a></li>
 				<li><a href="javascript:">登录</a></li>
-				<li><a href="javascript:">下载APP</a></li>
+				<li class="active menu-item-last"><a href="javascript:">下载APP</a></li>
 			</ul>
 			<div id="register" class="login-board" style="display: none;">
 				<div class="login-btn QQ">
@@ -45,7 +45,7 @@
 					</a>
 				</div>
 			</div>
-			<div id="login" class="login-board">
+			<div id="login" class="login-board" style="display: none;">
 				<div class="login-btn QQ">
 					<a class="a-block" href="/">
 						<span class="login-btn-icon">
@@ -72,7 +72,25 @@
 				</div>
 			</div>
 			<div id="download" class="login-board">
-				
+				<ul class="download-list clearx">
+					<li>
+						<span class="download-list-text">
+							iPhone版
+						</span>
+						<a href="/">
+							<img src="/images/pc/login/iphone_btn.png">
+						</a>
+					</li>
+					<li>
+						<span class="download-list-text">
+							Android版
+						</span>
+						<a href="/">
+							<img src="/images/pc/login/android_btn.png">
+						</a>
+					</li>
+				</ul>
+				<img class="code-img" src="/images/pc/login/code.png">
 			</div>
 		</div>
 	</div>
