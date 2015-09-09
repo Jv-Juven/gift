@@ -31,16 +31,6 @@ Route::group(array('prefix' => 'home'),function(){
 	});
 });
 
-Route::controller('/login', 'AdminController');
-
-Route::group(array('prefix' =>'weixin'), function(){
-	
-	Route::get('/', 'WeixinController@valid');
-	Route::get('test', 'WeixinController@responseMsg');
-	Route::get('code', 'WeixinAuthController@code');
-	Route::get('access', 'WeixinAuthController@accessToken');
-});
-
 Route::group(array('prefix' => 'user'),function()
 {
 	//注册—获取注册页面
@@ -167,6 +157,21 @@ Route::group(array('prefix'=>'notice'),function(){
 
 //七牛
 Route::get('qiniu', 'UploadController@getUpToken');
+//后台管理
+Route::controller('/login', 'AdminController');
+//微信认证登录
+Route::group(array('prefix' =>'weixin'), function(){
+	//app端	
+	Route::get('/', 'WeixinController@valid');
+	Route::get('test', 'WeixinController@responseMsg');
+	Route::get('code', 'WeixinAppAuthController@code');
+	Route::get('access', 'WeixinAppAuthController@accessToken');
+
+	//web端
+	Route::get('web_code', 'WeixinWebAuthController@code');
+	Route::get('web_access', 'WeixinWebAuthController@accessToken');
+});
+
 
 Route::get('test','StaticController@imageWH');
 

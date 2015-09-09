@@ -23,9 +23,21 @@ class MysqlController extends BaseController{
 		$gift_posters = json_decode(file_get_contents(app_path().'/storage/gift_posters.txt'));
 		$gift_photo_intros = json_decode(file_get_contents(app_path().'/storage/gift_photo_intros.txt'));
 		
+		foreach( $topics as $topic)
+		{
+			$t = New Topic;
+			$t->id = $topic->id;
+			$t->title = $topic->title;
+			$t->content = $topic->content;
+			$t->topic_url = $topic->topic_url;
+			if( !$t->save())
+				return 'topic_false';
+		}
+		
 		foreach( $gifts as $gift)
 		{
 			$g = New Gift;
+			$g->id = $gift->id;
 			$g->topic_id = $gift->topic_id;
 			$g->title = $gift->title;
 			$g->price = $gift->price;
@@ -34,23 +46,14 @@ class MysqlController extends BaseController{
 				return 'gift_false';
 		}
 
-		foreach( $topics as $topic)
-		{
-			$t = New Topic;
-			$t->title = $topic->title;
-			$t->content = $topic->content;
-			$t->topic_url = $topic->tipic_url;
-			if( !$t->save())
-				return 'topic_false';
-		}
 
-		foreach( $topic_posters as $topic_poster)
+		foreach( $gift_posters as $gift_poster)
 		{
-			$tp = New TopicPoster;
-			$tp->gift_id = $topic_poster->gift_id;
-			$tp->url = $topic_poster->url;
+			$tp = New GiftPoster;
+			$tp->gift_id = $gift_poster->gift_id;
+			$tp->url = $gift_poster->url;
 			if( !$tp->save())
-				return 'topic_poster_false';
+				return 'gift_poster_false';
 		}
 
 		foreach( $gift_photo_intros as $gift_photo_intro)
@@ -61,6 +64,6 @@ class MysqlController extends BaseController{
 			if(!$gpi->save())
 				return 'gift_photo_intro_false';
 		} 
-			return ture;
+			return Response::json(array('errCode'=>0, 'message'=>'插入成功'));
 	}
 }
