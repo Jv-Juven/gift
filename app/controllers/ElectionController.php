@@ -74,6 +74,7 @@ class ElectionController extends BaseController{
 		//标签没有的情况
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
+			$gifts = StaticController::page($per_page,$page,$gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
@@ -85,6 +86,7 @@ class ElectionController extends BaseController{
 		{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
+			$gifts = StaticController::page($per_page,$page,$gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
