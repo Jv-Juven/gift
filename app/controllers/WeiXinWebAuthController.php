@@ -1,6 +1,6 @@
 <?php
 
-class WeiXinWebAuthController extends BaseController{
+class WeixinWebAuthController extends BaseController{
 
 	private $appid = 'wx28b883bf7df1800e';
 	private $appsecret = 'f496493d33d58b0084079ad3b980421b';
