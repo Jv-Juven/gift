@@ -42,6 +42,8 @@ class MigrationCartalystSentryInstallUsers extends Migration {
 			$table->string('phone')->unique();//手机号
 			$table->string('role_id')->nullable();//管理员role_id = 3
 			$table->string('postion')->nullable();//职业
+			$table->string('openid')->nullable();
+			$table->string('unionid')->nullable();
 
 			$table->text('permissions')->nullable();
 			$table->boolean('activated')->default(0);
