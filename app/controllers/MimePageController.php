@@ -38,7 +38,7 @@ class MimePageController extends BaseController{
 						->first();
 			if(isset($article_url))
 			{
-				$article->url = $article_url->content;
+				$article->img = StaticController::imageWH($article_url->content);
 			}
 
 			$article_text = ArticlePart::where('article_id', '=', $article->id)
@@ -139,7 +139,7 @@ class MimePageController extends BaseController{
 			foreach($gifts as $candy)
 			{
 				$url = GiftPoster::where('gift_id','=',$candy->id)->first()->url;
-				$candy->url = StaticController::imageWH($url);
+				$candy->img = StaticController::imageWH($url);
 			}
 		}
 	
