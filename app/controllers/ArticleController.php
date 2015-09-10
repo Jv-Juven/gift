@@ -243,7 +243,7 @@ class ArticleController extends BaseController{
 		if(count($join_focus) == 1)
 		{
 			$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('join_id', '=', $gift_id);
+							->where('join_id', '=', $join_id);
 			if(!$join_focus->delete())
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
