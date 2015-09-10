@@ -4,7 +4,7 @@ class QqAuthController extends BaseController{
 
 	private $appid = '101250808';
     private $appsecret = '8fa68d1e497d7e2759afa38fbd24a545';
-	private $redirect_uri = "http://gift.zerioi.com/home";
+	private $redirect_uri = "http://gift.zerioi.com/qq/web_access";
 	
 	private static function get($url)
     {
