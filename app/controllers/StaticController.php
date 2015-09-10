@@ -160,5 +160,4 @@ class StaticController extends BaseController{
 		return $data;
 	}
 
-
 }

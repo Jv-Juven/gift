@@ -173,7 +173,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 });
 
 
-// Route::get('test','StaticController@stringToArray');
+Route::get('test','QqAuthController@getOpenidFromString');
 
 
 Route::get('extract','MysqlController@extractData');

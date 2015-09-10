@@ -74,7 +74,12 @@ class QqAuthController extends BaseController{
         return $res;
     }
 
-    
+    // 从字符串中获取openid
+    public function getOpenidFromString($string)
+    {
+    	return substr($string,-4,32);
+    }
+
     //获取code
     public function code()
     {
@@ -94,8 +99,8 @@ class QqAuthController extends BaseController{
         $refresh_token = $data['refresh_token'];
         
         $data_of_openid = $this->getOpenidByAccessToken($access_token);
-        $data_of_openid = StaticController::stringToArray($data_of_openid);
-
+        $data_of_openid = $this->getOpenidFromString($data_of_openid);
+        dd($data_of_openid);
         $open_id = $data_of_openid['openid'];
         $user = $this->getUserInfoByOpenid($access_token, $open_id);
         $user = StaticController::stringToArray($user);
