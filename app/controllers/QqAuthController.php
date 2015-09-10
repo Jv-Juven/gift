@@ -65,7 +65,7 @@ class QqAuthController extends BaseController{
     	return $res;
     }
 
-    //4.拉取用户信息(需scope为 snsapi_userinfo)
+    //4.拉取用户信息(需scope为 get_user_info)
     public function getUserInfoByOpenid($access_token,$openid)
     {
     	$url = "https://graph.qq.com/user/get_user_info?access_token={$access_token}&oauth_consumer_key={$this->appid}&openid={$openid}";
@@ -77,7 +77,11 @@ class QqAuthController extends BaseController{
     // 从字符串中获取openid
     public function getOpenidFromString($string)
     {
-    	return substr($string,45,32);
+    	// return substr($string,45,32);
+        $string = str_replace('callback(', '', $string);
+        $string = str_replace(');', '', $string);
+        $string = json_decode($string);
+        return $string->openid;
     }
 
     //获取code
