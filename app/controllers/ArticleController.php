@@ -49,7 +49,7 @@ class ArticleController extends BaseController{
 			return Response::json(array('errCode'=>4, 'message'=>'[com_id对应的评论不存在]你回复的评论不存在！'));
 		//新增回复
 		$reply = New ArticleJoinReply;
-		$reply->receiver_id 	= $join_com->user_id;
+		$reply->receiver_id 	= $join_com->sender_id;
 		$reply->sender_id 	= $user->id;
 		$reply->com_id 	= $com_id;
 		$reply->content 	= $content;
