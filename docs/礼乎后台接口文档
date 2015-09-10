@@ -945,7 +945,43 @@
 					errCode:xxx,	错误码	0表示返回正常	 
 					message:xxx		提示信息
 				｝
+	4.app微信授权登录
+		请求方式:	GET
+		请求url:	/weixin/weixin_data
 
+		请求参数:	 
+				data 				用户信息
+
+		返回参数 :	
+				
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+					user:{
+						id,
+						avatar,
+						username,
+					}
+				｝
+	5.appQQ授权登录
+		请求方式:	GET
+		请求url:	/qq/qq_data
+
+		请求参数:	 
+				data 				用户信息
+				openid    			用户唯一信息
+
+		返回参数 :	
+				
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+					user:{
+						id,
+						avatar,
+						username,
+					}
+				｝
 
 <--------H5接口--------->
 1.我喜欢的礼品
