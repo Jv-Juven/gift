@@ -20,6 +20,43 @@
 		height: 400px;
 		top: 0px;
 		left: 0px; 
+		.search-wrapper{
+			padding: 30px 0px;
+			width: 100%;
+			.search-box{
+				@box-width: 400px;
+				width: @box-width;
+				height: 50px;
+				overflow: hidden;
+				border-radius: 8px;
+				border: 1px solid @red-color;
+				margin: 0px auto;
+				.search-input{
+					float: left;
+					height: 100%;
+					border: 0px;
+					width: 350px;
+					padding-left: 5px;
+					font-size: 18px;
+					color: rgb(203, 203, 203);
+					letter-spacing: 1px;
+					&:focus{
+						outline: none;
+					}
+				}
+				.search-input-icon{
+					float: left;
+					height: 100%;
+					width: @box-width - 350 - 5;
+					background: @red-color;
+					text-align: center;
+					img{
+						width: 22px;
+						margin: 15px auto;
+					}
+				}
+			}
+		}
 	}
 	.home-topics-container{
 		position: relative;
@@ -31,7 +68,7 @@
 		.home-menu-wrapper{
 			float: none;
 			margin: 32px auto;
-			overflow: hidden;
+			// overflow: hidden;
 			width: 408px;
 			padding: 10px 0px;
 			background: rgb(255, 255, 255);
@@ -40,6 +77,7 @@
 				width: 33.3%;
 				margin-left: -1px;
 				border-left: 1px solid rgb(210, 210, 210);
+				position: relative;
 				.home-a-text{
 					padding: 2px 0px;
 					.a-text();
@@ -48,22 +86,36 @@
 					text-align: center;
 					width: 100%;
 				}
+
+				.under-line{
+					display: none;
+					width: 135px;
+					position: absolute;
+					top: 28px;
+					left: 1px;
+				}
+			}
+			.first{
+				border: 0px;
 			}
 			.active{
 				a{
 					color: rgb(234, 78, 77) !important;
 				}
+				.under-line{
+					display: block;
+				}
 			}
 		}
 		.home-wrappers{
-			width: 740px;
+			width: 900px;
 			height: auto;
 			margin: 0px auto;
 			padding-bottom: 36px;
 			&>ul{
-				width: 750px;
+				width: 920px;
 				height: auto;
-				margin: -10px 0px 0px -10px;
+				margin: -20px 0px 0px -20px;
 				a{
 					display: block;
 					width: 100%;
@@ -79,11 +131,11 @@
 		.home-topics-wrapper{
 			.home-topics-content{
 				.home-topics-box{
-					width: 240px;
-					height: 160px;
+					width: 286.6px;
+					height: 195px;
 					overflow: hidden;
 					float: left;
-					margin: 10px 0px 0px 10px;					
+					margin: 20px 0px 0px 20px;					
 				}	
 			}
 		}
@@ -91,11 +143,11 @@
 			.home-recommend-content{
 				.home-recommend-box{
 					position: relative;
-					width: 177.5px;
-					height: 200px;
+					width: 210px;
+					height: 238px;
 					overflow: hidden;
 					float: left;
-					margin: 10px 0px 0px 10px;
+					margin: 20px 0px 0px 20px;
 					span{
 						display: inline-block;
 					}
@@ -105,25 +157,27 @@
 						left: 0px;
 						width: 100%;
 						height: 100%;
+						overflow: hidden;
 						background: url("/images/pc/home/cover_bg.png");
 						.box-cover-title{
 							position: relative;
 							width: 100%;
-							font-size: 16px;
+							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
-							text-align: center;
-							padding-top: 90px;
+							// text-align: center;
+							padding-left: 24px;
+							padding-top: 160px;
 						}
 						.box-cover-price{
 							padding-top: 10px;
-							font-size: 16px;
+							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
 							position: relative;
 							width: 100%;
 							&>span{
-								padding: 7px 24px;
+								padding: 7px 20px;
 							}
 						}
 						.box-cover-like{
@@ -141,11 +195,11 @@
 			.home-hot-content{
 				.home-hot-box{
 					position: relative;
-					width: 365px;
-					height: 240px;
+					width: 440px;
+					height: 290px;
 					overflow: hidden;
 					float: left;
-					margin: 10px 0px 0px 10px;
+					margin: 20px 0px 0px 20px;
 					span{
 						display: inline-block;
 					}
@@ -166,7 +220,7 @@
 								color: rgb(255, 255, 255);
 								font-size: 18px;
 								font-weight: bold;
-								margin: 155px 10px 0px 10px;
+								margin: 210px 10px 0px 10px;
 								line-height: 24px;
 							}
 							.home-hot-info{
