@@ -148,7 +148,7 @@ class QqAuthController extends BaseController{
             return Redirect::to('/home')->with(array('user'=>$user));
         }
 
-        $user = Sentry::findUserById($unionid_user->id);
+        $user = Sentry::findUserById($user->id);
         Sentry::login($user,false);
         
         return Redirect::to('/home')->with(array('user'=>$user));
