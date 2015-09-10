@@ -42,7 +42,7 @@ class QqAuthController extends BaseController{
     //2、通过code换取网页授权access_token
      public function getAccessTokenByCode($code)
     {
-    	$redirect_uri = urlencode($this->$redirect_uri);
+    	$redirect_uri = urlencode($this->redirect_uri);
     	$url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={$this->appid}&client_secret={$this->appsecret}&code={$code}&state=&redirect_uri={$redirect_uri}";
         $res = json_decode(self::get($url), TRUE);
 
