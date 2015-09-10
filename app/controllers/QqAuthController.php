@@ -77,7 +77,7 @@ class QqAuthController extends BaseController{
     // 从字符串中获取openid
     public function getOpenidFromString($string)
     {
-    	return substr($string,44,32);
+    	return substr($string,45,32);
     }
 
     //获取code
