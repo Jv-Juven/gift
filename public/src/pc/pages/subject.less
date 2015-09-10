@@ -1,35 +1,16 @@
-@import "product.less";
-
-.page-content{
-    border-top: solid #f73939 1px;
-}
+@import "../components/product.less";
 
 .container{
-    width: 980px;   
-    margin: 20px auto;
+    .container;
 
     .topic-wrap{
-        width: 600px;
-        margin-left: 32px;
-        float: left;
+        .container-left;
     }
+}
 
-    .gift-ad-wrap{
-        width: 310px;
-        overflow: hidden;
-        float: right;
-        img{
-            margin-bottom: 10px;
-            width: 100%;
-            display: block;
-        }
-    }
-
-    .icon{
-        display: inline-block;
-    }
-    .num{
-       
+.product-list{
+    .product{
+        .product;
     }
 }
 
@@ -47,17 +28,13 @@
 
     .info{
         @info-item-left: 18px;
-        color: @color-num;
         font-size: 12px;
         line-height: 15px;
         margin-top: 20px;
         margin-left: -@info-item-left;
 
-        .icon{
-            vertical-align: -1px;
-        }
-
         .num{
+            margin-left: 3px;
             line-height: 14px;
         }
 
