@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder {
 		// $this->call('ArticlePartsTableSeeder');
 		// $this->call('ArticleJoinsTableSeeder');
 		// $this->call('ArticleJoinPartsTableSeeder');
-		$this->call('ArticleJoinComsTableSeeder');
+		// $this->call('ArticleJoinComsTableSeeder');
 		// $this->call('ArticleJoinReplysTableSeeder');
 		// $this->call('CharactorsTableSeeder');
 		// $this->call('ObjectsTableSeeder');
