@@ -36,10 +36,10 @@ class ArticleController extends BaseController{
 		// $receiver_id = Input::get('receiver_id');
 		$com_id = Input::get('com_id');
 		$content = Input::get('content');
-		$receiver = User::find($receiver_id);
+		// $receiver = User::find($receiver_id);
 		
-		if(!isset($receiver))
-			return Response::json(array('errCode'=>2, 'message'=>'[数据库中没有receiver_id对应的user]被评论者不存在'));
+		// if(!isset($receiver))
+		// 	return Response::json(array('errCode'=>2, 'message'=>'[数据库中没有receiver_id对应的user]被评论者不存在'));
 		
 		if(empty($content))
 			return Response::json(array('errCode'=>3, 'message'=>'[content没有内容]请填写评论论文！'));
@@ -49,7 +49,7 @@ class ArticleController extends BaseController{
 			return Response::json(array('errCode'=>4, 'message'=>'[com_id对应的评论不存在]你回复的评论不存在！'));
 		//新增回复
 		$reply = New ArticleJoinReply;
-		$reply->receiver_id 	= $join_com->user_id;
+		$reply->receiver_id 	= $join_com->sender_id;
 		$reply->sender_id 	= $user->id;
 		$reply->com_id 	= $com_id;
 		$reply->content 	= $content;
@@ -243,7 +243,7 @@ class ArticleController extends BaseController{
 		if(count($join_focus) == 1)
 		{
 			$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('join_id', '=', $gift_id);
+							->where('join_id', '=', $join_id);
 			if(!$join_focus->delete())
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
