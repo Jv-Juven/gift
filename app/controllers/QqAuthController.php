@@ -44,7 +44,7 @@ class QqAuthController extends BaseController{
     {
     	$redirect_uri = urlencode($this->redirect_uri);
     	$url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={$this->appid}&client_secret={$this->appsecret}&code={$code}&redirect_uri={$redirect_uri}";
-        $res = json_decode(self::get($url), TRUE);
+        $res = self::get($url);
 
         return $res;
     }
@@ -61,7 +61,7 @@ class QqAuthController extends BaseController{
     public function getOpenidByAccessToken($access_token)
     {
     	$url = "https://graph.qq.com/oauth2.0/me?access_token={$access_token}";
-    	$res = json_decode(self::get($url), TRUE);
+    	$res = self::get($url);
     	return $res;
     }
 
@@ -69,7 +69,7 @@ class QqAuthController extends BaseController{
     public function getUserInfoByOpenid($access_token,$openid)
     {
     	$url = "https://graph.qq.com/user/get_user_info?access_token={$access_token}&oauth_consumer_key={$this->appid}&openid={$openid}";
-        $res = json_decode(self::get($url), TRUE);
+        $res = self::get($url);
 
         return $res;
     }
@@ -89,11 +89,16 @@ class QqAuthController extends BaseController{
         // Session::put('code', Input::get('code'));
         $code = Input::get('code');
         $data = $this->getAccessTokenByCode($code);
+        $data = StaticController::stringToArray($data);
         $access_token = $data['access_token'];
         $refresh_token = $data['refresh_token'];
+        
         $data_of_openid = $this->getOpenidByAccessToken($access_token);
+        $data_of_openid = StaticController::stringToArray($data_of_openid);
+
         $open_id = $data_of_openid['openid'];
         $user = $this->getUserInfoByOpenid($access_token, $open_id);
+        $user = StaticController::stringToArray($user);
         dd($user);
         if(!isset($unionid_user))
         {

@@ -173,7 +173,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 });
 
 
-Route::get('test','StaticController@imageWH');
+// Route::get('test','StaticController@stringToArray');
 
 
 Route::get('extract','MysqlController@extractData');

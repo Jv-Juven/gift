@@ -140,4 +140,25 @@ class StaticController extends BaseController{
 		return $gifts;
 	}
 
+	public static function stringToArray($string)
+	{	
+		$data = array();
+		if(str_contains($string,'&'))
+		{	
+			//获得refresh_token=4CEA11
+			$arr = explode('&', $string);
+			foreach( $arr as $values)
+			{	
+				//获得refresh_token 和 4CEA11
+				$value = explode('=', $values);
+				$data = array_merge($data, array($value[0]=>$value[1]));
+			}
+				return $data;
+		}
+		$string = explode('=', $string);
+		$data = array_merge($data, array($string[0]=>$string[1]));
+		return $data;
+	}
+
+
 }
