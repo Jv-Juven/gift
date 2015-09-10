@@ -4,7 +4,7 @@ class QqAuthController extends BaseController{
 
 	private $appid = '101250808';
     private $appsecret = '8fa68d1e497d7e2759afa38fbd24a545';
-	private $redirect_url = 'http://gift.zerioi.com';
+	private $redirect_url = "http://gift.zerioi.com/home";
 	
 	private static function get($url)
     {
@@ -35,7 +35,7 @@ class QqAuthController extends BaseController{
     public function getOAuthConnectUri($redirect_uri, $state = '', $scope = 'get_user_info')
     {
         $redirect_uri = urlencode($redirect_uri);
-        $res = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id={$this->appid}&redirect_uri={$redirect_uri}&scope=$scope";
+        $res = "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id={$this->appid}&redirect_uri={$redirect_uri}&scope=$scope&state=1";
 
         return $res;
     }
@@ -43,7 +43,7 @@ class QqAuthController extends BaseController{
      public function getAccessTokenByCode($code)
     {
     	$redirect_uri = urlencode($this->$redirect_uri);
-    	$url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={$this->appid}&client_secret={$this->appsecret}&code={$code}&state=&redirect_uri={redirect_uri}";
+    	$url = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={$this->appid}&client_secret={$this->appsecret}&code={$code}&state=&redirect_uri={$redirect_uri}";
         $res = json_decode(self::get($url), TRUE);
 
         return $res;
