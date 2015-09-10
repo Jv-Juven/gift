@@ -4,7 +4,7 @@ class QqAuthController extends BaseController{
 
 	private $appid = '101250808';
     private $appsecret = '8fa68d1e497d7e2759afa38fbd24a545';
-	private $redirect_url = "http://gift.zerioi.com/home";
+	private $redirect_uri = "http://gift.zerioi.com/home";
 	
 	private static function get($url)
     {
@@ -48,14 +48,14 @@ class QqAuthController extends BaseController{
 
         return $res;
     }
-    // //3.刷新access_token（如果需要）
-    // public function refreshAccessToken($refresh_token)
-    // {
-    //     $url = "https://api.weixin.qq.com/sns/oauth2/refresh_token?appid={$this->appid}&grant_type=refresh_token&refresh_token=$refresh_token";
-    //     $res = json_decode(self::get($url), TRUE);
+    //3.刷新access_token（如果需要）
+    public function refreshAccessToken($refresh_token)
+    {
+    	$url = "https://graph.qq.com/oauth2.0/token?grant_type=refresh_token&client_id={$this->appid}&client_secret={$this->appsecret}&refresh_token={$refresh_token}";
+        $res = json_decode(self::get($url), TRUE);
 
-    //     return $res;
-    // }
+        return $res;
+    }
 
     //通过Access Token来获取用户的OpenID
     public function getOpenidByAccessToken($access_token)
@@ -90,6 +90,7 @@ class QqAuthController extends BaseController{
         $code = Input::get('code');
         $data = $this->getAccessTokenByCode($code);
         $access_token = $data['access_token'];
+        $refresh_token = $data['refresh_token'];
         $data_of_openid = $this->getOpenidByAccessToken($access_token);
         $open_id = $data_of_openid['openid'];
         $user = $this->getUserInfoByOpenid($access_token, $open_id);
