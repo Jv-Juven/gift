@@ -36,10 +36,10 @@ class ArticleController extends BaseController{
 		// $receiver_id = Input::get('receiver_id');
 		$com_id = Input::get('com_id');
 		$content = Input::get('content');
-		$receiver = User::find($receiver_id);
+		// $receiver = User::find($receiver_id);
 		
-		if(!isset($receiver))
-			return Response::json(array('errCode'=>2, 'message'=>'[数据库中没有receiver_id对应的user]被评论者不存在'));
+		// if(!isset($receiver))
+		// 	return Response::json(array('errCode'=>2, 'message'=>'[数据库中没有receiver_id对应的user]被评论者不存在'));
 		
 		if(empty($content))
 			return Response::json(array('errCode'=>3, 'message'=>'[content没有内容]请填写评论论文！'));
