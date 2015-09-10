@@ -1,9 +1,14 @@
-@import "../components/product.less";
+
+@import "../components/define.less";
+@import "../components/container.less";
+@import "../components/product/product.less";
+@import "../components/post_info/post_info.less";
+@import "../components/comment/comment.less";
 
 .container{
     .container;
 
-    .topic-wrap{
+    .subject-wrap{
         .container-left;
     }
 }
@@ -14,14 +19,18 @@
     }
 }
 
-.topic{
+.post-common;
+
+.comment-common;
+
+.subject{
     .pic{
         width: 100%;
     }
 
     .title{
-        font-size: 16px;
-        font-weight: 900;
+        font-size: 20px;
+        font-weight: normal;
         margin-top: 23px;
         font-family: "SimHei";
     }
