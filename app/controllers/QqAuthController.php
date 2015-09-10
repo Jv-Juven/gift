@@ -69,7 +69,7 @@ class QqAuthController extends BaseController{
     public function getUserInfoByOpenid($access_token,$openid)
     {
     	$url = "https://graph.qq.com/user/get_user_info?access_token={$access_token}&oauth_consumer_key={$this->appid}&openid={$openid}";
-        $res = self::get($url);
+        $res = json_decode(self::get($url), TRUE);
 
         return $res;
     }
@@ -77,8 +77,7 @@ class QqAuthController extends BaseController{
     // 从字符串中获取openid
     public function getOpenidFromString($string)
     {
-    	substr_replace(string, replacement, start)
-    	return substr($string,-4,32);
+    	return substr($string,44,32);
     }
 
     //获取code
@@ -100,23 +99,20 @@ class QqAuthController extends BaseController{
         $refresh_token = $data['refresh_token'];
         
         $data_of_openid = $this->getOpenidByAccessToken($access_token);
-        $data_of_openid = $this->getOpenidFromString($data_of_openid);
-        dd($data_of_openid);
-        $open_id = $data_of_openid['openid'];
-        $user = $this->getUserInfoByOpenid($access_token, $open_id);
-        $user = StaticController::stringToArray($user);
-        dd($user);
-        if(!isset($unionid_user))
+        $openid = $this->getOpenidFromString($data_of_openid);
+        
+        $user = User::where('qq_id','=', $openid)->first();
+        if(!isset($user))
         {
             // try{
+                $user = $this->getUserInfoByOpenid($access_token, $openid);
                 $client_user = Sentry::createUser(array(
                     'username'  => $user['nickname'],
-                    'avatar'    => $user['headimgurl'],
-                    'gender'    => $user['sex'],
-                    'email'     => $user['unionid'],
-                    'password'  => $user['unionid'],
-                    'openid'    => $user['openid'],
-                    'unionid'   => $user['unionid'],
+                    'avatar'    => $user['figureurl'],
+                    'gender'    => $user['gender'],
+                    'email'     => $openid,
+                    'password'  => $openid,
+                    'qq_id'     => $openid,
                     'activated' => '1'
                 ));
             // }
@@ -145,12 +141,12 @@ class QqAuthController extends BaseController{
             // {
             //     return View::make('errors.missing')
             // }
-            return Redirect::to('/')->with(array('user'=>$user));
+            return Redirect::to('/home')->with(array('user'=>$user));
         }
 
         $user = Sentry::findUserById($unionid_user->id);
         Sentry::login($user,false);
         
-        return Redirect::to('/')->with(array('user'=>$user));
+        return Redirect::to('/home')->with(array('user'=>$user));
     } 
 }
