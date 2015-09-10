@@ -149,4 +149,55 @@ class QqAuthController extends BaseController{
         
         return Redirect::to('/home')->with(array('user'=>$user));
     } 
+
+    public function storeUserData()
+    {   
+        $openid = Input::get('openid');
+        $data = Input::get('data');
+        $user = User::where('openid', '=', $openid)->first();
+        if(!isset($user))
+        {
+            // try{
+                $client_user = Sentry::createUser(array(
+                    'username'  => $data['nickname'],
+                    'avatar'    => $data['figureurl'],
+                    'gender'    => $data['gender'],
+                    'email'     => $openid,
+                    'password'  => $openid,
+                    'qq_id'     => $openid,
+                    'activated' => '1'
+                ));
+            // }
+            // catch(Cartalyst\Sentry\Users\PasswordRequiredException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserExistsException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            
+            // try{
+                $user = Sentry::findUserById($client_user->id);
+                Sentry::login($user,false);
+            // }
+            // catch(Cartalyst\Sentry\Users\LoginRequiredException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
+            // {
+            //     return View::make('errors.missing');
+            // }
+            // catch(Cartalyst\Sentry\Users\UserNotActivatedException $e)
+            // {
+            //     return View::make('errors.missing')
+            // }
+            return Response::json(array('errCode'=>0, 'message'=>'用户返回参数','user'=>$user));
+        }
+        $user = Sentry::findUserById($user->id);
+        Sentry::login($user,false);
+        
+        return Response::json(array('errCode'=>0, 'message'=>'用户返回参数','user'=>$user));
+    }
 }

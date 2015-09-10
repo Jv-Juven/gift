@@ -162,11 +162,7 @@ Route::controller('/login', 'AdminController');
 //微信认证登录
 Route::group(array('prefix' =>'weixin'), function(){
 	//app端	
-	Route::get('/', 'WeixinController@valid');
-	Route::get('test', 'WeixinController@responseMsg');
-	Route::get('code', 'WeixinAppAuthController@code');
-	Route::get('access', 'WeixinAppAuthController@accessToken');
-
+	Route::get('weixin_data', 'WeixinAppAuthController@storeUserData');
 	//web端
 	Route::get('web_code', 'WeixinWebAuthController@code');
 	Route::get('web_access', 'WeixinWebAuthController@accessToken');
@@ -186,6 +182,9 @@ Route::get('home', function(){
 
 //QQ授权登录
 Route::group(array('prefix'=>'qq'), function(){
+	//app端
+	Route::get('qq_data','QqAuthController@storeUserData');
+	//web端
 	Route::get('web_code', 'QqAuthController@code');
 	Route::get('web_access', 'QqAuthController@accessToken');
 });
