@@ -26,8 +26,10 @@ Route::group(array('prefix' => 'home'),function(){
 	Route::get('topic', 'HomePageController@topic');
 	//用户收藏
 	Route::group(array('before'=>'auth.user.isIn'), function(){
-		//收藏
+		//收藏礼品
 		Route::post('collection','HomeController@collection');
+		//收藏专题
+		Route::post('topicCollection','HomeController@topicCollection');
 	});
 });
 
@@ -200,8 +202,13 @@ Route::group(array('prefix' => 'pc_home'),function(){
 Route::group(array('prefix' => 'detail'), function(){
 	//专题详情页
 	Route::get('topic','PcDetailController@topicDetail');
-	//话题详情页
+	//话题详情页-文章
 	Route::get('article','PcDetailController@articleDetail');
+	//话题页中参与话题简讯
+	Route::get('bre_join','PcDetailController@breJoin');
+	//参与话题详情
+	Route::get('join_detail','PcMimeController@joinDetail');
+
 });
 
 //选礼
@@ -228,4 +235,4 @@ Route::group(array('prefix'=>'pc_mime'),function(){
 Route::get('site', 'PcSiteController@perInfo');
 Route::post('site', 'PcSiteController@setInfo');
 
-Route::get('test','PcMimeController@joinArticle');
+Route::get('test','HomePageController@giftDetail');

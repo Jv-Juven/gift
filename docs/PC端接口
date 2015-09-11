@@ -263,5 +263,48 @@
 				}...
 			]
 
-15.
+15.话题页-文章
+	请求方式:	GET
+	请求url:	/detail/article
 
+	请求参数:	
+			article_id 			话题id
+	返回参数:
+				article:{
+					title,		题目	
+					scan_num,	浏览人数
+					join_num,	参与话题人数
+					focus_num,	收藏人数
+				}
+				article_parts:[
+					{
+					content,	内容	
+					type,		text／url
+					}...
+				]
+
+16.话题页中参与话题简讯
+	请求方式:	GET
+	请求url:	/detail/bre_join
+
+	请求参数:	
+			article_id,	 		话题id
+			per_page,			每页数
+			page,				第几页
+
+
+	返回参数:
+			article_joins:[
+				{
+					
+				}
+			]
+
+17.参与话题详情
+	请求方式:	GET
+	请求url:	/detail/join_detail
+
+	请求参数:	
+
+	返回参数:
+			返回视图：pc.home

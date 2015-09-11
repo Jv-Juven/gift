@@ -70,10 +70,9 @@ class PcDetailController extends BaseController{
 		if(!isset($article))
 			return Response::view('errors.missing');
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
+		return View::make('pc.')->with(array(
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
-						'total'=>$total
 					));
 	}
 
@@ -156,16 +155,16 @@ class PcDetailController extends BaseController{
 		}
 		if($page == 1)
 		{
-			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
-							'article_join' => $article_join,
-							'article_join_parts' => $article_join_parts,
-							'join_coms' => $join_coms,
-							'total'=>$total
+			return View::make('pc.')->with(array(
+							'article_join' 			=> $article_join,
+							'article_join_parts' 	=> $article_join_parts,
+							'join_coms' 			=> $join_coms,
+							'total'					=> $total
 						));
 		}else{
 			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
 							'join_coms' => $join_coms,
-							'total'=>$total
+							'total'		=> $total
 						));
 		}
 	}
