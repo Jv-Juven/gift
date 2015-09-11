@@ -226,7 +226,7 @@ class UserController extends BaseController{
 		Session::put('reset_email', $email);
 		Session::put('reset_code', $code);
 
-		return Response::json(array('errCode'=>0, 'message'=>'发送成功！'.$code));
+		return Response::json(array('errCode'=>0, 'message'=>'发送成功！','code'=>$code));
 	}
 
 	//重置密码
