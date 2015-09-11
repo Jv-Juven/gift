@@ -60,8 +60,7 @@ class PcElectionController extends BaseController{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
-			
-			
+			$gifts = $this->addGiftPhotoAndFocus($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
@@ -74,20 +73,16 @@ class PcElectionController extends BaseController{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
+			$gifts = $this->addGiftPhotoAndFocus($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
 										));
 		}
-		//有的情况
-		foreach($gifts as $gift)
-		{
-			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
-			$gift->img = $url;
-		}
 
 		$total = $per_page == ceil(count($gifts)/$per_page);
 		$gifts = StaticController::page($per_page,$page,$gifts);
+		$gifts = $this->addGiftPhotoAndFocus($gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
 									'gifts'=>$gifts,
 									'total'=>$total
