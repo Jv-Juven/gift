@@ -8,10 +8,35 @@
 
 @section("body")
 	<div class="page-content">
+		<!-- 幻灯片 START	 -->
 		<div class="home-swiper-container">
-			<!-- <img style="width: 100%; height: 100%;" src="/images/pc/home/homepic1.png"> -->
-			
+			<div class="swiper-wrapper">
+			    <div class="swiper-slide">
+			    	<a class="link-wrapper" href="/">
+			    		<img src="/images/pc/home/homepic1.png">
+			    	</a>
+			    </div>
+			    <div class="swiper-slide">
+			    	<a class="link-wrapper" href="/">
+			    		<img src="/images/pc/home/homepic1.png">
+			    	</a>
+		    	</div>
+			    <div class="swiper-slide">
+			    	<a class="link-wrapper" href="/">
+			    		<img src="/images/pc/home/homepic1.png">
+			    	</a>
+		    	</div>
+			</div>
+			<div class="home-swiper-arrow">
+				<div class="home-prev">
+					<img src="/images/pc/home/arrow_left.png">
+				</div>
+				<div class="home-next">
+					<img src="/images/pc/home/arrow_right.png">
+				</div>
+			</div>
 		</div>
+		<!-- 幻灯片 END	 -->
 		<div class="home-seach">
 			<div class="search-wrapper">
 				<div class="search-box">
@@ -234,4 +259,5 @@
 
 @section("js")
 	@parent
+	<script type="text/javascript" src="/dist/pc/pages/home.js"></script>
 @stop

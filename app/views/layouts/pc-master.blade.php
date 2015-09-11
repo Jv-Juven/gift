@@ -10,6 +10,7 @@
 	<meta http-equiv="description" content="礼拉">
 	<meta name="author" content="礼拉">
 	@section("css")
+	<link rel="stylesheet" type="text/css" href="/dist/lib/css/idangerous.swiper.css">
 	<link rel="stylesheet" type="text/css" href="/dist/pc/css/common.css">
 	<link rel="stylesheet" type="text/css" href="/dist/pc/css/components.css">
 	@show
@@ -27,6 +28,7 @@
 
 @section("js")
 <script type="text/javascript" src="/dist/lib/js/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/dist/lib/js/idangerous.swiper.min.js"></script>
 <script type="text/javascript" src="/dist/lib/js/lodash.min.js"></script>
 @show
 
