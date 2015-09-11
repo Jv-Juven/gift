@@ -2,6 +2,22 @@
 
 class HomePageController extends BaseController {
 
+	public isLike()
+	{
+		if(Sentry::check())
+		{
+			$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('gift_id', '=', $gift_id)->first();
+		}
+		//判断是否收藏
+		if(isset($gift_focus))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
 	//首页呈现
 	public function showWelcome()
 	{
@@ -100,19 +116,8 @@ class HomePageController extends BaseController {
 		}
 
 		$gift 		= Gift::find($gift_id);
-
-		if(Sentry::check())
-		{
-			$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('gift_id', '=', $gift_id)->first();
-		}
-		//判断是否收藏
-		if(isset($gift_focus))
-		{
-			$type = 1;
-		}else{
-			$type = 0;
-		}
+		//是否喜欢
+		$type = $this->isLike($gift_id);
 
 		if( Request::wantsJson() )
 		{
