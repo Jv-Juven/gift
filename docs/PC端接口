@@ -65,6 +65,33 @@
 			]
 			total: 					总共多少页
 
+5.个人信息静态页
+	请求方式: GET
+	请求url: /site
+
+	请求参数:
+
+	返回参数:
+			视图
+
+6.个人信息设置
+	请求方式: POST
+	请求url: /site
+
+	请求参数:	
+			username,			 用户名
+			avatar,				 头 像
+			gender,				 性别
+			birthday,			 生日
+			constellation,		 星座
+			postion,			 职业
+			info,				 个性签名
+	返回参数:
+			{
+				errcCode,		 错误码（0正常）			
+				message, 		 信息
+			}
+
 1.专题详情页
 	请求方式:	GET
 	请求url:	/detail/topic
