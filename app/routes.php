@@ -206,6 +206,16 @@ Route::group(array('prefix' => 'detail'), function(){
 	Route::get('article','PcDetailController@articleDetail');
 });
 
+//选礼
+Route::group(array('prefix'=>'pc_election'),function(){
+	//分类标签
+	Route::get('label','PcElectionPageController@label');
+	//通过标签搜索
+	Route::post('selection_by_label','PcElectionController@selectByLabel');
+});
 
+//个人中心设置
+Route::get('site', 'PcSiteController@perInfo');
+Route::post('site', 'PcSiteController@setInfo');
 
 

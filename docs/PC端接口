@@ -65,6 +65,89 @@
 			]
 			total: 					总共多少页
 
+5.个人信息静态页
+	请求方式: GET
+	请求url: /site
+
+	请求参数:
+
+	返回参数:
+			视图
+
+6.个人信息设置
+	请求方式: POST
+	请求url: /site
+
+	请求参数:	
+			username,			 用户名
+			avatar,				 头 像
+			gender,				 性别
+			birthday,			 生日
+			constellation,		 星座
+			postion,			 职业
+			info,				 个性签名
+	返回参数:
+			{
+				errcCode,		 错误码（0正常）			
+				message, 		 信息
+			}
+
+7. 选礼标签
+	请求方式:	GET
+	请求url:	/pc_election/label
+
+	请求参数:	
+
+	返回参数:
+			返回视图：pc.search
+			{
+			_char:[
+				id,					标签id
+				cahr_id,			排序用id
+				_class,				标签名
+			]
+			scene:[
+				id,					标签id
+				scene_id,			排序用id
+				_class,				标签名			
+			]
+			object:[
+				id,					标签id
+				object_id,			排序用id
+				_class,				标签名
+			]
+			price:[
+				id,					标签id
+				price_id,			排序用id
+				_class,				标签名
+			]	
+			}
+
+8.通过标签选礼
+	请求方式: POST
+	请求url: /pc_election/selection_by_label
+
+	请求参数:
+			_char,					赠送对象id				
+			scene,					场合id	
+			object, 				个性id
+			price,					价格id
+
+	返回礼品:
+			{
+			errcCode,
+			message,
+				gifts:{
+					[
+						title,		礼品名称
+						price,		价格
+						focus,		1=收藏，0=没有
+						taobao_url 	购买链接
+					]....
+				}
+			}
+
+
 1.专题详情页
 	请求方式:	GET
 	请求url:	/detail/topic
