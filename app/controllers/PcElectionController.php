@@ -2,6 +2,21 @@
 
 class PcElectionController extends BaseController{
 
+	public function addGiftPhotoAndFocus($gifts)
+	{
+		foreach( $gifts as $gift)
+		{
+			$gift->url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			if( Sentry::check())
+			{
+				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
+				if(isset($gift_focus))
+					$gift->focus = 1;
+				$gift->focus =0
+			}
+		}
+		return $gifts;
+	}
 	//标签
 	public function label()
 	{
@@ -45,6 +60,8 @@ class PcElectionController extends BaseController{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
+			
+			
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total

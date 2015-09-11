@@ -37,6 +37,8 @@
 			</div>
 		</div>
 		<!-- 幻灯片 END	 -->
+
+		<!-- 搜索 START -->
 		<div class="home-seach">
 			<div class="search-wrapper">
 				<div class="search-box">
@@ -46,10 +48,18 @@
 					</div>
 				</div>
 			</div>
+			<div class="search-swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" style="background:rgba(223, 46, 240, 0)"></div>
+					<div class="swiper-slide" style="background:rgba(23, 246, 240, 0)"></div>
+					<div class="swiper-slide" style="background:rgba(148, 246, 190, 0)"></div>
+				</div>
+			</div>
 		</div>
+		<!-- 搜索 END -->
 		<div class="home-topics-container">
 			<ul class="home-menu-wrapper clearx">
-				<li class="home-menu-item first">
+				<li class="home-menu-item first active">
 					<a class="home-a-text" href="javascript:">专题精选</a>
 					<img class="under-line" src="/images/pc/home/underline.png">
 				</li>
@@ -57,12 +67,12 @@
 					<a class="home-a-text" href="javascript:">甄选推荐</a>
 					<img class="under-line" src="/images/pc/home/underline.png">
 				</li>
-				<li class="home-menu-item active">
+				<li class="home-menu-item">
 					<a class="home-a-text" href="javascript:">热门话题</a>
 					<img class="under-line" src="/images/pc/home/underline.png">
 				</li>
 			</ul>
-			<div class="home-wrappers home-topics-wrapper" style="display: none;">
+			<div class="home-wrappers home-topics-wrapper">
 				<ul class="home-topics-content clearx">
 					<li class="home-topics-box">
 						<a href="/">
@@ -217,7 +227,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="home-wrappers home-hot-wrapper">
+			<div class="home-wrappers home-hot-wrapper" style="display: none;">
 				<ul class="home-hot-content clearx">
 					<li class="home-hot-box">
 						<a href="/">
@@ -259,5 +269,5 @@
 
 @section("js")
 	@parent
-	<script type="text/javascript" src="/dist/pc/pages/home.js"></script>
+	<script type="text/javascript" src="/dist/pc/js/pages/home.js"></script>
 @stop
