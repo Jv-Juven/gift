@@ -93,8 +93,9 @@ class HomePageController extends BaseController {
 		{
 			$gift_intro_array = array();
 			foreach($gift_photo_intros as $intro)
-			{
-					array_push($gift_intro_array, $intro->url);
+			{		
+					$url = StaticController::imageWH($intro->url);
+					array_push($gift_intro_array, array('img'=>$url));
 			}
 		}
 

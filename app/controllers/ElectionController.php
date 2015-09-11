@@ -2,6 +2,16 @@
 
 class ElectionController extends BaseController{
 
+	public function addGiftImg($gifts)
+	{
+		foreach( $gifts as $gift)
+		{
+			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+			$gift->img =  StaticController::imageWH($url);
+		}
+		return $gifts;
+	}
+
 	//选礼
 	public function selectByWord()
 	{
@@ -75,6 +85,7 @@ class ElectionController extends BaseController{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
+			$gifts = $this->addGiftImg($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
@@ -87,20 +98,16 @@ class ElectionController extends BaseController{
 			$gifts = StaticController::gifts();
 			$total = $per_page == ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
+			$gifts = $this->addGiftImg($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
 										'gifts'=>$gifts,
 										'total'=>$total
 										));
 		}
-		//有的情况
-		foreach($gifts as $gift)
-		{
-			$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
-			$gift->img = StaticController::imageWH($url);
-		}
 
 		$total = $per_page == ceil(count($gifts)/$per_page);
 		$gifts = StaticController::page($per_page,$page,$gifts);
+		$gifts = $this->addGiftImg($gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
 									'gifts'=>$gifts,
 									'total'=>$total
