@@ -128,17 +128,20 @@
 	请求url: /pc_election/selection_by_label
 
 	请求参数:
+			per_page, 				每页多少个
+			page,					第几页
 			_char,					赠送对象id				
 			scene,					场合id	
 			object, 				个性id
 			price,					价格id
 
-	返回礼品:
+	返回参数:
 			{
 			errcCode,
 			message,
-				gifts:{
+			gifts:{
 					[
+						id， 		
 						title,		礼品名称
 						price,		价格
 						focus,		1=收藏，0=没有
@@ -146,11 +149,92 @@
 						taobao_url 	购买链接
 					]....
 				}
+			total, 					总共多少页
 			}
-9.我收藏的礼品
-	请求方式: GET
-	请求方式: 
 
+9.我收藏过的商品
+	请求方式: GET
+	请求方式: /pc_mime/like_gift
+
+	请求参数:
+			per_page, 				每页多少个
+			page,					第几页
+
+	返回参数:
+			{
+			errcCode,
+			message,
+			gifts:{
+					[
+						id
+						title,		礼品名称
+						price,		价格
+						img,        礼品图片
+						taobao_url 	购买链接
+					]....
+				}
+			total, 					总共多少页
+			}
+
+10.我参与过的话题
+	请求方式: GET
+	请求方式: /pc_mime/join_article
+
+	请求参数:
+			per_page, 				每页多少个
+			page,					第几页
+	返回参数:
+			{
+			errcCode,
+			message,
+			articles:{
+					[
+						id
+						title,		话题名称
+						img,        话题图片
+						scan_num,	浏览人数
+						join_num	参与人数
+					]....
+				}
+			total, 					总共多少页
+			}
+
+11.收藏话题
+	请求方式:	POST
+	请求url:	/article/article_collection
+
+	请求参数:	
+			article_id 				话题id
+	返回参数:
+			{
+			errcCode,				错误码
+			message,				错误信息
+			}
+
+12.收藏参与话题
+	请求方式:	POST
+	请求url:	/article/join_collection
+
+	请求参数:		
+			join_id 				参与话题id
+
+	返回参数:
+			{
+			errcCode,				错误码
+			message,				错误信息
+			}
+
+13.收藏礼品
+	请求方式:	POST
+	请求url:	/home/collection
+
+	请求参数:	
+			gift_id   				礼品id
+	返回参数:
+			{
+			errcCode,				错误码
+			message,				错误信息
+			}
 
 1.专题详情页
 	请求方式:	GET

@@ -13,7 +13,7 @@ class MimePageController extends BaseController{
 		//分页
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$article_joins = DB::table('article_joins')->orderBy('created_at', 'desc')->get();
+		$article_joins = ArticleJoin::where('user_id','=', $user->id)->orderBy('created_at', 'desc')->get();
 		//总页数
 		$total = ceil(count($article_joins)/$per_page);
 		//参与话题

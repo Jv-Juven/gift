@@ -89,10 +89,9 @@ Route::group(array('prefix'=>'article'),function(){
 	Route::get('join_detail', 'ArticlePageController@involve');
 	// 测试用：Route::post('comment','ArticleController@comment');
 	// 测试用：Route::post('reply','ArticleController@reply');
-	//收藏话题
-	Route::post('article_collection','ArticleController@articleCollection');
-
 	Route::group(array('before'=>'auth.user.isIn'),function(){
+		//收藏话题
+		Route::post('article_collection','ArticleController@articleCollection');
 		//收藏参与话题
 		Route::post('join_collection','ArticleController@joinCollection');
 		//参与话题评论
@@ -119,8 +118,7 @@ Route::group(array('prefix'=>'mime','before'=>'auth.user.isIn'), function(){
 	//我喜欢的礼品
 	Route::get('like_gift', 'MimePageController@likeGift');
 });
-	Route::get('like_gift_h', 'MimePageController@likeGiftH');
-	Route::post('like_ajax', 'MimePageController@giftAjax');
+	
 
 //设置
 Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
@@ -169,7 +167,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 });
 
 
-Route::get('test','QqAuthController@getOpenidFromString');
+// Route::get('test','QqAuthController@getOpenidFromString');
 
 
 Route::get('extract','MysqlController@extractData');
@@ -214,8 +212,20 @@ Route::group(array('prefix'=>'pc_election'),function(){
 	Route::post('selection_by_label','PcElectionController@selectByLabel');
 });
 
+//我喜欢的
+Route::group(array('prefix'=>'pc_mime'),function(){
+	//个人中心
+	Route::get('/', 'PcMimeController@userCenter');
+	//我参与的话题
+	Route::get('join_article', 'PcMimeController@joinArticle');
+	//我喜欢的礼品
+	Route::get('like_gift', 'PcMimeController@likeGift');
+});
+
+//话题／参与话题/礼品收藏与app端完全一样
+//ArticleController/HomeController
 //个人中心设置
 Route::get('site', 'PcSiteController@perInfo');
 Route::post('site', 'PcSiteController@setInfo');
 
-
+Route::get('test','PcMimeController@joinArticle');
