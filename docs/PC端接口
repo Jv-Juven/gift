@@ -1,0 +1,95 @@
+1.首页－静态页
+	请求方式:	GET
+	请求url:	/pc_home
+
+	请求参数:	
+
+	返回参数:
+			返回视图：pc.home
+
+2.首页－甑选推荐
+	请求方式:	GET
+	请求url:	/pc_home/recommend
+
+	请求参数:	
+			per_page 		每页数
+			page 			第几页
+
+	返回参数:
+			gifts:[
+				{
+					photo_url,		图片链接
+					info_url, 		礼物id
+					title,			礼物标题
+					price,			价格
+					focus,			是否收藏（1=收藏，0=没有收藏）
+				}
+			]
+			total: 					总共多少页
+
+3.首页－专题
+	请求方式:	GET
+	请求url:	/pc_home/topic
+
+	请求参数:	
+			per_page 		每页数
+			page 			第几页
+
+	返回参数:
+			
+			topics:[
+				{
+					id,				专题id
+					topic_url		专题图片链接
+				}
+			]
+			total: 					总共多少页
+
+4.首页－热门话题
+	请求方式:	GET
+	请求url:	/pc_home/article
+
+	请求参数:	
+			per_page 		每页数
+			page 			第几页
+
+	返回参数:
+			articles:[
+				{
+				id，					话题id
+				title,				标题
+				scan_num,			浏览人数
+				join_num,			参与话题人数
+				url,				图片
+				}
+			]
+			total: 					总共多少页
+
+1.专题详情页
+	请求方式:	GET
+	请求url:	/detail/topic
+
+	请求参数:	
+			topic_id 			专题id
+	返回参数 :	
+			topic:{
+					title,			专题标题
+					content,		专题内容
+					topic_url,		专题图片
+					scan_num,	 	浏览人数
+					focus_num 		关注人数
+				}
+			gifts:[
+				{
+				id 				礼品id
+				title,			礼品名称
+				price,			价格
+				content,		礼品描述
+				img,			图片
+				scan_num,		浏览人数
+				focus_num 		收藏人数
+				taobao_url 		查看详情处链接
+				}...
+			]
+
+
