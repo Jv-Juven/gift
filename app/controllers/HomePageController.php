@@ -172,7 +172,14 @@ class HomePageController extends BaseController {
 		$topic_id = Input::get('topic_id');
 		$topic = Topic::find($topic_id);
 		if(!isset($topic))
-			return Response::view('errors.missing');
+		{
+			if( Request::wantsJson() )
+			{
+				return Response::json(array('errCode'=>1,'message'=>该专题不存在));
+			}else{
+				return Response::view('errors.missing');
+			}
+		}
 		$gifts = Gift::where('topic_id', '=', $topic->id)->get();
 		if(isset($gifts))
 		{	$number = 1;

@@ -176,9 +176,6 @@ Route::get('extract','MysqlController@extractData');
 Route::get('insert', 'MysqlController@insertData');
 
 //<-----------------------PC端路由--------------------->
-Route::get('home', function(){
-	return View::make('pc.home');
-});
 
 //QQ授权登录
 Route::group(array('prefix'=>'qq'), function(){
@@ -189,7 +186,25 @@ Route::group(array('prefix'=>'qq'), function(){
 	Route::get('web_access', 'QqAuthController@accessToken');
 });
 
+//首页模块
+Route::group(array('prefix' => 'pc_home'),function(){
+	//首页静态
+	Route::get('/','HomePagePController@home');
+	//甑选推荐
+	Route::get('recommend', 'HomePagePController@recommend');
+	//专题
+	Route::get('topic', 'HomePagePController@topic');
+	//热门话题
+	Route::get('article', 'HomePagePController@article');
+});
 
+//详情页路由
+Route::group(array('prefix' => 'detail'), function(){
+	//专题详情页
+	Route::get('topic','PcDetailController@topicDetail');
+	//话题详情页
+	Route::get('article','PcDetailController@articleDetail');
+});
 
 
 
