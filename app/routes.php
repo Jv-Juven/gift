@@ -206,6 +206,8 @@ Route::group(array('prefix' => 'detail'), function(){
 	Route::get('article','PcDetailController@articleDetail');
 });
 
-
+//设置
+Route::get('site', 'PcSiteController@perInfo');
+Route::post('site', 'PcSiteController@setInfo');
 
 
