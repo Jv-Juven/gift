@@ -85,7 +85,7 @@ class HomePageController extends BaseController {
 		}
 
 		//收藏的人
-		$focus_users	= Gift::find($gift_id)->users()->get();
+		$focus_users	= Gift::find($gift_id)->users;
 		//相似推荐
 		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
 						     ->where('object_id', '=', $gift->object_id)
