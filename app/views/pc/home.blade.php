@@ -9,7 +9,8 @@
 @section("body")
 	<div class="page-content">
 		<div class="home-swiper-container">
-			<img style="width: 100%; height: 100%;" src="/images/pc/home/homepic1.png">
+			<!-- <img style="width: 100%; height: 100%;" src="/images/pc/home/homepic1.png"> -->
+			
 		</div>
 		<div class="home-seach">
 			<div class="search-wrapper">

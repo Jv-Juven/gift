@@ -17,7 +17,6 @@
 			<div class="user-info-board">
 				<img class="avatar" src="/images/pc/userCenter/avatar.png">
 				<div class="set-avatar">
-					<!-- <img src="/images/pc/userCenter/change.png"> -->
 					<span>更换图片</span>
 				</div>
 				<span class="user-name">Lucy</span>
