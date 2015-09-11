@@ -100,7 +100,7 @@
 
 @section("js")
 	@parent
-	<script type="text/javascript" src="/dist/pc/pages/login.js"></script>
+	<script type="text/javascript" src="/dist/pc/js/pages/login.js"></script>
 @stop
 
 

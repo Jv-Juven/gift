@@ -51,7 +51,7 @@ module.exports = (grunt)->
                 expand: true
                 flatten: true
                 src: ['src/pc/pages/*.coffee']
-                dest: 'dist/pc/pages/'
+                dest: 'dist/pc/js/pages/'
                 ext: '.js'
 
         watch:
