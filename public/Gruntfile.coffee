@@ -50,7 +50,7 @@ module.exports = (grunt)->
                     b.transform(stringify({extensions: ['.hbs', '.html', '.tpl', '.txt']}))
                 expand: true
                 flatten: true
-                src: ['src/pc/pages/*.coffee']
+                src: ['src/pc/pages/**/*.coffee']
                 dest: 'dist/pc/pages/'
                 ext: '.js'
 
@@ -60,11 +60,6 @@ module.exports = (grunt)->
                     livereload: 1337
                 files: ['src/**/*.less', 'src/**/*.coffee']
                 tasks: ['browserify', 'less']
-            mobile_min:
-                options:
-                    livereload: 1337
-                files: ['dist/**/*.css','dist/**/*.js']
-                tasks: ['cssmin', 'uglify']
 
         less:
             common:
@@ -161,8 +156,6 @@ module.exports = (grunt)->
             'copy'
             'browserify'
             'less'
-            'uglify'
-            'cssmin'
             'watch'
         ]
 
