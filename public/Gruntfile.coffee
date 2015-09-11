@@ -43,6 +43,17 @@ module.exports = (grunt)->
                 dest: 'dist/js/pages/'
                 ext: '.js'
 
+            pc:
+                options:
+                  preBundleCB: (b)->
+                    b.transform(coffeeify)
+                    b.transform(stringify({extensions: ['.hbs', '.html', '.tpl', '.txt']}))
+                expand: true
+                flatten: true
+                src: ['src/pc/pages/*.coffee']
+                dest: 'dist/pc/pages/'
+                ext: '.js'
+
         watch:
             compile:
                 options:
