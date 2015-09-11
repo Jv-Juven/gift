@@ -60,6 +60,11 @@ module.exports = (grunt)->
                     livereload: 1337
                 files: ['src/**/*.less', 'src/**/*.coffee']
                 tasks: ['browserify', 'less']
+            mobile_min:
+                options:
+                    livereload: 1337
+                files: ['dist/**/*.css','dist/**/*.js']
+                tasks: ['cssmin', 'uglify']
 
         less:
             common:
@@ -82,98 +87,64 @@ module.exports = (grunt)->
                     'dist/pc/css/pages/login.css': ['src/pc/pages/login.less']
                     'dist/pc/css/pages/home.css': ['src/pc/pages/home.less']
                     'dist/pc/css/pages/search.css': ['src/pc/pages/search.less']
-                    'dist/pc/css/pages/userCenter.css': ['src/pc/pages/userCenter.less']
-                    
+                    'dist/pc/css/pages/topic.css': ['src/pc/pages/topic/topic.less']
+                    'dist/pc/css/pages/subject.css': ['src/pc/pages/subject/subject.less']
 
         cssmin:
-            main:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css',
-                  ext: '.css'
-                }]
-            about:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/about',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/about',
-                  ext: '.css'
-                }]
-            admin:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/admin',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/admin',
-                  ext: '.css'
-                }]
-            checkbox:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/checkbox',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/checkbox',
-                  ext: '.css'
-                }]
-            score:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/score',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/score',
-                  ext: '.css'
-                }]
-            searchShop:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/searchShop',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/searchShop',
-                  ext: '.css'
-                }]
-            account:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/tradingCenter/account',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/tradingCenter/account',
-                  ext: '.css'
-                }]
-            mynews:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/tradingCenter/mynews',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/tradingCenter/mynews',
-                  ext: '.css'
-                }]
-            sellerCenter:
-                files:[{
-                  expand: true,
-                  cwd: 'dist/css/tradingCenter/seller-center',
-                  src: ['*.css', '!*.min.css'],
-                  dest: 'dist/css/tradingCenter/seller-center',
-                  ext: '.css'
-                }]
+            mobile:
+                files:[
+                    {
+                        expand: true,
+                        cwd: 'dist/css',
+                        src: ['*.css', '!*.min.css'],
+                        dest: 'dist/css',
+                        ext: '.css'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'dist/css/pages',
+                        src: ['*.css', '!*.min.css'],
+                        dest: 'dist/css/pages',
+                        ext: '.css'
+                    }
+                ]
+            pc:
+                files:[
+                    {
+                        expand: true,
+                        cwd: 'dist/pc/css',
+                        src: ['*.css', '!*.min.css'],
+                        dest: 'dist/pc/css',
+                        ext: '.css'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'dist/pc/css/pages',
+                        src: ['*.css', '!*.min.css'],
+                        dest: 'dist/pc/css/pages',
+                        ext: '.css'
+                    }
+                ]
 
         uglify:
-            pages:
-                files:[{
-                    expand: true,
-                    cwd: 'dist/js/pages',
-                    src: '**/*.js',
-                    dest: 'dist/js/pages'
-                }]
-            main:
-                files:[{
-                    expand: true,
-                    cwd: 'dist/js',
-                    src: '**/*.js',
-                    dest: 'dist/js'
-                }]
+            mobile:
+                files:[
+                    {
+                        expand: true,
+                        cwd: 'dist/js/',
+                        src: '**/*.js',
+                        dest: 'dist/js/'
+                    }
+                ]
+            pc:
+                files:[
+                    {
+                        expand: true,
+                        cwd: 'dist/pc/pages',
+                        src: '**/*.js',
+                        dest: 'dist/pc/pages'
+                    }
+                ]
 
     grunt.loadNpmTasks 'grunt-browserify'
     grunt.loadNpmTasks 'grunt-contrib-less'
@@ -190,6 +161,8 @@ module.exports = (grunt)->
             'copy'
             'browserify'
             'less'
+            'uglify'
+            'cssmin'
             'watch'
         ]
 
