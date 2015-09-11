@@ -37,6 +37,8 @@
 							<li class="item"><a class="" href="/">男票</a></li>
 							<li class="item"><a class="" href="/">女票</a></li>
 							<li class="item"><a class="" href="/">情敌</a></li>
+							<li class="item"><a class="" href="/">男基</a></li>
+							<li class="item"><a class="" href="/">女啦</a></li>
 						</ul>
 					</div>
 				</div>
@@ -55,6 +57,8 @@
 							<li class="item"><a class="" href="/">男票</a></li>
 							<li class="item"><a class="" href="/">女票</a></li>
 							<li class="item"><a class="" href="/">情敌</a></li>
+							<li class="item"><a class="" href="/">男基</a></li>
+							<li class="item"><a class="" href="/">女啦</a></li>
 						</ul>
 					</div>
 				</div>
@@ -73,6 +77,8 @@
 							<li class="item"><a class="" href="/">男票</a></li>
 							<li class="item"><a class="" href="/">女票</a></li>
 							<li class="item"><a class="" href="/">情敌</a></li>
+							<li class="item"><a class="" href="/">男基</a></li>
+							<li class="item"><a class="" href="/">女啦</a></li>
 						</ul>
 					</div>
 				</div>

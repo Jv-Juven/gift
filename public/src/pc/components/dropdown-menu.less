@@ -1,0 +1,47 @@
+.menu-seleted{
+	position: relative;
+	display: inline-block;
+	width: auto;
+	height: 100%;
+	cursor: pointer;
+	margin: 0px 10px;
+	.menu-selectd-text{
+		display: inline-block;
+		padding: 12px 15px;
+		color: rgb(56, 56, 56);
+		font-size: 16px;
+	}
+	.menu-selected-arrow{
+		display: inline-block;
+		width: auto;
+		float: right;
+		padding: 14px 0px;
+		img{
+			width: 14px;
+		}
+	}
+	.menu-list{
+		position: absolute;
+		bottom: 40px;
+		right: 0px;
+		width: auto;
+		height: auto;
+		border-radius: 8px; 
+		border: 1px solid rgb(230, 230, 230);
+		overflow: hidden;
+		display: none;
+		z-index: 999;
+		.item{
+			padding: 6px 12px;
+			font-size: 14px;
+			min-width: 50px;
+			word-break: keep-all;
+			white-space: nowrap;
+			background: rgb(255, 255, 255);
+			text-align: left;
+			&:hover{
+				background: rgb(245, 245, 245);
+			}
+		}
+	}
+}

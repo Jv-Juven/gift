@@ -1,0 +1,342 @@
+
+@import "./../common/common.less";
+
+.page-content{
+	.user-info{
+		position: relative;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		.user-info-bg{
+			position: relative;
+			width: 100%;
+			display: block;
+		}
+		.user-info-board{
+			@width: 400px;
+			position: absolute;
+			width: @width;
+			height: 280px;
+			bottom: 0px;
+			left: 50%;
+			margin: 0px -@width/2;
+			.avatar{
+				display: block;
+				margin: 0px auto;
+				@avatar-width: 80px;
+				width: @avatar-width;
+				height: @avatar-width;
+				border-radius: 50%;
+				border: 2px solid rgb(255, 255, 255);
+			}
+			.user-name{
+				display: block;
+				width: 100%;
+				text-align: center;
+				color: rgb(255, 255, 255);
+				font-size: 20px;
+				padding: 15px 0px;
+			}
+			.user-signature{
+				display: block;
+				// width: 100%;
+				text-align: left;
+				color: rgb(255, 255, 255);
+				font-size: 14px;
+				// padding: 0px 80px;
+				line-height: 16px;
+			}
+
+		}
+		.set-avatar{
+			cursor: pointer;
+			float: right;
+			margin: -50px 60px 0px 0px;
+			display: inline-block;
+			width: auto;
+			font-size: 16px;
+			color: rgb(255, 255, 255);
+		}
+		.set-name{
+			cursor: pointer;
+			float: right;
+			margin: -30px 90px 0px 0px;
+			display: inline-block;
+			width: auto;
+			font-size: 16px;
+			color: rgb(255, 255, 255);
+			img{
+				display: inline-block;
+				float: left;
+				width: 16px;
+			}
+			span{
+				padding: 0px 5px;
+			}
+		}
+		.set-signature{
+			cursor: pointer;
+			margin:  0px -80px 0px 0px;
+		}
+
+	}
+	.user-collection{
+		position: relative;
+		overflow: hidden;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: auto;
+		background: @grey-bg;
+		.user-collection-menu{
+			width: 420px;
+			// height: 42px;
+			margin: 22px auto;
+			.user-collection-items{
+				width: 440px;
+				height: 100%;
+				margin-left: -20px;
+				.user-collection-li{
+					float: left;
+					width: 200px;
+					margin-left: 20px;
+					height: auto;
+					position: relative;
+					.item{
+						@font-color: rgb(56, 56, 56);
+						display: block;
+						width: 100%;
+						padding: 12px 0px;
+						text-align: center;
+						color: @font-color;
+						background: rgb(220, 220, 220);
+						font-size: 16px;
+						letter-spacing: 1px;
+						.a-text(@font-color);
+					}
+					.selected{
+						position: absolute;
+						width: 100%;
+						bottom: -10px;
+						left: 0px;
+						display: none;
+					}
+				}
+				.active{
+					.item{
+						background: rgb(247, 57, 57);
+						.a-text(rgb(255, 255, 255));
+					}
+					.selected{
+						display: block;
+					}
+				}
+			}
+		}
+		.user-wrappers{
+			position: relative;
+			width: 900px;
+			height: auto;
+			margin: 0px auto;
+			padding-bottom: 70px;
+			padding-top: 40px;
+			&>ul{
+				width: 920px;
+				height: auto;
+				margin: -20px 0px 0px -20px;
+				a{
+					display: block;
+					width: 100%;
+					height: 100%;
+					img{
+						width: 100%;
+						height: 100%;
+						display: block;
+					}
+				}
+			}
+		}
+		.user-recommend-wrapper{
+			.user-recommend-content{
+				.user-recommend-box{
+					position: relative;
+					width: 210px;
+					height: 238px;
+					overflow: hidden;
+					float: left;
+					margin: 20px 0px 0px 20px;
+					span{
+						display: inline-block;
+					}
+					.box-cover{
+						position: absolute;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						height: 100%;
+						background: url("/images/pc/home/cover_bg.png");
+						.box-cover-title{
+							position: relative;
+							width: 100%;
+							font-size: 20px;
+							color: rgb(255, 255, 255);
+							font-weight: 400;
+							padding-left: 20px;
+							// text-align: center;
+							padding-top: 160px;
+						}
+						.box-cover-price{
+							padding-top: 10px;
+							font-size: 20px;
+							color: rgb(255, 255, 255);
+							font-weight: 400;
+							position: relative;
+							width: 100%;
+							&>span{
+								padding: 7px 20px;
+							}
+						}
+						.box-cover-like{
+							display: inline-block;
+							position: absolute;
+							right: 20px;
+							top: 20px;
+							width: 25px;
+						}
+					}
+				}
+			}
+		}
+		.user-hot-wrapper{
+			.user-hot-content{
+				.user-hot-box{
+					position: relative;
+					width: 440px;
+					height: 290px;
+					overflow: hidden;
+					float: left;
+					margin: 20px 0px 0px 20px;
+					span{
+						display: inline-block;
+					}
+					.user-hot-cover{
+						position: absolute;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						height: 100%;
+						display: inline-block;
+						.user-hot-board{
+							position: absolute;
+							bottom: 0px;
+							left: 0px;
+							width: 100%;
+							height: 100%;
+							.user-hot-title{
+								color: rgb(255, 255, 255);
+								font-size: 18px;
+								font-weight: bold;
+								margin: 210px 10px 0px 10px;
+								line-height: 24px;
+							}
+							.user-hot-info{
+								margin: 0px 10px;
+								&>span{
+									float: left;
+									width: 90px;
+								}
+								.user-scan{
+									padding-top: 10px;
+									float: left;
+									.user-hot-scan{
+										float: left;
+										width: 19px;
+										height: 12px;
+									}
+									.scan-count{
+										float: left;
+										color: rgb(255, 255, 255);
+										padding: 2px 6px;
+									}
+									.user-hot-comments{
+										float: left;
+										width: 16px;
+										height: 14px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	.user-setting{
+		position: relative;
+		float: left;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: auto;
+		padding-bottom: 50px;
+		background: @grey-bg;
+		.user-form{
+			@width: 500px;
+			@key-width: 140px;
+			width: @width;
+			height: auto;
+			padding: 40px 0px;
+			margin: 0px auto;
+			.user-form-input{
+				@border-radius: 6px;
+				float: left;
+				width: @width - 2px;
+				height: 40px;
+				border-radius: @border-radius;
+				border: 1px solid @red-color;
+				// overflow: hidden;
+				margin-top: 15px;
+				.input-key{
+					float: left;
+					display: inline-block;
+					padding: 11px 0px;
+					text-align: center;
+					color: rgb(255, 255, 255);
+					font-size: 18px;
+					font-weight: 400;
+					width: @key-width;
+					background: @red-color;
+					letter-spacing: 10px;
+					border-radius: @border-radius - 1 0px 0px @border-radius - 1;
+				}
+				.input-value{
+					display: inline-block;
+					height: 100%;
+					width: @width - 2 - @key-width;
+					text-align: right;
+				}
+				.submit-btn{
+					cursor: pointer;
+					float: left;
+					display: inline-block;
+					padding: 11px 0px;
+					text-align: center;
+					color: @red-color;
+					font-size: 18px;
+					font-weight: 400;
+					width: 100%;
+					background: transparent;
+					letter-spacing: 10px;
+					border-radius: @border-radius - 1;
+				}
+			}
+			.user-form-submit{}
+		}
+	}
+	
+
+
+}

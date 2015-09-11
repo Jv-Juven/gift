@@ -9,14 +9,33 @@
 @section("body")
 	<div class="page-content">
 		<div class="home-swiper-container">
-			<img style="width: 100%; height: 100%;" src="/images/pc/home/homepic1.png">
+			<!-- <img style="width: 100%; height: 100%;" src="/images/pc/home/homepic1.png"> -->
+			
 		</div>
-		<div class="home-seach"></div>
+		<div class="home-seach">
+			<div class="search-wrapper">
+				<div class="search-box">
+					<input type="text" class="search-input" placeholder="想找什么礼物">
+					<div class="search-input-icon">
+						<img src="/images/pc/search/search_icon.png">
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="home-topics-container">
 			<ul class="home-menu-wrapper clearx">
-				<li class="home-menu-item"><a class="home-a-text" href="javascript:">专题精选</a></li>
-				<li class="home-menu-item"><a class="home-a-text" href="javascript:">甄选推荐</a></li>
-				<li class="home-menu-item active"><a class="home-a-text" href="javascript:">热门话题</a></li>
+				<li class="home-menu-item first">
+					<a class="home-a-text" href="javascript:">专题精选</a>
+					<img class="under-line" src="/images/pc/home/underline.png">
+				</li>
+				<li class="home-menu-item">
+					<a class="home-a-text" href="javascript:">甄选推荐</a>
+					<img class="under-line" src="/images/pc/home/underline.png">
+				</li>
+				<li class="home-menu-item active">
+					<a class="home-a-text" href="javascript:">热门话题</a>
+					<img class="under-line" src="/images/pc/home/underline.png">
+				</li>
 			</ul>
 			<div class="home-wrappers home-topics-wrapper" style="display: none;">
 				<ul class="home-topics-content clearx">
@@ -206,26 +225,7 @@
 							<img src="/images/pc/home/pic01.png">
 						</a>
 					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
+					
 				</ul>
 			</div>
 		</div>
