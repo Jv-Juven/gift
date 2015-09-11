@@ -2,7 +2,7 @@
 
 class ArticlePageController extends BaseController{
 	
-	public isLike($article_id)
+	public function isLike($article_id)
 	{
 		if(Sentry::check())
 		{

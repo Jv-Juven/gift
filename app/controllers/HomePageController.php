@@ -2,7 +2,7 @@
 
 class HomePageController extends BaseController {
 
-	public isLike()
+	public function isLike()
 	{
 		if(Sentry::check())
 		{
