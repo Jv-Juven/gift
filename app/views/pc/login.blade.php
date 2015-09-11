@@ -15,11 +15,11 @@
 		<!-- <div class="login-components-wrapper login-components-bg"></div> -->
 		<div class="login-components-wrapper login-components-board">
 			<ul class="login-board-menu">
-				<li><a href="javascript:">注册</a></li>
+				<li class="active"><a href="javascript:">注册</a></li>
 				<li><a href="javascript:">登录</a></li>
-				<li class="active menu-item-last"><a href="javascript:">下载APP</a></li>
+				<li class="menu-item-last"><a href="javascript:">下载APP</a></li>
 			</ul>
-			<div id="register" class="login-board" style="display: none;">
+			<div id="register" class="login-board">
 				<div class="login-btn QQ">
 					<a class="a-block" href="/">
 						<span class="login-btn-icon">
@@ -71,7 +71,7 @@
 					</a>
 				</div>
 			</div>
-			<div id="download" class="login-board">
+			<div id="download" class="login-board" style="display: none;">
 				<ul class="download-list clearx">
 					<li>
 						<span class="download-list-text">
@@ -95,3 +95,13 @@
 		</div>
 	</div>
 @stop
+
+
+
+@section("js")
+	@parent
+	<script type="text/javascript" src="/dist/pc/pages/login.js"></script>
+@stop
+
+
+
