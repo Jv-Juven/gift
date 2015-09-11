@@ -205,15 +205,15 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'[数据库错误]参与话题删除成功！'));
 	}
 
-	//收藏参与话题
+	//收藏话题
 	public function articleCollection()
 	{
 		if(!Sentry::check())
 			return Response::json(array('errCode'=>1, 'message' => '请登录'));
 		// Sentry::login(Sentry::findUserById(5), false);
 		$article_id 	= Input::get('article_id');
-		$article_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('article_id', '=', $article_id)->get();
+		$article_focus 	= ArticleFocus::where('user_id','=', Sentry::getUser()->id)
+							->where('article_id', '=', $article_id)->first();
 		if(count($article_focus) == 1)
 		{
 			$article_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)

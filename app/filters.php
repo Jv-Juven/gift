@@ -69,7 +69,7 @@ Route::filter('auth.user.isIn',function()
 			return Response::json(array('errCode' => 10,'message' => '请登陆！'));
 		}
 		else{
-			return Redirect::guest('login/login');
+			return Redirect::guest('pc.login');
 		}
 	}
 });
