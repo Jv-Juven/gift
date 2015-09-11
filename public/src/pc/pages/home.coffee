@@ -17,6 +17,8 @@ $ ()->
 
 	homeMenuitems.on "click", ()->
 		_this = $(this)
+		if _this.hasClass "active"
+			return
 		_index = _this.index()
 		homeMenuitems.removeClass "active"
 		_this.addClass "active"
