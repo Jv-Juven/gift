@@ -87,6 +87,7 @@
 		<div class="search-topics-container">
 			<div class="search-wrappers search-recommend-wrapper">
 				<ul class="search-recommend-content clearx">
+
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
@@ -107,38 +108,174 @@
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
 					<li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
 						</a>
 					</li>
+					<li class="search-recommend-box">
+						<a href="/">
+							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
+						</a>
+					</li>
+					<li class="search-recommend-box">
+						<a href="/">
+							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
+						</a>
+					</li>
+					<li class="search-recommend-box">
+						<a href="/">
+							<img src="/images/pc/home/pic02.png">
+							<span class="box-cover">
+								<span class="box-cover-title">
+									24K纯银定制戒指
+								</span>
+								<span class="box-cover-price">
+									<span>￥89</span>
+								</span>
+
+								<span class="box-cover-like" href="http://baidu.com">
+									<img src="/images/pc/home/like.png">
+								</span>
+							</span>
+						</a>
+					</li>
+
 				</ul>
 			</div>
 		</div>
@@ -148,4 +285,5 @@
 
 @section("js")
 	@parent
+	<script type="text/javascript" src="/dist/pc/js/pages/search.js"></script>
 @stop
