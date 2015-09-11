@@ -142,6 +142,7 @@
 						title,		礼品名称
 						price,		价格
 						focus,		1=收藏，0=没有
+						url,        礼品图片
 						taobao_url 	购买链接
 					]....
 				}
