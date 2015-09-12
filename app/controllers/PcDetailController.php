@@ -111,6 +111,7 @@ class PcDetailController extends BaseController{
 				{
 					$urls = array_slice($urls,0,4);
 				}
+				$article_join->urls = $urls;
 			}
 		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题内容',

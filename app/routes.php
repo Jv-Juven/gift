@@ -162,7 +162,7 @@ Route::controller('/login', 'AdminController');
 //微信认证登录
 Route::group(array('prefix' =>'weixin'), function(){
 	//app端	
-	Route::get('weixin_data', 'WeixinAppAuthController@storeUserData');
+	Route::post('weixin_data', 'WeixinAppAuthController@storeUserData');
 	//web端
 	Route::get('web_code', 'WeixinWebAuthController@code');
 	Route::get('web_access', 'WeixinWebAuthController@accessToken');
@@ -180,7 +180,7 @@ Route::get('insert', 'MysqlController@insertData');
 //QQ授权登录
 Route::group(array('prefix'=>'qq'), function(){
 	//app端
-	Route::get('qq_data','QqAuthController@storeUserData');
+	Route::post('qq_data','QqAuthController@storeUserData');
 	//web端
 	Route::get('web_code', 'QqAuthController@code');
 	Route::get('web_access', 'QqAuthController@accessToken');
@@ -231,6 +231,8 @@ Route::group(array('prefix'=>'pc_mime'),function(){
 
 //话题／参与话题/礼品收藏与app端完全一样
 //ArticleController/HomeController
+
+
 //个人中心设置
 Route::get('site', 'PcSiteController@perInfo');
 Route::post('site', 'PcSiteController@setInfo');

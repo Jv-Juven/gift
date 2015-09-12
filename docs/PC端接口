@@ -241,7 +241,7 @@
 	请求url:	/detail/topic
 
 	请求参数:	
-			topic_id 			专题id
+			topic_id 				专题id
 	返回参数 :	
 			topic:{
 					title,			专题标题
@@ -252,15 +252,15 @@
 				}
 			gifts:[
 				{
-				id 				礼品id
-				title,			礼品名称
-				price,			价格
-				content,		礼品描述
-				img,			图片
-				scan_num,		浏览人数
-				focus_num 		收藏人数
-				taobao_url 		查看详情处链接
-				}...
+				id 					礼品id
+				title,				礼品名称
+				price,				价格
+				content,			礼品描述
+				img,				图片
+				scan_num,			浏览人数
+				focus_num 			收藏人数
+				taobao_url 			查看详情处链接
+				}...	
 			]
 
 15.话题页-文章
@@ -268,18 +268,19 @@
 	请求url:	/detail/article
 
 	请求参数:	
-			article_id 			话题id
+			article_id 				话题id
 	返回参数:
 				article:{
-					title,		题目	
-					scan_num,	浏览人数
-					join_num,	参与话题人数
-					focus_num,	收藏人数
+					id, 			话题id
+					title,			题目	
+					scan_num,		浏览人数
+					join_num,		参与话题人数
+					focus_num,		收藏人数
 				}
 				article_parts:[
 					{
-					content,	内容	
-					type,		text／url
+					content,		内容	
+					type,			text／url
 					}...
 				]
 
@@ -288,23 +289,133 @@
 	请求url:	/detail/bre_join
 
 	请求参数:	
-			article_id,	 		话题id
-			per_page,			每页数
-			page,				第几页
+			article_id,	 			话题id
+			per_page,				每页数
+			page,					第几页
 
 
 	返回参数:
 			article_joins:[
 				{
-					
-				}
+					id, 			id
+					username,		用户名
+					avatar,			头像
+					text,		
+					imgs:[	
+						{
+									图片链接
+						}...
+					]
+
+				}...
 			]
 
 17.参与话题详情
 	请求方式:	GET
 	请求url:	/detail/join_detail
 
-	请求参数:	
+			article_id,	 					话题id
+			per_page,						每页数
+			page,							第几页
 
 	返回参数:
-			返回视图：pc.home
+			article_join:{
+				id ， 						参与话题详情
+				scan_num,					浏览人数
+				join_num， 					参与话题人数
+				focus_num， 					收藏人数
+			}
+			article_join_parts:[
+						{
+						content,			内容
+						type,				text/url
+						}...
+			]
+			join_coms:[
+					{
+					id,						评论id
+					username,				用户名
+					avatar,					头像
+					content,				内容
+					replys:[
+						{	
+							reply_name,		回复名称
+							content 		内容
+						}
+						]
+					}...
+			]
+
+
+<-------------------------------------------------------------------->
+<----------------------参与话题的评论和回复接口与app端一致----------------->
+<-------------------------------------------------------------------->
+	5.1 评论参与话题 
+		请求方式:	POST
+		请求url:	/article/comment
+
+		请求参数:	
+				join_id					参与话题id
+				content 				话题内容
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+	
+	5.2 删除评论参与话题
+		请求方式:	POST
+		请求url:	/article/dcomment
+
+		请求参数:	
+				com_id				评论id
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	6.1 回复参与话题的评论
+		请求方式:	POST
+		请求url:	/article/reply
+
+		请求参数:	
+				com_id， 			评论的id
+				content， 			内容
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+
+	6.2 删除回复
+		请求方式:	POST
+		请求url:	/article/dreply
+
+		请求参数:	
+				reply_id，			回复的id
+				
+		返回参数 :
+
+				{
+					errCode:xxx,		错误码	0表示返回正常	 
+					message:xxx		提示信息
+				}
+<-------------------------------------------------------------------->
+<----------------------参与话题的评论和回复接口与app端一致----------------->
+<-------------------------------------------------------------------->
+
+{"content":[{"text":"hehehe"}],"article_id":1}
+
+
+
+
+
+
+
+
+
+
