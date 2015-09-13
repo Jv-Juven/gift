@@ -2,6 +2,22 @@
 
 class HomePageController extends BaseController {
 
+	public function isLike($gift_id)
+	{
+		if(Sentry::check())
+		{
+			$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('gift_id', '=', $gift_id)->first();
+		}
+		//判断是否收藏
+		if(isset($gift_focus))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
 	//首页呈现
 	public function showWelcome()
 	{
@@ -69,7 +85,7 @@ class HomePageController extends BaseController {
 		}
 
 		//收藏的人
-		$focus_users	= Gift::find($gift_id)->users()->get();
+		$focus_users	= Gift::find($gift_id)->users;
 		//相似推荐
 		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
 						     ->where('object_id', '=', $gift->object_id)
@@ -95,24 +111,13 @@ class HomePageController extends BaseController {
 			foreach($gift_photo_intros as $intro)
 			{		
 					$url = StaticController::imageWH($intro->url);
-					array_push($gift_intro_array, array('img'=>$url));
+					array_push($gift_intro_array, $url);
 			}
 		}
 
 		$gift 		= Gift::find($gift_id);
-
-		if(Sentry::check())
-		{
-			$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('gift_id', '=', $gift_id)->first();
-		}
-		//判断是否收藏
-		if(isset($gift_focus))
-		{
-			$type = 1;
-		}else{
-			$type = 0;
-		}
+		//是否喜欢
+		$type = $this->isLike($gift_id);
 
 		if( Request::wantsJson() )
 		{

@@ -5,7 +5,7 @@ class WeixinAppAuthController extends BaseController{
 	{
 		$data = Input::get('data');
 
-		$user = User::where('unionid', '=', $data->inionid)->first();
+		$user = User::where('unionid', '=', $data->unionid)->first();
 		if(!isset($user))
         {
             // try{
