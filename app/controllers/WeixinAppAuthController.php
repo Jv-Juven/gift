@@ -2,21 +2,22 @@
 class WeixinAppAuthController extends BaseController{
 
 	public function storeUserData()
-	{
-		$data = Input::get('data');
-
-		$user = User::where('unionid', '=', $data->unionid)->first();
+	{	
+//		Log::info(Input::get('data'));
+		$data =json_decode( Input::get('data') );
+	//	return Input::get('data');
+		$user =User::where('unionid', '=', $data->unionid)->first();
 		if(!isset($user))
         {
             // try{
                 $client_user = Sentry::createUser(array(
-                    'username'  => $data['nickname'],
-                    'avatar'    => $data['headimgurl'],
-                    'gender'    => $data['sex'],
-                    'email'     => $data['unionid'],
-                    'password'  => $data['unionid'],
-                    'openid'    => $data['openid'],
-                    'unionid'   => $data['unionid'],
+                    'username'  => $data->nickname,
+                    'avatar'    => $data->headimgurl,
+                    'gender'    => $data->sex,
+                    'email'     => $data->unionid,
+                    'password'  => $data->unionid,
+                    'openid'    => $data->openid,
+                    'unionid'   => $data->unionid,
                     'activated' => '1'
                 ));
             // }

@@ -156,19 +156,23 @@ class QqAuthController extends BaseController{
 
     public function storeUserData()
     {   
-        $openid = Input::get('openid');
-        $data = Input::get('data');
-        $user = User::where('openid', '=', $openid)->first();
+      // $openid = Input::get('openid');
+	//	Log::info($openid);
+	//	Log::info(get_class(Input::get('data')));
+		Log::info(Input::get('data'));
+		//return Input::get('data');
+		$data =json_decode(Input::get('data')) ;
+        $user = User::where('openid', '=', $data->openid)->first();
         if(!isset($user))
         {
             // try{
                 $client_user = Sentry::createUser(array(
-                    'username'  => $data['nickname'],
-                    'avatar'    => $data['figureurl'],
-                    'gender'    => $data['gender'],
-                    'email'     => $openid,
-                    'password'  => $openid,
-                    'qq_id'     => $openid,
+                    'username'  => $data->nickname,
+                    'avatar'    => $data->figureurl,
+                    'gender'    => $data->gender,
+                    'email'     => $data->openid,
+                    'password'  => $data->openid,
+                    'qq_id'     => $data->openid,
                     'activated' => '1'
                 ));
             // }
