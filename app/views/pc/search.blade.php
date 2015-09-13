@@ -27,10 +27,10 @@
 						<img class="key-dot" src="/images/pc/search/dot.png">
 						<span>赠送对象:</span>
 					</div>
-					<div class="search-items-value">
+					<div class="search-items-value char">
 						<ul class="items-wrapper clearx">
-							<li class="item"><a class="" href="/">全部</a></li>
-							<li class="item active"><a class="" href="/">爸爸</a></li>
+							<li class="item active"><a class="" href="/">全部</a></li>
+							<li class="item"><a class="" href="/">爸爸</a></li>
 							<li class="item"><a class="" href="/">妈妈</a></li>
 							<li class="item"><a class="" href="/">哥哥</a></li>
 							<li class="item"><a class="" href="/">姐姐</a></li>
@@ -69,9 +69,9 @@
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
-							<li class="item"><a class="" href="/">全部</a></li>
+							<li class="item active"><a class="" href="/">全部</a></li>
 							<li class="item"><a class="" href="/">爸爸</a></li>
-							<li class="item active"><a class="" href="/">妈妈</a></li>
+							<li class="item"><a class="" href="/">妈妈</a></li>
 							<li class="item"><a class="" href="/">哥哥</a></li>
 							<li class="item"><a class="" href="/">姐姐</a></li>
 							<li class="item"><a class="" href="/">男票</a></li>
@@ -280,6 +280,36 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/template" id="search_tpl">
+		<% for(var i = 0; i < array.length; i ++){ 
+			var likeUrl = "";
+			if (array[i]['taobao_url'] == 0){
+				likeUrl = "/images/pc/home/like.png"
+			}
+			else{
+				likeUrl = "/images/pc/home/liked.png"
+			}
+			%>
+			<li class="search-recommend-box">
+				<a href="<%- array[i]['taobao_url'] %>">
+					<img src="<%- array[i]['url'] %>">
+					<span class="box-cover">
+						<span class="box-cover-title">
+							<%- array[i]['title'] %>
+						</span>
+						<span class="box-cover-price">
+							<span>￥<%- array[i]['price'] %></span>
+						</span>
+						<span class="box-cover-like" href="http://baidu.com">
+							<img src="<%- likeUrl %>">
+						</span>
+					</span>
+				</a>
+			</li>
+		<% } %>
+	</script>
+
 @stop
 
 

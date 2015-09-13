@@ -125,5 +125,6 @@
 
 @section("js")
 	@parent
+	<script type="text/javascript" src="/dist/pc/js/pages/setting.js"></script>
 @stop
 
