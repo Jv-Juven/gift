@@ -1,0 +1,204 @@
+
+@import "../../common/define.less";
+@import "../../common/container.less";
+
+.post-wrap{
+    margin-top: 25px;
+    padding-bottom: 15px;
+    border-bottom: solid @color-red 2px;
+    .info{
+        @info-item-left: 27px;
+        margin-left: -@info-item-left;
+        .info-item{
+            float: left;
+            margin-left: @info-item-left;
+        }
+        .info-likes{
+            color: @color-red;
+            float: right;
+        }
+        .icon{
+            vertical-align: text-top;
+        }
+        .num{
+            font-size: 14px;
+            margin-left: 3px;
+        }
+    }
+}
+
+@avatar-width: 42px;
+@user-info-width: @avatar-width;
+@comment-item-width: @container-left-width;
+@comment-container-margin-left: 14px;
+@comment-container-width: @comment-item-width - @user-info-width - @comment-container-margin-left;
+@comment-pic-margin-left: 10px;
+
+.comment-list{
+    .comment-count{
+        font-size: 18px;
+        margin-top: 25px;
+        margin-bottom: 27px;
+    }
+}
+
+.comment-item{
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-top: solid @color-gray-df 1px;
+
+    // 头像
+    .comment-user-info{
+        float: left;
+        width: @user-info-width;
+        .avatar{
+            width: 100%;
+            display: block;
+        }
+        .user-name{
+            color: #333333;
+            font-size: 15px;
+            font-weight: normal;
+            text-align: center;
+            margin-top: 12px;
+        }
+    }
+    
+    .comment-container{
+        float: left;
+        width: @comment-container-width;
+        margin-left: @comment-container-margin-left;
+
+        // 评论内容
+        .comment-content{
+            color: #333333;
+            font-size: 14px;
+            line-height: 28px;
+        }
+
+        // 评论中图片内容
+        .comment-pic-wrap{
+            @img-list-max-height: 130px;
+            @comment-pic-width: ( @comment-container-width - 3 * 10px ) / 4;
+            position: relative;
+            .pic-list{
+                margin-left: -@comment-pic-margin-left;
+                margin-top: 5px;
+                height: @img-list-max-height;
+                overflow: hidden;
+                .comment-pic{
+                    float: left;
+                    width: @comment-pic-width;
+                    display: block;
+                    margin-left: @comment-pic-margin-left;
+                }
+            }
+            .pic-natural-wrap{
+                margin-top: 10px;
+                .comment-pic-natural{
+                    max-width: 100%;
+                }
+            }
+            .pic-arrow-down{
+                left: 0px;
+                width: @comment-pic-width;
+                display: block;
+                position: relative;
+            }
+        }
+
+        .comment-info{
+            color: @color-gray;
+            font-size: 14px;
+            margin-top: 15px;
+            .comment-time{
+                float: left;
+                margin-right: 14px;    
+            }
+            .reply-btn{
+                float: right;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+// 回复
+.reply-wrap{
+    .reply-input{
+        @border-width: 1px;
+        @padding: 6px;
+        border-radius: 7px;
+        border: solid @color-gray-df @border-width;
+        width: @comment-container-width - @border-width * 2 - @padding * 2;
+        height: 72px;
+        line-height: 18px;
+        font-size: 14px;
+        margin-top: 15px;
+        padding: @padding;
+        resize: none;
+        color: #333333;
+    }
+    .reply-btm{
+        margin-top: 3px;
+        & > a{
+            color: #999999;
+            font-size: 14px;
+            float: right;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+}
+
+.discuss{
+    .topic-title{
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 30px;
+        margin-top: 6px;
+        padding-bottom: 16px;
+        border-bottom: solid #e7e7e7 1px;
+    }
+    .user-info{
+        margin-top: 12px;
+        line-height: 42px;
+        .avatar{
+            float: left;
+            width: @avatar-width;
+            vertical-align: middle;
+        }
+        .user-name{
+            float: left;
+            color: #222222;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+        .discuss-time{
+            float: right;
+            color: #acacac;
+            font-size: 10px;
+            margin-right: 10px;
+        }
+    }
+    .discuss-content{
+        @font-size: 14px;
+        color: #777777;
+        font-size: @font-size;
+        line-height: 26px;
+        overflow: hidden;
+        margin-top: 20px;
+        word-wrap: break-word;
+        & > p{
+            margin-top: 3px;
+            margin-bottom: 8px;
+            text-indent: @font-size * 2;
+        }
+        & > img{
+            max-width: 100%;
+            display: block;
+            margin: 0px auto;
+        }
+    }
+}

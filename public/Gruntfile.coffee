@@ -28,8 +28,11 @@ module.exports = (grunt)->
                 expand: true
                 flatten: true
                 files: {
-                    #'dist/js/components.js': ['src/components/**/*.coffee']
+                    'dist/js/components.js': ['src/components/**/*.coffee']
                     'dist/js/common.js': ['src/common/**/*.coffee']
+
+                    'dist/pc/js/components.js': ['src/pc/components/**/*.coffee']
+                    'dist/pc/js/common.js': ['src/pc/common/*.coffee']
                 }
 
             pages:
@@ -65,7 +68,7 @@ module.exports = (grunt)->
             common:
                 files:
                     'dist/css/common.css': ['src/common/*.less']
-                    'dist/pc/css/common.css': ['src/pc/common/*.less']
+                    'dist/pc/css/common.css': ['src/pc/common/common.less', 'src/pc/common/public.less']
 
             components:
                 files:
@@ -82,8 +85,10 @@ module.exports = (grunt)->
                     'dist/pc/css/pages/login.css': ['src/pc/pages/login.less']
                     'dist/pc/css/pages/home.css': ['src/pc/pages/home.less']
                     'dist/pc/css/pages/search.css': ['src/pc/pages/search.less']
+                    'dist/pc/css/pages/userCenter.css': ['src/pc/pages/userCenter.less']
                     'dist/pc/css/pages/topic.css': ['src/pc/pages/topic/topic.less']
                     'dist/pc/css/pages/subject.css': ['src/pc/pages/subject/subject.less']
+                    'dist/pc/css/pages/discuss.css': ['src/pc/pages/discuss/discuss.less']
 
         cssmin:
             mobile:

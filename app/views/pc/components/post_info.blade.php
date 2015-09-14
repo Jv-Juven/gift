@@ -1,15 +1,15 @@
 <div class="post-wrap clearfix">
     <div class="info">
-        <span class="info-like info-item">
-            <img src="/images/pc/common/icon-like-red.png" class="icon">
+        <span class="info-item">
+            <img action_url="" src="/images/pc/common/icon-like-red.png" class="icon post-btn info-like-btn">
             <span class="num">2222</span>
         </span>
-        <span class="info-comment info-item">
-            <img src="/images/pc/common/icon-comment-red.png" class="icon">
+        <span class="info-item">
+            <img action_url="" src="/images/pc/common/icon-comment-red.png" class="icon post-btn info-comment-btn">
             <span class="num">1213</span>
         </span>
-        <span class="info-share info-item">
-            <img src="/images/pc/common/icon-share-red.png" class="icon">
+        <span class="info-item">
+            <img action_url="" src="/images/pc/common/icon-share-red.png" class="icon post-btn info-share-btn">
             <span class="num">5151</span>
         </span>
     </div>

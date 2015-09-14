@@ -9,10 +9,15 @@
     <link rel="stylesheet" type="text/css" href="/dist/pc/css/pages/subject.css">
 @stop
 
+@section('js')
+    @parent
+    <script src="/dist/pc/js/pages/subject.js"></script>
+@stop
+
 @section('body')
 <div class="page-content">
     <div class="container clearfix">
-        <div class="subject-wrap">
+        <div class="container-left">
             <div class="subject">
                 <img src="/images/pc/topic/topic-pic.png" alt="专题" class="pic">
                 <h2 class="title">拿什么添置你的衣橱</h2>
@@ -51,7 +56,7 @@
                         <div class="info">
                             <span class="price">89.00</span>
                             <span class="like">
-                                <img src="/images/pc/common/icon-like.png" class="icon">
+                                <button pid="" class="like-btn"></button>
                                 <span class="num">2222</span>
                             </span>
                             <img src="/images/pc/common/222.png" class="line">
@@ -61,10 +66,11 @@
                 </li>
             </ul>
             @include('pc.components.post_info')
-            @include('pc.components.comment')
         </div>
         @include('pc.components.ad')
+        <input type="text" style="display:none;" id="topic_id" val="1">
     </div>
+    @include('pc.components.back_to_top')
 </div>
     
 @stop
