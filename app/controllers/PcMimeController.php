@@ -5,7 +5,81 @@ class PcMimeController extends BaseController{
 	//个人中心静态页
 	public function userCenter()
 	{
-		return View::make('pc.userCenter');
+		if(!Sentry::check())
+		{
+			return View::make('errors.missing');
+		}
+		return View::make('pc.userCenter')->with(array('user'=>Sentry::getUser()));
+	}
+
+	//修改名字
+	public function setName()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+		$user = Sentry::getUser();
+		$username = Input::get('username');
+		if(!isset($username))
+			return Response::json(array('errCode'=>2,'message'=>'请填写你的昵称'));
+		$user->username = $username;
+		if(!$->save())
+			return Response::json(array('errCode'=>1,'message'=>'昵称修改失败'));
+		return Response::json(array('errCode'=>0,'message'=>'昵称修改成功'));
+	}
+	
+	//更换头像
+	public function setAvatar()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+		$user = Sentry::getUser();
+		$avatar = Input::get('avatar');
+		if(!isset($avatar))
+			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
+		$user->avatar = $avatar;
+		if(!$->save())
+			return Response::json(array('errCode'=>1,'message'=>'头像修改失败'));
+		return Response::json(array('errCode'=>0,'message'=>'头像修改成功'));
+	}
+
+	//更换签名
+	public function setSign()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+		$user = Sentry::getUser();
+		$info = Input::get('sign');
+		if(!isset($info))
+			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
+		$user->info = $info;
+		if(!$->save())
+			return Response::json(array('errCode'=>1,'message'=>'个性签名修改失败'));
+		return Response::json(array('errCode'=>0,'message'=>'个性签名修改成功'));
+	}
+
+	//设置个人信息
+	public function setInfo()
+	{
+		if(!Sentry::check())
+			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+		$user 			= Sentry::getUser();
+		$data = array(
+		 	'gender' 		= Input::get('gender'),
+			'birthday' 		= Input::get('birthday'),
+			'constellation' = Input::get('constellation'),
+			'postion' 		= Input::get('postion')
+			);
+		$data = array_filter($data);
+		if(count($data) != 0)
+		{
+			foreach($data as $key=>$value)
+			{
+				$user->$key = $value;
+			}		
+			if(!$user->save())
+				return Response::json(array('errCode'=>2,'message'=>'[数据库错误]修改信息失败，请重新个填写'));
+		}
+		return Response::json(array('errCode'=>0, 'message'=>'个人信息修改成功'));
 	}
 
 	//我参与的话题
@@ -90,5 +164,6 @@ class PcMimeController extends BaseController{
 							'total'=>$total,
 							));
 	}
+
 
 }
