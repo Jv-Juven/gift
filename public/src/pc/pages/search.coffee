@@ -18,7 +18,7 @@ $ ()->
 		scene = sceneItems.filter(".active").attr("data-id")
 		object = objectItems.filter(".active").attr("data-id")
 		price = priceItems.filter(".active").attr("data-id")
-
+		
 		$.post "/pc_election/selection_by_label", {
 			per_page: 12,
 			page: page,
@@ -35,7 +35,7 @@ $ ()->
 
 	searchItem.on "click", ()->
 		_this = $(this)
-		searchItem.removeClass "active"
+		_this.parent().find(".item").removeClass "active"
 		_this.addClass "active"
 		search(num)
 
@@ -56,4 +56,3 @@ $ ()->
 
 
 
-		

@@ -16,21 +16,26 @@
 			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
 			<div class="user-info-board">
 				<img class="avatar" src="/images/pc/userCenter/avatar.png">
-				<div class="set-avatar">
+				<!-- <div class="set-avatar">
 					<span>更换图片</span>
+				</div> -->
+				<div class="user-name">
+					<!-- <span class="name">Lucy</span> -->
+					<input type="text" value="Lucy" class="name" />
 				</div>
-				<span class="user-name">Lucy</span>
-				<div class="set-name">
-					<img src="/images/pc/userCenter/change.png">
-					<span>修改</span>
+				<div class="set-name set-username">
+					<span>
+						<img src="/images/pc/userCenter/change.png">
+						修改
+					</span>
 				</div>
 				<div class="set-name set-signature">
-					<img src="/images/pc/userCenter/change.png">
-					<span>修改</span>
+					<span>
+						<img src="/images/pc/userCenter/change.png">
+						修改
+					</span>
 				</div>
-				<span class="user-signature">
-					这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。
-				</span>
+				<textarea class="user-signature">这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。</textarea>
 			</div>
 		</div>
 		<div class="user-setting">

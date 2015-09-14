@@ -29,16 +29,16 @@
 					</div>
 					<div class="search-items-value char">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="/">全部</a></li>
-							<li class="item"><a class="" href="/">爸爸</a></li>
-							<li class="item"><a class="" href="/">妈妈</a></li>
-							<li class="item"><a class="" href="/">哥哥</a></li>
-							<li class="item"><a class="" href="/">姐姐</a></li>
-							<li class="item"><a class="" href="/">男票</a></li>
-							<li class="item"><a class="" href="/">女票</a></li>
-							<li class="item"><a class="" href="/">情敌</a></li>
-							<li class="item"><a class="" href="/">男基</a></li>
-							<li class="item"><a class="" href="/">女啦</a></li>
+							<li class="item active"><a class="" href="javascript:">全部</a></li>
+							<li class="item"><a class="" href="javascript:">爸爸</a></li>
+							<li class="item"><a class="" href="javascript:">妈妈</a></li>
+							<li class="item"><a class="" href="javascript:">哥哥</a></li>
+							<li class="item"><a class="" href="javascript:">姐姐</a></li>
+							<li class="item"><a class="" href="javascript:">男票</a></li>
+							<li class="item"><a class="" href="javascript:">女票</a></li>
+							<li class="item"><a class="" href="javascript:">情敌</a></li>
+							<li class="item"><a class="" href="javascript:">男基</a></li>
+							<li class="item"><a class="" href="javascript:">女啦</a></li>
 						</ul>
 					</div>
 				</div>
@@ -49,16 +49,16 @@
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="/">全部</a></li>
-							<li class="item"><a class="" href="/">爸爸</a></li>
-							<li class="item"><a class="" href="/">妈妈</a></li>
-							<li class="item"><a class="" href="/">哥哥</a></li>
-							<li class="item"><a class="" href="/">姐姐</a></li>
-							<li class="item"><a class="" href="/">男票</a></li>
-							<li class="item"><a class="" href="/">女票</a></li>
-							<li class="item"><a class="" href="/">情敌</a></li>
-							<li class="item"><a class="" href="/">男基</a></li>
-							<li class="item"><a class="" href="/">女啦</a></li>
+							<li class="item active"><a class="" href="javascript:">全部</a></li>
+							<li class="item"><a class="" href="javascript:">爸爸</a></li>
+							<li class="item"><a class="" href="javascript:">妈妈</a></li>
+							<li class="item"><a class="" href="javascript:">哥哥</a></li>
+							<li class="item"><a class="" href="javascript:">姐姐</a></li>
+							<li class="item"><a class="" href="javascript:">男票</a></li>
+							<li class="item"><a class="" href="javascript:">女票</a></li>
+							<li class="item"><a class="" href="javascript:">情敌</a></li>
+							<li class="item"><a class="" href="javascript:">男基</a></li>
+							<li class="item"><a class="" href="javascript:">女啦</a></li>
 						</ul>
 					</div>
 				</div>
@@ -69,16 +69,16 @@
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="/">全部</a></li>
-							<li class="item"><a class="" href="/">爸爸</a></li>
-							<li class="item"><a class="" href="/">妈妈</a></li>
-							<li class="item"><a class="" href="/">哥哥</a></li>
-							<li class="item"><a class="" href="/">姐姐</a></li>
-							<li class="item"><a class="" href="/">男票</a></li>
-							<li class="item"><a class="" href="/">女票</a></li>
-							<li class="item"><a class="" href="/">情敌</a></li>
-							<li class="item"><a class="" href="/">男基</a></li>
-							<li class="item"><a class="" href="/">女啦</a></li>
+							<li class="item active"><a class="" href="javascript:">全部</a></li>
+							<li class="item"><a class="" href="javascript:">爸爸</a></li>
+							<li class="item"><a class="" href="javascript:">妈妈</a></li>
+							<li class="item"><a class="" href="javascript:">哥哥</a></li>
+							<li class="item"><a class="" href="javascript:">姐姐</a></li>
+							<li class="item"><a class="" href="javascript:">男票</a></li>
+							<li class="item"><a class="" href="javascript:">女票</a></li>
+							<li class="item"><a class="" href="javascript:">情敌</a></li>
+							<li class="item"><a class="" href="javascript:">男基</a></li>
+							<li class="item"><a class="" href="javascript:">女啦</a></li>
 						</ul>
 					</div>
 				</div>

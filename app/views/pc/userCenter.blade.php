@@ -22,8 +22,8 @@
 				</span>
 			</div>
 			<a class="set-name chang-data" href="/">
-				<img src="/images/pc/userCenter/change.png">
-				<span>修改资料</span>
+				<img src="/images/pc/userCenter/setting.png">
+				<span>个人资料</span>
 			</a>
 		</div>
 		<div class="user-collection">
