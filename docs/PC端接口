@@ -356,55 +356,76 @@
 
 
 <-------------------------------------------------------------------->
-<----------------------参与话题的评论和回复接口与app端一致----------------->
+<---------------发表参与话题，参与话题的评论和回复接口与app端一致------------->
 <-------------------------------------------------------------------->
-	5.1 评论参与话题 
+5.1 评论参与话题 
+	请求方式:	POST
+	请求url:	/article/comment
+
+	请求参数:	
+			join_id					参与话题id
+			content 				话题内容
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
+
+5.2 删除评论参与话题
+	请求方式:	POST
+	请求url:	/article/dcomment
+
+	请求参数:	
+			com_id				评论id
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
+
+6.1 回复参与话题的评论
+	请求方式:	POST
+	请求url:	/article/reply
+
+	请求参数:	
+			com_id， 			评论的id
+			content， 			内容
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
+
+6.2 删除回复
+	请求方式:	POST
+	请求url:	/article/dreply
+
+	请求参数:	
+			reply_id，			回复的id
+			
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
+7.发表参与话题
 		请求方式:	POST
-		请求url:	/article/comment
+		请求url:	/article/issue
 
+				<----------内容已用户发表的顺序传给后台------------------>
+				<----------图片的type为url，文字的type为text-------------->
 		请求参数:	
-				join_id					参与话题id
-				content 				话题内容
-		返回参数 :
-
-				{
-					errCode:xxx,		错误码	0表示返回正常	 
-					message:xxx		提示信息
-				}
-	
-	5.2 删除评论参与话题
-		请求方式:	POST
-		请求url:	/article/dcomment
-
-		请求参数:	
-				com_id				评论id
-		返回参数 :
-
-				{
-					errCode:xxx,		错误码	0表示返回正常	 
-					message:xxx		提示信息
-				}
-
-	6.1 回复参与话题的评论
-		请求方式:	POST
-		请求url:	/article/reply
-
-		请求参数:	
-				com_id， 			评论的id
-				content， 			内容
-		返回参数 :
-
-				{
-					errCode:xxx,		错误码	0表示返回正常	 
-					message:xxx		提示信息
-				}
-
-	6.2 删除回复
-		请求方式:	POST
-		请求url:	/article/dreply
-
-		请求参数:	
-				reply_id，			回复的id
+				article_id			话题的id
+				content:[			参与话题的内容
+					{
+					type=>content
+					}....
+				] 				
+				
 				
 		返回参数 :
 
@@ -412,8 +433,42 @@
 					errCode:xxx,		错误码	0表示返回正常	 
 					message:xxx		提示信息
 				}
+8. 编辑参与话题
+	请求方式:	POST
+	请求url:	/article/edit
+
+			<----------内容已用户发表的顺序传给后台------------------>
+			<----------图片的type为url，文字的type为text-------------->
+	请求参数:	
+			join_id				参与话题的id
+			content:[			参与话题的内容
+				{
+				type=>content
+				}....
+			] 				
+			
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
+
+9.删除参与话题话题
+	请求方式:	POST
+	请求url:	/article/darticle
+
+	请求参数:	
+			join_id				参与话题的id
+			
+	返回参数 :
+
+			{
+				errCode:xxx,		错误码	0表示返回正常	 
+				message:xxx		提示信息
+			}
 <-------------------------------------------------------------------->
-<----------------------参与话题的评论和回复接口与app端一致----------------->
+<---------------发表参与话题，参与话题的评论和回复接口与app端一致------------->
 <-------------------------------------------------------------------->
 
 {"content":[{"text":"hehehe"}],"article_id":1}
@@ -432,10 +487,6 @@
 					message:xxx		提示信息
 				｝
 	
-
-
-
-
 
 
 
