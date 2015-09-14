@@ -932,7 +932,7 @@
 					errCode:xxx,	错误码	0表示返回正常	 
 					message:xxx		提示信息
 				｝
-	2.收藏参与话题
+	2.收藏专题
 		请求方式:	post
 		请求url:	/home/topicCollection
 

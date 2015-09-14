@@ -410,6 +410,20 @@
 
 {"content":[{"text":"hehehe"}],"article_id":1}
 
+收藏专题
+		请求方式:	post
+		请求url:	/home/topicCollection
+
+		请求参数:	 
+				 topic_id 			专题id
+
+		返回参数 :	
+				
+				｛
+					errCode:xxx,	错误码	0表示返回正常	 
+					message:xxx		提示信息
+				｝
+	
 
 
 
