@@ -1,0 +1,90 @@
+
+@import "../../common/define.less";
+
+.edit-wrap{
+    display: none;
+    position: fixed;
+}
+
+.edit-mask{
+    @_opacity: 0.3;
+    @_opacity_per: @_opacity * 100;
+    filter: alpha(opacity=@_opacity_per);
+    -moz-opacity: @_opacity;
+    -khtml-opacity: @_opacity;
+    opacity: @_opacity;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    position: fixed;
+    z-index: 0;
+}
+
+.edit-body{
+    @border-style: solid #ececec 1px;
+    @edit-body-width: 600px;
+    z-index: 1002;
+    width: @edit-body-width;
+    margin-top: -20px;
+    margin-left: 32px;
+    background: #ffffff;
+    position: absolute;
+    border: @border-style;
+
+    .edit-add-pic{
+        color: @color-gray-df;
+        font-size: 14px;
+        line-height: 40px;
+        border-bottom: @border-style;
+        .add-pic-il{
+            float: right;
+            margin-right: 25px;
+        }
+    }
+
+    .edit-content{
+        padding: 15px;
+        height: 360px;
+        border-bottom: @border-style;
+        .edit-content-input{
+            width: 100%;
+            height: 100%;
+            border: none;
+            resize: none;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+
+    .edit-option{
+        @btn-margin: 20px;
+        padding: 25px 0px;
+        .edit-option-item{
+            width: 88px;
+            font-size: 15px;
+            line-height: 35px;
+            text-indent: 5px;
+            letter-spacing: 5px;
+            border-radius: 12px;
+            border: solid 1px;
+            background: #ffffff;
+            display: block;
+        }
+        .edit-confirm-btn{
+            float: left;
+            margin-left: @btn-margin;
+            color: @color-red;
+            border-color: @color-red;
+        }
+        .edit-cancel-btn{
+            float: right;
+            margin-right: @btn-margin;
+            @cancel-color: #b5b5b5;
+            color: @cancel-color;
+            border-color: @cancel-color;
+        }
+    }
+}

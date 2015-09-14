@@ -1,0 +1,38 @@
+
+.post-wrap{
+    margin-top: 40px;
+    .info{
+        @info-item-left: 27px;
+        float: left;
+        margin-left: -@info-item-left;
+        .info-btn{
+            width: 19px;
+            height: 19px;
+            border: none;
+            display: inline-block;
+            background: url('/images/pc/common/icon-like-red.png') no-repeat;
+        }
+        .info-like-btn-a{
+            background-image: url('/images/pc/common/icon-like-red-2.png');
+        }
+        .info-item{
+            margin-left: @info-item-left;
+        }
+        .icon{
+            cursor: pointer;
+            vertical-align: bottom;
+        }
+        .num{
+            font-size: 14px;
+            margin-left: 3px;
+        }
+    }
+    .share{
+        font-size: 14px;
+        float: right;
+        .icon{
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    }
+}

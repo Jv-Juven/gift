@@ -1,0 +1,61 @@
+
+@import "define.less";
+
+.page-content{
+    border-top: solid @color-red 1px;
+}
+
+.container{
+    width: 980px;
+    margin: 20px auto;
+
+    .icon{
+        vertical-align: middle;
+    }
+    .num{
+        color: @color-num;
+        margin-left: 3px;
+    }
+
+    .gift-ad-wrap{
+        width: 290px;
+        overflow: hidden;
+        float: right;
+        img{
+            margin-bottom: 10px;
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+.container-left{
+    width: @container-left-width;
+    margin-left: 32px;
+    float: left;
+}
+
+// load more
+.load-btn{
+    @border-width: 1px;
+    width: 550px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 40px;
+    color: @color-gray-df;
+    display: block;
+    margin-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: solid @color-gray-df @border-width;
+    background: none;
+    &:hover{
+        color: #333333;
+        border: solid #333333 @border-width;
+    }
+    &:active{
+        color: @color-red;
+        border: solid @color-red @border-width;
+    }
+}

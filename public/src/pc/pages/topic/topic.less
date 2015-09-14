@@ -1,0 +1,157 @@
+
+@import "../../common/define.less";
+@import "../../common/container.less";
+@import "../../common/post_info/post_info.less";
+@import "./join_editor.less";
+
+@avatar-width: 42px;
+@discuss-item-width: @container-left-width;
+@discuss-container-margin-left: 14px;
+@discuss-container-width: @discuss-item-width - @avatar-width - @discuss-container-margin-left;
+@discuss-pic-margin-left: 10px;
+
+.discuss-list{
+    .discuss-count{
+        font-size: 18px;
+        margin-top: 25px;
+        margin-bottom: 27px;
+    }
+}
+
+.discuss-item{
+    margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 18px;
+    border-top: solid @color-gray-df 1px;
+
+        // 头像        
+    .avatar{
+        width: @avatar-width;
+        float: left;
+        display: block;
+    }
+
+    .discuss-container{
+        float: left;
+        width: @discuss-container-width;
+        margin-top: 14px;
+        margin-left: @discuss-container-margin-left;
+            
+        .discuss-top{
+            // 用户名
+            .user-name{
+                float: left;
+                color: #3c3c3c;
+                font-size: 18px;
+            }
+            .discuss-time{
+                float: right;
+                margin-right: 14px;
+                color: @color-gray;
+                font-size: 14px;
+            }
+        }
+
+        // 评论内容
+        .discuss-content{
+            font-size: 14px;
+            line-height: 28px;
+            margin-top: 13px;
+            .content-link{
+                color: #333333;
+                &:hover{
+                    color: #8bc2dc;
+                }
+            }
+        }
+
+        // 评论中图片内容
+        .discuss-pic-wrap{
+            @img-list-max-height: 130px;
+            @discuss-pic-width: ( @discuss-container-width - 3 * 10px ) / 4;
+            position: relative;
+            .pic-list{
+                margin-left: -@discuss-pic-margin-left;
+                margin-top: 5px;
+                height: @img-list-max-height;
+                overflow: hidden;
+                .discuss-pic{
+                    float: left;
+                    width: @discuss-pic-width;
+                    display: block;
+                    cursor: pointer;
+                    margin-left: @discuss-pic-margin-left;
+                }
+            }
+            .pic-natural-wrap{
+                margin-top: 10px;
+                .discuss-pic-natural{
+                    max-width: 100%;
+                }
+            }
+            .pic-arrow-down{
+                left: 0px;
+                width: @discuss-pic-width;
+                display: block;
+                position: relative;
+            }
+        }
+    }
+}
+
+.join-topic-btn{
+    width: 550px;
+    margin: 30px auto;
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    line-height: 48px;
+    letter-spacing: 10px;
+    font-size: 18px;
+    background-color: #f73b39;
+}
+
+.topic{
+    .title{
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 30px;
+        margin-top: 6px;
+    }
+    .info{
+        @info-item-left: 18px;
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 12px;
+        margin-left: -@info-item-left;
+        .date{
+            color: #adadad;
+            margin-left: 20px;
+        }
+        .num{
+            margin-left: 3px;
+            line-height: 14px;
+        }
+        &>span{
+            margin-left: @info-item-left;
+        }
+    }
+    .topic-content{
+        @font-size: 14px;
+        color: #777777;
+        font-size: @font-size;
+        line-height: 26px;
+        overflow: hidden;
+        margin-top: 20px;
+        margin-bottom: 35px;
+        padding-bottom: 25px;
+        border-bottom: solid @color-red 2px;
+        word-wrap: break-word;
+        & > p{
+            margin-top: 3px;
+            margin-bottom: 8px;
+            text-indent: @font-size * 2;
+        }
+    }
+}
