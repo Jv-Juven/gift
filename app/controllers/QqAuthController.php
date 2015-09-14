@@ -94,7 +94,11 @@ class QqAuthController extends BaseController{
     }
 
     public function accessToken()
-    {
+    {   
+        if(Sentry::check())
+        {
+            return Redirect::to('/home')->with(array('user'=>Sentry::getUser()));
+        }
         // Session::put('code', Input::get('code'));
         $code = Input::get('code');
         $data = $this->getAccessTokenByCode($code);
@@ -154,6 +158,7 @@ class QqAuthController extends BaseController{
         return Redirect::to('/home')->with(array('user'=>$user));
     } 
 
+    //移动端
     public function storeUserData()
     {   
 		if(Sentry::check())

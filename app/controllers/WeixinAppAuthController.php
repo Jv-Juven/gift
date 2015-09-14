@@ -3,6 +3,10 @@ class WeixinAppAuthController extends BaseController{
 
 	public function storeUserData()
 	{	
+        if(Sentry::check())
+        {
+            return Response::json(array('errCode'=>0,'message'=>'已登录','user'=>Sentry::getUser()));
+        }
 //		Log::info(Input::get('data'));
 		$data =json_decode( Input::get('data') );
 	//	return Input::get('data');
