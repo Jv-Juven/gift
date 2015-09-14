@@ -157,6 +157,8 @@ Route::group(array('prefix'=>'notice'),function(){
 
 //七牛
 Route::get('qiniu', 'UploadController@getUpToken');
+Route::get('qiniu/app', 'UploadController@getAppUpToken');
+
 //后台管理
 Route::controller('/login', 'AdminController');
 //微信认证登录
