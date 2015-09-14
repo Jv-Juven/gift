@@ -2,12 +2,30 @@
 
 class ArticlePageController extends BaseController{
 	
-	public function isLike($article_id)
+	//喜欢话题
+	public function isArticleLike($article_id)
 	{
 		if(Sentry::check())
 		{
 			$gift_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
 							->where('article_id', '=', $article_id)->first();
+		}
+		//判断是否收藏
+		if(isset($gift_focus))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
+	//喜欢参与话题
+	public function isJoinLike($join_id)
+	{
+		if(Sentry::check())
+		{
+			$gift_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('join_id', '=', $join_id)->first();
 		}
 		//判断是否收藏
 		if(isset($gift_focus))
@@ -111,7 +129,7 @@ class ArticlePageController extends BaseController{
 		//评论
 		$article_joins = StaticController::page($per_page,$page,$article_joins);
 		//是否喜欢
-		$type = $this->isLike($article_id);
+		$type = $this->isArticleLike($article_id);
 		
 		if( $article_joins )
 		{
@@ -182,18 +200,22 @@ class ArticlePageController extends BaseController{
 				}
 			}
 		}
+		//是否喜欢
+		$type = $this->isJoinLike($join_id);
 		if($page == 1)
 		{
 			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
 							'article_join' => $article_join,
 							'article_join_parts' => $article_join_parts,
 							'join_coms' => $join_coms,
-							'total'=>$total
+							'total'=>$total,
+							'type' => $type
 						));
 		}else{
 			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
 							'join_coms' => $join_coms,
-							'total'=>$total
+							'total'=>$total,
+							'type' => $type
 						));
 		}
 		
