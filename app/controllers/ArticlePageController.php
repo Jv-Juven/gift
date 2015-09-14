@@ -157,6 +157,7 @@ class ArticlePageController extends BaseController{
 			return Response::json(array('errCode'=>0, 'message'=>'返回文章内容',
 							'article'		=>$article,
 							'article_parts'	=>$article_parts,
+							'article_joins' =>$article_joins,
 							'total'			=>$total,
 							'type' 			=>$type
 						));
