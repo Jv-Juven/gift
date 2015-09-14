@@ -22,20 +22,30 @@
 				<div class="user-name">
 					<!-- <span class="name">Lucy</span> -->
 					<input type="text" value="Lucy" class="name" />
+					<!-- <div class="set-name set-username">
+						<span>
+							<img src="/images/pc/userCenter/change.png">
+							修改
+						</span>
+					</div> -->
 				</div>
-				<div class="set-name set-username">
-					<span>
-						<img src="/images/pc/userCenter/change.png">
-						修改
-					</span>
+				
+				
+				<div class="user-signature-container">
+					<!-- <div class="set-name set-signature">
+						<span>
+							<img src="/images/pc/userCenter/change.png">
+							修改
+						</span>
+					</div> -->
+					<textarea class="user-signature">这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。</textarea>					
 				</div>
-				<div class="set-name set-signature">
-					<span>
-						<img src="/images/pc/userCenter/change.png">
-						修改
-					</span>
-				</div>
-				<textarea class="user-signature">这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。</textarea>
+			</div>
+			<div class="setting-btn setting-back">
+				<a href="/">返回个人中心</a>
+			</div>
+			<div class="setting-btn sign-out">
+				<a href="/">退出登录</a>
 			</div>
 		</div>
 		<div class="user-setting">
@@ -120,7 +130,7 @@
 				</div>
 
 				<div class="user-form-input user-form-submit">
-					<span class="submit-btn">退出登录</span>
+					<span class="submit-btn">提交修改</span>
 				</div>
 			</div>
 		</div>

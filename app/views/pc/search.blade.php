@@ -12,17 +12,17 @@
 @section("body")
 	<div class="page-content">
 		<div class="search-container">
-			<div class="search-wrapper">
+			<!-- <div class="search-wrapper">
 				<div class="search-box">
 					<input type="text" class="search-input" placeholder="想找什么礼物">
 					<div class="search-input-icon">
 						<img src="/images/pc/search/search_icon.png">
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="search-items-container">
-				<div class="search-items-tr clearx">
+				<div class="search-items-tr clearx first">
 					<div class="search-items-key">
 						<img class="key-dot" src="/images/pc/search/dot.png">
 						<span>赠送对象:</span>
