@@ -2,6 +2,8 @@ $ ()->
 	userHotBox = $(".user-hot-board")
 	userCollectionli = $(".user-collection-li")
 	userWrapper = $(".user-wrappers")
+	num01 = 1
+	num02 = 2
 
 	#点击相应的选项卡
 	userCollectionli.on "click", ()->
@@ -31,3 +33,18 @@ $ ()->
 		$(this).stop(true).animate({
 			bottom: "-21px"
 		}, 300)
+
+	#加载数据
+	loadGifts = (page)->
+		if !page
+			page = 1
+
+		$.post "", {
+			per_page: 16,
+			page: page
+		}, (msg)->
+			tpl = _.template $("#search_tpl").html()#改为用参数设置
+			itemHtml = tpl {
+				"array": msg["gifts"]
+			}
+			wrapper.append itemHtml

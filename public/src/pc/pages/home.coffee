@@ -9,10 +9,12 @@ $ ()->
 	winWidth = $(window).outerWidth(true)
 	$(".home-swiper-container").css("height", winWidth * 0.4875)
 	# 设置幻灯片的高度 END
-	
+
 	homeSwiper = new Swiper ".home-swiper-container", {
 		loop: true,
 		autoplay: 4000,
+		paginationClickable: true,
+		autoplayDisableOnInteraction: false,
 		speed: 400
 	}
 	console.log $(".swiper-slide").outerHeight(true)

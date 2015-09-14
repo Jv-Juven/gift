@@ -105,6 +105,7 @@
 			</div>
 		</div>
 	</div>
+	@include("pc.components.back_to_top")
 
 	<script type="text/template" id="search_tpl">
 		<% for(var i = 0; i < array.length; i ++){ 

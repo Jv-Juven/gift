@@ -33,7 +33,7 @@
 		<div class="user-setting">
 			<div class="user-form clearx">
 				<div class="user-form-input">
-					<span class="input-key">性别</span>
+					<span class="input-key input-gender">性别</span>
 					<div class="input-value">
 						@include("pc.components.dropdown-menu", array("id"=>"sex", "title" => "男", "items" => array(
 							array(
@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				<div class="user-form-input">
-					<span class="input-key">生日</span>
+					<span class="input-key input-birthday">生日</span>
 					<div class="input-value">
 						@include("pc.components.dropdown-menu", array("id"=>"month", "title" => "1月", "items" => array(
 							array(
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 				<div class="user-form-input">
-					<span class="input-key">星座</span>
+					<span class="input-key input-constellation">星座</span>
 					<div class="input-value">
 						@include("pc.components.dropdown-menu", array("id"=>"constellation", "title" => "白羊座", "items" => array(
 							array(
@@ -96,7 +96,7 @@
 					</div>
 				</div>
 				<div class="user-form-input">
-					<span class="input-key">职业</span>
+					<span class="input-key input-position">职业</span>
 					<div class="input-value">
 						@include("pc.components.dropdown-menu", array("id"=>"profession", "title" => "女大学生", "items" => array(
 							array(

@@ -277,6 +277,61 @@
 			</div>
 		</div>
 	</div>
+	@include("pc.components.back_to_top")
+
+	<script type="text/template" id="gifts_tpl">
+		<% for(var i = 0; i < array.length; i ++){ 
+			var likeUrl = "";
+			if (array[i]['taobao_url'] == 0){
+				likeUrl = "/images/pc/home/like.png"
+			}
+			else{
+				likeUrl = "/images/pc/home/liked.png"
+			}
+			%>
+			<li class="user-recommend-box">
+				<a href="<%- array[i]['taobao_url'] %>">
+					<img src="<%- array[i]['url'] %>">
+					<span class="box-cover">
+						<span class="box-cover-title">
+							<%- array[i]['title'] %>
+						</span>
+						<span class="box-cover-price">
+							<span>￥<%- array[i]['price'] %></span>
+						</span>
+						<span class="box-cover-like" href="http://baidu.com">
+							<img src="<%- likeUrl %>">
+						</span>
+					</span>
+				</a>
+			</li>
+		<% } %>
+	</script>
+	<script type="text/template" src="topics_tpl">
+	<% for(var i = 0; i < array.length; i ++){ %>
+		<li class="user-hot-box">
+			<a href="<%- array[i]['url'] %>">
+				<img src="<%- array[i]['url'] %>">
+				<span class="user-hot-cover">
+					<img class="bg-img" src="/images/pc/home/cover_gradual.png">
+					<span class="user-hot-board">
+						<span class="user-hot-title"><%- array["i"]["title"] %></span>
+						<span class="user-hot-info">
+							<span class="user-scan">
+								<img class="user-hot-scan" src="/images/pc/home/scaned.png">
+								<span class="scan-count"><array["i"]["scaned"]></span>
+							</span>
+							<span class="user-scan">
+								<img class="user-hot-comments" src="/images/pc/home/comments.png">
+								<span class="scan-count">array["i"]["comments"]</span>
+							</span>
+						</span>
+					</span>
+				</span>
+			</a>
+		</li>
+		<% } %>
+	</script>
 @stop
 
 
