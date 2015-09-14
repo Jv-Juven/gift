@@ -314,9 +314,7 @@
 	请求方式:	GET
 	请求url:	/detail/join_detail
 
-			article_id,	 					话题id
-			per_page,						每页数
-			page,							第几页
+			join_id,	 					话题id
 
 	返回参数:
 			article_join:{
@@ -331,26 +329,12 @@
 						type,				text/url
 						}...
 			]
-			join_coms:[
-					{
-					id,						评论id
-					username,				用户名
-					avatar,					头像
-					content,				内容
-					replys:[
-						{	
-							reply_name,		回复名称
-							content 		内容
-						}
-						]
-					}...
-			]
 
 18.获取评论
 	请求方式:	GET
 	请求url:	/detail/join_com
 
-			article_id,	 					话题id
+			join_id,	 					话题id
 			per_page,						每页数
 			page,							第几页
 
