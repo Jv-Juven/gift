@@ -12,7 +12,7 @@ $ ()->
 	
 	homeSwiper = new Swiper ".home-swiper-container", {
 		loop: true,
-		# autoplay: 4000,
+		autoplay: 4000,
 		speed: 400
 	}
 	console.log $(".swiper-slide").outerHeight(true)

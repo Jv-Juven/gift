@@ -8,7 +8,14 @@ $ ()->
 	objectItems = $(".search-items-tr .object li")
 	priceItems = $(".search-items-tr .price li")
 	searchItem = $(".search-items-container .item")
+	searchMore = $(".search-more")
 	num = 1
+
+	#修改头部图片
+	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png")
+
+	#默认选取“全部”
+	searchItem.eq(0).addClass "active"
 
 	#搜索
 	search = (page)->
@@ -18,7 +25,7 @@ $ ()->
 		scene = sceneItems.filter(".active").attr("data-id")
 		object = objectItems.filter(".active").attr("data-id")
 		price = priceItems.filter(".active").attr("data-id")
-		
+
 		$.post "/pc_election/selection_by_label", {
 			per_page: 12,
 			page: page,
@@ -40,6 +47,9 @@ $ ()->
 		search(num)
 
 	#加载下一页
+	searchMore.on "click", ()->
+		++num
+		search(num)
 
 
 
