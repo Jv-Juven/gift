@@ -1,6 +1,11 @@
 <div class="header">
 	<div class="header-wrapper">
 		<img class="header-logo" src="/images/pc/login/logo.png">
+		<div class="header-menubar">
+			<a href="/">
+				<img src="/images/pc/components/heng-bar.png">
+			</a>
+		</div>
 		<ul class="header-menu">
 			<li class="header-login">
 				<a href="/">登录</a>

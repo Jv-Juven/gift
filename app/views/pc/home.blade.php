@@ -13,17 +13,22 @@
 			<div class="swiper-wrapper">
 			    <div class="swiper-slide">
 			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/homepic1.png">
+			    		<img src="/images/pc/home/slide-img01.jpg">
 			    	</a>
 			    </div>
 			    <div class="swiper-slide">
 			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/homepic1.png">
+			    		<img src="/images/pc/home/slide-img02.jpg">
 			    	</a>
 		    	</div>
 			    <div class="swiper-slide">
 			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/homepic1.png">
+			    		<img src="/images/pc/home/slide-img03.jpg">
+			    	</a>
+		    	</div>
+			    <div class="swiper-slide">
+			    	<a class="link-wrapper" href="javascript:">
+			    		<img src="/images/pc/home/slide-img04.jpg">
 			    	</a>
 		    	</div>
 			</div>

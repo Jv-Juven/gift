@@ -29,16 +29,9 @@
 					</div>
 					<div class="search-items-value char">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="javascript:">全部</a></li>
-							<li class="item"><a class="" href="javascript:">爸爸</a></li>
-							<li class="item"><a class="" href="javascript:">妈妈</a></li>
-							<li class="item"><a class="" href="javascript:">哥哥</a></li>
-							<li class="item"><a class="" href="javascript:">姐姐</a></li>
-							<li class="item"><a class="" href="javascript:">男票</a></li>
-							<li class="item"><a class="" href="javascript:">女票</a></li>
-							<li class="item"><a class="" href="javascript:">情敌</a></li>
-							<li class="item"><a class="" href="javascript:">男基</a></li>
-							<li class="item"><a class="" href="javascript:">女啦</a></li>
+							@foreach($_char as $char)
+							<li class="item" data-id="{{ $char->id }}"><a class="" href="javascript:">{{ $char->_class }}</a></li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
@@ -49,16 +42,9 @@
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="javascript:">全部</a></li>
-							<li class="item"><a class="" href="javascript:">爸爸</a></li>
-							<li class="item"><a class="" href="javascript:">妈妈</a></li>
-							<li class="item"><a class="" href="javascript:">哥哥</a></li>
-							<li class="item"><a class="" href="javascript:">姐姐</a></li>
-							<li class="item"><a class="" href="javascript:">男票</a></li>
-							<li class="item"><a class="" href="javascript:">女票</a></li>
-							<li class="item"><a class="" href="javascript:">情敌</a></li>
-							<li class="item"><a class="" href="javascript:">男基</a></li>
-							<li class="item"><a class="" href="javascript:">女啦</a></li>
+							@foreach($scene as $s)
+							<li class="item" data-id="{{ $s->id }}"><a class="" href="javascript:">{{ $s->_class }}</a></li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
@@ -69,16 +55,22 @@
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
-							<li class="item active"><a class="" href="javascript:">全部</a></li>
-							<li class="item"><a class="" href="javascript:">爸爸</a></li>
-							<li class="item"><a class="" href="javascript:">妈妈</a></li>
-							<li class="item"><a class="" href="javascript:">哥哥</a></li>
-							<li class="item"><a class="" href="javascript:">姐姐</a></li>
-							<li class="item"><a class="" href="javascript:">男票</a></li>
-							<li class="item"><a class="" href="javascript:">女票</a></li>
-							<li class="item"><a class="" href="javascript:">情敌</a></li>
-							<li class="item"><a class="" href="javascript:">男基</a></li>
-							<li class="item"><a class="" href="javascript:">女啦</a></li>
+							@foreach($object as $o)
+							<li class="item" data-id="{{ $o->id }}"><a class="" href="javascript:">{{ $o->_class }}</a></li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				<div class="search-items-tr clearx">
+					<div class="search-items-key">
+						<img class="key-dot" src="/images/pc/search/dot.png">
+						<span>赠送对象:</span>
+					</div>
+					<div class="search-items-value">
+						<ul class="items-wrapper clearx">
+							@foreach($price as $p)
+							<li class="item" data-id="{{ $p->id }}"><a class="" href="javascript:">{{ $p->_class }}</a></li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
@@ -88,7 +80,7 @@
 			<div class="search-wrappers search-recommend-wrapper">
 				<ul class="search-recommend-content clearx">
 
-					<li class="search-recommend-box">
+					<!-- <li class="search-recommend-box">
 						<a href="/">
 							<img src="/images/pc/home/pic02.png">
 							<span class="box-cover">
@@ -104,179 +96,12 @@
 								</span>
 							</span>
 						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="search-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
+					</li> -->
 
 				</ul>
+				<div class="search-more">
+					加载更多
+				</div>
 			</div>
 		</div>
 	</div>

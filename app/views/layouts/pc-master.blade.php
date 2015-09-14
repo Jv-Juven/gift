@@ -24,7 +24,7 @@
 </div>
 
 @section("js")
-<script type="text/javascript" src="/dist/lib/js/jQuery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/dist/lib/js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/dist/lib/js/idangerous.swiper.min.js"></script>
 <script type="text/javascript" src="/dist/lib/js/lodash.min.js"></script>
 <script type="text/javascript" src="/dist/pc/js/common.js"></script>
