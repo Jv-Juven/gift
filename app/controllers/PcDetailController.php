@@ -127,7 +127,7 @@ class PcDetailController extends BaseController{
 		$join_id = Input::get('join_id');
 		$article_join = ArticleJoin::find($join_id);
 		if(!isset($article_join))
-			return Response::json(array('errCode'=>1, 'message'=>'没有该参与话题内容！'));
+			return Response::view('errors.missing');
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
 			
 		return View::make('pc.topic')->with(array(
