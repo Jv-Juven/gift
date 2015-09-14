@@ -222,21 +222,31 @@ Route::group(array('prefix'=>'pc_election'),function(){
 });
 
 //我喜欢的
-Route::group(array('prefix'=>'pc_mime'),function(){
+Route::group(array('prefix'=>'pc_mine'),function(){
 	//个人中心
 	Route::get('/', 'PcMimeController@userCenter');
 	//我参与的话题
 	Route::get('join_article', 'PcMimeController@joinArticle');
 	//我喜欢的礼品
 	Route::get('like_gift', 'PcMimeController@likeGift');
+	//个人中心
+	Route::get('mime', 'PcMimeController@userCenter');
+	//修改名字
+	Route::post('set_name', 'PcMimeController@setName');
+	//更换头像
+	Route::post('set_avatar', 'PcMimeController@setAvatar');
+	//更换签名
+	Route::post('set_sign', 'PcMimeController@setSign');
+	//设置个人信息
+	Route::post('set_info', 'PcMimeController@setInfo');
 });
 
 //话题／参与话题/礼品收藏与app端完全一样
 //ArticleController/HomeController
 
 
-//个人中心设置
-Route::get('site', 'PcSiteController@perInfo');
-Route::post('site', 'PcSiteController@setInfo');
+// //个人中心设置
+// Route::get('site', 'PcSiteController@perInfo');
+// Route::post('site', 'PcSiteController@setInfo');
 
 Route::get('test','HomePageController@giftDetail');

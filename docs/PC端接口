@@ -497,9 +497,75 @@
 	返回参数 :	
 
 			uptoken:			
-			
-			
 
+获取个人信息静态页面
+	请求方式:	GET
+	请求url:	/pc_mine
 
+	请求参数:	 
 
+	返回参数 :	
+			user:{
+				'username',			用户名	
+				'avatar',			头像
+				'gender',			性别
+				'birthday',			生日	
+				'postion',			职业
+				'constellation',	星座
+				'info',				个人签名
+			}
 
+设置用户名
+	请求方式:	POST
+	请求url:	/pc_mine/set_name
+
+	请求参数:	 
+			username 				用户名
+
+	返回参数:
+			{
+				errCode:			错误码
+				message: 			错误信息
+			}
+
+更换头像
+	请求方式:	POST
+	请求url:	/pc_mine/set_avatar
+
+	请求参数:	 
+			avatar 					头像
+
+	返回参数:
+			{
+				errCode:			错误码
+				message: 			错误信息
+			}
+
+更换签名
+	请求方式:	POST
+	请求url:	/pc_mine/set_sign
+
+	请求参数:	 
+			sign 					个性签名
+
+	返回参数:
+			{
+				errCode:			错误码
+				message: 			错误信息
+			}
+
+设置个人信息
+	请求方式:	POST
+	请求url:	/pc_mine/set_info
+
+	请求参数:	 
+			gender	 				性别
+			birthday 				生日
+			constellation 			星座
+			postion 				职业
+
+	返回参数:
+			{
+				errCode:			错误码
+				message: 			错误信息
+			}

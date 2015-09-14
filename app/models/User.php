@@ -24,7 +24,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			'birthday',
 			'phone',	
 			'role_id',
-			'postion'		
+			'postion',
+			'constellation',
+			'info',
+			'openid',
+			'unionid',
+			'qq_id'		
 	);
 
 	public function topic_joins()
