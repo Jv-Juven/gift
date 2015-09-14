@@ -170,4 +170,8 @@ class PcDetailController extends BaseController{
 		}
 	}
 
+	public function joinComs()
+	{
+		
+	}
 }
