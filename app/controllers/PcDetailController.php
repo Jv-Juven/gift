@@ -130,6 +130,15 @@ class PcDetailController extends BaseController{
 			return Response::json(array('errCode'=>1, 'message'=>'没有该参与话题内容！'));
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
 			
+		return View::make('pc.topic')->with(array(
+							'article_join' 			=> $article_join,
+							'article_join_parts' 	=> $article_join_parts,
+						));
+	}
+
+	public function joinComs()
+	{
+		$join_id = Input::get('join_id');
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
@@ -154,20 +163,10 @@ class PcDetailController extends BaseController{
 				}
 			}
 		}
-		if($page == 1)
-		{
-			return View::make('pc.')->with(array(
-							'article_join' 			=> $article_join,
-							'article_join_parts' 	=> $article_join_parts,
-							'join_coms' 			=> $join_coms,
-							'total'					=> $total
-						));
-		}else{
-			return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
+
+		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题详情',
 							'join_coms' => $join_coms,
 							'total'		=> $total
 						));
-		}
 	}
-
 }

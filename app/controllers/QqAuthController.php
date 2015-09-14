@@ -94,7 +94,11 @@ class QqAuthController extends BaseController{
     }
 
     public function accessToken()
-    {
+    {   
+        if(Sentry::check())
+        {
+            return Redirect::to('/home')->with(array('user'=>Sentry::getUser()));
+        }
         // Session::put('code', Input::get('code'));
         $code = Input::get('code');
         $data = $this->getAccessTokenByCode($code);
@@ -154,21 +158,30 @@ class QqAuthController extends BaseController{
         return Redirect::to('/home')->with(array('user'=>$user));
     } 
 
+    //移动端
     public function storeUserData()
     {   
-        $openid = Input::get('openid');
-        $data = Input::get('data');
-        $user = User::where('openid', '=', $openid)->first();
+		if(Sentry::check())
+		{
+			return Response::json(array('errCode'=>0,'message'=>'已登录','user'=>Sentry::getUser()));
+		}
+      // $openid = Input::get('openid');
+	//	Log::info($openid);
+	//	Log::info(get_class(Input::get('data')));
+		Log::info(Input::get('data'));
+		//return Input::get('data');
+		$data =json_decode(Input::get('data')) ;
+        $user = User::where('openid', '=', $data->openid)->first();
         if(!isset($user))
         {
             // try{
                 $client_user = Sentry::createUser(array(
-                    'username'  => $data['nickname'],
-                    'avatar'    => $data['figureurl'],
-                    'gender'    => $data['gender'],
-                    'email'     => $openid,
-                    'password'  => $openid,
-                    'qq_id'     => $openid,
+                    'username'  => $data->nickname,
+                    'avatar'    => $data->figureurl,
+                    'gender'    => $data->gender,
+                    'email'     => $data->openid,
+                    'password'  => $data->openid,
+                    'qq_id'     => $data->openid,
                     'activated' => '1'
                 ));
             // }

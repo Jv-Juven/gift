@@ -14,4 +14,3 @@ class UploadController extends BaseController {
 	}
 }
 
-}

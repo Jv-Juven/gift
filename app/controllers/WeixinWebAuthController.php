@@ -74,7 +74,11 @@ class WeixinWebAuthController extends BaseController{
     }
 
     public function accessToken()
-    {
+    {   
+        if(Sentry::check())
+        {
+            return Redirect::to('/home')->with(array('user'=>Sentry::getUser()));
+        }
         // Session::put('code', Input::get('code'));
         $code = Input::get('code');
         $weixin_data = $this->getAccessTokenByCode($code);
@@ -125,12 +129,12 @@ class WeixinWebAuthController extends BaseController{
             // {
             //     return View::make('errors.missing')
             // }
-            return Redirect::to('/')->with(array('user'=>$user));
+            return Redirect::to('/home')->with(array('user'=>$user));
         }
 
         $user = Sentry::findUserById($unionid_user->id);
         Sentry::login($user,false);
         
-        return Redirect::to('/')->with(array('user'=>$user));
+        return Redirect::to('/home')->with(array('user'=>$user));
     }
 }
