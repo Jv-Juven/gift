@@ -131,7 +131,7 @@ class ArticlePageController extends BaseController{
 		//是否喜欢
 		$type = $this->isArticleLike($article_id);
 		
-		if( $article_joins )
+		if( count($article_joins) !=0 )
 		{
 			foreach($article_joins as $article_join)
 			{

@@ -48,7 +48,7 @@ class PcMimeController extends BaseController{
 		if(!Sentry::check())
 			return Response::json(array('errCode'=>1,'message'=>'请登录'));
 		$user = Sentry::getUser();
-		$info = Input::get('info');
+		$info = Input::get('sign');
 		if(!isset($info))
 			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
 		$user->info = $info;
