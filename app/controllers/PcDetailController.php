@@ -54,7 +54,7 @@ class PcDetailController extends BaseController{
 		// 		$topic_com->replys = $topic_replys; 	
 		// 	}
 		// }
-			return View::make('pc.topic')->with(array(
+			return View::make('pc.subject')->with(array(
 					'topic' 		=> $topic,
 					'gifts'			=> $gifts,
 					// 'topic_coms' 	=> $topic_coms
@@ -70,7 +70,7 @@ class PcDetailController extends BaseController{
 		if(!isset($article))
 			return Response::view('errors.missing');
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		return View::make('pc.')->with(array(
+		return View::make('pc.topic')->with(array(
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
 					));

@@ -570,3 +570,11 @@
 				errCode:			错误码
 				message: 			错误信息
 			}
+
+qq登录
+	请求url: qq/web_code
+
+微信登录
+	请求url:	weixin/web_code
+
+

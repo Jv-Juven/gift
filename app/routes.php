@@ -191,13 +191,13 @@ Route::group(array('prefix'=>'qq'), function(){
 //首页模块
 Route::group(array('prefix' => 'pc_home'),function(){
 	//首页静态
-	Route::get('/','HomePagePController@home');
+	Route::get('/','PcHomePageController@home');
 	//甑选推荐
-	Route::get('recommend', 'HomePagePController@recommend');
+	Route::get('recommend', 'PcHomePageController@recommend');
 	//专题
-	Route::get('topic', 'HomePagePController@topic');
+	Route::get('topic', 'PcHomePageController@topic');
 	//热门话题
-	Route::get('article', 'HomePagePController@article');
+	Route::get('article', 'PcHomePageController@article');
 });
 
 //详情页路由
