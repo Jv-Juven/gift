@@ -21,7 +21,7 @@
 					{{$user->info}}
 				</span>
 			</div>
-			<a class="set-name chang-data" href="/">
+			<a class="set-name chang-data" href="/pc_mine/mine">
 				<img src="/images/pc/userCenter/setting.png">
 				<span>个人资料</span>
 			</a>

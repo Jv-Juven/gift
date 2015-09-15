@@ -27,7 +27,7 @@
 				<a href="/pc_mine">返回个人中心</a>
 			</div>
 			<div class="setting-btn sign-out">
-				<a href="/">退出登录</a>
+				<a href="javascript:">退出登录</a>
 			</div>
 		</div>
 		<div class="user-setting">

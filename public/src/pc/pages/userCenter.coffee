@@ -48,6 +48,7 @@ $ ()->
 		if !page
 			page = 1
 		if lock01 is 0
+			loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px").end().show().fadeOut(2000)
 			return
 		if load_lock01 is 0
 			return
@@ -68,7 +69,7 @@ $ ()->
 				alert msg["message"]
 				return
 			if msg["gifts"].length is 0
-				loadTip.find("img").attr("src","/images/pc/search/loaded.gif")
+				loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px")
 				loadTip.fadeOut(2000)
 				lock01 = 0
 				return
@@ -84,6 +85,7 @@ $ ()->
 		if !page
 			page = 1
 		if lock02 is 0
+			loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px").end().show().fadeOut(2000)
 			return
 		if load_lock02 is 0
 			return
@@ -92,7 +94,7 @@ $ ()->
 		#请求开始
 		loadTip.find("img").attr("src","/images/pc/search/loading.gif").end().hide().fadeIn()
 		$.get "/pc_mine/join_article", {
-			per_page: 16,
+			per_page: 6,
 			page: page
 		}, (msg)->
 
@@ -104,7 +106,7 @@ $ ()->
 				# alert msg["message"]
 				return
 			if msg["articles"].length is 0
-				loadTip.find("img").attr("src","/images/pc/search/loaded.gif")
+				loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px")
 				loadTip.fadeOut(2000)
 				lock02 = 0
 				return

@@ -27,7 +27,7 @@ $ ()->
 			page = 1
 
 		if lock is 0 
-			searchMore.html("没有数据了~").show()
+			searchMore.html('<img style="width: 140px" src="/images/pc/search/loaded.png">').show()
 			clearTimeout(timeout)
 			timeout = setTimeout ()->
 				searchMore.fadeOut(1400)
@@ -65,7 +65,7 @@ $ ()->
 			#请求完毕，解锁
 			load_lock = 1
 			if msg["gifts"].length is 0
-				searchMore.html("没有数据了~")
+				searchMore.html('<img style="width: 140px" src="/images/pc/search/loaded.png">')
 				clearTimeout(timeout)
 				timeout = setTimeout ()->
 					searchMore.fadeOut(1400)
