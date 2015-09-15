@@ -11,28 +11,20 @@ return array(
 		'id' =>array(
 			'title' => 'id'			
 		),
-		'scene_id' =>array(
-			'title' => '性格分类'			
-		),
+		// 'object_id' =>array(
+		// 	'title' => '性格分类（排序用）'			
+		// ),
 		'_class' => array(
 			'title' => '性格名称'
 		),
 	),
 
 	'edit_fields' => array(
-		'scene_id' =>array(
-			'title' => '性格分类'			
-		),
+		// 'object_id' =>array(
+		// 	'title' => '性格分类（排序用））'			
+		// ),
 		'_class' => array(
 			'title' => '性格名称'
 		),
 	),
 );	
-
-
-
-$table->increments('id');
-			$table->integer('object_id');//对象编号
-			$table->string('_class');//类名
-			$table->timestamps();
-对象

@@ -1,9 +1,9 @@
 <?php
 
 return array(
-	'title' => '话题',
+	'title' => '话题标题',
 
-	'single' => '话题',
+	'single' => '话题标题',
 
 	'model' => 'Article',
 

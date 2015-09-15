@@ -11,18 +11,18 @@ return array(
 		'id' =>array(
 			'title' => 'id'			
 		),
-		'scene_id' =>array(
-			'title' => '性格分类'			
-		),
+		// 'char_id' =>array(
+		// 	'title' => '性格分类（排序用）'			
+		// ),
 		'_class' => array(
 			'title' => '性格名称'
 		),
 	),
 
 	'edit_fields' => array(
-		'scene_id' =>array(
-			'title' => '性格分类'			
-		),
+		// 'char_id' =>array(
+		// 	'title' => '性格分类（排序用）'			
+		// ),
 		'_class' => array(
 			'title' => '性格名称'
 		),
