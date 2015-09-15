@@ -79,74 +79,30 @@
 			</ul>
 			<div class="home-wrappers home-topics-wrapper">
 				<ul class="home-topics-content clearx">
+					@if(isset($topics))
+						@foreach( $topics as $topic)
 					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
+						<a href="/detail/topic?topic_id={{$topic->id}}">
+							<img src="{{$topic->topic_url}}">
 						</a>
 					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
-					<li class="home-topics-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-						</a>
-					</li>
+						@endforeach
+					@endif
 				</ul>
 			</div>
 			<div class="home-wrappers home-recommend-wrapper" style="display: none;">
 				<ul class="home-recommend-content clearx">
+					@if(isset($gifts))
+						@foreach($gifts as $gift)
 					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
+						<a href="{{$gift->taobao_url}}">
+							<img src="{{$gift->photo_url}}">
 							<span class="box-cover">
 								<span class="box-cover-title">
-									24K纯银定制戒指
+									{{$gift->title}}
 								</span>
 								<span class="box-cover-price">
-									<span>￥89</span>
+									<span>￥{{$gift->price}}</span>
 								</span>
 
 								<span class="box-cover-like" href="http://baidu.com">
@@ -155,282 +111,37 @@
 							</span>
 						</a>
 					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-recommend-box">
-						<a href="/">
-							<img src="/images/pc/home/pic02.png">
-							<span class="box-cover">
-								<span class="box-cover-title">
-									24K纯银定制戒指
-								</span>
-								<span class="box-cover-price">
-									<span>￥89</span>
-								</span>
-
-								<span class="box-cover-like" href="http://baidu.com">
-									<img src="/images/pc/home/like.png">
-								</span>
-							</span>
-						</a>
-					</li>
-					
+						@endforeach
+					@endif
 				</ul>
 			</div>
 			<div class="home-wrappers home-hot-wrapper" style="display: none;">
 				<ul class="home-hot-content clearx">
+					@if(isset($articles))
+						@foreach($articles as $article)
 					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
+						<a href="/detail/article?article_id={{$article->id}}">
+							<img src="{{$article->url}}">
 							<span class="home-hot-cover">
 								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
 								<span class="home-hot-board">
-									<span class="home-hot-title">处女座女生的生日快到了，送什么好呢？求推荐有创意的小物品</span>
+									<span class="home-hot-title">{{$article->title}}</span>
 									<span class="home-hot-info">
 										<span class="home-scan">
 											<img class="home-hot-scan" src="/images/pc/home/scaned.png">
-											<span class="scan-count">119</span>
+											<span class="scan-count">{{$article->scan_num}}</span>
 										</span>
 										<span class="home-scan">
 											<img class="home-hot-comments" src="/images/pc/home/comments.png">
-											<span class="scan-count">119</span>
+											<span class="scan-count">{{$article->join_num}}</span>
 										</span>
 									</span>
 								</span>
 							</span>
 						</a>
 					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-							<span class="home-hot-cover">
-								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
-								<span class="home-hot-board">
-									<span class="home-hot-title">处女座女生的生日快到了，送什么好呢？求推荐有创意的小物品</span>
-									<span class="home-hot-info">
-										<span class="home-scan">
-											<img class="home-hot-scan" src="/images/pc/home/scaned.png">
-											<span class="scan-count">119</span>
-										</span>
-										<span class="home-scan">
-											<img class="home-hot-comments" src="/images/pc/home/comments.png">
-											<span class="scan-count">119</span>
-										</span>
-									</span>
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-							<span class="home-hot-cover">
-								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
-								<span class="home-hot-board">
-									<span class="home-hot-title">处女座女生的生日快到了，送什么好呢？求推荐有创意的小物品</span>
-									<span class="home-hot-info">
-										<span class="home-scan">
-											<img class="home-hot-scan" src="/images/pc/home/scaned.png">
-											<span class="scan-count">119</span>
-										</span>
-										<span class="home-scan">
-											<img class="home-hot-comments" src="/images/pc/home/comments.png">
-											<span class="scan-count">119</span>
-										</span>
-									</span>
-								</span>
-							</span>
-						</a>
-					</li>
-					<li class="home-hot-box">
-						<a href="/">
-							<img src="/images/pc/home/pic01.png">
-							<span class="home-hot-cover">
-								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
-								<span class="home-hot-board">
-									<span class="home-hot-title">处女座女生的生日快到了，送什么好呢？求推荐有创意的小物品</span>
-									<span class="home-hot-info">
-										<span class="home-scan">
-											<img class="home-hot-scan" src="/images/pc/home/scaned.png">
-											<span class="scan-count">119</span>
-										</span>
-										<span class="home-scan">
-											<img class="home-hot-comments" src="/images/pc/home/comments.png">
-											<span class="scan-count">119</span>
-										</span>
-									</span>
-								</span>
-							</span>
-						</a>
-					</li>
+						@endforeach
+				@endif
 				</ul>
 			</div>
 		</div>
