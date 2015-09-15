@@ -6,7 +6,7 @@ class NoticePageController extends BaseController{
 	public function notice()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// Auth::login(User::find(5));
 		// $user = User::find(5);
@@ -37,7 +37,7 @@ class NoticePageController extends BaseController{
 	public function brefUser()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(5);
 		// Auth::login();
@@ -93,7 +93,7 @@ class NoticePageController extends BaseController{
 	public function  brefOffical()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(5);
 

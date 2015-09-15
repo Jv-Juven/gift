@@ -6,7 +6,7 @@ class ArticleController extends BaseController{
 	public function comment()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$join_id = Input::get('join_id');
 		$content = Input::get('content');
@@ -31,7 +31,7 @@ class ArticleController extends BaseController{
 	public function reply()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $receiver_id = Input::get('receiver_id');
 		$com_id = Input::get('com_id');
@@ -63,7 +63,7 @@ class ArticleController extends BaseController{
 	public function dcomment()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();	
 		$com_id =  Input::get('com_id');
 		$comment = ArticleJoinCom::find($com_id);
@@ -81,7 +81,7 @@ class ArticleController extends BaseController{
 	public function dreply()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();	
 		$reply_id =  Input::get('reply_id');
 		$reply = ArticleJoinCom::find($reply_id);
@@ -99,7 +99,7 @@ class ArticleController extends BaseController{
 	public function issue()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$data = json_decode(Input::get('data'));
@@ -142,7 +142,7 @@ class ArticleController extends BaseController{
 	public function edit()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $join_id = Input::get('join_id');	
 		$data = json_decode(Input::get('data'));
@@ -185,7 +185,7 @@ class ArticleController extends BaseController{
 	public function dArticle()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$join_id = Input::get('join_id');	
 		$article_join = ArticleJoin::find($join_id);
@@ -209,7 +209,7 @@ class ArticleController extends BaseController{
 	public function articleCollection()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+			return Response::json(array('errCode'=>10, 'message' => '请登录'));
 		// Sentry::login(Sentry::findUserById(5), false);
 		$article_id 	= Input::get('article_id');
 		$article_focus 	= ArticleFocus::where('user_id','=', Sentry::getUser()->id)
@@ -235,7 +235,7 @@ class ArticleController extends BaseController{
 	public function joinCollection()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+			return Response::json(array('errCode'=>10, 'message' => '请登录'));
 		// Sentry::login(Sentry::findUserById(5), false);
 		$join_id 	= Input::get('join_id');
 		$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)

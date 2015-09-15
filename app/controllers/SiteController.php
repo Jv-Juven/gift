@@ -45,7 +45,7 @@ class SiteController extends BaseController{
 	public function pushMessage()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+			return Response::json(array('errCode'=>10, 'message' => '请登录'));
 		Sentry::login(Sentry::findUserById(5), false);
 		$user = Sentry::getUser();
 		// $user = User::find(1);
