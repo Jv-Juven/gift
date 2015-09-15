@@ -101,22 +101,22 @@
 	返回参数:
 			返回视图：pc.search
 			{
-			_char:[
+			_char:[					个性
 				id,					标签id
-				cahr_id,			排序用id
+				char_id,			排序用id
 				_class,				标签名
-			]
-			scene:[
+			]	
+			scene:[					场景
 				id,					标签id
 				scene_id,			排序用id
 				_class,				标签名			
 			]
-			object:[
+			object:[				对象
 				id,					标签id
 				object_id,			排序用id
 				_class,				标签名
 			]
-			price:[
+			price:[					价格
 				id,					标签id
 				price_id,			排序用id
 				_class,				标签名
