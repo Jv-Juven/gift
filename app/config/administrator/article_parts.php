@@ -24,7 +24,8 @@ return array(
 			'title' => '话题id'			
 		),
 		'content' => array(
-			'title' => '内容'
+			'title' => '内容',
+			'type' =>'textarea'
 		),
 		'type' =>array(
 			'title' => '内容类型'	,

@@ -212,7 +212,7 @@ Route::group(array('prefix' => 'detail'), function(){
 	//参与话题详情
 	Route::get('join_detail','PcDetailController@joinDetail');
 	//获取评论
-	Route::get('join_com','PcDetailController@joinCom')
+	Route::get('join_com','PcDetailController@joinCom');
 });
 
 //选礼
