@@ -207,7 +207,7 @@ Route::group(array('prefix' => 'detail'), function(){
 	//话题详情页-文章
 	Route::get('article','PcDetailController@articleDetail');
 	//话题页中参与话题简讯
-	Route::get('bre_join','PcDetailController@breJoin');
+	Route::get('bre_join','PcDetailController@brefJoin');
 	//参与话题详情
 	Route::get('join_detail','PcMimeController@joinDetail');
 
@@ -225,12 +225,12 @@ Route::group(array('prefix'=>'pc_election'),function(){
 Route::group(array('prefix'=>'pc_mine'),function(){
 	//个人中心
 	Route::get('/', 'PcMimeController@userCenter');
+	//个人中心设置
+	Route::get('mine', 'PcMimeController@mineCenter');
 	//我参与的话题
 	Route::get('join_article', 'PcMimeController@joinArticle');
 	//我喜欢的礼品
 	Route::get('like_gift', 'PcMimeController@likeGift');
-	//个人中心
-	Route::get('mime', 'PcMimeController@userCenter');
 	//修改名字
 	Route::post('set_name', 'PcMimeController@setName');
 	//更换头像

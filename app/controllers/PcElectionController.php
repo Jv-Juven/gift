@@ -57,11 +57,11 @@ class PcElectionController extends BaseController{
 		if( $query == null)
 		{// dd(count($gifts));
 		//标签没有的情况
-			$gifts = StaticController::gifts();
-			$total = $per_page == ceil(count($gifts)/$per_page);
+			$gifts = Gift::all();
+			$total = ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
 			$gifts = $this->addGiftPhotoAndFocus($gifts);
-			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
+			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部1',
 										'gifts'=>$gifts,
 										'total'=>$total
 										));
@@ -70,17 +70,17 @@ class PcElectionController extends BaseController{
 		$gifts = $query->get();
 		if( count($gifts) == 0 )
 		{
-			$gifts = StaticController::gifts();
-			$total = $per_page == ceil(count($gifts)/$per_page);
+			$gifts = Gift::all();
+			$total = ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
 			$gifts = $this->addGiftPhotoAndFocus($gifts);
-			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
+			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部2',
 										'gifts'=>$gifts,
 										'total'=>$total
 										));
 		}
 
-		$total = $per_page == ceil(count($gifts)/$per_page);
+		$total = ceil(count($gifts)/$per_page);
 		$gifts = StaticController::page($per_page,$page,$gifts);
 		$gifts = $this->addGiftPhotoAndFocus($gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
