@@ -12,6 +12,7 @@ $ ()->
 	num = 1#请求的页码
 	lock = 1#数据锁，数据请求为空时，lock为0加锁，不能请求信息
 	load_lock = 1#加载锁，加载过程中不允许再次请求
+	timeout = new Object()
 
 	#修改头部图片
 	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png")
@@ -27,7 +28,8 @@ $ ()->
 
 		if lock is 0 
 			searchMore.html("没有数据了~").show()
-			setTimeout ()->
+			clearTimeout(timeout)
+			timeout = setTimeout ()->
 				searchMore.fadeOut(1400)
 			,2000
 			return
@@ -51,7 +53,7 @@ $ ()->
 
 		#开始请求，加锁
 		load_lock = 0
-		searchMore.fadeIn()
+		searchMore.hide().fadeIn()
 		$.post "/pc_election/selection_by_label", {
 			per_page: 12,
 			page: page,
@@ -63,8 +65,9 @@ $ ()->
 			#请求完毕，解锁
 			load_lock = 1
 			if msg["gifts"].length is 0
-				searchMore.html("没有数据了~")
-				setTimeout ()->
+				searchMore.hide().html("没有数据了~")
+				clearTimeout(timeout)
+				timeout = setTimeout ()->
 					searchMore.fadeOut(1400)
 				,2000
 				lock = 0
@@ -80,6 +83,8 @@ $ ()->
 
 	searchItem.on "click", ()->
 		_this = $(this)
+		if _this.hasClass "active"
+			return
 		_this.parent().find(".item").removeClass "active"
 		_this.addClass "active"
 		#参数初始化 START
