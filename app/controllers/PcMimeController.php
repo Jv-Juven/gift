@@ -5,11 +5,12 @@ class PcMimeController extends BaseController{
 	//个人中心静态页
 	public function userCenter()
 	{
-		if(!Sentry::check())
-		{
-			return View::make('errors.missing');
-		}
-		return View::make('pc.userCenter')->with(array('user'=>Sentry::getUser()));
+		// if(!Sentry::check())
+		// {
+		// 	return View::make('errors.missing');
+		// }
+		// return View::make('pc.userCenter')->with(array('user'=>Sentry::getUser()));
+		return View::make('pc.userCenter')->with(array('user'=>User::find(1)));
 	}
 
 	//修改名字
@@ -22,7 +23,7 @@ class PcMimeController extends BaseController{
 		if(!isset($username))
 			return Response::json(array('errCode'=>2,'message'=>'请填写你的昵称'));
 		$user->username = $username;
-		if(!$->save())
+		if(!$user->save())
 			return Response::json(array('errCode'=>1,'message'=>'昵称修改失败'));
 		return Response::json(array('errCode'=>0,'message'=>'昵称修改成功'));
 	}
@@ -37,7 +38,7 @@ class PcMimeController extends BaseController{
 		if(!isset($avatar))
 			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
 		$user->avatar = $avatar;
-		if(!$->save())
+		if(!$user->save())
 			return Response::json(array('errCode'=>1,'message'=>'头像修改失败'));
 		return Response::json(array('errCode'=>0,'message'=>'头像修改成功'));
 	}
@@ -52,7 +53,7 @@ class PcMimeController extends BaseController{
 		if(!isset($info))
 			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
 		$user->info = $info;
-		if(!$->save())
+		if(!$user->save())
 			return Response::json(array('errCode'=>1,'message'=>'个性签名修改失败'));
 		return Response::json(array('errCode'=>0,'message'=>'个性签名修改成功'));
 	}
@@ -64,10 +65,10 @@ class PcMimeController extends BaseController{
 			return Response::json(array('errCode'=>1,'message'=>'请登录'));
 		$user 			= Sentry::getUser();
 		$data = array(
-		 	'gender' 		= Input::get('gender'),
-			'birthday' 		= Input::get('birthday'),
-			'constellation' = Input::get('constellation'),
-			'postion' 		= Input::get('postion')
+		 	'gender' 		=> Input::get('gender'),
+			'birthday' 		=> Input::get('birthday'),
+			'constellation' => Input::get('constellation'),
+			'postion' 		=> Input::get('postion')
 			);
 		$data = array_filter($data);
 		if(count($data) != 0)

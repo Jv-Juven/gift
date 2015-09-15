@@ -13,14 +13,14 @@
 @section("body")
 	<div class="page-content">
 		<div class="user-info">
-			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
+			<img class="user-info-bg" src="{{$user->avatar}}"></img>
 			<div class="user-info-board">
 				<img class="avatar" src="/images/pc/userCenter/avatar.png">
 				<div class="user-name">
 					<input type="text" value="Lucy" class="name" />
 				</div>
 				<div class="user-signature-container">
-					<textarea class="user-signature">这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。</textarea>					
+					<textarea class="user-signature">{{$user->info}}</textarea>					
 				</div>
 			</div>
 			<div class="setting-btn setting-back">

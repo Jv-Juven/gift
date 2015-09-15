@@ -15,10 +15,10 @@
 		<div class="user-info">
 			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
 			<div class="user-info-board">
-				<img class="avatar" src="/images/pc/userCenter/avatar.png">
-				<span class="user-name">Lucy</span>
+				<img class="avatar" src="{{$user->avatar}}">
+				<span class="user-name">{{$user->username}}</span>
 				<span class="user-signature">
-					这是我的个性签名，美好的一天天天都从早晨开始。我每天早上都早早起床，骑着自己的自行车奔跑在去上班的路上。
+					{{$user->info}}
 				</span>
 			</div>
 			<a class="set-name chang-data" href="/">

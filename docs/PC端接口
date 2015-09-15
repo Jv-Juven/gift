@@ -126,7 +126,7 @@
 
 8.通过标签选礼
 	请求方式: POST
-	请求url: /pc_election/selection_by_label
+	请求url: /	/selection_by_label
 
 	请求参数:
 			per_page, 				每页多少个
