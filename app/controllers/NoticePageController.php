@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 
 class NoticePageController extends BaseController{
 
@@ -46,7 +46,6 @@ class NoticePageController extends BaseController{
 		$page = Input::get('page');
 
 		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
-						->where('status','=',0)
 						->where('is_delete','=',0)
 						->orderBy('created_at','desc')
 						->get();
@@ -68,7 +67,8 @@ class NoticePageController extends BaseController{
 		if( count($replys) !=0 )
 		{
 			foreach( $replys as $reply)
-			{
+			{	
+				$reply->join_id =ArticleJoinCom::where('id','=',$reply->com_id)->first()->join_id;
 				$reply_sender = User::find($reply->sender_id);
 				$reply->avatar = $reply_sender->avatar;
 				$reply->username = $reply_sender->username;
@@ -77,7 +77,7 @@ class NoticePageController extends BaseController{
 		}
 		$notices = array_merge($join_coms->toArray(),$replys->toArray());
 		//总页数
-		$total = $per_page == ceil(count($notices)/$per_page);
+		$total = ceil(count($notices)/$per_page);
 			//排序
 		$notices = StaticController::arraySortByCreatedAt($notices);
 		//分页

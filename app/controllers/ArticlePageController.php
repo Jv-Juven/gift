@@ -144,19 +144,28 @@ class ArticlePageController extends BaseController{
 				// echo $article_part->content;
 				$article_join->content = $article_part->content;//第一段内容
 			}
+		// return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
+		// 				'article'			=>$article,
+		// 				'article_parts'		=>$article_parts,
+		// 				'article_joins' 	=>$article_joins,
+		// 				'total'				=>$total,
+		// 				'type' 				=> $type
+		// 			));
+		}
+		if($page == 1)
+		{
+			return Response::json(array('errCode'=>0, 'message'=>'返回文章内容',
+							'article'		=>$article,
+							'article_parts'	=>$article_parts,
+							'article_joins' =>$article_joins,
+							'total'			=>$total,
+							'type' 			=>$type
+						));
+		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
-						'article'			=>$article,
-						'article_parts'		=>$article_parts,
 						'article_joins' 	=>$article_joins,
 						'total'				=>$total,
 						'type' 				=> $type
-					));
-		}
-		return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
-						'article'		=>$article,
-						'article_parts'	=>$article_parts,
-						'total'			=>$total,
-						'type' 			=>$type
 					));
 	}
 
