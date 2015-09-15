@@ -119,7 +119,8 @@
 			price:[					价格
 				id,					标签id
 				price_id,			排序用id
-				_class,				标签名
+				low_price, 			低价
+				high_price, 		高价	
 			]	
 			}
 
