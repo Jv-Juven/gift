@@ -577,4 +577,18 @@ qq登录
 微信登录
 	请求url:	weixin/web_code
 
+登出
+	请求方式:	POST
+	请求url:	/user/logout
+
+	请求参数:	无
+
+	返回参数 :
+			{
+				errCode:xxx,		
+							0. 表示返回正常
+							1. 用户未登录！
+
+				message:xxx		提示信息
+			}
 

@@ -56,7 +56,17 @@ return array(
 			'gift_posters',
 			'gift_photo_intros',
 			'posters',
-			'gift_focus'
+			'gift_focus',
+			'话题'=>array(
+				'articles',
+				'article_parts',
+			),
+			'分类标签' => array(
+				'scenes',
+				'charactors',
+				'objects',
+				'prices'
+			),
 		),
 
 	/**
