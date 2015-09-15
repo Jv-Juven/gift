@@ -7,7 +7,7 @@ class GiftPhotoIntrosTableSeeder extends Seeder {
 
 	public function run()
 	{
-
+		foreach(i=0; i<)
 		GiftPhotoIntro::create([
 			'gift_id' => 1,
 			'url'  =>  'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
