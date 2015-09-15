@@ -25,7 +25,7 @@
 				<div class="search-items-tr clearx first">
 					<div class="search-items-key">
 						<img class="key-dot" src="/images/pc/search/dot.png">
-						<span>赠送对象:</span>
+						<span>个性:</span>
 					</div>
 					<div class="search-items-value char">
 						<ul class="items-wrapper clearx">
@@ -38,7 +38,7 @@
 				<div class="search-items-tr clearx">
 					<div class="search-items-key">
 						<img class="key-dot" src="/images/pc/search/dot.png">
-						<span>赠送对象:</span>
+						<span>场景:</span>
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
@@ -51,7 +51,7 @@
 				<div class="search-items-tr clearx">
 					<div class="search-items-key">
 						<img class="key-dot" src="/images/pc/search/dot.png">
-						<span>赠送对象:</span>
+						<span>对象:</span>
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
@@ -64,7 +64,7 @@
 				<div class="search-items-tr clearx">
 					<div class="search-items-key">
 						<img class="key-dot" src="/images/pc/search/dot.png">
-						<span>赠送对象:</span>
+						<span>价格:</span>
 					</div>
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
