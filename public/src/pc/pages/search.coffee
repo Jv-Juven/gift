@@ -65,7 +65,7 @@ $ ()->
 			#请求完毕，解锁
 			load_lock = 1
 			if msg["gifts"].length is 0
-				searchMore.hide().html("没有数据了~")
+				searchMore.html("没有数据了~")
 				clearTimeout(timeout)
 				timeout = setTimeout ()->
 					searchMore.fadeOut(1400)
@@ -91,7 +91,7 @@ $ ()->
 		searchRecContent.html("")
 		num = 1
 		lock = 1
-		searchMore.html("加载中......")
+		searchMore.html('<img src="/images/pc/search/loading.gif">')
 		#参数初始化 END
 		search(num)
 

@@ -108,7 +108,7 @@
 
 				</ul>
 				<div class="search-more">
-					加载中......
+					<img src="/images/pc/search/loading.gif">
 				</div>
 			</div>
 		</div>

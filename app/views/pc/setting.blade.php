@@ -24,7 +24,7 @@
 				</div>
 			</div>
 			<div class="setting-btn setting-back">
-				<a href="/">返回个人中心</a>
+				<a href="/pc_mine">返回个人中心</a>
 			</div>
 			<div class="setting-btn sign-out">
 				<a href="/">退出登录</a>
