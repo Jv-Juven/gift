@@ -67,7 +67,7 @@
 
 5.个人信息静态页
 	请求方式: GET
-	请求url: /site
+	请求url: /pc_mine
 
 	请求参数:
 
@@ -155,7 +155,7 @@
 
 9.我收藏过的商品
 	请求方式: GET
-	请求方式: /pc_mime/like_gift
+	请求方式: /pc_mine/like_gift
 
 	请求参数:
 			per_page, 				每页多少个
@@ -179,7 +179,7 @@
 
 10.我参与过的话题
 	请求方式: GET
-	请求方式: /pc_mime/join_article
+	请求方式: /pc_mine/join_article
 
 	请求参数:
 			per_page, 				每页多少个

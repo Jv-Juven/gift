@@ -6,7 +6,7 @@ class NoticeController extends BaseController{
 	public function dUserNotice()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$join_coms = ArticleJoinCom::where('receiver','=',$user->id)
@@ -41,7 +41,7 @@ class NoticeController extends BaseController{
 	public function dUserCom()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$com_id = Input::get('com_id');
@@ -61,7 +61,7 @@ class NoticeController extends BaseController{
 	public function dUserReply()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$reply_id = Input::get('reply_id');
@@ -81,7 +81,7 @@ class NoticeController extends BaseController{
 	public function offical()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$offical_id = Input::get('offical_id');
@@ -106,7 +106,7 @@ class NoticeController extends BaseController{
 	public function dOfficalAll()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$officals = OfficalNotice::where('is_delete','=', 0);
@@ -127,7 +127,7 @@ class NoticeController extends BaseController{
 	public function dOffical()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$offical_id = Input::get('offical_id');

@@ -6,7 +6,7 @@ class HomeController extends BaseController {
 	public function collection()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+			return Response::json(array('errCode'=>10, 'message' => '请登录'));
 		// Sentry::login(Sentry::findUserById(5), false);
 		$gift_id 	= Input::get('gift_id');
 		$gift_focus 	= DB::table('gift_focus')->where('user_id','=', Sentry::getUser()->id)
@@ -31,7 +31,7 @@ class HomeController extends BaseController {
 	public function topicCollection()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message' => '请登录'));
+			return Response::json(array('errCode'=>10, 'message' => '请登录'));
 		// Sentry::login(Sentry::findUserById(5), false);
 		$topic_id 	= Input::get('topic_id');
 		$topic_focus 	= DB::table('topic_focus')->where('user_id','=', Sentry::getUser()->id)

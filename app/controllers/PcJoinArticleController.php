@@ -5,7 +5,7 @@ class PcJoinArticleController extends BaseController{
 	public function issue()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
 		$data = json_decode(Input::get('data'));
@@ -48,7 +48,7 @@ class PcJoinArticleController extends BaseController{
 	public function edit()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $join_id = Input::get('join_id');	
 		$data = json_decode(Input::get('data'));
@@ -91,7 +91,7 @@ class PcJoinArticleController extends BaseController{
 	public function dArticle()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$join_id = Input::get('join_id');	
 		$article_join = ArticleJoin::find($join_id);

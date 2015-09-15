@@ -6,7 +6,7 @@ class MimePageController extends BaseController{
 	public function joinArticle()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(1);
 		
@@ -19,7 +19,7 @@ class MimePageController extends BaseController{
 		//参与话题
 		$article_joins = StaticController::page($per_page, $page, $article_joins);
 		if($article_joins == false )
-			return Response::json(array('articles'=>array(),'total'=> 0 ));
+			return Response::json(array('errCode'=>0, 'message'=>'没有参与话题','articles'=>array(),'total'=> 0 ));
 		//根据用户参与的话题取到官方话题
 		$articles = array();
 		foreach($article_joins as $article_join)
@@ -61,7 +61,7 @@ class MimePageController extends BaseController{
 	public function likeGift()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		 // $user = User::find(1);
 		//获取我喜欢的礼品——动态属性
@@ -102,7 +102,7 @@ class MimePageController extends BaseController{
 	public function likeGiftH()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		 // $user = User::find(1);
 

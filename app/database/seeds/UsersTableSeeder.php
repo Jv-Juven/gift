@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder {
 			'phone' => '132478888882',
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
+			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
 			'role_id' => 3
 		]);
 
@@ -23,6 +24,7 @@ class UsersTableSeeder extends Seeder {
 			'phone' => '13247888888',
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
+			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
 			'role_id' => 2
 		]);
 
@@ -32,6 +34,7 @@ class UsersTableSeeder extends Seeder {
 			'phone' => '13247888887',
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
+			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
 			'role_id' => 2
 		]);
 
@@ -40,6 +43,7 @@ class UsersTableSeeder extends Seeder {
 			'username' => 'tiger3',
 			'phone' => '13247888884',
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
+			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
 			'password' =>'666666',
 			'role_id' => 2
 		]);

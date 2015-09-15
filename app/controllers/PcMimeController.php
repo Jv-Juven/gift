@@ -27,7 +27,7 @@ class PcMimeController extends BaseController{
 	public function setName()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+			return Response::json(array('errCode'=>10,'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$username = Input::get('username');
 		if(!isset($username))
@@ -42,7 +42,7 @@ class PcMimeController extends BaseController{
 	public function setAvatar()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+			return Response::json(array('errCode'=>10,'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$avatar = Input::get('avatar');
 		if(!isset($avatar))
@@ -57,7 +57,7 @@ class PcMimeController extends BaseController{
 	public function setSign()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+			return Response::json(array('errCode'=>10,'message'=>'请登录'));
 		$user = Sentry::getUser();
 		$info = Input::get('sign');
 		if(!isset($info))
@@ -72,7 +72,7 @@ class PcMimeController extends BaseController{
 	public function setInfo()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1,'message'=>'请登录'));
+			return Response::json(array('errCode'=>10,'message'=>'请登录'));
 		$user 			= Sentry::getUser();
 		$data = array(
 		 	'gender' 		=> Input::get('gender'),
@@ -97,7 +97,7 @@ class PcMimeController extends BaseController{
 	public function joinArticle()
 	{
 		if(! Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		// $user = User::find(1);
 		
@@ -110,7 +110,10 @@ class PcMimeController extends BaseController{
 		//参与话题
 		$article_joins = StaticController::page($per_page, $page, $article_joins);
 		if( $article_joins == false)
-			return Response::json(array('errCode'=>0,'message'=>'该用户已没有参与话题！'));
+			return Response::json(array('errCode'=>0,'message'=>'该用户已没有参与话题！',
+									'articles'	=> array(),
+									 'total'	=>0
+									));
 		//根据用户参与的话题取到官方话题
 		$articles = array();
 		foreach($article_joins as $article_join)
@@ -139,7 +142,7 @@ class PcMimeController extends BaseController{
 	public function likeGift()
 	{
 		if(!Sentry::check())
-			return Response::json(array('errCode'=>1, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 		 // $user = User::find(1);
 		//获取我喜欢的礼品——动态属性

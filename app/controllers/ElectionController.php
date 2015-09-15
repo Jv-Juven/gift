@@ -82,8 +82,9 @@ class ElectionController extends BaseController{
 		if( $query == null)
 		{// dd(count($gifts));
 		//标签没有的情况
-			$gifts = StaticController::gifts();
-			$total = $per_page == ceil(count($gifts)/$per_page);
+			// $gifts = StaticController::gifts();
+			$gifts = Gift::orderBy('created_at','desc')->get();
+			$total = ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
 			$gifts = $this->addGiftImg($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
@@ -95,8 +96,9 @@ class ElectionController extends BaseController{
 		$gifts = $query->get();
 		if( count($gifts) == 0 )
 		{
-			$gifts = StaticController::gifts();
-			$total = $per_page == ceil(count($gifts)/$per_page);
+			// $gifts = StaticController::gifts();
+			$gifts = Gift::orderBy('created_at','desc')->get();
+			$total = ceil(count($gifts)/$per_page);
 			$gifts = StaticController::page($per_page,$page,$gifts);
 			$gifts = $this->addGiftImg($gifts);
 			return Response::json(array('errCode'=>0, 'message'=>'没有筛选礼品,返回全部',
@@ -105,7 +107,7 @@ class ElectionController extends BaseController{
 										));
 		}
 
-		$total = $per_page == ceil(count($gifts)/$per_page);
+		$total = ceil(count($gifts)/$per_page);
 		$gifts = StaticController::page($per_page,$page,$gifts);
 		$gifts = $this->addGiftImg($gifts);
 		return Response::json(array('errCode'=>0, 'message'=>'返回搜索数据',
