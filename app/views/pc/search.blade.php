@@ -29,9 +29,11 @@
 					</div>
 					<div class="search-items-value char">
 						<ul class="items-wrapper clearx">
+						@if(isset($_char))
 							@foreach($_char as $char)
 							<li class="item" data-id="{{ $char->id }}"><a class="" href="javascript:">{{ $char->_class }}</a></li>
 							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>
@@ -40,11 +42,13 @@
 						<img class="key-dot" src="/images/pc/search/dot.png">
 						<span>场景:</span>
 					</div>
-					<div class="search-items-value">
+					<div class="search-items-value scene">
 						<ul class="items-wrapper clearx">
+						@if(isset($scene))
 							@foreach($scene as $s)
 							<li class="item" data-id="{{ $s->id }}"><a class="" href="javascript:">{{ $s->_class }}</a></li>
 							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>
@@ -53,11 +57,13 @@
 						<img class="key-dot" src="/images/pc/search/dot.png">
 						<span>对象:</span>
 					</div>
-					<div class="search-items-value">
+					<div class="search-items-value object">
 						<ul class="items-wrapper clearx">
+						@if(isset($object))
 							@foreach($object as $o)
 							<li class="item" data-id="{{ $o->id }}"><a class="" href="javascript:">{{ $o->_class }}</a></li>
 							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>
@@ -66,11 +72,13 @@
 						<img class="key-dot" src="/images/pc/search/dot.png">
 						<span>价格:</span>
 					</div>
-					<div class="search-items-value">
+					<div class="search-items-value price">
 						<ul class="items-wrapper clearx">
+						@if(isset($price))
 							@foreach($price as $p)
 							<li class="item" data-id="{{ $p->id }}"><a class="" href="javascript:">{{ $p->low_price }}~{{ $p->high_price }}</a></li>
 							@endforeach
+						@endif
 						</ul>
 					</div>
 				</div>
@@ -100,7 +108,7 @@
 
 				</ul>
 				<div class="search-more">
-					加载更多
+					加载中......
 				</div>
 			</div>
 		</div>
@@ -110,7 +118,7 @@
 	<script type="text/template" id="search_tpl">
 		<% for(var i = 0; i < array.length; i ++){ 
 			var likeUrl = "";
-			if (array[i]['taobao_url'] == 0){
+			if (array[i]['focus'] == 0){
 				likeUrl = "/images/pc/home/like.png"
 			}
 			else{
