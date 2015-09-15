@@ -21,7 +21,7 @@
 			</ul>
 			<div id="register" class="login-board">
 				<div class="login-btn QQ">
-					<a class="a-block" href="/">
+					<a class="a-block" href="/qq/web_code">
 						<span class="login-btn-icon">
 							<img src="/images/pc/login/QQ.png">
 						</span>
@@ -33,7 +33,7 @@
 					</a>
 				</div>
 				<div class="login-btn WeChat">
-					<a class="a-block" href="/">
+					<a class="a-block" href="/weixin/web_code">
 						<span class="login-btn-icon">
 							<img src="/images/pc/login/wechat.png">
 						</span>
@@ -47,7 +47,7 @@
 			</div>
 			<div id="login" class="login-board" style="display: none;">
 				<div class="login-btn QQ">
-					<a class="a-block" href="/">
+					<a class="a-block" href="/qq/web_code">
 						<span class="login-btn-icon">
 							<img src="/images/pc/login/QQ.png">
 						</span>
@@ -59,7 +59,7 @@
 					</a>
 				</div>
 				<div class="login-btn WeChat">
-					<a class="a-block" href="/">
+					<a class="a-block" href="/weixin/web_code">
 						<span class="login-btn-icon">
 							<img src="/images/pc/login/wechat.png">
 						</span>
