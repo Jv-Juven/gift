@@ -12,7 +12,7 @@ class PcElectionController extends BaseController{
 				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
 				if(isset($gift_focus))
 					$gift->focus = 1;
-				$gift->focus =0
+				$gift->focus =0;
 			}
 		}
 		return $gifts;
@@ -25,7 +25,7 @@ class PcElectionController extends BaseController{
 		$object = Object::all();
 		// dd('man');	
 		$price = Price::all();
-		return Response::json(array('errCode'=>0,'message'=>'返回标签',
+		return View::make('pc.search')->with(array('errCode'=>0,'message'=>'返回标签',
 						'_char'=>$charactor,'scene'=>$scene,	
 						'object'=>$object,'price'=>$price));
 	}
