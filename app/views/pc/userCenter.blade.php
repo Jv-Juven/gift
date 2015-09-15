@@ -289,9 +289,9 @@
 				likeUrl = "/images/pc/home/liked.png"
 			}
 			%>
-			<li class="user-recommend-box">
+			<li class="user-recommend-box" data-id="<%- array['i']['id']%>">
 				<a href="<%- array[i]['taobao_url'] %>">
-					<img src="<%- array[i]['url'] %>">
+					<img src="<%- array[i]['img'] %>">
 					<span class="box-cover">
 						<span class="box-cover-title">
 							<%- array[i]['title'] %>
@@ -307,11 +307,11 @@
 			</li>
 		<% } %>
 	</script>
-	<script type="text/template" src="topics_tpl">
+	<script type="text/template" id="topics_tpl">
 	<% for(var i = 0; i < array.length; i ++){ %>
-		<li class="user-hot-box">
-			<a href="<%- array[i]['url'] %>">
-				<img src="<%- array[i]['url'] %>">
+		<li class="user-hot-box" data-id="<%- array['i']['id']%>">
+			<a href="/detail/join_detail?join_id=<%- array[i]['id'] %>">
+				<img src="<%- array[i]['img'] %>">
 				<span class="user-hot-cover">
 					<img class="bg-img" src="/images/pc/home/cover_gradual.png">
 					<span class="user-hot-board">
@@ -319,11 +319,11 @@
 						<span class="user-hot-info">
 							<span class="user-scan">
 								<img class="user-hot-scan" src="/images/pc/home/scaned.png">
-								<span class="scan-count"><array["i"]["scaned"]></span>
+								<span class="scan-count"><array["i"]["scan_num"]></span>
 							</span>
 							<span class="user-scan">
 								<img class="user-hot-comments" src="/images/pc/home/comments.png">
-								<span class="scan-count">array["i"]["comments"]</span>
+								<span class="scan-count">array["i"]["join_num"]</span>
 							</span>
 						</span>
 					</span>
