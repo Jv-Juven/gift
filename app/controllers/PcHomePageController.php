@@ -5,6 +5,7 @@ class PcHomePageController extends BaseController{
 	//首页静态页面
 	public function home()
 	{
+		$scroll_imgs = ScrollImg::all();
 		//话题
 		$topics		= Topic::where('topic_url', '!=','')->orderBy('created_at','desc')->get();
 		$topics 	= StaticController::page(12, 1, $topics);
@@ -56,7 +57,12 @@ class PcHomePageController extends BaseController{
 				}
 			}
 		}
-		return View::make('pc.home')->with(array('topics'=>$topics, 'gifts'=>$daily,'articles'=>$articles));
+		return View::make('pc.home')->with(array(
+									'topics'		=> $topics, 
+									'gifts'			=> $daily,
+									'articles'		=> $articles,
+									'scroll_imgs'	=> $scroll_imgs
+									));
 	}
 	
 
