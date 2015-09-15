@@ -501,7 +501,7 @@
 
 获取个人信息静态页面
 	请求方式:	GET
-	请求url:	/pc_mine
+	请求url:	/pc_mine/mine
 
 	请求参数:	 
 

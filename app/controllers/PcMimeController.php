@@ -16,12 +16,12 @@ class PcMimeController extends BaseController{
 	//个人中心设置
 	public function mineCenter()
 	{
-		// if(!Sentry::check())
-		// {
-		// 	return View::make('errors.missing');
-		// }
-		// return View::make('pc.setting')->with(array('user'=>Sentry::getUser()));
-		return View::make('pc.setting')->with(array('user'=>User::find(1)));
+		if(!Sentry::check())
+		{
+			return View::make('errors.missing');
+		}
+		return View::make('pc.setting')->with(array('user'=>Sentry::getUser()));
+		// return View::make('pc.setting')->with(array('user'=>User::find(1)));
 	}
 	//修改名字
 	public function setName()

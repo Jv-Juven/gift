@@ -225,12 +225,12 @@ Route::group(array('prefix'=>'pc_election'),function(){
 Route::group(array('prefix'=>'pc_mine'),function(){
 	//个人中心
 	Route::get('/', 'PcMimeController@userCenter');
+	//个人中心设置
+	Route::get('mine', 'PcMimeController@mineCenter');
 	//我参与的话题
 	Route::get('join_article', 'PcMimeController@joinArticle');
 	//我喜欢的礼品
 	Route::get('like_gift', 'PcMimeController@likeGift');
-	//个人中心
-	Route::get('mine', 'PcMimeController@mineCenter');
 	//修改名字
 	Route::post('set_name', 'PcMimeController@setName');
 	//更换头像
