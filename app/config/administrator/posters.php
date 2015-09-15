@@ -15,7 +15,7 @@ return array(
 			'title'=> '对应礼品id'
 		),
 		'daily_id' => array(
-			'title'=> '是否为新品推荐'
+			'title'=> '0=新品推荐,1=每日一荐'
 		),
 	),
 
@@ -27,11 +27,10 @@ return array(
 			'title'=> '对应礼品id'
 		),
 		'daily_id' => array(
-			'title'=> '是否为新品推荐',
+			'title'=> '0=新品推荐,1=每日一荐',
 			'type' => 'enum',
 			'options'=>array(
-				'1'=>'new',
-				'2'=>'daily'
+				'0' , '1' 
 			),
 		),
 	)
