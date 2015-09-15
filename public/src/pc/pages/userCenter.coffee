@@ -44,9 +44,7 @@ $ ()->
 		}, 300)
 
 	#加载数据
-	loadGifts = (page)->
-		if !page
-			page = 1
+	loadGifts = ()->
 		if lock01 is 0
 			loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px").end().show().fadeOut(2000)
 			return
@@ -58,7 +56,7 @@ $ ()->
 		loadTip.find("img").attr("src","/images/pc/search/loading.gif").end().hide().fadeIn()
 		$.get "/pc_mine/like_gift", {
 			per_page: 16,
-			page: page
+			page: num01
 		}, (msg)->
 
 			#请求结束
@@ -79,11 +77,10 @@ $ ()->
 				"array": msg["gifts"]
 			}
 			giftsWrapper.append itemHtml
+			++ num01
 
 
-	loadTopics = (page)->
-		if !page
-			page = 1
+	loadTopics = ()->
 		if lock02 is 0
 			loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px").end().show().fadeOut(2000)
 			return
@@ -95,7 +92,7 @@ $ ()->
 		loadTip.find("img").attr("src","/images/pc/search/loading.gif").end().hide().fadeIn()
 		$.get "/pc_mine/join_article", {
 			per_page: 6,
-			page: page
+			page: num02
 		}, (msg)->
 
 			#请求结束
@@ -116,20 +113,19 @@ $ ()->
 				"array": msg["articles"]
 			}
 			topicsWrapper.append itemHtml
+			++ num02
 
 
-	loadGifts(num01)
-	loadTopics(num02)
+	loadGifts()
+	loadTopics()
 
 
 	$(window).scroll ()->
 		if ($(window).scrollTop() + $(window).height()) is $(document).height()
 			if $(".user-recommend-wrapper").css("display") is "block"
-				++ num01
-				loadGifts(num01)
+				loadGifts()
 			else
-				++ num02
-				loadTopics(num02)
+				loadTopics()
 
 
 

@@ -3,17 +3,7 @@ $ ()->
 	setName = $(".set-username")
 	userSignature = $(".user-signature")
 	userName = $(".user-name .name")
-
-	#修改资料
-	# $(document).on "mouseenter", ".user-name .name", ()->
-	# 	setName.css("display", "block")
-	# $(document).on "mouseleave", ".set-username", ()->
-	# 	setName.css("display", "none")
-
-	# $(document).on "mouseenter", ".user-signature", ()->
-	# 	setSignature.css("display", "block")
-	# $(document).on "mouseleave", ".user-signature", ()->
-	# 	setSignature.css("display", "none")
+	signOutBtn = $(".sign-out a")
 
 	#修改用户名
 	changName = ()->
@@ -71,12 +61,19 @@ $ ()->
 			position: position
 		}, (msg)->
 			if msg["errCode"] is 0
-				alert ("提交成功")
+				alert "提交成功"
 			else
-				alert (msg["message"])
+				alert msg["message"]
 
 	#退出登录
 	signOut = ()->
+		$.post "/user/logout", {}, (msg)->
+			if msg["errCode"] is 0
+				alert "退出成功"
+				window.location.href = "/pc_home/"
+			else
+				alert "退出失败"
+
 
 
 	userName.on "focus", (e)->
@@ -105,4 +102,6 @@ $ ()->
 	#“提交修改”的按钮
 	submitBtn.on "click", submit
 
+	#”退出登录“
+	signOutBtn.on "click", signOut
 

@@ -18,13 +18,13 @@ $ ()->
 	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png")
 
 	#默认选取“全部”
-	searchItem.eq(0).addClass "active"
+	charItems.eq(0).addClass "active"
+	sceneItems.eq(0).addClass "active"
+	objectItems.eq(0).addClass "active"
+	priceItems.eq(0).addClass "active"
 
 	#搜索
-	search = (page)->
-
-		if !page
-			page = 1
+	search = ()->
 
 		if lock is 0 
 			searchMore.html('<img style="width: 140px" src="/images/pc/search/loaded.png">').show()
@@ -41,12 +41,12 @@ $ ()->
 		scene = sceneItems.filter(".active").attr("data-id")
 		object = objectItems.filter(".active").attr("data-id")
 		price = priceItems.filter(".active").attr("data-id")
-		console.log( 
-			_char + "\n"
-			scene + "\n"
-			object + "\n"
-			price + "\n"
-		 )
+		# console.log( 
+		# 	_char + "\n"
+		# 	scene + "\n"
+		# 	object + "\n"
+		# 	price + "\n"
+		#  )
 
 		if (_char is undefined) or (scene is undefined) or (object is undefined) or (price is undefined)
 			return 
@@ -56,7 +56,7 @@ $ ()->
 		searchMore.hide().fadeIn()
 		$.post "/pc_election/selection_by_label", {
 			per_page: 12,
-			page: page,
+			page: num,
 			_char: _char,
 			scene: scene,
 			object: object,
@@ -80,6 +80,7 @@ $ ()->
 				"array": msg["gifts"]
 			}
 			searchRecContent.append itemHtml
+			++ num
 
 	searchItem.on "click", ()->
 		_this = $(this)
@@ -93,18 +94,17 @@ $ ()->
 		lock = 1
 		searchMore.html('<img src="/images/pc/search/loading.gif">')
 		#参数初始化 END
-		search(num)
+		search()
 
 	#加载下一页
 	$(window).scroll ()->
 		if ($(window).scrollTop() + $(window).height()) is $(document).height()
-			console.log num
-			++num
-			search(num)
+			# console.log num
+			search()
 
 
 
-
+	search()
 
 	#商品的浮层显现
 	$(document).on "mouseenter", ".search-recommend-box", (e)->
