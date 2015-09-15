@@ -44,6 +44,7 @@ $ ()->
 		_this = $(this)
 		_this.parent().find(".item").removeClass "active"
 		_this.addClass "active"
+		searchRecContent.html("")
 		search(num)
 
 	#加载下一页

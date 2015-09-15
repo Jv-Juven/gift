@@ -69,7 +69,7 @@
 					<div class="search-items-value">
 						<ul class="items-wrapper clearx">
 							@foreach($price as $p)
-							<li class="item" data-id="{{ $p->id }}"><a class="" href="javascript:">{{ $p->_class }}</a></li>
+							<li class="item" data-id="{{ $p->id }}"><a class="" href="javascript:">{{ $p->low_price }}~{{ $p->high_price }}</a></li>
 							@endforeach
 						</ul>
 					</div>
