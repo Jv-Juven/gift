@@ -209,7 +209,7 @@ Route::group(array('prefix' => 'detail'), function(){
 	//话题页中参与话题简讯
 	Route::get('bre_join','PcDetailController@brefJoin');
 	//参与话题详情
-	Route::get('join_detail','PcMimeController@joinDetail');
+	Route::get('join_detail','PcDetailController@joinDetail');
 
 });
 

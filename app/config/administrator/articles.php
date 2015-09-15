@@ -1,29 +1,43 @@
 <?php
 
 return array(
-	'title' => '专题',
+	'title' => '话题',
 
-	'single' => '专题',
+	'single' => '话题',
 
-	'model' => 'GiftFocus',
+	'model' => 'Article',
 
 	'columns' => array(
-		'gift_id' =>array(
-			'title' => '礼品id'			
+		'id' =>array(
+			'title' => 'id'			
 		),
-		'user_id' => array(
-			'title' => '用户id'
+		'title' =>array(
+			'title' => '话题标题'			
 		),
+		'scan_num' => array(
+			'title' => '浏览人数'
+		),
+		'join_num' =>array(
+			'title' => '参与话题人数'			
+		),
+		'focus_num' => array(
+			'title' => '收藏人数'
+		),
+
 	),
 
 	'edit_fields' => array(
-		'gift_id' =>array(
-			'title' => '礼品id'			
+		'title' =>array(
+			'title' => '话题标题'			
 		),
-		'user_id' => array(
-			'title' => '用户id'
+		'scan_num' => array(
+			'title' => '浏览人数'
+		),
+		'join_num' =>array(
+			'title' => '参与话题人数'			
+		),
+		'focus_num' => array(
+			'title' => '收藏人数'
 		),
 	),
-
-
 );	

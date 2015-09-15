@@ -56,7 +56,9 @@ return array(
 			'gift_posters',
 			'gift_photo_intros',
 			'posters',
-			'gift_focus'
+			'gift_focus',
+			'articles',
+			'article_parts',
 		),
 
 	/**
