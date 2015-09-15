@@ -216,7 +216,7 @@ Route::group(array('prefix' => 'detail'), function(){
 //选礼
 Route::group(array('prefix'=>'pc_election'),function(){
 	//分类标签
-	Route::get('label','PcElectionPageController@label');
+	Route::get('label','PcElectionController@label');
 	//通过标签搜索
 	Route::post('selection_by_label','PcElectionController@selectByLabel');
 });
