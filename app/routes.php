@@ -158,6 +158,7 @@ Route::group(array('prefix'=>'notice'),function(){
 //七牛
 Route::get('qiniu', 'UploadController@getUpToken');
 Route::get('qiniu/app', 'UploadController@getAppUpToken');
+Route::post('/qiniu/delete', 'UploadController@deletePicture');
 
 //后台管理
 Route::controller('/login', 'AdminController');
@@ -250,3 +251,4 @@ Route::group(array('prefix'=>'pc_mine'),function(){
 // Route::post('site', 'PcSiteController@setInfo');
 
 Route::get('test','HomePageController@giftDetail');
+
