@@ -13,11 +13,11 @@
 @section("body")
 	<div class="page-content">
 		<div class="user-info">
-			<img class="user-info-bg" src="{{$user->avatar}}"></img>
+			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
 			<div class="user-info-board">
-				<img class="avatar" src="/images/pc/userCenter/avatar.png">
+				<img class="avatar" src="{{$user->avatar}}">
 				<div class="user-name">
-					<input type="text" value="Lucy" class="name" />
+					<input type="text" value="{{$user->username}}" class="name" />
 				</div>
 				<div class="user-signature-container">
 					<textarea class="user-signature">{{$user->info}}</textarea>					
