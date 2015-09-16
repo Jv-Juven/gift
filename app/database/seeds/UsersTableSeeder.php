@@ -15,7 +15,8 @@ class UsersTableSeeder extends Seeder {
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
 			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
-			'role_id' => 3
+			'role_id' => 3,
+			'activated' => 1
 		]);
 
 		Sentry::register([
@@ -25,7 +26,8 @@ class UsersTableSeeder extends Seeder {
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
 			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
-			'role_id' => 2
+			'role_id' => 2,
+			'activated' => 1
 		]);
 
 		Sentry::register([
@@ -35,7 +37,8 @@ class UsersTableSeeder extends Seeder {
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'password' =>'666666',
 			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
-			'role_id' => 2
+			'role_id' => 2,
+			'activated' => 1
 		]);
 
 		Sentry::register([
@@ -45,7 +48,8 @@ class UsersTableSeeder extends Seeder {
 			'avatar' => 'http://7xk6xh.com1.z0.glb.clouddn.com/avatar.png',
 			'info'=>'简介，即简明扼要的介绍。是当事人全面而简洁地介绍情况的一种书面表达方式，它是应用写作学研究的一种日常应用文体',
 			'password' =>'666666',
-			'role_id' => 2
+			'role_id' => 2,
+			'activated' => 1
 		]);
 
 

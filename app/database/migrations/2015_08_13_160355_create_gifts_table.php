@@ -20,12 +20,12 @@ class CreateGiftsTable extends Migration {
 			$table->decimal('price',10,2);//价格
 			$table->string('content');//内容
 			$table->string('gift_photo_intro');//图文介绍
-			$table->integer('scan_num')->nullable();//浏览人数
-			$table->integer('focus_num')->nullable();//收藏人数
-			$table->integer('scene_id')->nullable();//场景编号
-			$table->integer('object_id')->nullable();//对象编号
-			$table->integer('char_id')->nullable();//性格编号
-			$table->integer('price_id')->nullable(); //价格区间
+			$table->integer('scan_num')->default(0);//浏览人数
+			$table->integer('focus_num')->default(0);//收藏人数
+			$table->integer('scene_id')->default(0);//场景编号
+			$table->integer('object_id')->default(0);//对象编号
+			$table->integer('char_id')->default(0);//性格编号
+			$table->integer('price_id')->default(0); //价格区间
 			$table->string('taobao_url');//淘宝链接
 			$table->timestamps();
 

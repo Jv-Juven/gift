@@ -19,9 +19,9 @@ class CreateTopicsTable extends Migration {
 			$table->string('title');//题目
 			$table->string('content');//内容
 			$table->string('topic_url');//专题图片
-			$table->integer('scan_num')->nullable();//浏览人数
-			$table->integer('join_num')->nullable();//参与话题人数
-			$table->integer('focus_num')->nullable();//收藏人数
+			$table->integer('scan_num')->default(0);//浏览人数
+			$table->integer('join_num')->default(0);//参与话题人数
+			$table->integer('focus_num')->default(0);//收藏人数
 			$table->timestamps();
 
 			// $table                          
