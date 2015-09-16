@@ -55,6 +55,20 @@ class PcDetailController extends BaseController{
 		return $type;
 	}
 
+	public function isGiftLike($gifts)
+	{
+		foreach( $gifts as $gift)
+		{
+			if( Sentry::check())
+			{
+				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
+				if(isset($gift_focus))
+					$gift->type = 1;
+				$gift->type =0;
+			}
+		}
+		return $gifts;
+	}
 	//专题详情页
 	public function topicDetail()
 	{
@@ -74,6 +88,7 @@ class PcDetailController extends BaseController{
 				$gift->number = $number++;
 			}
 		}
+		$gifts = $this->isGiftLike($gifts);
 		$type = $this->isTopicLike($topic_id);
 		return View::make('pc.subject')->with(array(
 				'topic' 		=> $topic,
