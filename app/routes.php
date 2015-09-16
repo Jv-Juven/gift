@@ -180,6 +180,7 @@ Route::get('insert', 'MysqlController@insertData');
 
 //<-----------------------PC端路由--------------------->
 
+Route::get('pc/login','PcHomePageController@login');
 //QQ授权登录
 Route::group(array('prefix'=>'qq'), function(){
 	//app端

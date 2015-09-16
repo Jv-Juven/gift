@@ -22,7 +22,11 @@
 					<span class="avatar-img">
 						<img src="{{Sentry::getUser()->avatar}}">
 					</span>
+<<<<<<< HEAD
+					<span class="avatar-name">{{Sentry::getUser()->username}}</span>
+=======
 					<span class="avatar-name">{{ Sentry::getUser()->username }}</span>
+>>>>>>> 951d66642520201ecc82ad9e0489e723b3a90283
 				</a>
 			</li>
 			@endif
