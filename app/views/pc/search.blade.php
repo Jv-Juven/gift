@@ -122,7 +122,7 @@
 	<script type="text/template" id="search_tpl">
 		<% for(var i = 0; i < array.length; i ++){ 
 			var like = "",liked = "";
-			if (array[i]['focus'] == 0){
+			if (array[i]['type'] == 0){
 				like = "block";
 				liked = "none";
 			}

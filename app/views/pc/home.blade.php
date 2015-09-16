@@ -19,9 +19,9 @@
 			    @if(isset($scroll_imgs))
 			    	@foreach( $scroll_imgs as $scroll_img)
 			    <div class="swiper-slide">
-			    	<a class="link-wrapper">
+			    	<div class="link-wrapper">
 			    		<img src="{{$scroll_img->img}}">
-			    	</a>
+			    	</div>
 			    </div>
 			    	@endforeach
 			    @endif
@@ -100,8 +100,13 @@
 								</span>
 
 								<span class="box-cover-like">
+									@if($gift->focus == 0)
 									<img src="/images/pc/home/like.png">
 									<img style="display:none;" src="/images/pc/home/liked.png">
+									@else
+									<img style="display:none;" src="/images/pc/home/like.png">
+									<img src="/images/pc/home/liked.png">
+									@endif
 								</span>
 							</span>
 						</a>

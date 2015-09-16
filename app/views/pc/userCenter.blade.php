@@ -106,12 +106,14 @@
 
 	<script type="text/template" id="gifts_tpl">
 		<% for(var i = 0; i < array.length; i ++){ 
-			var likeUrl = "";
-			if (array[i]['taobao_url'] == 0){
-				likeUrl = "/images/pc/home/like.png"
+			var like = "",liked = "";
+			if (array[i]['type'] == 0){
+				like = "block";
+				liked = "none";
 			}
 			else{
-				likeUrl = "/images/pc/home/liked.png"
+				like = "none";
+				liked = "block";
 			}
 			%>
 			<li class="user-recommend-box" data-id="<%- array[i]['id']%>">
@@ -125,7 +127,8 @@
 							<span>￥<%- array[i]['price'] %></span>
 						</span>
 						<span class="box-cover-like" href="http://baidu.com">
-							<img src="<%- likeUrl %>">
+							<img style="display: <%- like %>" src="/images/pc/home/like.png" />
+							<img style="display: <%- liked %>" src="/images/pc/home/liked.png" />
 						</span>
 					</span>
 				</a>

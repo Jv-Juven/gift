@@ -27,6 +27,7 @@ $ ()->
 		autoplay: 4000,
 		paginationClickable: true,
 		autoplayDisableOnInteraction: false,
+		grabCursor: true,
 		speed: 400
 	}
 	console.log $(".swiper-slide").outerHeight(true)
