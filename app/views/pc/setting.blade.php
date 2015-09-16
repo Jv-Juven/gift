@@ -16,11 +16,14 @@
 			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
 			<div class="user-info-board">
 				<img class="avatar" src="{{$user->avatar}}">
+				<div class="avatar-upload">
+					<input type="file" class="avatar-upload-input" title="点击更换头像" />
+				</div>
 				<div class="user-name">
-					<input type="text" value="{{$user->username}}" class="name" />
+					<input type="text" value="{{$user->username}}" class="name" title="点击修改用户名" />
 				</div>
 				<div class="user-signature-container">
-					<textarea class="user-signature">{{$user->info}}</textarea>					
+					<textarea class="user-signature" title="点击设置个性签名">{{$user->info}}</textarea>					
 				</div>
 			</div>
 			<div class="setting-btn setting-back">

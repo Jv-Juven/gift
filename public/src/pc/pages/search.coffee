@@ -18,10 +18,10 @@ $ ()->
 	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png")
 
 	#默认选取“全部”
-	charItems.eq(0).addClass "active"
-	sceneItems.eq(0).addClass "active"
-	objectItems.eq(0).addClass "active"
-	priceItems.eq(0).addClass "active"
+	# charItems.eq(0).addClass "active"
+	# sceneItems.eq(0).addClass "active"
+	# objectItems.eq(0).addClass "active"
+	# priceItems.eq(0).addClass "active"
 
 	#搜索
 	search = ()->
@@ -48,8 +48,8 @@ $ ()->
 		# 	price + "\n"
 		#  )
 
-		if (_char is undefined) or (scene is undefined) or (object is undefined) or (price is undefined)
-			return 
+		# if (_char is undefined) or (scene is undefined) or (object is undefined) or (price is undefined)
+		# 	return 
 
 		#开始请求，加锁
 		load_lock = 0

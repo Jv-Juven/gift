@@ -17,7 +17,7 @@ $ ()->
 			if msg["errCode"] isnt 0
 				console.log msg["message"]
 			if msg["errCode"] is 10
-				location.reload()
+				window.location = "/pc/login/"
 
 
 	#修改个性签名
@@ -32,7 +32,7 @@ $ ()->
 			if msg["errCode"] isnt 0
 				console.log msg["message"]
 			if msg["errCode"] is 10
-				location.reload()
+				window.location = "/pc/login/"
 
 	#修改状态
 	editStatus = (e)->

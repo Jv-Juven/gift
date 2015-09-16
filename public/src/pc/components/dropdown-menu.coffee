@@ -16,7 +16,7 @@ $ ()->
 		height = _this.find(".menu-list").outerHeight(true)
 		width = _this.find(".menu-list").outerWidth(true)
 		_this.find(".menu-list").css({
-			"top": -height/2 + h/2,
+			"top": -(height * 2)/3,# + h/2
 			"right": -width
 		}).slideDown(200)
 

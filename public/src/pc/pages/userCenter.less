@@ -30,8 +30,32 @@
 				width: @avatar-width;
 				height: @avatar-width;
 				border-radius: 50%;
-				cursor: pointer;
 				border: 2px solid rgb(255, 255, 255);
+			}
+			.avatar-upload{
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				display: block;
+				margin: 0px -@avatar-width/2;
+				@avatar-width: 80px;
+				width: @avatar-width + 4;
+				height: @avatar-width + 4;
+				border-radius: 50%;
+				cursor: pointer;
+				overflow: hidden;
+				.avatar-upload-input{
+					display: block;
+					position: absolute;
+					top: 0px;
+					right: 0px;
+					width: 1000px;
+					height: 100%;
+					cursor: pointer;
+					&:focus{
+						outline: none;
+					}
+				}
 			}
 			.user-name{
 				display: block;

@@ -20,9 +20,9 @@
 			<li class="header-avatar">
 				<a class="a-block" href="/">
 					<span class="avatar-img">
-						<img src="{{Sentry::getUser()->avatar">
+						<img src="{{Sentry::getUser()->avatar}}">
 					</span>
-					<span class="avatar-name">{{Sentry->username}}</span>
+					<span class="avatar-name">{{ Sentry::getUser()->username }}</span>
 				</a>
 			</li>
 			@endif
