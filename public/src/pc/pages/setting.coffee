@@ -1,9 +1,43 @@
+
+Uploader = require("./../common/uploader/index.coffee")
+ 
 $ ()->
 	submitBtn = $(".user-form-submit .submit-btn")
 	setName = $(".set-username")
 	userSignature = $(".user-signature")
 	userName = $(".user-name .name")
 	signOutBtn = $(".sign-out a")
+	avatar = $(".user-info-board .avatar")
+	laoding = $(".avatar-waiting")
+
+	#上传头像
+	uploadAvatar = (data)->
+		$.post "/pc_mine/set_avatar", data, (msg)->
+			laoding.fadeOut(300)
+			console.log "前端提交成功后的回调"
+			if msg["errCode"] isnt 0
+				console.log msg["message"]
+			if msg["errCode"] is 10
+				window.location = "/pc/login/"
+
+	#绑定按钮的上传头像事件
+	behindUploader = new Uploader {
+		domain: "http://7xl6gj.com1.z0.glb.clouddn.com/",	# bucket 域名，下载资源时用到，**必需**
+		browse_button: 'avatar_upload_input',       # 上传选择的点选按钮的id，**必需**
+		container: 'avatar_upload',       # 上传选择的点选按钮父容器的id，**必需**
+	}, {
+		BeforeUpload: (up, file)->
+			laoding.fadeIn(300)
+		FileUploaded: (up, file, info)->
+			info = $.parseJSON info
+			domain = up.getOption('domain')
+
+			url =  domain + info.key
+			console.log url
+			avatar.attr "src", url
+			uploadAvatar { avatar: url }
+	}
+
 
 	#修改用户名
 	changName = ()->

@@ -1,8 +1,10 @@
 <div class="header">
 	<div class="header-wrapper">
-		<img class="header-logo" src="/images/pc/login/logo.png">
+		<a href="/pc_home/">
+			<img class="header-logo" src="/images/pc/login/logo.png">
+		</a>
 		<div class="header-menubar">
-			<a href="/">
+			<a href="/pc_election/label/">
 				<img src="/images/pc/components/heng-bar.png">
 			</a>
 		</div>

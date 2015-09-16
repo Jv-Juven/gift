@@ -4,11 +4,23 @@ $ ()->
 	homeWrappers =$(".home-wrappers")
 	homeRecBox = $(".home-recommend-box")
 	homeHotBox = $(".home-hot-board")
+	likeBtn = $(".box-cover-like img")
 
 	# 设置幻灯片的高度 START
 	winWidth = $(window).outerWidth(true)
 	$(".home-swiper-container").css("height", winWidth * 0.4875)
 	# 设置幻灯片的高度 END
+	
+	#点击“喜欢”
+	tapLike = (gift_id, likeImg)->
+		$.post "/home/collection", {
+			gift_id: gift_id
+		}, (msg)->
+			likeImg.attr("src", "/images/pc/home/liked.png")
+			likeImg.attr("src", "/images/pc/home/like.png")
+			# console.log msg
+			if msg["errCode"] isnt 0
+				alert msg["message"]
 
 	homeSwiper = new Swiper ".home-swiper-container", {
 		loop: true,
@@ -20,7 +32,6 @@ $ ()->
 	console.log $(".swiper-slide").outerHeight(true)
 	homeSwiper.reInit()
 
-	# searchSwiper = new Swiper ".search-swiper-container", {}
 
 	$(".home-prev").on "click", (e)->
 		e.preventDefault()
@@ -53,7 +64,12 @@ $ ()->
 		$(this).stop(true).animate({
 			bottom: "-21px"
 		}, 300)
-	
+
+	likeBtn.on "click", ()->
+		_this = $(this)
+		gift_id = _this.parent().parent().parent().parent().attr("data-id")
+		tapLike(gift_id, _this)
+		return false
 
 
 
