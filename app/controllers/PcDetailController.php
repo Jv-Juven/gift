@@ -145,7 +145,7 @@ class PcDetailController extends BaseController{
 				$urls = ArticleJoinPart::where('join_id', '=', $article_join->id)
 													->where('type', '=', 'url')
 													->orderBy('id','asc')->get();
-				if(count($url)>4)
+				if(count($urls)>4)
 				{
 					$urls = array_slice($urls,0,4);
 				}
