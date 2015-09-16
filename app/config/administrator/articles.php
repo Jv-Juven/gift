@@ -25,7 +25,7 @@ return array(
 		),
 		'hot_offical' => array(
 			'title' => '0=官方,1=热门,2=双'
-		)
+		),
 
 	),
 
@@ -47,7 +47,7 @@ return array(
 			'type'	=>'enum',
 			'options'=>array(
 				'0','1','2'
-			) 
-		)
+			), 
+		),
 	),
 );	
