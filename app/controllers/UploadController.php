@@ -18,7 +18,7 @@ class qiniu_delete{
         foreach ( $keys as $key ){
             $response = $bucket_manager->delete( self::$bucket, $key );
             if ( $response ){
-                Log::info( $response->message() );
+                Log::info( "Error in delete key:$key".$response->message() );
             }
         }
     }
@@ -49,7 +49,10 @@ class UploadController extends BaseController {
 	}
 
     public function deletePicture(){
-        Queue::push( 'qiniu_delete', Input::get( 'keys' ) );
+
+        if ( Input::has( 'keys' ) ){
+            Queue::push( 'qiniu_delete', Input::get( 'keys' ) );
+        }
         
         return Response::make('');
     }
