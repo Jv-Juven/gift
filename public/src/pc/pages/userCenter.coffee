@@ -94,7 +94,6 @@ $ ()->
 			per_page: 6,
 			page: num02
 		}, (msg)->
-
 			#请求结束
 			loadTip.fadeOut()
 			load_lock02 = 1
