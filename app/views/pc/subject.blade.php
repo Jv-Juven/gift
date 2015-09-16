@@ -19,58 +19,71 @@
     <div class="container clearfix">
         <div class="container-left">
             <div class="subject">
-                <img src="/images/pc/topic/topic-pic.png" alt="专题" class="pic">
-                <h2 class="title">拿什么添置你的衣橱</h2>
+                <img src="{{{ $topic['topic_url'] }}}" alt="{{{ $topic['title'] }}}" class="pic">
+                <h2 class="title">{{{ $topic['title'] }}}</h2>
                 <div class="info">
                     <span class="info-view">
                         <img src="/images/pc/common/icon-view.png" alt="" class="icon">
-                        <span class="num" id="count-view">15</span>
-                    </span>
-                    <span class="info-comment">
-                        <img src="/images/pc/common/icon-comment.png" alt="" class="icon">
-                        <span class="num" id="count-comment">20</span>
+                        <span class="num" id="count-view">{{{ $topic['scan_num'] }}}</span>
                     </span>
                     <span class="info-like">
                         <img src="/images/pc/common/icon-like.png" alt="" class="icon">
-                        <span class="num" id="count-like">35</span>
+                        <span class="num" id="count-like">{{{ $topic['focus_num'] }}}</span>
                     </span>
                 </div>
                 <p class="desc">
-                    不知不觉已经立秋了，虽然夏天的热情还在，不过早晚渐凉的温差提醒着我们是时候
-                    稍微调整下服装搭配了。初秋时节应该如何穿衣呢？跟欧美明星学学早秋服装搭配技巧吧！
+                    {{{ $topic['content'] }}}
                 </p>
             </div>
             <ul class="product-list">
+                @for ( $i = 0; $i < count( $gifts ); ++$i )
                 <li class="product">
                     <h3 class="title">
-                        <span class="index">1.</span>
-                        清透防晒碎花裙
+                        <span class="index">{{{ $i + 1 }}}.</span>
+                        {{{ $gifts[$i]['title'] }}}
                     </h3>
                     <p class="desc">
-                        穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                        也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                        穿T恤就很潮啊
+                        {{{ $gifts[$i]['content'] }}}
                     </p>
-                    <img src="/images/pc/topic/zhuantixianqing.png" class="pic">
+                    <img src="{{{ $gifts[$i]['img'] }}}" class="pic">
                     <div class="pro-btm clearfix">
                         <div class="info">
-                            <span class="price">89.00</span>
+                            <span class="price">{{{ $gifts[$i]['price'] }}}</span>
                             <span class="like">
-                                <button pid="" class="like-btn"></button>
-                                <span class="num">2222</span>
+                                <button ac={{{ $gifts[$i]['type'] }}} pid="{{{ $gifts[$i]['id'] }}}" 
+                                @if ( $gifts[$i]['type'] )
+                                    class="like-btn like-btn-a"
+                                @else
+                                    class="like-btn"
+                                @endif
+                                ></button>
+                                <span class="num">{{{ $gifts[$i]['focus_num'] }}}</span>
                             </span>
                             <img src="/images/pc/common/222.png" class="line">
                         </div>
-                        <a href="" class="detail-link">查看详情</a>
+                        <a target="_blank" href="{{{ $gifts[$i]['taobao_url'] }}}" class="detail-link">查看详情</a>
                     </div>
                 </li>
+                @endfor
             </ul>
-            @include('pc.components.post_info')
+            @include('pc.components.post_info', [
+                'info' => [
+                    'like'      => [
+                        'post_url'  => '/home/topicCollection',
+                        'count'     => $topic['scan_num'],
+                        'ac'        => $type
+                    ],
+                    'share'     => [
+                        'post_url'  => '',
+                        'count'     => $topic['focus_num']
+                    ]
+                ]
+            ])
         </div>
         @include('pc.components.ad')
-        <input type="text" style="display:none;" id="topic_id" val="1">
+        <input type="text" style="display:none;" id="topic_id" value="{{{ $topic['id'] }}}">
     </div>
     @include('pc.components.back_to_top')
 </div>
-    
+
 @stop
