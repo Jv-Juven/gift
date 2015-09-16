@@ -76,6 +76,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		return $this->hasMany( 'ArticleJoin', 'user_id', 'id' );
 	}
+
+	public function join_coms(){
+
+		return $this->hasMany( 'ArticleJoinCom', 'sender_id', 'id' );
+	}
+
+	public function join_replies(){
+
+		return $this->hasMany( 'ArticleJoinReply', 'sender_id', 'id' );
+	}
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

@@ -13,10 +13,17 @@ class ArticleJoin extends Eloquent{
 	);
 
     public function parts(){
+        
         return $this->hasMany( 'ArticleJoinPart', 'join_id', 'id' );
     }
 
     public function user(){
+        
         return $this->belongsTo( 'User', 'user_id', 'id' );
+    }
+
+    public function comment(){
+
+        return $this->hasMany( 'ArticleJoinCom', 'join_id', 'id' );
     }
 }
