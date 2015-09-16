@@ -13,12 +13,34 @@
             float: left;
             margin-left: @info-item-left;
         }
-        .info-likes{
+        #info-like{
             color: @color-red;
             float: right;
         }
-        .icon{
-            vertical-align: text-top;
+        .post-btn{
+            width: 19px;
+            height: 19px;
+            border: none;
+            position: relative;
+            display: inline-block;
+            background: no-repeat center;
+        }
+        .info-like-btn{
+            top: -3px;
+            background-image: url('/images/pc/common/icon-like-red.png');
+        }
+        .info-like-btn-a{
+            background-image: url('/images/pc/common/icon-like-red-2.png');
+        }
+        .info-view-btn{
+            top: 3px;
+            cursor: none;
+            background-image: url('/images/pc/common/icon-view.png');
+        }
+        .info-comment-btn{
+            top: 3px;
+            cursor: none;
+            background-image: url('/images/pc/common/icon-comment.png');
         }
         .num{
             font-size: 14px;
@@ -34,10 +56,41 @@
 @comment-container-width: @comment-item-width - @user-info-width - @comment-container-margin-left;
 @comment-pic-margin-left: 10px;
 
+.comment-input-wrap{
+    margin-top: 35px;
+    .comment-input-top{
+        color: #535353;
+        font-size: 18px;
+    }
+    .comment-input-area{
+        @border-width: 1px;
+        @padding: 6px;
+        width: @comment-item-width - 2 * @border-width - 2 * @padding;
+        height: 109px;
+        padding: @padding;
+        margin-top: 15px;
+        font-size: 14px;
+        border: solid #979797 1px;
+        resize: none;
+        border-radius: 5px;
+    }
+    .comment-input-btm{
+        .comment-confirm-btn{
+            color: @color-gray;
+            font-size: 14px;
+            margin-top: 5px;
+            border: none;
+            cursor: pointer;
+            float: right;
+            display: block;
+        }
+    }
+}
+
 .comment-list{
+    margin-top: 25px;
     .comment-count{
         font-size: 18px;
-        margin-top: 25px;
         margin-bottom: 27px;
     }
 }
@@ -116,15 +169,32 @@
                 margin-right: 14px;    
             }
             .reply-btn{
+                border: none;
                 float: right;
                 cursor: pointer;
+                color: @color-gray;
             }
+        }
+    }
+}
+
+.reply-container{
+    font-size: 14px;
+    line-height: 28px;
+    color: #727272;
+    background-color: #f2f2f2;
+    margin-top: 8px;
+    .reply-item{
+        padding: 2px 5px;
+        .reply-user-name{
+            color: #303030;
         }
     }
 }
 
 // 回复
 .reply-wrap{
+    display: none;
     .reply-input{
         @border-width: 1px;
         @padding: 6px;
@@ -141,12 +211,13 @@
     }
     .reply-btm{
         margin-top: 3px;
-        & > a{
+        & > button{
             color: #999999;
             font-size: 14px;
             float: right;
             margin-left: 10px;
             cursor: pointer;
+            border: none;
         }
     }
 }
