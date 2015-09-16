@@ -16,9 +16,9 @@ class CreateArticleTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('title');
-			$table->integer('scan_num')->nullable();//浏览人数
-			$table->integer('join_num')->nullable();//参与话题人数
-			$table->integer('focus_num')->nullable();//收藏人数
+			$table->integer('scan_num')->default(0);//浏览人数
+			$table->integer('join_num')->default(0);//参与话题人数
+			$table->integer('focus_num')->default(0);//收藏人数
 			$table->integer('hot_offical')->default(0);//0=官方,1=热门,
 			$table->timestamps();
 		});

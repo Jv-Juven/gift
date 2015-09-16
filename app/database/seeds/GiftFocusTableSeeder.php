@@ -9,7 +9,7 @@ class GiftFocusTableSeeder extends Seeder {
 	{
 		$i = 0 ;
 		
-		for($i=0; $i<60; $i++)
+		for($i=0; $i<200; $i++)
 		{
 			GiftFocus::create([
 				'gift_id'=>$i+1,
