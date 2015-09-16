@@ -2,6 +2,10 @@
 
 class PcHomePageController extends BaseController{
 
+	public function login()
+	{
+		return View::make('pc.login');
+	}
 	//首页静态页面
 	public function home()
 	{

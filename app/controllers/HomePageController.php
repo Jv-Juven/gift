@@ -2,10 +2,7 @@
 
 class HomePageController extends BaseController {
 
-	public function login()
-	{
-		return View::make('pc.login');
-	}
+	
 	public function isLike($gift_id)
 	{
 		if(Sentry::check())
