@@ -42,7 +42,7 @@ class ArticlePageController extends BaseController{
 	{
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->where('hot_article','=',1)->orderBy('focus_num', 'desc')->get();
+		$articles = DB::table('articles')->where('hot_article','!=',0)->orderBy('focus_num', 'desc')->get();
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
@@ -75,7 +75,7 @@ class ArticlePageController extends BaseController{
 	{	
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->where('hot_article','=',0)->orderBy('updated_at', 'desc')->get();
+		$articles = DB::table('articles')->where('hot_article','!=',1)->orderBy('updated_at', 'desc')->get();
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
