@@ -182,6 +182,7 @@ class PcDetailController extends BaseController{
 		$user = User::find($article_join->user_id);
 		$article_join->avatar = $user->avatar;
 		$article_join->username = $user->username;
+		$article_join->article_title = Article::find($article_join->article_id)->title;
 		return View::make('pc.discuss')->with(array(
 							'article_join' 			=> $article_join,
 							'article_join_parts' 	=> $article_join_parts,

@@ -188,7 +188,10 @@ class UserController extends BaseController{
 	}
 
 	public function logout()
-	{
+	{	
+		// $user = Sentry::findUserById(4);
+		// Sentry::login($user,false);
+		// Sentry::logout();
 		if(!Sentry::check())
 			return Response::json(array('errCode'=>1, 'message'=>'用户未登录！'));
 		Sentry::logout();

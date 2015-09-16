@@ -18,8 +18,8 @@ class PcHomePageController extends BaseController{
 		$daily 	= Poster::where('daily_id','=', 1)->get();
 		//每日推
 		$daily 	= StaticController::page(16, 1, $daily);
-		$user = Sentry::findUserById(4);
-		Sentry::login($user,false);
+		// $user = Sentry::findUserById(4);
+		// Sentry::login($user,false);
 		// Sentry::logout();		
 		if(Sentry::check())
 		{
