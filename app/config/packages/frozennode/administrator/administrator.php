@@ -68,7 +68,6 @@ return array(
 				'prices'
 			),
 			'scroll_imgs',
-			'article'
 		),
 
 	/**
