@@ -61,7 +61,7 @@ class PcDetailController extends BaseController{
 		{
 			if( Sentry::check())
 			{
-				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
+				$gift_focus = GiftFocus::where('user_id', '=', Sentry::getUser()->id)->first();
 				if(isset($gift_focus))
 					$gift->type = 1;
 				$gift->type =0;
@@ -188,7 +188,7 @@ class PcDetailController extends BaseController{
 		$page = Input::get('page');
 		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->orderBy('created_at','asc')->get();
 		//总页数
-		$total = ceil(count($join_coms)/$per_page);
+		$total = ceil(count($join_coms) / $per_page);
 		//文章
 		$join_coms = StaticController::page($per_page,$page,$join_coms);
 		if( $join_coms )
