@@ -12,9 +12,11 @@ class PcElectionController extends BaseController{
 				$gift_focus = GiftFocus::where('user_id', '=', Sentry::getUser()->id)->first();
 				if(isset($gift_focus))
 					$gift->type = 1;
-				$gift->type =0;
+				else	
+					$gift->type =0;
+			}else{
+					$gift->type =0;
 			}
-			$gift->type =0;
 		}
 		return $gifts;
 	}
