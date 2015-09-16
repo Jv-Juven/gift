@@ -1,9 +1,9 @@
 <?php
 
 return array(
-	'title' => '话题',
+	'title' => '话题标题',
 
-	'single' => '话题',
+	'single' => '话题标题',
 
 	'model' => 'Article',
 
@@ -23,6 +23,9 @@ return array(
 		'focus_num' => array(
 			'title' => '收藏人数'
 		),
+		'hot_article' => array(
+			'title' => '0=官方,1=热门'
+		)
 
 	),
 
@@ -39,5 +42,12 @@ return array(
 		'focus_num' => array(
 			'title' => '收藏人数'
 		),
+		'hot_article' => array(
+			'title' => '0=官方,1=热门',
+			'type'	=>'enum',
+			'options'=>array(
+				'0','1'
+			) 
+		)
 	),
 );	

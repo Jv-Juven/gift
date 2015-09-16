@@ -36,15 +36,19 @@ class ObjectsTableSeeder extends Seeder {
 				'_class'=>'女性'
 			]);
 			Object::create([
-				'object_id'=>1,
+				'object_id'=>8,
 				'_class'=>'男友'
 			]);
 			Object::create([
-				'object_id'=>1,
+				'object_id'=>9,
 				'_class'=>'基友'
 			]);
 			Object::create([
-				'object_id'=>1,
+				'object_id'=>10,
+				'_class'=>'情人'
+			]);
+			Object::create([
+				'object_id'=>11,
 				'_class'=>'情人'
 			]);
 	}

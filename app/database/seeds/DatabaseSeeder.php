@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('ObjectsTableSeeder');
 		$this->call('PricesTableSeeder');
 		$this->call('ScenesTableSeeder');
+		$this->call('ArticleFocusTableSeeder');
 		// $this->call('OfficalNoticePartsTableSeeder');
 	}
 

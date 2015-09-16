@@ -24,7 +24,7 @@ class ArticleController extends BaseController{
 		if(!$comment->save())
 			return Response::json(array('errCode'=>4, 'message'=>'[数据库问题]评论失败！'));
 		
-		return Response::Json(array('errCode'=>0, 'message'=>'评论成功！'));
+		return Response::Json(array('errCode'=>0, 'message'=>'评论成功！','created_at'=>$comment->created_at));
 	}
 
 	//参与话题回复

@@ -7,21 +7,25 @@
 			</a>
 		</div>
 		<ul class="header-menu">
+			@if(!Sentry::check())
 			<li class="header-login">
 				<a href="/">登录</a>
 				<a href="/">注册</a>
 			</li>
+			@endif
 			<!-- <li class="header-login">
 				<a href="/">返回首页</a>
 			</li> -->
-			<!-- <li class="header-avatar">
+			@if(Sentry::check())
+			<li class="header-avatar">
 				<a class="a-block" href="/">
 					<span class="avatar-img">
-						<img src="/images/pc/index/avatar.png">
+						<img src="{{Sentry::getUser()->avatar">
 					</span>
-					<span class="avatar-name">Ketty</span>
+					<span class="avatar-name">{{Sentry->username}}</span>
 				</a>
-			</li> -->
+			</li>
+			@endif
 			<li class="header-li-download">
 				<a class="a-block" href="/">
 					<img class="header-li-icon" src="/images/pc/login/header_phone.png">

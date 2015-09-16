@@ -47,6 +47,10 @@ class CharactorsTableSeeder extends Seeder {
 				'char_id'=>10,
 				'_class' =>'御姐'
 			]);
+			Charactor::create([
+				'char_id'=>11,
+				'_class' =>'御姐'
+			]);
 	}
 
 }

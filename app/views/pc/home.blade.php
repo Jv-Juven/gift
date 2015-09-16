@@ -11,26 +11,15 @@
 		<!-- 幻灯片 START	 -->
 		<div class="home-swiper-container">
 			<div class="swiper-wrapper">
+			    @if(isset($scroll_imgs))
+			    	@foreach( $scroll_imgs as $scroll_img)
 			    <div class="swiper-slide">
 			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/slide-img01.jpg">
+			    		<img src="{{$scroll_img->img}}">
 			    	</a>
 			    </div>
-			    <div class="swiper-slide">
-			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/slide-img02.jpg">
-			    	</a>
-		    	</div>
-			    <div class="swiper-slide">
-			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/slide-img03.jpg">
-			    	</a>
-		    	</div>
-			    <div class="swiper-slide">
-			    	<a class="link-wrapper" href="javascript:">
-			    		<img src="/images/pc/home/slide-img04.jpg">
-			    	</a>
-		    	</div>
+			    	@endforeach
+			    @endif
 			</div>
 			<div class="home-swiper-arrow">
 				<div class="home-prev">
