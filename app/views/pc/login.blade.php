@@ -11,11 +11,11 @@
 
 @section("body")
 	<script type="text/javascript">
-		var user = document.getElementById('header_user'),
-			login = document.getElementById('header_login'),
+		var login = document.getElementById('header_login'),
+			// user = document.getElementById('header_user'),
 			home = document.getElementById('header_home');
-		user.style.display = login.style.display = "none";
-		login.style.display = "block";
+		login.style.display = "none";
+		home.style.display = "block";
 	</script>
 	<div class="page-content">
 		<img class="bg-img" src="/images/pc/login/login_bg.png">
