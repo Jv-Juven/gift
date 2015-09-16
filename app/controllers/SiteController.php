@@ -5,6 +5,9 @@ class SiteController extends BaseController{
 	//个人设置
 	public function perInfo()
 	{
+		// $user = Sentry::findUserById(4);
+		// Sentry::login($user,false);
+		// Sentry::logout();
 		$type = Input::get('type');
 		if($type == 0)
 		{
@@ -17,7 +20,7 @@ class SiteController extends BaseController{
 		{
 			if(! Sentry::check())
 			return Response::json(array('errCode'=>2, 'message'=>'请登录'));
-			$user_id = Sentry::getUser();
+			$user_id = Sentry::getUser()->id;
 		}
 
 		$data = array(
