@@ -2,6 +2,59 @@
 
 class PcDetailController extends BaseController{
 
+	//喜欢话题
+	public function isArticleLike($article_id)
+	{
+		if(Sentry::check())
+		{
+			$is_like 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('article_id', '=', $article_id)->first();
+		}
+		//判断是否收藏
+		if(isset($is_like))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
+	//喜欢参与话题
+	public function isJoinLike($join_id)
+	{
+		if(Sentry::check())
+		{
+			$is_like 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('join_id', '=', $join_id)->first();
+		}
+		//判断是否收藏
+		if(isset($is_like))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
+
+	//喜欢专题
+	public function isTopicLike($topic_id)
+	{
+		if(Sentry::check())
+		{
+			$is_like 	= DB::table('topic_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('topic_id', '=', $topic_id)->first();
+		}
+		//判断是否收藏
+		if(isset($is_like))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
+
 	//专题详情页
 	public function topicDetail()
 	{
@@ -21,44 +74,12 @@ class PcDetailController extends BaseController{
 				$gift->number = $number++;
 			}
 		}
-		// //专题评论
-		// $topic_coms = TopicCom::where('topic_id','=',$topic_id)->get();
-		// if(count($topic_coms)==0)
-		// {	
-		// 	$topic_coms =array();//如果评论为空，返回空数组
-		// }else{
-		// 	foreach( $topic_coms as $topic_com)
-		// 	{
-		// 		$user = User::find($topic_com->sender_id);
-		// 		$topic->username = $user->username;
-		// 		$topic->avatar = $user->avatar;
-		// 		$com_parts = TopicComPart::where('topic_com_id','=', $topic_com->id)->get();
-		// 		if(count($contents) != 0)//获取评论的内容
-		// 		{
-		// 			$topic_com->com_parts = $com_parts;
-		// 		}
-		// 		$topic_replys = TpoicReply::where('topic_id','=', $topic_id)
-		// 									->where('topic_com_id','=', $topic_com->id)
-		// 									->get();
-		// 		if(count($topic_replys!=0))	
-		// 		{
-		// 			foreach($topic_replys as $topic_reply)
-		// 			{
-		// 				$reply_parts = TpoicReplyPart::where('topic_reply_id','=', $ $topic_reply->id)->get()
-		// 				if(count($reply_parts) !=0)
-		// 				{
-		// 					$topic_reply->reply_parts = $reply_parts;
-		// 				}						
-		// 			}
-		// 		}
-		// 		$topic_com->replys = $topic_replys; 	
-		// 	}
-		// }
-			return View::make('pc.subject')->with(array(
-					'topic' 		=> $topic,
-					'gifts'			=> $gifts,
-					// 'topic_coms' 	=> $topic_coms
-				));
+		$type = $this->isTopicLike($topic_id);
+		return View::make('pc.subject')->with(array(
+				'topic' 		=> $topic,
+				'gifts'			=> $gifts,
+				'type'			=> $type 
+			));
 	}
 
 	//话题详情页
@@ -70,9 +91,11 @@ class PcDetailController extends BaseController{
 		if(!isset($article))
 			return Response::view('errors.missing');
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
+		$type = isArticleLike($article_id);
 		return View::make('pc.topic')->with(array(
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
+						'type'			=>$type
 					));
 	}
 
@@ -129,10 +152,11 @@ class PcDetailController extends BaseController{
 		if(!isset($article_join))
 			return Response::view('errors.missing');
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
-			
+		$type = isJoinLike($join_id);
 		return View::make('pc.topic')->with(array(
 							'article_join' 			=> $article_join,
 							'article_join_parts' 	=> $article_join_parts,
+							'type' 					=> $type
 						));
 	}
 
