@@ -106,7 +106,7 @@ class PcDetailController extends BaseController{
 		if(!isset($article))
 			return Response::view('errors.missing');
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		$type = isArticleLike($article_id);
+		$type = $this->isArticleLike($article_id);
 		return View::make('pc.topic')->with(array(
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
@@ -167,7 +167,7 @@ class PcDetailController extends BaseController{
 		if(!isset($article_join))
 			return Response::view('errors.missing');
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
-		$type = isJoinLike($join_id);
+		$type = $this->isJoinLike($join_id);
 		return View::make('pc.topic')->with(array(
 							'article_join' 			=> $article_join,
 							'article_join_parts' 	=> $article_join_parts,
