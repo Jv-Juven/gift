@@ -71,6 +71,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsToMany('Gift', 'gift_focus', 'user_id', 'gift_id');
 	}
+
+	public function article_joins(){
+
+		return $this->hasMany( 'ArticleJoin', 'user_id', 'id' );
+	}
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

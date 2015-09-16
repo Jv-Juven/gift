@@ -8,4 +8,8 @@ class ArticleJoinPart extends Eloquent{
 		'content',
 		'type'
 	);
+
+    public function join(){
+        return $this->belongsTo( 'ArticleJoin', 'join_id', 'id' );
+    }
 }

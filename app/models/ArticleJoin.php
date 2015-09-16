@@ -11,4 +11,12 @@ class ArticleJoin extends Eloquent{
 		'join_num',
 		'focus_num'
 	);
+
+    public function parts(){
+        return $this->hasMany( 'ArticleJoinPart', 'join_id', 'id' );
+    }
+
+    public function user(){
+        return $this->belongsTo( 'User', 'user_id', 'id' );
+    }
 }
