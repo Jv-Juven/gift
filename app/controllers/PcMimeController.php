@@ -61,7 +61,7 @@ class PcMimeController extends BaseController{
 		$user = Sentry::getUser();
 		$info = Input::get('sign');
 		if(!isset($info))
-			return Response::json(array('errCode'=>2,'message'=>'请上传头像'));
+			return Response::json(array('errCode'=>2,'message'=>'请填写属于你的个性签名'));
 		$user->info = $info;
 		if(!$user->save())
 			return Response::json(array('errCode'=>1,'message'=>'个性签名修改失败'));

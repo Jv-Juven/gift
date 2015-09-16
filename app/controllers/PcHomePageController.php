@@ -18,9 +18,9 @@ class PcHomePageController extends BaseController{
 		$daily 	= Poster::where('daily_id','=', 1)->get();
 		//每日推
 		$daily 	= StaticController::page(16, 1, $daily);
-		// $user = Sentry::findUserById(1);
-		// Sentry::login($user,false);
-		// Sentry::logout();
+		$user = Sentry::findUserById(4);
+		Sentry::login($user,false);
+		// Sentry::logout();		
 		if(Sentry::check())
 		{
 			foreach( $daily as $recommend)
@@ -36,16 +36,17 @@ class PcHomePageController extends BaseController{
 				if(isset($gift_focus))
 					$recommend->focus = 1;
 				else
+					$recommend->focus = 0; 
+			}
+		}else{
+			foreach( $daily as $recommend)
+			{
+					$gift = Gift::find($recommend->info_url);
+					$recommend->title = $gift->title;
+					$recommend->price = $gift->price;
+					$recommend->taobao_url = $gift->taobao_url;
 					$recommend->focus =0; 
 			}
-		}
-		foreach( $daily as $recommend)
-		{
-				$gift = Gift::find($recommend->info_url);
-				$recommend->title = $gift->title;
-				$recommend->price = $gift->price;
-				$recommend->taobao_url = $gift->taobao_url;
-				$recommend->focus =0; 
 		}
 		//精选话题
 		$articles = DB::table('articles')->orderBy('focus_num', 'desc')->get();

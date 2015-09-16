@@ -179,6 +179,9 @@ class PcDetailController extends BaseController{
 			return Response::view('errors.missing');
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
 		$type = $this->isJoinLike($join_id);
+		$user = User::find($article_join->user_id);
+		$article_join->avatar = $user->avatar;
+		$article_join->username = $user->username;
 		return View::make('pc.discuss')->with(array(
 							'article_join' 			=> $article_join,
 							'article_join_parts' 	=> $article_join_parts,
