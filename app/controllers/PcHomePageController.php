@@ -15,8 +15,8 @@ class PcHomePageController extends BaseController{
 		$topics 	= StaticController::page(12, 1, $topics);
 		
 		//每日推荐
-		$daily 	= poster::where('daily_id','=', 1)->get();
-		//每日推荐
+		$daily 	= Poster::where('daily_id','=', 1)->get();
+		//每日推
 		$daily 	= StaticController::page(16, 1, $daily);
 		if(Sentry::check())
 		{
@@ -44,7 +44,7 @@ class PcHomePageController extends BaseController{
 		}
 		//精选话题
 		$articles = DB::table('articles')->orderBy('focus_num', 'desc')->get();
-		$articles = StaticController::page(4, 1, $articles);
+		$articles = StaticController::page(12, 1, $articles);
 		
 		if( $articles )
 		{	

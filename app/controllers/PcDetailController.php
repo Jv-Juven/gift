@@ -55,6 +55,20 @@ class PcDetailController extends BaseController{
 		return $type;
 	}
 
+	public function isGiftLike($gifts)
+	{
+		foreach( $gifts as $gift)
+		{
+			if( Sentry::check())
+			{
+				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
+				if(isset($gift_focus))
+					$gift->type = 1;
+				$gift->type =0;
+			}
+		}
+		return $gifts;
+	}
 	//专题详情页
 	public function topicDetail()
 	{
@@ -74,6 +88,7 @@ class PcDetailController extends BaseController{
 				$gift->number = $number++;
 			}
 		}
+		$gifts = $this->isGiftLike($gifts);
 		$type = $this->isTopicLike($topic_id);
 		return View::make('pc.subject')->with(array(
 				'topic' 		=> $topic,
@@ -91,7 +106,7 @@ class PcDetailController extends BaseController{
 		if(!isset($article))
 			return Response::view('errors.missing');
 		$article_parts = ArticlePart::where('article_id','=', $article_id)->orderBy('id','asc')->get();//获取话题内容
-		$type = isArticleLike($article_id);
+		$type = $this->isArticleLike($article_id);
 		return View::make('pc.topic')->with(array(
 						'article'		=>$article,
 						'article_parts'	=>$article_parts,
@@ -130,11 +145,11 @@ class PcDetailController extends BaseController{
 				$urls = ArticleJoinPart::where('join_id', '=', $article_join->id)
 													->where('type', '=', 'url')
 													->orderBy('id','asc')->get();
-				if(count($url)>4)
+				if(count($urls)>4)
 				{
 					$urls = array_slice($urls,0,4);
 				}
-				$article_join->urls = $urls;
+				$article_join->imgs = $urls;
 			}
 		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题内容',
@@ -152,7 +167,7 @@ class PcDetailController extends BaseController{
 		if(!isset($article_join))
 			return Response::view('errors.missing');
 		$article_join_parts = ArticleJoinPart::where('join_id','=',$join_id)->orderBy('id','asc')->get(); 
-		$type = isJoinLike($join_id);
+		$type = $this->isJoinLike($join_id);
 		return View::make('pc.topic')->with(array(
 							'article_join' 			=> $article_join,
 							'article_join_parts' 	=> $article_join_parts,
