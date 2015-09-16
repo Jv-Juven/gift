@@ -10,6 +10,13 @@
 @stop
 
 @section("body")
+	<script type="text/javascript">
+		var user = document.getElementById('header_user'),
+			login = document.getElementById('header_login'),
+			home = document.getElementById('header_home');
+		user.style.display = login.style.display = "none";
+		login.style.display = "block";
+	</script>
 	<div class="page-content">
 		<img class="bg-img" src="/images/pc/login/login_bg.png">
 		<!-- <div class="login-components-wrapper login-components-bg"></div> -->

@@ -8,16 +8,16 @@
 		</div>
 		<ul class="header-menu">
 			@if(!Sentry::check())
-			<li class="header-login">
+			<li id="header_login" class="header-login">
 				<a href="/">登录</a>
 				<a href="/">注册</a>
 			</li>
 			@endif
-			<!-- <li class="header-login">
+			<li id="header_home" class="header-login" style="display: none;">
 				<a href="/">返回首页</a>
-			</li> -->
+			</li>
 			@if(Sentry::check())
-			<li class="header-avatar">
+			<li id="header_user" class="header-avatar">
 				<a class="a-block" href="/">
 					<span class="avatar-img">
 						<img src="{{Sentry::getUser()->avatar}}">
