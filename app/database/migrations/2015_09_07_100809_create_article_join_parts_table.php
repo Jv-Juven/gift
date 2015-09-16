@@ -17,7 +17,7 @@ class CreateArticleJoinPartsTable extends Migration {
 			
 			$table->increments('id');
 			$table->integer('join_id')->unsigned()->index('join_id');
-			$table->string('content');
+			$table->text('content');
 			$table->string('type');
 			$table->timestamps();
 

@@ -8,7 +8,7 @@ class ArticleJoin extends Eloquent{
 		'article_id',
 		'user_id',
 		'scan_num',
-		'join_num',
+		'com_num',
 		'focus_num'
 	);
 

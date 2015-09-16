@@ -17,9 +17,9 @@ class CreateArticleJoinsTable extends Migration {
 			$table->increments('id');
 			$table->integer('article_id')->unsigned()->index('article_id');
 			$table->integer('user_id')->unsigned()->index('user_id');
-			$table->integer('scan_num')->nullable();//浏览人数
-			$table->integer('join_num')->nullable();//评论参与话题人数
-			$table->integer('focus_num')->nullable();//收藏人数
+			$table->integer('scan_num')->default(0);//浏览人数
+			$table->integer('com_num')->default(0);//评论参与话题人数
+			$table->integer('focus_num')->default(0);//收藏人数
 			$table->timestamps();
 
 			$table                          

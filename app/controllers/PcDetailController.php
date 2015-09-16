@@ -195,7 +195,7 @@ class PcDetailController extends BaseController{
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->orderBy('created_at','asc')->get();
+		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->orderBy('created_at','desc')->get();
 		//总页数
 		$total = ceil(count($join_coms) / $per_page);
 		//文章

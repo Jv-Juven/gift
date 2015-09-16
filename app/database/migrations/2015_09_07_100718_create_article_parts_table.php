@@ -16,7 +16,7 @@ class CreateArticlePartsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('article_id')->unsigned()->index('article_id');
-			$table->string('content');
+			$table->text('content');
 			$table->string('type');
 			$table->timestamps();
 
