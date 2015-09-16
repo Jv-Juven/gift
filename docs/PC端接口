@@ -327,6 +327,9 @@
 				scan_num,					浏览人数
 				join_num， 					参与话题人数
 				focus_num， 					收藏人数
+				created_at,					创建时间
+				username,					用户名
+				avatar,						头像
 			}
 			article_join_parts:[
 						{
