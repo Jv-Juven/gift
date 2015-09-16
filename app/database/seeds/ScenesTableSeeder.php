@@ -43,6 +43,14 @@ class ScenesTableSeeder extends Seeder {
 				'scene_id'=>9,
 				'_class'=>'新年'
 			]);
+			Scene::create([
+				'scene_id'=>10,
+				'_class'=>'乔迁'
+			]);
+			Scene::create([
+				'scene_id'=>11,
+				'_class'=>'新年'
+			]);
 	}
 
 }

@@ -7,10 +7,12 @@ class GiftPostersTableSeeder extends Seeder {
 
 	public function run()
 	{
-		for(i=0; i<200; i++)
+		$i = 0 ;
+		
+		for($i=0; $i<200; $i++)
 		{
 			GiftPoster::create([
-				'gift_id' => i+1,
+				'gift_id' => $i+1,
 				'url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/19.2.jpg'
 			]);
 			

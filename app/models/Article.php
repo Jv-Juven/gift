@@ -7,6 +7,7 @@ class Article extends Eloquent{
 		'title',
 		'scan_num',
 		'join_num',
-		'focus_num'
+		'focus_num',
+		'hot_offical'
 	);
 }

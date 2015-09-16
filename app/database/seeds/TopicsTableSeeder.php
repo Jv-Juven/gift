@@ -6,11 +6,12 @@ use Faker\Factory as Faker;
 class TopicsTableSeeder extends Seeder {
 
 	public function run()
-	{
-		for(i=0 ;i< 50; i++)
+	{	
+		$i = 0 ;
+		for($i == 0;$i< 50;$i++)
 		{
 			Topic::create([
-			'title'=>'这里是主题主题'.i,
+			'title'=>'这里是主题主题'.$i,
 			'content' => '安装完 Laravel 之后，首先需要做的事情就是为你的应用程序设置一个随机字符串作为整个应用的 key（用于加密）。如果你是通过 Composer 安装的 Laravel，这个 key 可能已经通过 key:generate 指令自动为你设置好了。',
 			'topic_url' => 'http://7xl6gj.com1.z0.glb.clouddn.com/100kuai0-01.jpg',
 			'scan_num' => rand(1111,4444),
