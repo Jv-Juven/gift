@@ -11,6 +11,11 @@
 		<!-- 幻灯片 START	 -->
 		<div class="home-swiper-container">
 			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a class="link-wrapper" href="javascript:">
+						<img src="http://7xl6gj.com1.z0.glb.clouddn.com/slide-img01.jpg">
+					</a>
+				</div>
 			    @if(isset($scroll_imgs))
 			    	@foreach( $scroll_imgs as $scroll_img)
 			    <div class="swiper-slide">
@@ -83,7 +88,7 @@
 				<ul class="home-recommend-content clearx">
 					@if(isset($gifts))
 						@foreach($gifts as $gift)
-					<li class="home-recommend-box">
+					<li class="home-recommend-box" data-id="{{ $gift->info_url }}">
 						<a href="{{$gift->taobao_url}}">
 							<img src="{{$gift->photo_url}}">
 							<span class="box-cover">
@@ -94,7 +99,7 @@
 									<span>￥{{$gift->price}}</span>
 								</span>
 
-								<span class="box-cover-like" href="javascript:">
+								<span class="box-cover-like">
 									<img src="/images/pc/home/like.png">
 								</span>
 							</span>

@@ -57,6 +57,18 @@
 					}
 				}
 			}
+			.avatar-waiting{
+				display: none;
+				img{
+					@loading-width: 40px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					margin: -@loading-width/2;
+					width: @loading-width;
+					height: @loading-width
+				}
+			}
 			.user-name{
 				display: block;
 				width: 100%;

@@ -15,7 +15,7 @@ $ ()->
 	timeout = new Object()
 
 	#修改头部图片
-	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png")
+	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png").parent().attr "href", "javascript:"
 
 	#默认选取“全部”
 	# charItems.eq(0).addClass "active"
@@ -41,13 +41,7 @@ $ ()->
 		scene = sceneItems.filter(".active").attr("data-id")
 		object = objectItems.filter(".active").attr("data-id")
 		price = priceItems.filter(".active").attr("data-id")
-		# console.log( 
-		# 	_char + "\n"
-		# 	scene + "\n"
-		# 	object + "\n"
-		# 	price + "\n"
-		#  )
-
+	
 		# if (_char is undefined) or (scene is undefined) or (object is undefined) or (price is undefined)
 		# 	return 
 

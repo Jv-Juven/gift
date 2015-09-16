@@ -16,8 +16,11 @@
 			<img class="user-info-bg" src="/images/pc/userCenter/user_bg.png"></img>
 			<div class="user-info-board">
 				<img class="avatar" src="{{$user->avatar}}">
-				<div class="avatar-upload">
-					<input type="file" class="avatar-upload-input" title="点击更换头像" />
+				<div class="avatar-upload" id="avatar_upload">
+					<input type="file" class="avatar-upload-input" id="avatar_upload_input" title="点击更换头像" />
+				</div>
+				<div class="avatar-upload avatar-waiting">
+					<img src="/images/index/loading.gif">
 				</div>
 				<div class="user-name">
 					<input type="text" value="{{$user->username}}" class="name" title="点击修改用户名" />
@@ -125,6 +128,8 @@
 
 @section("js")
 	@parent
+	<script type="text/javascript" src="/lib/js/qiniu/qiniu.min.js"></script>
+	<script type="text/javascript" src="/lib/js/plupload/plupload.full.min.js"></script>
 	<script type="text/javascript" src="/dist/pc/js/pages/setting.js"></script>
 @stop
 
