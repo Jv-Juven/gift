@@ -14,6 +14,7 @@ class PcElectionController extends BaseController{
 					$gift->type = 1;
 				$gift->type =0;
 			}
+			$gift->type =0;
 		}
 		return $gifts;
 	}

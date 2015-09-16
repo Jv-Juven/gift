@@ -20,6 +20,7 @@ class PcHomePageController extends BaseController{
 		$daily 	= StaticController::page(16, 1, $daily);
 		// $user = Sentry::findUserById(1);
 		// Sentry::login($user,false);
+		// Sentry::logout();
 		if(Sentry::check())
 		{
 			foreach( $daily as $recommend)
@@ -31,9 +32,11 @@ class PcHomePageController extends BaseController{
 				$gift_focus = GiftFocus::where('gift_id','=',$recommend->info_url)
 										->where('user_id','=', Sentry::getUser()->id)
 										->first();
+				/* 2015-09-16 hyy fix */
 				if(isset($gift_focus))
 					$recommend->focus = 1;
-				$recommend->focus =0; 
+				else
+					$recommend->focus =0; 
 			}
 		}
 		foreach( $daily as $recommend)
