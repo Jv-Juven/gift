@@ -9,7 +9,7 @@ class PcElectionController extends BaseController{
 			$gift->url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
 			if( Sentry::check())
 			{
-				$gift_focus = Gift::where('user_id', '=', Sentry::getUser()->id)->first();
+				$gift_focus = GiftFocus::where('user_id', '=', Sentry::getUser()->id)->first();
 				if(isset($gift_focus))
 					$gift->type = 1;
 				$gift->type =0;
