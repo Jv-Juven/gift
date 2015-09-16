@@ -117,45 +117,50 @@ class PcDetailController extends BaseController{
 	//话题页中参与话题信息
 	public function brefJoin()
 	{
-		//参与话题部分
-		$article_id = Input::get('article_id');
-		$per_page = Input::get('per_page');
-		$page = Input::get('page');
-		$article_joins = DB::table('article_joins')->where('article_id', '=', $article_id)->get();
-		//总页数
-		$total = ceil(count($article_joins)/$per_page);
-		//评论
-		$article_joins = StaticController::page($per_page,$page,$article_joins);
-		// dd(count($article_joins));
-		if( $article_joins )
-		{
-			foreach($article_joins as $article_join)
-			{
-				$user_id = $article_join->user_id;
-				$user = User::find($user_id);//参与话题人
-				$article_join->username = $user->username;//参与话题人昵称
-				$article_join->avatar = 	$user->avatar;//头像
-				$text = ArticleJoinPart::where('join_id', '=', $article_join->id)
-													->where('type', '=', 'text')
-													->orderBy('id','asc')->first();
-				if(isset($text))
-				{
-					$article_join->text = $text;
+		$paginator = ArticleJoin::select( 'id', 'user_id', 'created_at' )
+					   ->where( 'article_id', Input::get('article_id') )
+					   ->with(
+					   		[
+					   			'parts' => function( $query ){
+					   				$query->orderBy( 'id', 'acs' );
+					   			},
+					   			'user' => function( $query ){ }
+					   		]
+					   	)
+					   ->paginate( (int)(Input::get('per_page')) );
+
+		$article_joins = $paginator->getCollection();
+
+		foreach ( $article_joins as $article_join ) {
+			$user 	= $article_join->user;
+			$parts 	= $article_join->parts;
+
+			$article_join->username = $user->username;
+			$article_join->avatar 	= $user->avatar;
+			
+			$text = '';
+			$imgs = [];
+
+			foreach ($parts as $part) {
+				if ( $part->type == 'text' && empty( $text ) ){
+					$text = $part->content;
 				}
-				$urls = ArticleJoinPart::where('join_id', '=', $article_join->id)
-													->where('type', '=', 'url')
-													->orderBy('id','asc')->get();
-				if(count($urls)>4)
-				{
-					$urls = array_slice($urls,0,4);
+				else if ( $part->type == 'url' && count( $imgs ) < 4 ){
+					array_push( $imgs, $part->content );
 				}
-				$article_join->imgs = $urls;
 			}
+			$article_join->text = $text;
+			$article_join->imgs = $imgs;
+			unset( $article_join->user );
+			unset( $article_join->parts );
 		}
-		return Response::json(array('errCode'=>0, 'message'=>'返回参与话题内容',
-						'article_joins'		=>$article_joins,
-						'total'=>$total
-					));
+
+		return Response::json([
+			'errCode'		=> 0, 
+			'message'		=> '返回参与话题内容',
+			'article_joins'	=> $article_joins,
+			'total'			=> $paginator->getTotal()
+		]);
 	}
 
 	//参与话题详情
