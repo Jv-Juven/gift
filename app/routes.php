@@ -130,7 +130,7 @@ Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 	//消息推送
 	Route::post('push_message','SiteController@pushMessage');
 	//更新个人资料
-	Route::post('site/per_info','SiteController@perInfo');
+	Route::post('per_info','SiteController@perInfo');
 });
 	
 
