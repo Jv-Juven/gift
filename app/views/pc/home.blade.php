@@ -94,7 +94,7 @@
 									<span>￥{{$gift->price}}</span>
 								</span>
 
-								<span class="box-cover-like" href="http://baidu.com">
+								<span class="box-cover-like" href="javascript:">
 									<img src="/images/pc/home/like.png">
 								</span>
 							</span>
