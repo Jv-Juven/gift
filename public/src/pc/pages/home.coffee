@@ -5,7 +5,7 @@ $ ()->
 	homeRecBox = $(".home-recommend-box")
 	homeHotBox = $(".home-hot-board")
 	likeBtn = $(".box-cover-like img")
-
+	likeBtn = $(".box-cover-like img")
 	# 设置幻灯片的高度 START
 	winWidth = $(window).outerWidth(true)
 	$(".home-swiper-container").css("height", winWidth * 0.4875)

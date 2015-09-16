@@ -76,7 +76,7 @@
 					@if(isset($topics))
 						@foreach( $topics as $topic)
 					<li class="home-topics-box">
-						<a href="/detail/topic?topic_id={{$topic->id}}">
+						<a target="_blank" href="/detail/topic?topic_id={{$topic->id}}">
 							<img src="{{$topic->topic_url}}">
 						</a>
 					</li>
@@ -89,7 +89,7 @@
 					@if(isset($gifts))
 						@foreach($gifts as $gift)
 					<li class="home-recommend-box" data-id="{{ $gift->info_url }}">
-						<a href="{{$gift->taobao_url}}">
+						<a target="_blank" href="{{$gift->taobao_url}}">
 							<img src="{{$gift->photo_url}}">
 							<span class="box-cover">
 								<span class="box-cover-title">
@@ -120,7 +120,7 @@
 					@if(isset($articles))
 						@foreach($articles as $article)
 					<li class="home-hot-box">
-						<a href="/detail/article?article_id={{$article->id}}">
+						<a target="_blank" href="/detail/article?article_id={{$article->id}}">
 							<img src="{{$article->url}}">
 							<span class="home-hot-cover">
 								<img class="bg-img" src="/images/pc/home/cover_gradual.png">
