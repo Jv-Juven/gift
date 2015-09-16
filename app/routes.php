@@ -211,7 +211,8 @@ Route::group(array('prefix' => 'detail'), function(){
 	Route::get('bre_join','PcDetailController@brefJoin');
 	//参与话题详情
 	Route::get('join_detail','PcDetailController@joinDetail');
-
+	//获取评论
+	Route::get('join_com','PcDetailController@joinCom');
 });
 
 //选礼

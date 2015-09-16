@@ -372,6 +372,7 @@
 			{
 				errCode:xxx,		错误码	0表示返回正常	 
 				message:xxx		提示信息
+				created_at: 	创建时间
 			}
 
 5.2 删除评论参与话题
