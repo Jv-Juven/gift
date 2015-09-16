@@ -2,21 +2,28 @@
 .post-wrap{
     margin-top: 40px;
     .info{
-        @info-item-left: 27px;
         float: left;
-        margin-left: -@info-item-left;
-        .info-btn{
+        .post-btn{
             width: 19px;
             height: 19px;
             border: none;
             display: inline-block;
-            background: url('/images/pc/common/icon-like-red.png') no-repeat;
+            background: no-repeat center;
+        }
+        .info-like-btn{
+            background-image: url('/images/pc/common/icon-like-red.png');
         }
         .info-like-btn-a{
             background-image: url('/images/pc/common/icon-like-red-2.png');
         }
+        .info-comment-btn{
+            background-image: url('/images/pc/common/icon-comment-red.png');
+        }
+        .info-share-btn{
+            background-image: url('/images/pc/common/icon-share-red.png');
+        }
         .info-item{
-            margin-left: @info-item-left;
+            margin-right: 20px;
         }
         .icon{
             cursor: pointer;
@@ -30,9 +37,10 @@
     .share{
         font-size: 14px;
         float: right;
-        .icon{
-            cursor: pointer;
+        .share-a{
+            display: inline-block;
             margin-left: 10px;
+            cursor: pointer;
         }
     }
 }

@@ -1,31 +1,59 @@
 <div class="post-wrap clearfix">
     <div class="info">
         <span class="info-item">
-            <img action_url="" src="/images/pc/common/icon-like-red.png" class="icon post-btn info-like-btn">
-            <span class="num">2222</span>
+            <button
+                post_url="{{{ $info['like']['post_url'] }}}" 
+
+                ac={{{ $info['like']['ac'] }}}
+
+                {{-- Fuck !!! --}}
+                @if ( $info['like']['ac'] )
+                    class="icon post-btn info-like-btn info-like-btn-a"
+                @else
+                    class="icon post-btn info-like-btn"
+                @endif
+            >
+            </button>
+            <span class="num">{{{ $info['like']['count'] }}}</span>
         </span>
+
+        @if ( isset( $info['comment'] ) )
         <span class="info-item">
-            <img action_url="" src="/images/pc/common/icon-comment-red.png" class="icon post-btn info-comment-btn">
-            <span class="num">1213</span>
+            <button post_url="{{{ $info['comment']['post_url'] }}}" class="icon post-btn info-comment-btn"></button>
+            <span class="num">{{{ $info['comment']['count'] }}}</span>
         </span>
+        @endif
+
+        @if ( isset( $info['share'] ) )
         <span class="info-item">
-            <img action_url="" src="/images/pc/common/icon-share-red.png" class="icon post-btn info-share-btn">
-            <span class="num">5151</span>
+            <button post_url="{{{ $info['share']['post_url'] }}}" class="icon post-btn info-share-btn"></button>
+            <span class="num">{{{ $info['share']['count'] }}}</span>
         </span>
+        @endif
     </div>
     <div class="share">
         <span>分享到:</span>
         <span class="share-item">
-            <img src="/images/pc/common/share-wechat.png" alt="分享给微信朋友" class="share-wechat icon">
+            <a class="share-wechat share-a" target="_blank">
+                <img src="/images/pc/common/share-wechat.png" alt="分享给到微信朋友圈" class="icon">
+            </a>
         </span>
+        <!--
         <span class="share-item">
             <img src="/images/pc/common/share-wechat-friend.png" alt="分享到微信朋友圈" class="share-wechat-friend icon">
         </span>
+        -->
         <span class="share-item">
-            <img src="/images/pc/common/share-qq.png" alt="分享给QQ朋友" class="share-qq icon">
+            <a class="share-qq share-a" target="_blank">
+                <img src="/images/pc/common/share-qq.png" alt="分享给QQ朋友" class="icon">
+            </a>
         </span>
         <span class="share-item">
-            <img src="/images/pc/common/share-weibo.png" alt="分享到微博" class="share-weibo icon">
+            <a class="share-weibo share-a" target="_blank">
+                <img src="/images/pc/common/share-weibo.png" alt="分享到微博" class="icon">
+            </a>
         </span>
     </div>
 </div>
+
+<script src="http://connect.qq.com/widget/loader/loader.js" widget="shareqq" charset="utf-8"></script>

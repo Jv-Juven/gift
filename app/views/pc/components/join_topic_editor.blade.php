@@ -3,13 +3,14 @@
     <div class="edit-mask"></div>
     <div class="edit-body">
         <div class="edit-add-pic clearfix">
-            <span class="add-pic-il">
-                <img src="/images/pc/common/add-pic-gray.png" class="icon">
+            <a id="upload-btn-wrap" class="">
+                <img src="/images/pc/common/add-pic-gray.png" class="pic-upload-btn icon">
                 <span>图片</span>
-            </span>
+                <input type="file" id="upload-btn">
+            </a>
         </div>
         <div class="edit-content">
-            <textarea class="edit-content-input"></textarea>
+            <div contentEditable="true" class="edit-content-input"></div>
         </div>
         <div class="edit-option clearfix">
             <button class="edit-option-item edit-confirm-btn">发表</button>
