@@ -67,7 +67,8 @@ return array(
 				'objects',
 				'prices'
 			),
-			'scroll_imgs'
+			'scroll_imgs',
+			'article'
 		),
 
 	/**
