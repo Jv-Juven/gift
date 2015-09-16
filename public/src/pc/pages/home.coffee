@@ -63,7 +63,7 @@ $ ()->
 		}, 300)
 	, ()->
 		$(this).stop(true).animate({
-			bottom: "-21px"
+			bottom: "-26px"
 		}, 300)
 
 	likeBtn.on "click", ()->

@@ -8,7 +8,10 @@ $ ()->
 	userName = $(".user-name .name")
 	signOutBtn = $(".sign-out a")
 	avatar = $(".user-info-board .avatar")
+	headerAvatar = $("#header_user .avatar-img img")
+	headerName = $("#header_user .avatar-name")
 	laoding = $(".avatar-waiting")
+
 
 	#上传头像
 	uploadAvatar = (data)->
@@ -35,6 +38,7 @@ $ ()->
 			url =  domain + info.key
 			console.log url
 			avatar.attr "src", url
+			headerAvatar.attr "src", url
 			uploadAvatar { avatar: url }
 	}
 
@@ -50,8 +54,10 @@ $ ()->
 		}, (msg)->
 			if msg["errCode"] isnt 0
 				console.log msg["message"]
+				return
 			if msg["errCode"] is 10
 				window.location = "/pc/login/"
+			headerName.text(name)
 
 
 	#修改个性签名
@@ -61,7 +67,7 @@ $ ()->
 			console.log "请输入用户名"
 			return
 		$.post "/pc_mine/set_sign", {
-			usersign: sign
+			sign: sign
 		}, (msg)->
 			if msg["errCode"] isnt 0
 				console.log msg["message"]
