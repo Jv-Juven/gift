@@ -592,4 +592,5 @@ qq登录
 
 				message:xxx		提示信息
 			}
-
+登录静态页
+	请求url: /pc/login
