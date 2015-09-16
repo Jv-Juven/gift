@@ -115,9 +115,30 @@ $ ()->
 			topicsWrapper.append itemHtml
 			++ num02
 
+	#点击“喜欢”
+	tapLike = (gift_id, likeImg)->
+		$.post "/home/collection", {
+			gift_id: gift_id
+		}, (msg)->
+			console.log msg
+			if msg["errCode"] isnt 0
+				alert msg["message"]
+				return
+			likeImg.toggle()
+			# likeImg.parents(".user-recommend-box").fadeOut()#隐藏该礼品
+			window.location.reload()
+
+
 
 	loadGifts()
 	loadTopics()
+
+
+	$(document).on "click", ".box-cover-like img", (e)->
+		_this = $(e.currentTarget)
+		gift_id = _this.parent().parent().parent().parent().attr("data-id")
+		tapLike(gift_id, _this.parent().find("img"))
+		return false
 
 
 	$(window).scroll ()->

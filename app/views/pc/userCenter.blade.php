@@ -117,7 +117,7 @@
 			}
 			%>
 			<li class="user-recommend-box" data-id="<%- array[i]['id']%>">
-				<a href="<%- array[i]['taobao_url'] %>">
+				<a target="_blank" href="<%- array[i]['taobao_url'] %>">
 					<img src="<%- array[i]['img'] %>">
 					<span class="box-cover">
 						<span class="box-cover-title">
@@ -126,7 +126,7 @@
 						<span class="box-cover-price">
 							<span>￥<%- array[i]['price'] %></span>
 						</span>
-						<span class="box-cover-like" href="http://baidu.com">
+						<span class="box-cover-like">
 							<img style="display: <%- like %>" src="/images/pc/home/like.png" />
 							<img style="display: <%- liked %>" src="/images/pc/home/liked.png" />
 						</span>
@@ -138,7 +138,7 @@
 	<script type="text/template" id="topics_tpl">
 	<% for(var i = 0; i < array.length; i ++){ %>
 		<li class="user-hot-box" data-id="<%- array[i]['id']%>">
-			<a href="/detail/join_detail?join_id=<%- array[i]['id'] %>">
+			<a target="_blank" href="/detail/join_detail?join_id=<%- array[i]['id'] %>">
 				<img src="<%- array[i]['img']['content']%>">
 				<span class="user-hot-cover">
 					<img class="bg-img" src="/images/pc/home/cover_gradual.png">

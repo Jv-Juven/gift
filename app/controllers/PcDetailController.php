@@ -61,14 +61,20 @@ class PcDetailController extends BaseController{
 		{
 			if( Sentry::check())
 			{
-				$gift_focus = GiftFocus::where('user_id', '=', Sentry::getUser()->id)->first();
-				if(isset($gift_focus))
+				/* 2015-09-16 hyy 改 start */
+				$gift_focus = GiftFocus::where( 'user_id', Sentry::getUser()->id )
+									   ->where( 'gift_id', $gift->id )
+									   ->first();
+				if( isset( $gift_focus ) )
 					$gift->type = 1;
-				$gift->type =0;
+				else
+					$gift->type =0;
+				/* 2015-09-16 hyy 改 end */
 			}
 		}
 		return $gifts;
 	}
+
 	//专题详情页
 	public function topicDetail()
 	{
