@@ -20,7 +20,7 @@
 			</li>
 			@if(Sentry::check())
 			<li id="header_user" class="header-avatar">
-				<a class="a-block" href="/pc_mine/">
+				<a href="/pc_mine/">
 					<span class="avatar-img">
 						<img src="{{Sentry::getUser()->avatar}}">
 					</span>

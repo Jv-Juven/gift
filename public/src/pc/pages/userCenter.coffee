@@ -40,7 +40,7 @@ $ ()->
 	$(document).on "mouseleave", ".user-hot-board", (e)->
 		_this = e.currentTarget
 		$(_this).stop(true).animate({
-			bottom: "-21px"
+			bottom: "-26px"
 		}, 300)
 
 	#加载数据
