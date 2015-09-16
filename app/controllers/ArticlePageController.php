@@ -230,17 +230,5 @@ class ArticlePageController extends BaseController{
 		
 	}
 
-	// //参与话题详情的评论
-	// public function involveComments()
-	// {
-	// 	$per_page = Input::get('per_page');
-	// 	$page = Input::get('page');
-	// 	$articles = DB::table('')->orderBy('updated_at', 'desc');
-	// 	//总页数
-	// 	$total = ceil(count($articles)/$per_page);
-	// 	//文章
-	// 	$articles = StaitcController::page($per_page, $page, $articles);
-	// }
-
 }
 

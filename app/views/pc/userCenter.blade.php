@@ -21,7 +21,7 @@
 					{{$user->info}}
 				</span>
 			</div>
-			<a class="set-name chang-data" href="/">
+			<a class="set-name chang-data" href="/pc_mine/mine">
 				<img src="/images/pc/userCenter/setting.png">
 				<span>个人资料</span>
 			</a>
@@ -63,6 +63,9 @@
 					@endforeach
 				@endif
 				</ul>
+				<div class="load-tip">
+					<img src="/images/pc/search/loading.gif">
+				</div>
 			</div>
 			<div class="user-wrappers user-hot-wrapper" style="display: none;">
 				<ul class="user-hot-content clearx">
@@ -93,6 +96,9 @@
 					@endif
 
 				</ul>
+				<div class="load-tip">
+					<img src="/images/pc/search/loading.gif">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -108,7 +114,7 @@
 				likeUrl = "/images/pc/home/liked.png"
 			}
 			%>
-			<li class="user-recommend-box" data-id="<%- array['i']['id']%>">
+			<li class="user-recommend-box" data-id="<%- array[i]['id']%>">
 				<a href="<%- array[i]['taobao_url'] %>">
 					<img src="<%- array[i]['img'] %>">
 					<span class="box-cover">
@@ -128,21 +134,21 @@
 	</script>
 	<script type="text/template" id="topics_tpl">
 	<% for(var i = 0; i < array.length; i ++){ %>
-		<li class="user-hot-box" data-id="<%- array['i']['id']%>">
+		<li class="user-hot-box" data-id="<%- array[i]['id']%>">
 			<a href="/detail/join_detail?join_id=<%- array[i]['id'] %>">
-				<img src="<%- array[i]['img'] %>">
+				<img src="<%- array[i]['img']['content']%>">
 				<span class="user-hot-cover">
 					<img class="bg-img" src="/images/pc/home/cover_gradual.png">
 					<span class="user-hot-board">
-						<span class="user-hot-title"><%- array["i"]["title"] %></span>
+						<span class="user-hot-title"><%- array[i]["title"] %></span>
 						<span class="user-hot-info">
 							<span class="user-scan">
 								<img class="user-hot-scan" src="/images/pc/home/scaned.png">
-								<span class="scan-count"><array["i"]["scan_num"]></span>
+								<span class="scan-count"><%- array[i]["scan_num"] %></span>
 							</span>
 							<span class="user-scan">
 								<img class="user-hot-comments" src="/images/pc/home/comments.png">
-								<span class="scan-count">array["i"]["join_num"]</span>
+								<span class="scan-count"><%- array[i]["join_num"] %></span>
 							</span>
 						</span>
 					</span>

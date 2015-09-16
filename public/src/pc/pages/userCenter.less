@@ -30,8 +30,32 @@
 				width: @avatar-width;
 				height: @avatar-width;
 				border-radius: 50%;
-				cursor: pointer;
 				border: 2px solid rgb(255, 255, 255);
+			}
+			.avatar-upload{
+				position: absolute;
+				top: 0px;
+				left: 50%;
+				display: block;
+				margin: 0px -@avatar-width/2;
+				@avatar-width: 80px;
+				width: @avatar-width + 4;
+				height: @avatar-width + 4;
+				border-radius: 50%;
+				cursor: pointer;
+				overflow: hidden;
+				.avatar-upload-input{
+					display: block;
+					position: absolute;
+					top: 0px;
+					right: 0px;
+					width: 1000px;
+					height: 100%;
+					cursor: pointer;
+					&:focus{
+						outline: none;
+					}
+				}
 			}
 			.user-name{
 				display: block;
@@ -189,7 +213,7 @@
 			width: 900px;
 			height: auto;
 			margin: 0px auto;
-			padding-bottom: 70px;
+			padding-bottom: 140px;
 			padding-top: 40px;
 			&>ul{
 				width: 920px;
@@ -205,6 +229,18 @@
 						display: block;
 					}
 				}
+			}
+		}
+		.load-tip{
+			display: block;
+			height: 40px;
+			width: 100%;
+			position: absolute;
+			bottom: 40px;
+			img{
+				width: 100px;
+				display: block;
+				margin: 0px auto;
 			}
 		}
 		.user-recommend-wrapper{
@@ -286,6 +322,7 @@
 							height: 100%;
 							.user-hot-title{
 								color: rgb(255, 255, 255);
+								display: block;
 								font-size: 18px;
 								font-weight: bold;
 								margin: 210px 10px 0px 10px;
@@ -293,6 +330,8 @@
 							}
 							.user-hot-info{
 								margin: 0px 10px;
+								position: absolute;
+								bottom: 5px;
 								&>span{
 									float: left;
 									width: 90px;
