@@ -19,7 +19,7 @@
 			    @if(isset($scroll_imgs))
 			    	@foreach( $scroll_imgs as $scroll_img)
 			    <div class="swiper-slide">
-			    	<a class="link-wrapper" href="javascript:">
+			    	<a class="link-wrapper">
 			    		<img src="{{$scroll_img->img}}">
 			    	</a>
 			    </div>
@@ -101,6 +101,7 @@
 
 								<span class="box-cover-like">
 									<img src="/images/pc/home/like.png">
+									<img style="display:none;" src="/images/pc/home/liked.png">
 								</span>
 							</span>
 						</a>

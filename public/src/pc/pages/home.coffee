@@ -16,11 +16,11 @@ $ ()->
 		$.post "/home/collection", {
 			gift_id: gift_id
 		}, (msg)->
-			likeImg.attr("src", "/images/pc/home/liked.png")
-			likeImg.attr("src", "/images/pc/home/like.png")
-			# console.log msg
+			console.log msg
 			if msg["errCode"] isnt 0
 				alert msg["message"]
+				return
+			likeImg.toggle()
 
 	homeSwiper = new Swiper ".home-swiper-container", {
 		loop: true,
@@ -68,7 +68,7 @@ $ ()->
 	likeBtn.on "click", ()->
 		_this = $(this)
 		gift_id = _this.parent().parent().parent().parent().attr("data-id")
-		tapLike(gift_id, _this)
+		tapLike(gift_id, _this.parent().find("img"))
 		return false
 
 

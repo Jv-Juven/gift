@@ -13,7 +13,7 @@ $ ()->
 	lock = 1#数据锁，数据请求为空时，lock为0加锁，不能请求信息
 	load_lock = 1#加载锁，加载过程中不允许再次请求
 	timeout = new Object()
-
+	likeBtn = $(".box-cover-like img")
 	#修改头部图片
 	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png").parent().attr "href", "javascript:"
 
@@ -22,6 +22,17 @@ $ ()->
 	# sceneItems.eq(0).addClass "active"
 	# objectItems.eq(0).addClass "active"
 	# priceItems.eq(0).addClass "active"
+
+	#点击“喜欢”
+	tapLike = (gift_id, likeImg)->
+		$.post "/home/collection", {
+			gift_id: gift_id
+		}, (msg)->
+			console.log msg
+			if msg["errCode"] isnt 0
+				alert msg["message"]
+				return
+			likeImg.toggle()
 
 	#搜索
 	search = ()->
@@ -99,6 +110,12 @@ $ ()->
 
 
 	search()
+
+	$(document).on "click", ".box-cover-like img", (e)->
+		_this = $(e.currentTarget)
+		gift_id = _this.parent().parent().parent().parent().attr("data-id")
+		tapLike(gift_id, _this.parent().find("img"))
+		return false
 
 	#商品的浮层显现
 	$(document).on "mouseenter", ".search-recommend-box", (e)->
