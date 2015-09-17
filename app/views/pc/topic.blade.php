@@ -91,7 +91,11 @@
             </div>
             <div class="discuss-content">
                 <a target="_blank" href="/detail/join_detail?join_id=<%- id %>" class="content-link">
-                    <%= text.split( '\n' ).slice( 0, 3 ).join( '<br>' ) %>
+                    <% var text_arr = text.split( '\n' ).slice( 0, 3 ); %>
+                    <% _.forEach( text_arr, function( text ){ %>
+                        <%- text %>
+                        <%= '<br>' %>
+                    <% }); %>
                 </a>
             </div>
             <div class="discuss-pic-wrap">
