@@ -37,6 +37,7 @@ class NoticeController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'删除成功'));
 	}
 
+	//<<<< 事务 >>>>>
 	//删除通知中的一条评论
 	public function dUserCom()
 	{

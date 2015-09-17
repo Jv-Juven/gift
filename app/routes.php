@@ -57,7 +57,7 @@ Route::group(array('prefix' => 'user'),function()
 	//忘记密码—重置密码
 	Route::post('pwd', 'UserController@pwdReset');
 	//登出
-	Route::post('logout', array('before'=>'auth.user.isIn','UserController@logout'));
+	Route::post('logout','UserController@logout');
 });
 
 //选礼

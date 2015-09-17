@@ -1,7 +1,7 @@
 @extends('layouts.pc-master')
 
 @section('title')
-    专题详情
+    话题讨论
 @stop
 
 @section('css')
@@ -20,128 +20,104 @@
         <div class="container-left">
             <div class="discuss-wrap">
                 <div class="discuss">
-                    <h2 class="topic-title">处女座女友的生日礼物快到了，送什么好呢？求推荐有创意的小物品</h2>
+                    <h2 class="topic-title">{{{ $article_join['article_title'] }}}</h2>
                     <div class="user-info clearfix">
-                        <img src="/images/pc/common/avatar.png" class="avatar">
-                        <span class="user-name">Lucy</span>
-                        <span class="discuss-time">2015-09-10 10:20</span>
+                        <img src="{{{ $article_join['avatar'] }}}" class="avatar">
+                        <span class="user-name">{{{ $article_join['username'] }}}</span>
+                        <span class="discuss-time">{{{ $article_join['created_at'] }}}</span>
                     </div>
                     <div class="discuss-content">
-                        <p>不知不觉已经立秋了，虽然夏天的热情还在，不过早晚渐凉的温差提醒着我们是时候
-                        稍微调整下服装搭配了。初秋时节应该如何穿衣呢？跟欧美明星学学早秋服装搭配技巧吧！
-                        不知不觉已经立秋了，虽然夏天的热情还在，不过早晚渐凉的温差提醒着我们是时候
-                        稍微调整下服装搭配了。初秋时节应该如何穿衣呢？跟欧美明星学学早秋服装搭配技巧吧！</p>
-                        <img src="/images/pc/topic/desc-pic-1.png">
-                        <p>不知不觉已经立秋了，虽然夏天的热情还在，不过早晚渐凉的温差提醒着我们是时候
-                        稍微调整下服装搭配了。初秋时节应该如何穿衣呢？跟欧美明星学学早秋服装搭配技巧吧！
-                        不知不觉已经立秋了，虽然夏天的热情还在，不过早晚渐凉的温差提醒着我们是时候
-                        稍微调整下服装搭配了。初秋时节应该如何穿衣呢？跟欧美明星学学早秋服装搭配技巧吧！</p>
-                        <img src="/images/pc/topic/desc-pic-2.png">
-                        <p>穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                        也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                        穿T恤就很潮啊</p>
-                        <p>穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                        也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                        穿T恤就很潮啊</p>
+                        @foreach ( $article_join_parts as $parts )
+                            @if ( $parts['type'] == 'url' )
+                                <img src="{{{ $parts['content'] }}}">
+                            @elseif ( $parts['type'] == 'text' )
+                                <p>{{ $parts['content'] }}</p>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="post-wrap">
                 <ul class="info clearfix">
-                    <li class="info-views info-item">
-                        <img src="/images/pc/common/icon-view.png" class="icon">
-                        <span class="num">1213</span>
+                    <li class="info-item">
+                        <button src="/images/pc/common/icon-view.png" class="info-view-btn post-btn"></button>
+                        <span class="num">{{{ $article_join['scan_num'] }}}</span>
                     </li>
-                    <li class="info-comments info-item">
-                        <img src="/images/pc/common/icon-comment.png" class="icon">
-                        <span class="num">5151</span>
+                    <li class="info-item">
+                        <button src="/images/pc/common/icon-comment.png" class="info-comment-btn post-btn"></button>
+                        <span class="num">{{{ $article_join['com_num'] }}}</span>
                     </li>
-                    <li class="info-likes info-item">
-                        <img src="/images/pc/common/icon-like-red.png" class="icon">
-                        <span class="num">2222</span>
+                    <li class="info-item" id="info-like">
+                        <button
+                            ac={{{ $type }}} 
+                            post_url="/article/join_collection" 
+                            src="/images/pc/common/icon-like-red.png" 
+                            @if ( $type == 1 )
+                                class="icon info-like-btn info-like-btn-a post-btn"
+                            @else
+                                class="icon info-like-btn post-btn"
+                            @endif
+                        ></button>
+                        <span class="num">{{{ $article_join['focus_num'] }}}</span>
                     </li>
                 </ul>
             </div>
+            <div class="comment-input-wrap">
+                <div class="comment-input-top">我也要评论</div>
+                <textarea class="comment-input-area" placeholder="评论内容"></textarea>
+                <div class="comment-input-btm clearfix">
+                    <button class="comment-confirm-btn">评论</button>
+                </div>
+            </div>
             <ul class="comment-list">
-                <div class="comment-count">评论( 15 )</div>
-                <li class="comment-item clearfix">
-                    <div class="comment-user-info">
-                        <img src="/images/pc/common/avatar.png" class="avatar">
-                        <h4 class="user-name">lucy</h4>
-                    </div>
-                    <div class="comment-container">
-                        <div class="comment-content">
-                            穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                            也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                            穿T恤就很潮啊
-                        </div>
-                        <div class="comment-info clearfix">
-                            <span class="comment-time">2015-09-10</span>
-                            <a class="reply-btn">回复</a>
-                        </div>
-                        <div class="reply-wrap">
-                            <textarea class="reply-input" placeholder="回复内容" value=""></textarea>
-                            <div class="reply-btm clearfix">
-                                <a class="confirm">确定</a>
-                                <a class="cancel">取消</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="comment-item clearfix">
-                    <div class="comment-user-info">
-                        <img src="/images/pc/common/avatar.png" class="avatar">
-                        <h4 class="user-name">lucy</h4>
-                    </div>
-                    <div class="comment-container">
-                        <div class="comment-content">
-                            穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                            也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                            穿T恤就很潮啊
-                        </div>
-                        <div class="comment-info clearfix">
-                            <span class="comment-time">2015-09-10</span>
-                            <a class="reply-btn">回复</a>
-                        </div>
-                        <div class="reply-wrap">
-                            <textarea class="reply-input" placeholder="回复内容" value=""></textarea>
-                            <div class="reply-btm clearfix">
-                                <a class="confirm">确定</a>
-                                <a class="cancel">取消</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="comment-item clearfix">
-                    <div class="comment-user-info">
-                        <img src="/images/pc/common/avatar.png" class="avatar">
-                        <h4 class="user-name">lucy</h4>
-                    </div>
-                    <div class="comment-container">
-                        <div class="comment-content">
-                            穿着针织衫小外套，也可以用披肩或者大方巾一类的披肩，有民族风的，
-                            也有可爱型的，稍微造下型很有味道。现在很流行中长或者长款薄外套，里面
-                            穿T恤就很潮啊
-                        </div>
-                        <div class="comment-info clearfix">
-                            <span class="comment-time">2015-09-10</span>
-                            <a class="reply-btn">回复</a>
-                        </div>
-                        <div class="reply-wrap">
-                            <textarea class="reply-input" placeholder="回复内容" value=""></textarea>
-                            <div class="reply-btm clearfix">
-                                <a class="confirm">确定</a>
-                                <a class="cancel">取消</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <div class="comment-count">评论( <span>{{{ $article_join['com_num'] }}}</span> )</div>
             </ul>
             <button class="load-btn">加载更多</button>
         </div>
         @include('pc.components.ad')
+        <input type="text" style="display:none;" id="join_id" value="{{{ $article_join['id'] }}}">
     </div>
     @include('pc.components.back_to_top')
 </div>
+
+<script type="text/template" id="reply-template">
+    <div class="reply-item">
+        <strong class="reply-user-name">{{{ $article_join['username'] }}}</strong>
+        <%- content %>
+    </div>
+</script>
+
+<script type="text/template" id="comment-template">
+    <li comment_id="<%- id %>" class="comment-item clearfix">
+        <div class="comment-user-info">
+            <img src="<%- avatar %>" class="avatar">
+            <h4 class="user-name"><%- username %></h4>
+        </div>
+        <div class="comment-container">
+            <div class="comment-content">
+                <%- content %>
+            </div>
+            <div class="comment-info clearfix">
+                <span class="comment-time"><%- created_at %></span>
+                <button class="reply-btn">回复</button>
+            </div>
+            <div class="reply-container">
+                <% _.forEach( replies, function( reply ){ %>
+                    <div class="reply-item">
+                        <strong class="reply-user-name"><%- reply.reply_name %>：</strong>
+                        <%- reply.content %>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="reply-wrap">
+                <textarea class="reply-input" placeholder="回复内容" value=""></textarea>
+                <div class="reply-btm clearfix">
+                    <button class="reply-confirm">确定</button>
+                    <button class="reply-cancel">取消</button>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
 
 @stop

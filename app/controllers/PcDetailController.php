@@ -130,7 +130,9 @@ class PcDetailController extends BaseController{
 					   			'parts' => function( $query ){
 					   				$query->orderBy( 'id', 'acs' );
 					   			},
-					   			'user' => function( $query ){ }
+					   			'user' => function( $query ){
+					   				$query->select( 'id', 'username', 'avatar' );
+					   			}
 					   		]
 					   	)
 					   ->paginate( (int)(Input::get('per_page')) );
@@ -192,6 +194,48 @@ class PcDetailController extends BaseController{
 
 	public function joinComs()
 	{
+
+		$paginator = ArticleJoinCom::select( 'id', 'content', 'sender_id', 'created_at' )
+								   ->where( 'join_id', Input::get( 'join_id' ) )
+								   // 预载入 指定预载入时的查询语句
+								   ->with([
+								   		'sender' => function( $query ){
+								   			$query->select( 'id', 'username', 'avatar' );
+								   		},
+								   		'replies' => function( $query ){
+								   			$query->select( 'com_id', 'content', 'sender_id' );
+								   		},
+								   		'replies.sender' => function( $query ){
+								   			$query->select( 'id', 'username' );
+								   		}
+								   	])
+								   ->orderBy( 'created_at', 'desc' )
+								   ->paginate( (int)( Input::get('per_page') ) );
+
+		$join_coms = $paginator->getCollection();
+
+		foreach ( $join_coms as $comment ) {
+			$user = $comment->sender;
+
+			$comment->username 	= $user->username;
+			$comment->avatar	= $user->avatar;
+			
+			foreach ( $comment->replies as $reply ){
+				$reply->reply_name  = $reply->sender->username;
+				unset( $reply->com_id );
+				unset( $reply->sender );
+			}
+			unset( $comment->sender );
+			// unset 用户信息
+		}
+
+		return Response::json([
+			'errCode'	=> 0, 
+			'message'	=> '返回参与话题详情',
+			'join_coms' => $join_coms,
+			'total'		=> $paginator->getTotal()
+		]);
+/*
 		$join_id = Input::get('join_id');
 		//评论内容
 		$per_page = Input::get('per_page');
@@ -222,5 +266,6 @@ class PcDetailController extends BaseController{
 							'join_coms' => $join_coms,
 							'total'		=> $total
 						));
+*/
 	}
 }

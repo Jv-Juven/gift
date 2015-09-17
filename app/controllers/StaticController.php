@@ -39,37 +39,6 @@ class StaticController extends BaseController{
 		dd($user);
 	}
 
-	// public static function page($per_page,$page,$array_data)
-	// {
-	// 	//根据数据库的数据算出总的条数
-	// 	$total_count = count($array_data);
-
-	// 	//除数检查
-	// 	$per_page = $per_page ==  0 ? 1:$per_page;
-
-	// 	//总的页数
-	// 	$total_page = ceil($total_count/$per_page);
-
-	// 	//截取需要的数据
-	// 	$page_need = $page<1 ? 1:$page;
-	// 	$page_need = $page>$total_page ? $total_page:$page;
-
-	// 	//第一条数据的索引
-	// 	$first =  $page_need*$per_page;
-	// 	//最后一条的数据,需要判断是否超过了最大值
-	// 	$last = ($first + $per_page)>$total_count ? $total_count:($first+$per_page);
-
-	// 	$data_need = array();
-	// 	for($i= $first; $i<$last; $i++)
-	// 	{
-	// 		array_push($data_need, $array_data[$i]);
-	// 	}
-	// 	$data = $array_need->get();
-
-	// 	return $data;
-
-	// }
-
 	public static function page($per_page,$page,$array_data)
 	{
 		//根据数据库的数据算出总的条数
@@ -85,10 +54,6 @@ class StaticController extends BaseController{
 		if($page>$total_page)
 			return array();
 
-		// if($page*$per_page > $total_count)
-		// {
-		// 	return $array_data;
-		// }
 		//第一条数据的索引
 		$first =  ($page-1)*$per_page;
 		//最后一条的数据,需要判断是否超过了最大值

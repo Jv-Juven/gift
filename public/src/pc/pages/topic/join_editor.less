@@ -38,10 +38,6 @@
         font-size: 14px;
         line-height: 40px;
         border-bottom: @border-style;
-        .add-pic-il{
-            float: right;
-            margin-right: 25px;
-        }
     }
 
     .edit-content{
@@ -53,6 +49,11 @@
             height: 100%;
             border: none;
             resize: none;
+            overflow: auto;
+            &>img{
+                display: block;
+                max-width: 100%;
+            }
             &:focus{
                 outline: none;
             }
@@ -87,4 +88,25 @@
             border-color: @cancel-color;
         }
     }
+}
+
+#upload-btn-wrap{
+    top: 0px;
+    right: 25px;
+    width: 50px;
+    height: 40px;
+    float: right;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+#upload-btn{
+    top: 0px;
+    right: 0px;
+    font-size: 50px;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
 }

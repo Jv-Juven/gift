@@ -2,7 +2,7 @@
 
 class HomeController extends BaseController {
 
-	//收藏礼品
+	//收藏礼品<<<< 事务 >>>>>
 	public function collection()
 	{
 		if(!Sentry::check())
@@ -28,7 +28,7 @@ class HomeController extends BaseController {
 			return Response::json(array('errCode'=>0, 'message'=>'collect'));
 		}
 	}
-	
+	//<<<< 事务 >>>>>
 	public function topicCollection()
 	{
 		if(!Sentry::check())

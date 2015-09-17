@@ -1,6 +1,7 @@
 <?php
 
 class PcJoinArticleController extends BaseController{
+	//<<<< 事务 >>>>>
 	//参与话题
 	public function issue()
 	{
@@ -87,6 +88,7 @@ class PcJoinArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'编辑成功！'));
 	}
 
+	//<<<< 事务 >>>>>
 	//删除话题
 	public function dArticle()
 	{

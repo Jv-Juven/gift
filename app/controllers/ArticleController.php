@@ -2,7 +2,7 @@
 
 class ArticleController extends BaseController{
 
-	//评论
+	//评论——<<<<<事务>>>>>
 	public function comment()
 	{
 		if(! Sentry::check())
@@ -16,6 +16,10 @@ class ArticleController extends BaseController{
 		if(!isset($article_join))
 			return Response::json(array('errCode'=>3, 'message'=>'[join_id对应的文章不存在]你评论的话题不存在！'));
 		//新增评论
+		$article_join->com_num = $article_join->com_num+1;
+		if(!$article_join->save())
+			return Response::json(array('errCode'=>4,'message'=>'评论添加失败！'));
+
 		$comment = New ArticleJoinCom;
 		$comment->sender_id = $user->id;
 		$comment->receiver_id = $article_join->user_id; 
@@ -59,20 +63,28 @@ class ArticleController extends BaseController{
 		return Response::Json(array('errCode'=>0, 'message'=>'回复成功！'));
 	}
 
-	//删除评论
+	//删除评论——事务
 	public function dcomment()
 	{
 		if(! Sentry::check())
 			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
-		$user = Sentry::getUser();	
+		$user = Sentry::getUser();
+
 		$com_id =  Input::get('com_id');
 		$comment = ArticleJoinCom::find($com_id);
 		if(!isset($comment))
 			return Response::Json(array('errCode'=>2, 'message'=>'[com_id对应的评论不存在]此评论不存在！'));
-		if($comment->user_id != $user->id)
+		if($comment->sender_id != $user->id)
 			return Response::Json(array('errCode'=>3, 'message'=>'[权限不够]不可删除别人的评论！'));
+		
+		//参与话题评论减1
+		$article_join = ArticleJoin::find($comment->join_id);
+		$article_join->com_num = $article_join->com_num-1;
+		if(!$article_join->save())
+			return Response::json(array('errCode'=>4,'message'=>'参与话题评论条数修改失败'));
+		//删除评论
 		if(!$comment->delete())
-			return Response::json(array('errCode'=>4, 'message'=>'[数据库错误]删除失败'));
+			return Response::json(array('errCode'=>5, 'message'=>'[数据库错误]删除失败'));
 		
 		return Response::json(array('errCode'=>0, 'message'=>'删除成功'));
 	}	
@@ -95,7 +107,7 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'删除成功'));
 	}
 	
-	//参与话题
+	//参与话题——事务
 	public function issue()
 	{
 		if(! Sentry::check())
@@ -109,6 +121,12 @@ class ArticleController extends BaseController{
 		$article = Article::find($article_id);
 		if(!isset($article))
 			return Response::json(array('errCode'=>2,'message'=>'你想参与的话题不存在！'));
+		//修改参与话题条数
+		$article->join_num = $article->join_num+1;
+		if(!$article->save())
+			return Response::json(array('errCode'=>6, 'message'=>'参与话题条数修改失败'));
+
+
 		$contents = $data->content;
 		if(!is_array($contents) || !count($contents))
 			return Response::json(array('errCode'=>3,'message'=>'内容不能为空！'));
@@ -181,7 +199,7 @@ class ArticleController extends BaseController{
 		return Response::json(array('errCode'=>0, 'message'=>'编辑成功！'));
 	}
 
-	//删除话题
+	//删除参与话题《《事务》》
 	public function dArticle()
 	{
 		if(! Sentry::check())
@@ -195,6 +213,12 @@ class ArticleController extends BaseController{
 		if($user->id != $article_join->user_id)
 			return Response::json(array('errCode'=>3,'message'=>' [权限不够]不可删除他人的参与话题！'));
 
+		//删除参与话题条数
+		$article = Article::find($article_join->article_id);
+		$article->join_num = $article->join_num-1;
+		if(!$article->save())
+			return Response::json(array('errCode'=>6, 'message'=>'参与话题条数修改失败'));
+
 		$article_join_parts = ArticleJoinPart::where('join_id', '=', $join_id)->delete();
 		if($article_join_parts == 0)
 			return Response::json(array('errCode'=>4, 'message'=>'[数据库错误]文章没内容！'));
@@ -202,10 +226,10 @@ class ArticleController extends BaseController{
 		if(!$article_join->delete())
 			return Response::json(array('errCode'=>5, 'message'=>'[数据库错误]参与话题删除失败！'));
 		
-		return Response::json(array('errCode'=>0, 'message'=>'[数据库错误]参与话题删除成功！'));
+		return Response::json(array('errCode'=>0, 'message'=>'参与话题删除成功！'));
 	}
 
-	//收藏话题
+	//收藏话题——事务
 	public function articleCollection()
 	{
 		if(!Sentry::check())
@@ -214,14 +238,28 @@ class ArticleController extends BaseController{
 		$article_id 	= Input::get('article_id');
 		$article_focus 	= ArticleFocus::where('user_id','=', Sentry::getUser()->id)
 							->where('article_id', '=', $article_id)->first();
+		
+
 		if(count($article_focus) == 1)
-		{
+		{	
+			//添加收藏话题条数
+			$article = Article::find($article_id);
+			$article->focus_num = $article->focus_num+1;
+			if(!$article->save())
+			return Response::json(array('errCode'=>4,'message'=>'收藏话题条数加1失败'));
+
 			$article_focus 	= DB::table('article_focus')->where('user_id','=', Sentry::getUser()->id)
 							->where('article_id', '=', $article_id);
 			if(!$article_focus->delete())
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
 		}else{
+			//添加收藏话题条数
+			$article = Article::find($article_id);
+			$article->focus_num = $article->focus_num-1;
+			if(!$article->save())
+			return Response::json(array('errCode'=>4,'message'=>'收藏话题条数减1失败'));
+
 			$article_focus = New ArticleFocus;
 			$article_focus->user_id = Sentry::getUser()->id;
 			$article_focus->article_id = $article_id;
@@ -231,7 +269,7 @@ class ArticleController extends BaseController{
 		}
 	}
 
-	//收藏参与话题
+	//收藏参与话题——事务
 	public function joinCollection()
 	{
 		if(!Sentry::check())
@@ -240,14 +278,27 @@ class ArticleController extends BaseController{
 		$join_id 	= Input::get('join_id');
 		$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
 							->where('join_id', '=', $join_id)->get();
+
 		if(count($join_focus) == 1)
 		{
+			//参与话题收藏条数加1
+			$article_join = ArticleJoin::find($join_id);
+			$article_join->focus_num = $article_join->focus_num+1;
+			if(!$article_join->save())
+			return Response::json(array('errCode'=>4,'message'=>'参与话题收藏条数加1失败'));
+
 			$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
 							->where('join_id', '=', $join_id);
 			if(!$join_focus->delete())
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
 		}else{
+			//参与话题收藏条数减1
+			$article_join = ArticleJoin::find($join_id);
+			$article_join->focus_num = $article_join->focus_num-1;
+			if(!$article_join->save())
+			return Response::json(array('errCode'=>4,'message'=>'参与话题收藏条数减1失败'));
+
 			$join_focus = New JoinFocus;
 			$join_focus->user_id = Sentry::getUser()->id;
 			$join_focus->join_id = $join_id;
