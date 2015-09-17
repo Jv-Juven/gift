@@ -19,7 +19,7 @@ class SiteController extends BaseController{
 		if($type == 1)
 		{
 			if(! Sentry::check())
-			return Response::json(array('errCode'=>2, 'message'=>'请登录'));
+			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 			$user_id = Sentry::getUser()->id;
 		}
 
