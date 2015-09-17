@@ -15,11 +15,23 @@ class HomeController extends BaseController {
 
 		if( isset( $gift_focus ) )
 		{
+			//礼品收藏人数减1
+			$gift = Gift::find($gift_id);
+			$gift->focus_num = $gift->focus_num-1;
+			if(!$gift->save())
+				return Response::json(array('errCode'=>4,'message'=>'礼品收藏人数减1失败'));
+
 			if(!$gift_focus->delete())
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 		/* 2015-09-16 hyy 改 end */
 			return Response::json(array('errCode'=>0, 'message'=>'cancel'));
 		}else{
+			//礼品收藏人数加1
+			$gift = Gift::find($gift_id);
+			$gift->focus_num = $gift->focus_num+1;
+			if(!$gift->save())
+				return Response::json(array('errCode'=>5,'message'=>'礼品收藏人数加1失败'));
+
 			$gift_focus = New GiftFocus;
 			$gift_focus->user_id = Sentry::getUser()->id;
 			$gift_focus->gift_id = $gift_id;
