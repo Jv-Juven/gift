@@ -235,7 +235,7 @@ class HomePageController extends BaseController {
 			}
 		}
 
-		$gifts = $this->isGiftLike($gfits);
+		$gifts = $this->isGiftLike($gifts);
 		$type = $this->isTopicLike($topic_id);
 		if( Request::wantsJson() )
 		{
