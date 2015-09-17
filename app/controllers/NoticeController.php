@@ -9,35 +9,40 @@ class NoticeController extends BaseController{
 			return Response::json(array('errCode'=>10, 'message'=>'请登录'));
 		$user = Sentry::getUser();
 
-		$join_coms = ArticleJoinCom::where('receiver','=',$user->id)
+		$join_coms = ArticleJoinCom::where('receiver_id','=',$user->id)
 						->where('is_delete','=',0)
 						->get();
-		if( count($join_coms)!=0 )
-		{	
-			foreach( $join_coms as $com)
-			{
-				$com->is_delete = 1;
-				if( !$com->save())
-					return Response::json(array('errCode'=>3, 'message'=>'[服务器错误]删除失败'));
-			}
-		}
-		$replys = ArticleJoinReply::where('receiver','=',$user->id)
+		$replys = ArticleJoinReply::where('receiver_id','=',$user->id)
 						->where('is_delete','=',0)
 						->get();
-		if(count($replys) !=0 )
+		try
 		{
-			foreach( $replys as $reply)
-			{
-				$reply->is_delete = 1;
-				if( !$reply->save())
-					return Response::json(array('errCode'=>3, 'message'=>'[服务器错误]删除失败'));
-			}
+			DB::transaction(function() use( $replys,$join_coms ) {
+				if( count($join_coms)!=0 )
+				{	
+					foreach( $join_coms as $com)
+					{
+						$com->is_delete = 1;
+						$com->save();
+					}
+				}
+				if(count($replys) !=0 )
+				{
+					foreach( $replys as $reply)
+					{
+						$reply->is_delete = 1;
+						$reply->save();
+					}
+				}
+			});
+		}catch(\Exception $e)
+		{
+			return Response::json(array('errCode'=>11,'message'=>'操作失败' ));
+		
 		}
-
 		return Response::json(array('errCode'=>0, 'message'=>'删除成功'));
 	}
 
-	//<<<< 事务 >>>>>
 	//删除通知中的一条评论
 	public function dUserCom()
 	{
