@@ -277,13 +277,13 @@ class ArticleController extends BaseController{
 		// Sentry::login(Sentry::findUserById(5), false);
 		$join_id 	= Input::get('join_id');
 		$join_focus 	= DB::table('join_focus')->where('user_id','=', Sentry::getUser()->id)
-							->where('join_id', '=', $join_id)->get();
+							->where('join_id', '=', $join_id)->first();
 
 		if(count($join_focus) == 1)
 		{
-			//参与话题收藏条数加1
+			//参与话题收藏条数减1
 			$article_join = ArticleJoin::find($join_id);
-			$article_join->focus_num = $article_join->focus_num+1;
+			$article_join->focus_num = $article_join->focus_num-1;
 			if(!$article_join->save())
 			return Response::json(array('errCode'=>4,'message'=>'参与话题收藏条数加1失败'));
 
@@ -293,9 +293,9 @@ class ArticleController extends BaseController{
 				return Response::json(array('errCode'=>2, 'message'=>'取消收藏失败！'));
 			return Response::json(array('errCode'=>0, 'message'=>'取消收藏成功！'));
 		}else{
-			//参与话题收藏条数减1
+			//参与话题收藏条数加1
 			$article_join = ArticleJoin::find($join_id);
-			$article_join->focus_num = $article_join->focus_num-1;
+			$article_join->focus_num = $article_join->focus_num+1;
 			if(!$article_join->save())
 			return Response::json(array('errCode'=>4,'message'=>'参与话题收藏条数减1失败'));
 
