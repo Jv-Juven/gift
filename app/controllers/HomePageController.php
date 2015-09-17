@@ -235,8 +235,8 @@ class HomePageController extends BaseController {
 			}
 		}
 
-		$gifts = isGiftLike($gfits);
-		$type = isTopicLike($topic_id);
+		$gifts = $this->isGiftLike($gfits);
+		$type = $this->isTopicLike($topic_id);
 		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据',
