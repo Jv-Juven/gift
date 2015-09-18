@@ -196,7 +196,7 @@
 				.home-recommend-box{
 					position: relative;
 					width: 210px;
-					height: 238px;
+					height: 190px;
 					overflow: hidden;
 					float: left;
 					margin: 20px 0px 0px 20px;
@@ -214,23 +214,25 @@
 						background: url("/images/pc/home/cover_bg.png");
 						.box-cover-title{
 							position: relative;
-							width: 100%;
+							width: 182px;
+							overflow: hidden;
 							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
-							// text-align: center;
-							padding-left: 24px;
-							padding-top: 160px;
+							margin: 100px 14px 0px;
+							min-height: 20px;
+							max-height: 50px;
+							line-height: 25px;
 						}
 						.box-cover-price{
-							padding-top: 10px;
+							padding-top: 12px;
 							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
 							position: relative;
 							width: 100%;
 							&>span{
-								padding: 7px 20px;
+								padding: 0px 14px;
 							}
 						}
 						.box-cover-like{
@@ -263,6 +265,11 @@
 						width: 100%;
 						height: 100%;
 						display: inline-block;
+						&>img{
+							top: auto;
+							height: 40%;
+							bottom: 0px;
+						}
 						.home-hot-board{
 							position: absolute;
 							bottom: -26px;
@@ -270,12 +277,15 @@
 							width: 100%;
 							height: 100%;
 							.home-hot-title{
+								position: absolute;
 								display: block;
 								color: rgb(255, 255, 255);
 								font-size: 18px;
 								font-weight: bold;
-								margin: 210px 10px 0px 10px;
+								width: 420px;
+								left: 10px;
 								line-height: 24px;
+								bottom: 36px;
 							}
 							.home-hot-info{
 								position: absolute;
@@ -283,7 +293,7 @@
 								bottom: 5px;
 								&>span{
 									float: left;
-									width: 90px;
+									width: 70px;
 								}
 								.home-scan{
 									padding-top: 10px;

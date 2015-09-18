@@ -15,7 +15,9 @@ $ ()->
 	timeout = new Object()
 	likeBtn = $(".box-cover-like img")
 	#修改头部图片
-	hearBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png").parent().attr "href", "javascript:"
+	headerBar = $(".header-menubar a img").attr("src", "/images/pc/components/shu-bar.png").parent().attr "href", "javascript:"
+	headerBar.on "click", ()->
+		history.back(-1)
 
 	#默认选取“全部”
 	# charItems.eq(0).addClass "active"
