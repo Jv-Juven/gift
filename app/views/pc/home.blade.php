@@ -13,7 +13,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a class="link-wrapper" href="javascript:">
-						<img src="http://7xl6gj.com1.z0.glb.clouddn.com/slide-img01.jpg">
+						<img src="http://7xl6gj.com1.z0.glb.clouddn.com/haibao1.jpg">
 					</a>
 				</div>
 			    @if(isset($scroll_imgs))

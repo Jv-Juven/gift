@@ -112,7 +112,8 @@ $ ()->
 				alert "退出成功"
 				window.location.href = "/pc_home/"
 			else
-				alert "退出失败"
+				alert msg["message"]
+				window.location.href = "/pc/login"
 
 
 

@@ -6,8 +6,8 @@
 	.search-container{
 		margin: 0px auto;
 		width: 1200px;
-		height: 280px;
-		overflow: hidden;
+		height: 250px;
+		// overflow: hidden;
 		.search-wrapper{
 			padding: 30px 0px;
 			width: 100%;
@@ -50,15 +50,16 @@
 			width: 1010px;
 			height: auto;
 			margin: 30px auto;
-			overflow: hidden;
+			// overflow: hidden;
 			.search-items-tr{
+				position: relative;
 				border-top: 1px solid rgb(217, 217, 217);
-				padding: 15px 0px;
 				color: rgb(56, 56, 56);
 				font-size: 16px;
 				vertical-align: middle;
 				.search-items-key{
 					float: left;
+					padding: 15px 0px;
 					.key-dot{
 						margin: 3px 0px;
 						width: 6px;
@@ -73,16 +74,32 @@
 						width: auto;
 						.item{
 							float: left;
-							// padding: 0px @padding;
-							width: 80px;
+							// width: 80px;
+							padding: 0px 20px;
 							text-align: center;
 							a{
+								position: relative;
+								display: inline-block;
+								padding: 15px 0px;
+								height: auto;
 								.a-text(rgb(180, 180, 180));
+							}
+							.item-line{
+								display: none;
+								position: absolute;
+								bottom: -1px;
+								z-index: 999;
+								width: 100%;
+								height: 2px;
+								background-color: @red-color;
 							}
 						}
 						.active{
 							a{
 								.a-text(rgb(247, 57, 57));
+							}
+							.item-line{
+								display: block;
 							}
 						}
 					}
@@ -100,13 +117,13 @@
 		width: 100%;
 		height: auto;
 		background: rgb(246, 246, 246);
-		border-top: 4px solid rgb(232, 232, 232);
+		border-top: 1px solid rgb(232, 232, 232);
 		.search-wrappers{
 			width: 900px;
 			height: auto;
 			margin: 0px auto;
 			padding-bottom: 140px;
-			padding-top: 40px;
+			padding-top: 24px;
 			&>ul{
 				width: 920px;
 				height: auto;
@@ -129,7 +146,7 @@
 				.search-recommend-box{
 					position: relative;
 					width: 210px;
-					height: 238px;
+					height: 190px;
 					overflow: hidden;
 					float: left;
 					margin: 20px 0px 0px 20px;
@@ -146,23 +163,27 @@
 						background: url("/images/pc/home/cover_bg.png");
 						.box-cover-title{
 							position: relative;
-							width: 100%;
+							width: 182px;
+							overflow: hidden;
 							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
-							padding-left: 20px;
-							// text-align: center;
-							padding-top: 160px;
+							margin: 100px 14px 0px;
+							min-height: 20px;
+							max-height: 50px;
+							line-height: 25px;
+							// text-overflow: ellipsis;
+							// white-space: nowrap;
 						}
 						.box-cover-price{
-							padding-top: 10px;
+							padding-top: 12px;
 							font-size: 20px;
 							color: rgb(255, 255, 255);
 							font-weight: 400;
 							position: relative;
 							width: 100%;
 							&>span{
-								padding: 7px 20px;
+								padding: 0px 14px;
 							}
 						}
 						.box-cover-like{
