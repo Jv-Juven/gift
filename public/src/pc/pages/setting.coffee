@@ -1,4 +1,6 @@
 
+alert = require "./../components/warn-box.coffee"
+
 Uploader = require("./../common/uploader/index.coffee")
  
 $ ()->
@@ -101,19 +103,19 @@ $ ()->
 			position: position
 		}, (msg)->
 			if msg["errCode"] is 0
-				alert "提交成功"
+				alert.warn "提交成功"
 			else
-				alert msg["message"]
+				alert.warn msg["message"]
 
 	#退出登录
 	signOut = ()->
 		$.post "/user/logout", {}, (msg)->
 			if msg["errCode"] is 0
-				alert "退出成功"
-				window.location.href = "/pc_home/"
+				alert.warn "退出成功", ()->
+					window.location.href = "/pc_home/"
 			else
-				alert msg["message"]
-				window.location.href = "/pc/login"
+				alert.warn msg["message"], ()->
+					window.location.href = "/pc/login"
 
 
 

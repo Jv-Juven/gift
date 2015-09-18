@@ -1,3 +1,6 @@
+
+alert = require "./../components/warn-box.coffee"
+
 $ ()->
 	userHotBox = $(".user-hot-board")
 	userCollectionli = $(".user-collection-li")
@@ -64,7 +67,7 @@ $ ()->
 			load_lock01 = 1
 
 			if msg["errCode"] isnt 0
-				alert msg["message"]
+				alert.warn msg["message"]
 				return
 			if msg["gifts"].length is 0
 				loadTip.find("img").attr("src","/images/pc/search/loaded.png").css("width", "140px")
@@ -121,7 +124,7 @@ $ ()->
 		}, (msg)->
 			console.log msg
 			if msg["errCode"] isnt 0
-				alert msg["message"]
+				alert.warn msg["message"]
 				return
 			likeImg.toggle()
 			# likeImg.parents(".user-recommend-box").fadeOut()#隐藏该礼品

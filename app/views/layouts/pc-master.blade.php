@@ -21,6 +21,7 @@
 	@section("body")
 	@show
 	@include("pc.components.footer")
+	@include("pc.components.warn-box")
 </div>
 
 @section("js")

@@ -1,3 +1,6 @@
+
+alert = require "./../components/warn-box.coffee"
+
 $ ()->
 
 	homeMenuItems = $(".home-menu-item")
@@ -16,9 +19,8 @@ $ ()->
 		$.post "/home/collection", {
 			gift_id: gift_id
 		}, (msg)->
-			console.log msg
 			if msg["errCode"] isnt 0
-				alert msg["message"]
+				alert.warn msg["message"]
 				return
 			likeImg.toggle()
 

@@ -1,10 +1,11 @@
 .header{
+	@header-height: 70px;
 	position: relative;
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	height: 70px;
-	line-height: 70px;
+	height: @header-height;
+	line-height: @header-height;
 	.header-wrapper{
 		position: relative;
 		max-width: 980px; 
@@ -34,12 +35,12 @@
 		}
 		.header-menu{
 			float: right;
-			height: 100%;
+			height: @header-height;
 			margin-right: 0px; 
 			li{
 				position: relative;
 				float: left;
-				height: 100%;
+				height: @header-height;
 				width: 110px;
 				overflow: hidden;
 			}
@@ -184,7 +185,7 @@
 				position: relative;
 				height: 100%;
 				width: auto;
-				margin-left: 30px;
+				margin-left: 20px;
 				img{
 					display: inline-block;
 					margin-left: 20px;

@@ -20,7 +20,7 @@
 				下载客户端:
 			</div>
 			<div class="footer-pics-container">
-				<img src="/images/pc/login/footer_icons.jpg">
+				<img src="/images/pc/login/footer_icons.png">
 			</div>
 		</div>
 	</div>

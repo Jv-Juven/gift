@@ -1,3 +1,6 @@
+
+alert = require "./../components/warn-box.coffee"
+
 $ ()->
 
 	searchRecBox = $(".search-recommend-box")
@@ -32,7 +35,7 @@ $ ()->
 		}, (msg)->
 			console.log msg
 			if msg["errCode"] isnt 0
-				alert msg["message"]
+				alert.warn msg["message"]
 				return
 			likeImg.toggle()
 
