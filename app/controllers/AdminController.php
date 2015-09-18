@@ -7,12 +7,32 @@ class AdminController extends \BaseController {
 		return View::make('admin-login.index');
 	}
 
+  public function statistic()
+  {
+      $qq = count(User::where('qq_id','!=','null')->get());
+      $weixin = count(User::where('unionid','!=','null')->get());
+        $s = Statistic::find(1);
+      if(isset($s))
+      {
+          $s->qq      = $qq;
+          $s->weixin  = $weixin;
+          $s->save();
+      }else
+      {
+          $s = new Statistic;
+          $s->qq      = $qq;
+          $s->weixin  = $weixin;
+          $s->save();
+      }
 
+      return true;
+  }
 
 	public function postIndex()
 	{
 		$username = Input::get('username');
 		$password = Input::get('password');
+    $this->statistic();
   		if (Auth::attempt(['username' => $username, 'password' => $password]))
   		{
   			

@@ -42,32 +42,76 @@ class ArticlePageController extends BaseController{
 	{
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->where('hot_article','!=',0)->orderBy('focus_num', 'desc')->get();
+		
+		$time = time();
+		$articles = Article::where('hot_offical','!=',0)->orderBy('focus_num', 'desc')
+							->with([
+								'parts' => function($query)
+								{
+									$query->orderBy('created_at','asc');
+								}
+								])->get();
+		if(count($articles) == 0 )
+			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>array(),'total'=>0));
+		// dd(count($articles));
+		foreach( $articles as $article)
+		{
+			$parts = $article->parts;
+			foreach($parts as $part)
+			{
+				if($part->type == 'text')
+				{
+					$article->text = $part->content;
+				}
+				if(isset($article->text))
+					break;
+			}
+			foreach($parts as $part)
+			{
+				if($part->type == 'url')
+				{
+					// dd($part->content);
+					$article->img = StaticController::imageWH($part->content);
+				}
+				if(isset($article->img))
+					break;
+			}
+			unset($article->parts);
+		}
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
 		$articles = StaticController::page($per_page, $page, $articles);
-		
-		if( $articles )
-		{	foreach( $articles as $article)
-			{
-				$article_url = ArticlePart::where('article_id', '=', $article->id)
-							->where('type','=', 'url')->first();
-				if(isset($article_url))
-				{
-					$article->img = StaticController::imageWH($article_url->content);
-				}
 
-				$article_text = ArticlePart::where('article_id', '=', $article->id)
-							->where('type','=', 'text')->first();
-				if(isset($article_text))	
-				{
-					$article->text = $article_text->content;
-				}				
-			}
-			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
-		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
+		
+		// $time = time();
+		// $articles = DB::table('articles')->where('hot_offical','!=',0)->orderBy('focus_num', 'desc')->get();
+		// // 总页数
+		// $total = ceil(count($articles)/$per_page);
+		// //文章
+		// $articles = StaticController::page($per_page, $page, $articles);
+		// if( $articles )
+		// {	foreach( $articles as $article)
+		// 	{
+		// 		$article_url = ArticlePart::where('article_id', '=', $article->id)
+		// 					->where('type','=', 'url')->first();
+		// 		if(isset($article_url))
+		// 		{
+		// 			$article->img = StaticController::imageWH($article_url->content);
+		// 		}
+
+		// 		$article_text = ArticlePart::where('article_id', '=', $article->id)
+		// 					->where('type','=', 'text')->first();
+		// 		if(isset($article_text))	
+		// 		{
+		// 			$article->text = $article_text->content;
+		// 		}				
+		// 	}
+		// // 	return Response::json(array('errCode'=>(time()-$time), 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
+		// }
+				
+		// return Response::json(array('errCode'=>(time()-$time), 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
 
 	//官方话题
@@ -75,7 +119,7 @@ class ArticlePageController extends BaseController{
 	{	
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->where('hot_article','!=',1)->orderBy('updated_at', 'desc')->get();
+		$articles = DB::table('articles')->where('hot_offical','!=',1)->orderBy('updated_at', 'desc')->get();
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
@@ -144,13 +188,6 @@ class ArticlePageController extends BaseController{
 				// echo $article_part->content;
 				$article_join->content = $article_part->content;//第一段内容
 			}
-		// return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
-		// 				'article'			=>$article,
-		// 				'article_parts'		=>$article_parts,
-		// 				'article_joins' 	=>$article_joins,
-		// 				'total'				=>$total,
-		// 				'type' 				=> $type
-		// 			));
 		}
 		if($page == 1)
 		{
@@ -188,27 +225,63 @@ class ArticlePageController extends BaseController{
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->get();
-		//总页数
-		$total = ceil(count($join_coms)/$per_page);
-		//文章
-		$join_coms = StaticController::page($per_page,$page,$join_coms);
-		if( $join_coms )
+		
+		$join_coms = ArticleJoinCom::where('join_id', '=', $join_id)
+									->with([
+										'replies' => function($query){
+											$query->select('com_id','content','sender_id')->orderBy('id','asc');
+										},
+										'sender' => function($query){
+											$query->select('id','username','avatar');
+										},
+										'replies.sender' => function($query){
+											$query->select('id','username');
+										}
+									])->get();
+		foreach( $join_coms as $join_com)
 		{
-			foreach($join_coms as $join_com)
-			{	
-				$join_com->username = User::find($join_com->sender_id)->username;
-				$join_com->avatar = User::find($join_com->sender_id)->avatar;
-				$join_com->replys = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
-				if(count($join_com->replys)!=0)
-				{
-					foreach($join_com->replys as $reply)
-					{
-						$reply->reply_name = User::find($reply->sender_id)->username;
-					}
+			$user = $join_com->sender;
+			$join_com->username = $user->username;
+			$join_com->avatar = $user->avatar;
+			$join_com->replys = $join_com->replies;
+			if(count($join_com->replys)!=0)
+			{
+				foreach($join_com->replys as $reply)
+				{	
+					// dd($reply);
+					$reply->reply_name = $reply->sender->username;
+					unset($reply->sender);
 				}
 			}
+			unset($join_com->replies);
+			unset($join_com->sender);
 		}
+		// //总页数
+		$total = ceil(count($join_coms)/$per_page);
+		// //文章
+		$join_coms = StaticController::page($per_page,$page,$join_coms);
+		
+		// $join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->get();
+		// //总页数
+		// $total = ceil(count($join_coms)/$per_page);
+		// //文章
+		// $join_coms = StaticController::page($per_page,$page,$join_coms);
+		// if( $join_coms )
+		// {
+		// 	foreach($join_coms as $join_com)
+		// 	{	
+		// 		$join_com->username = User::find($join_com->sender_id)->username;
+		// 		$join_com->avatar = User::find($join_com->sender_id)->avatar;
+		// 		$join_com->replys = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
+		// 		if(count($join_com->replys)!=0)
+		// 		{
+		// 			foreach($join_com->replys as $reply)
+		// 			{
+		// 				$reply->reply_name = User::find($reply->sender_id)->username;
+		// 			}
+		// 		}
+		// 	}
+		// }
 		//是否喜欢
 		$type = $this->isJoinLike($join_id);
 		if($page == 1)

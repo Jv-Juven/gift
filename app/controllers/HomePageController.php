@@ -2,7 +2,44 @@
 
 class HomePageController extends BaseController {
 
-	
+	//喜欢专题
+	public function isTopicLike($topic_id)
+	{
+		if(Sentry::check())
+		{
+			$is_like 	= DB::table('topic_focus')->where('user_id','=', Sentry::getUser()->id)
+							->where('topic_id', '=', $topic_id)->first();
+		}
+		//判断是否收藏
+		if(isset($is_like))
+		{
+			$type = 1;
+		}else{
+			$type = 0;
+		}
+		return $type;
+	}
+
+	public function isGiftLike($gifts)
+	{
+		foreach( $gifts as $gift)
+		{
+			if( Sentry::check())
+			{
+				/* 2015-09-16 hyy 改 start */
+				$gift_focus = GiftFocus::where( 'user_id', Sentry::getUser()->id )
+									   ->where( 'gift_id', $gift->id )
+									   ->first();
+				if( isset( $gift_focus ) )
+					$gift->type = 1;
+				else
+					$gift->type =0;
+				/* 2015-09-16 hyy 改 end */
+			}
+		}
+		return $gifts;
+	}
+
 	public function isLike($gift_id)
 	{
 		if(Sentry::check())
@@ -87,6 +124,8 @@ class HomePageController extends BaseController {
 
 		//收藏的人
 		$focus_users	= Gift::find($gift_id)->users;
+		
+
 		//相似推荐
 		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
 						     ->where('object_id', '=', $gift->object_id)
@@ -98,6 +137,8 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
+		
+
 		// dd(count($gifts_like) > 9);
 		if(count($gifts_like) > 30)
 		{
@@ -198,16 +239,20 @@ class HomePageController extends BaseController {
 			}
 		}
 
+		$gifts = $this->isGiftLike($gifts);
+		$type = $this->isTopicLike($topic_id);
 		if( Request::wantsJson() )
 		{
 			return Response::json(array('errCode'=>0,'message'=>'返回专题页数据',
 				'topic' 	=> $topic,
-				'gifts'	=> $gifts		
+				'gifts'		=> $gifts,
+				'type' 		=> $type		
 			));
 		}
 		return View::make('index/goodsList')->with(array(
 				'topic' 	=> $topic,
-				'gifts'	=> $gifts
+				'gifts'		=> $gifts,
+				'type' 		=> $type
 			));	
  	}
 

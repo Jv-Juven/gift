@@ -165,10 +165,7 @@ class QqAuthController extends BaseController{
 		{
 			return Response::json(array('errCode'=>0,'message'=>'已登录','user'=>Sentry::getUser()));
 		}
-      // $openid = Input::get('openid');
-	//	Log::info($openid);
-	//	Log::info(get_class(Input::get('data')));
-		Log::info(Input::get('data'));
+		// Log::info(Input::get('data'));
 		//return Input::get('data');
 		$data =json_decode(Input::get('data')) ;
         $user = User::where('openid', '=', $data->openid)->first();

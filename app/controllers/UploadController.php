@@ -5,9 +5,9 @@ use Qiniu\Storage\BucketManager;
 
 class qiniu_delete{
 
-    protected static $accessKey     = 'KnOa3BkwBgjUSOm6TqvtYoARkhGM7blkOIq7G9Mg';
-    protected static $secretKey     = '0XmYlKCYaushdgA-R9_d87hyvYPsHDKTnVQTW2Q5';
-    protected static $delete_url    = 'http://7sbxao.com1.z0.glb.clouddn.com/delete/';
+    protected static $accessKey     = Config::get('qiniu.accessKey');
+    protected static $secretKey     = Config::get('qiniu.secretKey');
+    protected static $delete_url    = Config::get('qiniu.upload_url').'/delete/';
     protected static $bucket        = 'gift';
 
     public function fire( $job, $keys ){
@@ -26,8 +26,8 @@ class qiniu_delete{
 
 class UploadController extends BaseController {
 
-    protected static $accessKey = 'KnOa3BkwBgjUSOm6TqvtYoARkhGM7blkOIq7G9Mg';
-    protected static $secretKey = '0XmYlKCYaushdgA-R9_d87hyvYPsHDKTnVQTW2Q5';
+    protected static $accessKey = Config::get('qiniu.accessKey');
+    protected static $secretKey = Config::get('qiniu.secretKey');
     protected static $bucket    = 'gift';
 
 	public function getUpToken()

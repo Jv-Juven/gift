@@ -57,7 +57,7 @@ Route::group(array('prefix' => 'user'),function()
 	//忘记密码—重置密码
 	Route::post('pwd', 'UserController@pwdReset');
 	//登出
-	Route::post('logout', array('before'=>'auth.user.isIn','UserController@logout'));
+	Route::post('logout','UserController@logout');
 });
 
 //选礼
@@ -130,7 +130,7 @@ Route::group(array('prefix'=>'site','before'=>'auth.user.isIn'),function(){
 	//消息推送
 	Route::post('push_message','SiteController@pushMessage');
 	//更新个人资料
-	Route::post('site/per_info','SiteController@perInfo');
+	Route::post('per_info','SiteController@perInfo');
 });
 	
 
@@ -176,8 +176,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 // Route::get('test','QqAuthController@getOpenidFromString');
 
 
-Route::get('extract','MysqlController@extractData');
-Route::get('insert', 'MysqlController@insertData');
+
 
 
 
