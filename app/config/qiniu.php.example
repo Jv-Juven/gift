@@ -1,7 +1,8 @@
 <?php
 
 return array(
-		'accessKey' =>'',
-		'secretKey'	=>'',
-		'upload_url'=>'',
+	'accessKey'    => '',
+	'secretKey'	   => '',
+	'domain'       => '',
+    'buckets'      => ['']
 );
