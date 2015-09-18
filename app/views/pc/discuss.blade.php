@@ -31,7 +31,7 @@
                             @if ( $parts['type'] == 'url' )
                                 <img src="{{{ $parts['content'] }}}">
                             @elseif ( $parts['type'] == 'text' )
-                                <p>{{ $parts['content'] }}</p>
+                                <p>{{{ $parts['content'] }}}</p>
                             @endif
                         @endforeach
                     </div>

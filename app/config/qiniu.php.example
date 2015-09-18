@@ -1,0 +1,8 @@
+<?php
+
+return array(
+	'accessKey'    => '',
+	'secretKey'	   => '',
+	'domain'       => '',
+    'buckets'      => ['']
+);

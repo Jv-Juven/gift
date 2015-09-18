@@ -22,4 +22,9 @@ class   Gift extends Eloquent{
 		return $this->belongsToMany('User','gift_focus','gift_id', 'user_id');
 	}
 
+	public function giftPosters()
+	{
+		return $this->hasMany('GiftPoster','gift_id','id');
+	}
+
 }
