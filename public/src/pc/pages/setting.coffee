@@ -21,9 +21,10 @@ $ ()->
 			laoding.fadeOut(300)
 			console.log "前端提交成功后的回调"
 			if msg["errCode"] isnt 0
-				console.log msg["message"]
+				alert.warn msg["message"]
 			if msg["errCode"] is 10
-				window.location = "/pc/login/"
+				alert.warn msg["message"], ()->
+					window.location = "/pc/login/"
 
 	#绑定按钮的上传头像事件
 	behindUploader = new Uploader {
@@ -66,15 +67,16 @@ $ ()->
 	changSign = ()->
 		sign = userSignature.val()
 		if sign.length is 0 
-			console.log "请输入用户名"
+			alert.warn "请输入用户名"
 			return
 		$.post "/pc_mine/set_sign", {
 			sign: sign
 		}, (msg)->
 			if msg["errCode"] isnt 0
-				console.log msg["message"]
+				alert.warn msg["message"]
 			if msg["errCode"] is 10
-				window.location = "/pc/login/"
+				alert.warn msg["errCode"], ()->
+					window.location = "/pc/login/"
 
 	#修改状态
 	editStatus = (e)->
