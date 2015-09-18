@@ -1,6 +1,7 @@
 <?php
 
 class Article extends Eloquent{
+	
 	protected $table = 'articles';
 
 	protected $fillable = array(
@@ -11,8 +12,8 @@ class Article extends Eloquent{
 		'hot_offical'
 	);
 
-	public function parts()
-	{
-		return $this->hasMany('ArticlePart','article_id','id');
+	public function parts(){
+
+		return $this->hasMany( 'ArticlePart', 'article_id', 'id' );
 	}
 }
