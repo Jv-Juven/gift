@@ -1,0 +1,1 @@
+2015-09-18 06:24:34: imagepng(images/qrcode/topic1.png): failed to open stream: No such file or directory2015-09-18 06:31:06: imagepng(images/qrcode/topic1.png): failed to open stream: No such file or directory

@@ -1,0 +1,1 @@
+2015-09-18 06:26:32: imagepng(images/qrcode/topic2.png): failed to open stream: No such file or directory

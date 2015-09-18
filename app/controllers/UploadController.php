@@ -5,18 +5,15 @@ use Qiniu\Storage\BucketManager;
 
 class qiniu_delete{
 
-    protected static $accessKey     = Config::get('qiniu.accessKey');
-    protected static $secretKey     = Config::get('qiniu.secretKey');
-    protected static $delete_url    = Config::get('qiniu.upload_url').'/delete/';
-    protected static $bucket        = 'gift';
-
     public function fire( $job, $keys ){
 
-        $auth = new Auth( self::$accessKey, self::$secretKey );
+        $qiniu_config = Config::get( 'qiniu' );
+
+        $auth = new Auth( $qiniu_config['accessKey'], $qiniu_config['secretKey'] );
         $bucket_manager = new BucketManager( $auth );
 
         foreach ( $keys as $key ){
-            $response = $bucket_manager->delete( self::$bucket, $key );
+            $response = $bucket_manager->delete( $qiniu_config['buckets'][0], $key );
             if ( $response ){
                 Log::info( "Error in delete key:$key".$response->message() );
             }
@@ -26,26 +23,24 @@ class qiniu_delete{
 
 class UploadController extends BaseController {
 
-    protected static $accessKey = Config::get('qiniu.accessKey');
-    protected static $secretKey = Config::get('qiniu.secretKey');
-    protected static $bucket    = 'gift';
-
 	public function getUpToken()
 	{
-		$auth = new Auth( self::$accessKey, self::$secretKey );
+        $qiniu_config = Config::get( 'qiniu' );
+
+		$auth = new Auth( $qiniu_config['accessKey'], $qiniu_config['secretKey'] );
 		
 		return Response::json(array(
-            "uptoken" => $auth->uploadToken( self::$bucket ) ));
+            "uptoken" => $auth->uploadToken( $qiniu_config['buckets'][0] ) ));
 	}
 
 	public function getAppUpToken()
 	{
-		$auth = new Auth( self::$accessKey, self::$secretKey );
+		$auth = new Auth( $qiniu_config['accessKey'], $qiniu_config['secretKey'] );
 
 		return Response::json(array(
             'errCode'=>0,
             'message'=>'返回token',
-            'uptoken' => $auth->uploadToken( self::$bucket ) ));
+            'uptoken' => $auth->uploadToken( $qiniu_config['buckets'][0] ) ));
 	}
 
     public function deletePicture(){
@@ -57,4 +52,3 @@ class UploadController extends BaseController {
         return Response::make('');
     }
 }
-
