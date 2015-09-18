@@ -176,8 +176,7 @@ Route::group(array('prefix' =>'weixin'), function(){
 // Route::get('test','QqAuthController@getOpenidFromString');
 
 
-Route::get('extract','MysqlController@extractData');
-Route::get('insert', 'MysqlController@insertData');
+
 
 
 

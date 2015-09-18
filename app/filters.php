@@ -58,7 +58,7 @@ Route::filter('auth.basic', function()
 Route::filter('auth.user.isIn',function()
 {
 	Session_start();
-	// $user = Sentry::findUserById(4);
+	// $user = Sentry::findUserById(1);
 	// Sentry::login($user,false);
 	// Sentry::logout();
 	if(!Sentry::check())
