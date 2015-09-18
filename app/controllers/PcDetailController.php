@@ -82,18 +82,32 @@ class PcDetailController extends BaseController{
 		$topic = Topic::find($topic_id);
 		if(!isset($topic))
 			return Response::view('errors.missing');
-		
-		$gifts = Gift::where('topic_id', '=', $topic->id)->get();
-		if(isset($gifts))
-		{	$number = 1;
-			foreach($gifts as $gift)
-			{
-				$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
-				// $gift->img = StaticController::imageWH($url);
-				$gift->img = $url;
-				$gift->number = $number++;
-			}
-		}
+		//预载入
+		$gifts = Gift::where('topic_id',$topic->id)
+						->with([
+								'giftPosters'=>function($query)
+								{
+									$query->orderBy('created_at','asc');
+								}
+							])->get();
+		$number = 1;
+		foreach($gifts as $gift)
+		{
+			$gift->img = $gift->giftPosters[0]->url;
+			$gift->number = $number++;
+		}	
+
+		// $gifts = Gift::where('topic_id', '=', $topic->id)->get();
+		// if(isset($gifts))
+		// {	$number = 1;
+		// 	foreach($gifts as $gift)
+		// 	{
+		// 		$url = GiftPoster::where('gift_id','=',$gift->id)->first()->url;
+		// 		// $gift->img = StaticController::imageWH($url);
+		// 		$gift->img = $url;
+		// 		$gift->number = $number++;
+		// 	}
+		// }
 		$gifts = $this->isGiftLike($gifts);
 		$type = $this->isTopicLike($topic_id);
 		return View::make('pc.subject')->with(array(

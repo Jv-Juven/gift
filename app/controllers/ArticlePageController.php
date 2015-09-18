@@ -42,32 +42,76 @@ class ArticlePageController extends BaseController{
 	{
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$articles = DB::table('articles')->where('hot_offical','!=',0)->orderBy('focus_num', 'desc')->get();
+		
+		$time = time();
+		$articles = Article::where('hot_offical','!=',0)->orderBy('focus_num', 'desc')
+							->with([
+								'parts' => function($query)
+								{
+									$query->orderBy('created_at','asc');
+								}
+								])->get();
+		if(count($articles) == 0 )
+			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>array(),'total'=>0));
+		// dd(count($articles));
+		foreach( $articles as $article)
+		{
+			$parts = $article->parts;
+			foreach($parts as $part)
+			{
+				if($part->type == 'text')
+				{
+					$article->text = $part->content;
+				}
+				if(isset($article->text))
+					break;
+			}
+			foreach($parts as $part)
+			{
+				if($part->type == 'url')
+				{
+					// dd($part->content);
+					$article->img = StaticController::imageWH($part->content);
+				}
+				if(isset($article->img))
+					break;
+			}
+			unset($article->parts);
+		}
 		//总页数
 		$total = ceil(count($articles)/$per_page);
 		//文章
 		$articles = StaticController::page($per_page, $page, $articles);
-		
-		if( $articles )
-		{	foreach( $articles as $article)
-			{
-				$article_url = ArticlePart::where('article_id', '=', $article->id)
-							->where('type','=', 'url')->first();
-				if(isset($article_url))
-				{
-					$article->img = StaticController::imageWH($article_url->content);
-				}
 
-				$article_text = ArticlePart::where('article_id', '=', $article->id)
-							->where('type','=', 'text')->first();
-				if(isset($article_text))	
-				{
-					$article->text = $article_text->content;
-				}				
-			}
-			return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
-		}
 		return Response::json(array('errCode'=>0, 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
+		
+		// $time = time();
+		// $articles = DB::table('articles')->where('hot_offical','!=',0)->orderBy('focus_num', 'desc')->get();
+		// // 总页数
+		// $total = ceil(count($articles)/$per_page);
+		// //文章
+		// $articles = StaticController::page($per_page, $page, $articles);
+		// if( $articles )
+		// {	foreach( $articles as $article)
+		// 	{
+		// 		$article_url = ArticlePart::where('article_id', '=', $article->id)
+		// 					->where('type','=', 'url')->first();
+		// 		if(isset($article_url))
+		// 		{
+		// 			$article->img = StaticController::imageWH($article_url->content);
+		// 		}
+
+		// 		$article_text = ArticlePart::where('article_id', '=', $article->id)
+		// 					->where('type','=', 'text')->first();
+		// 		if(isset($article_text))	
+		// 		{
+		// 			$article->text = $article_text->content;
+		// 		}				
+		// 	}
+		// // 	return Response::json(array('errCode'=>(time()-$time), 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
+		// }
+				
+		// return Response::json(array('errCode'=>(time()-$time), 'message'=>'返回热门话题','articles'=>$articles,'total'=>$total));
 	}
 
 	//官方话题
@@ -144,13 +188,6 @@ class ArticlePageController extends BaseController{
 				// echo $article_part->content;
 				$article_join->content = $article_part->content;//第一段内容
 			}
-		// return Response::json(array('errCode'=>0, 'message'=>'返回文章详细内容',
-		// 				'article'			=>$article,
-		// 				'article_parts'		=>$article_parts,
-		// 				'article_joins' 	=>$article_joins,
-		// 				'total'				=>$total,
-		// 				'type' 				=> $type
-		// 			));
 		}
 		if($page == 1)
 		{
