@@ -225,27 +225,63 @@ class ArticlePageController extends BaseController{
 		//评论内容
 		$per_page = Input::get('per_page');
 		$page = Input::get('page');
-		$join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->get();
-		//总页数
-		$total = ceil(count($join_coms)/$per_page);
-		//文章
-		$join_coms = StaticController::page($per_page,$page,$join_coms);
-		if( $join_coms )
+		
+		$join_coms = ArticleJoinCom::where('join_id', '=', $join_id)
+									->with([
+										'replies' => function($query){
+											$query->select('com_id','content','sender_id')->orderBy('id','asc');
+										},
+										'sender' => function($query){
+											$query->select('id','username','avatar');
+										},
+										'replies.sender' => function($query){
+											$query->select('id','username');
+										}
+									])->get();
+		foreach( $join_coms as $join_com)
 		{
-			foreach($join_coms as $join_com)
-			{	
-				$join_com->username = User::find($join_com->sender_id)->username;
-				$join_com->avatar = User::find($join_com->sender_id)->avatar;
-				$join_com->replys = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
-				if(count($join_com->replys)!=0)
-				{
-					foreach($join_com->replys as $reply)
-					{
-						$reply->reply_name = User::find($reply->sender_id)->username;
-					}
+			$user = $join_com->sender;
+			$join_com->username = $user->username;
+			$join_com->avatar = $user->avatar;
+			$join_com->replys = $join_com->replies;
+			if(count($join_com->replys)!=0)
+			{
+				foreach($join_com->replys as $reply)
+				{	
+					// dd($reply);
+					$reply->reply_name = $reply->sender->username;
+					unset($reply->sender);
 				}
 			}
+			unset($join_com->replies);
+			unset($join_com->sender);
 		}
+		// //总页数
+		$total = ceil(count($join_coms)/$per_page);
+		// //文章
+		$join_coms = StaticController::page($per_page,$page,$join_coms);
+		
+		// $join_coms = DB::table('article_join_coms')->where('join_id', '=', $join_id)->get();
+		// //总页数
+		// $total = ceil(count($join_coms)/$per_page);
+		// //文章
+		// $join_coms = StaticController::page($per_page,$page,$join_coms);
+		// if( $join_coms )
+		// {
+		// 	foreach($join_coms as $join_com)
+		// 	{	
+		// 		$join_com->username = User::find($join_com->sender_id)->username;
+		// 		$join_com->avatar = User::find($join_com->sender_id)->avatar;
+		// 		$join_com->replys = ArticleJoinReply::where('com_id', '=', $join_com->id)->orderBy('id','asc')->get();
+		// 		if(count($join_com->replys)!=0)
+		// 		{
+		// 			foreach($join_com->replys as $reply)
+		// 			{
+		// 				$reply->reply_name = User::find($reply->sender_id)->username;
+		// 			}
+		// 		}
+		// 	}
+		// }
 		//是否喜欢
 		$type = $this->isJoinLike($join_id);
 		if($page == 1)

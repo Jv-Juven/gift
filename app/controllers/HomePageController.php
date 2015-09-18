@@ -124,6 +124,8 @@ class HomePageController extends BaseController {
 
 		//收藏的人
 		$focus_users	= Gift::find($gift_id)->users;
+		
+
 		//相似推荐
 		$gifts 		= DB::table('gifts')->where('scene_id','=',$gift->scene_id)
 						     ->where('object_id', '=', $gift->object_id)
@@ -135,6 +137,8 @@ class HomePageController extends BaseController {
 			$gift_poster = GiftPoster::where('gift_id', '=', $gift->id)->first();
 			array_push($gifts_like, $gift_poster);
 		}
+		
+
 		// dd(count($gifts_like) > 9);
 		if(count($gifts_like) > 30)
 		{
